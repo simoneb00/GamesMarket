@@ -1,4 +1,4 @@
-package login.loginwindow;
+package GamesMarket;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -99,7 +97,7 @@ public class LoginController {
         }
     }
 
-
+/*
     public void signUpButtonController(ActionEvent event) {
 
         try {
@@ -122,5 +120,5 @@ public class LoginController {
             e.getCause();
         }
     }
-
+*/
 }

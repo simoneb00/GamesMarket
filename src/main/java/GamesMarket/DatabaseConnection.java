@@ -1,4 +1,4 @@
-package login.loginwindow;
+package GamesMarket;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

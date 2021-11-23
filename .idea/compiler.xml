@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="LoginWindow" />
+        <module name="GamesMarket" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="LoginWindow" target="16" />
+      <module name="GamesMarket" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
