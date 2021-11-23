@@ -38,12 +38,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="googleLogin" layoutX="74.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-background-radius: 20; -fx-border-radius: 20;" text="    Sign in with Google">
+      <Button fx:id="googleLogin" layoutX="74.0" layoutY="290.0" mnemonicParsing="false" onAction="#loginWithGoogle" prefHeight="25.0" prefWidth="184.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-background-radius: 20; -fx-border-radius: 20;" text="    Sign in with Google">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="facebookLogin" layoutX="340.0" layoutY="290.0" mnemonicParsing="false" prefWidth="184.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-background-radius: 20; -fx-border-radius: 20;" text="     Sign in with Facebook">
+      <Button fx:id="facebookLogin" layoutX="340.0" layoutY="290.0" mnemonicParsing="false" onAction="#loginWithFacebook" prefWidth="184.0" style="-fx-background-color: WHITE; -fx-border-color: BLACK; -fx-background-radius: 20; -fx-border-radius: 20;" text="     Sign in with Facebook">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="13.0" />
          </font>
