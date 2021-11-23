@@ -6,15 +6,7 @@ import javafx.stage.Stage;
 
 public class RegisterController {
 
-    Stage stage = new Stage();
-
-    public void registerButtonController(ActionEvent event) {
-        return;
-    }
-
-    public void registerCloseButtonController(ActionEvent event) {
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        stage.close();
-
+    public boolean registerUser(String firstName, String lastName, String email, String username, String password) {
+        return true;
     }
 }
