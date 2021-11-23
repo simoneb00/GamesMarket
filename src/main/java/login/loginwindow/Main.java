@@ -17,7 +17,7 @@ public class Main extends Application {
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
-        stage.show();
+        stage.show();   //foo test for git
 
 
     }
