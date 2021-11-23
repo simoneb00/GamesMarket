@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="711.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.loginwindow.ForumController">
+   <children>
+      <ImageView fitHeight="711.0" fitWidth="1000.0" layoutX="397.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../../images/forum.jpg" />
+         </image></ImageView>
+      <Button layoutX="967.0" layoutY="8.0" mnemonicParsing="false" onAction="#forumCloseButtonController" opacity="0.0" prefHeight="30.0" prefWidth="25.0" />
+      <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#homeButtonController" opacity="0.0" prefHeight="30.0" prefWidth="17.0" />
+      <Button layoutX="583.0" layoutY="54.0" mnemonicParsing="false" onAction="#homeButtonController" opacity="0.0" prefHeight="5.0" prefWidth="55.0" />
+      <Button layoutX="658.0" layoutY="54.0" mnemonicParsing="false" onAction="#shopButtonController" opacity="0.0" prefHeight="5.0" prefWidth="55.0" />
+      <Button layoutX="730.0" layoutY="54.0" mnemonicParsing="false" onAction="#exchangeButtonController" opacity="0.0" prefHeight="25.0" prefWidth="83.0" />
+      <Button layoutX="925.0" layoutY="49.0" mnemonicParsing="false" onAction="#profileButtonController" opacity="0.0" prefHeight="30.0" prefWidth="25.0" />
+      <TextField alignment="TOP_LEFT" layoutX="89.0" layoutY="168.0" prefHeight="183.0" prefWidth="331.0" style="-fx-border-color: #667694;" />
+      <TextField layoutX="318.0" layoutY="51.0" prefHeight="25.0" prefWidth="233.0" promptText="Search game" />
+   </children>
+</AnchorPane>
