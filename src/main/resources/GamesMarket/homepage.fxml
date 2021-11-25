@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.HomeController">
+<AnchorPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.UserHomeBoundary">
    <children>
       <ImageView fitHeight="711.0" fitWidth="1000.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -21,7 +21,7 @@
       <Button layoutX="659.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="50.0" />
       <Button layoutX="731.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="86.0" />
       <Button layoutX="836.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="64.0" />
-      <Button layoutX="918.0" layoutY="48.0" mnemonicParsing="false" opacity="0.0" prefHeight="31.0" prefWidth="40.0" />
+      <Button layoutX="918.0" layoutY="48.0" mnemonicParsing="false" onAction="#profileButtonController" opacity="0.0" prefHeight="31.0" prefWidth="40.0" />
       <Button layoutX="287.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="31.0" />
    </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class HomeController extends ButtonsHandler {
+public class UserHomeBoundary {
 
     @FXML
     private AnchorPane homePane;
@@ -48,7 +48,7 @@ public class HomeController extends ButtonsHandler {
 
     }
 
-    public void homeCloseButtonController(ActionEvent event) {
+    public void homeCloseButtonController() {
         try {
             Stage exitStage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("exit.fxml"));
@@ -70,7 +70,7 @@ public class HomeController extends ButtonsHandler {
         }
     }
 
-    public void yesExitController(ActionEvent event) {
+    public void yesExitController() {
         Platform.exit();
     }
 
@@ -79,5 +79,24 @@ public class HomeController extends ButtonsHandler {
         stage.close();
     }
 
+    public void profileButtonController(ActionEvent event) {
 
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profile.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 703);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage stage1 = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage1.setIconified(true);
+            stage1.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 }

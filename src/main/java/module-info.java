@@ -10,6 +10,7 @@ module login.loginwindow {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires java.desktop;
 
     opens GamesMarket to javafx.fxml;
     exports GamesMarket;

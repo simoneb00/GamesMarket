@@ -5,18 +5,19 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="711.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.ProfileController">
+<AnchorPane prefHeight="711.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.UserProfileBoundary">
    <children>
       <ImageView fitHeight="711.0" fitWidth="1000.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0">
          <image>
-            <Image url="@../../images/profile.jpg" />
+            <Image url="@../images/profile.jpg" />
          </image></ImageView>
       <TextField alignment="TOP_LEFT" layoutX="27.0" layoutY="173.0" prefHeight="200.0" prefWidth="305.0" promptText="Bio" />
       <TextField alignment="TOP_LEFT" layoutX="670.0" layoutY="173.0" prefHeight="200.0" prefWidth="305.0" promptText="Contact information" />
-      <ImageView fitHeight="162.0" fitWidth="200.0" layoutX="419.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profileImage" fitHeight="162.0" fitWidth="200.0" layoutX="419.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/blank-profile-picture-973460_1280.png" />
+            <Image url="@../images/blank-profile-picture-973460_1280.png" />
          </image>
       </ImageView>
       <Button layoutX="963.0" layoutY="7.0" mnemonicParsing="false" onAction="#profileCloseButtonController" opacity="0.0" prefHeight="30.0" prefWidth="25.0" />
@@ -25,5 +26,23 @@
       <Button layoutX="657.0" layoutY="53.0" mnemonicParsing="false" onAction="#shopButtonController" opacity="0.0" prefHeight="25.0" prefWidth="58.0" />
       <Button layoutX="734.0" layoutY="53.0" mnemonicParsing="false" onAction="#exchangeButtonController" opacity="0.0" prefHeight="25.0" prefWidth="80.0" />
       <Button layoutX="839.0" layoutY="53.0" mnemonicParsing="false" onAction="#forumButtonController" opacity="0.0" prefHeight="25.0" prefWidth="58.0" />
+      <Button defaultButton="true" layoutX="252.0" layoutY="379.0" mnemonicParsing="false" onAction="#saveBio" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #667694; -fx-background-radius: 20;" text="SAVE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button defaultButton="true" layoutX="895.0" layoutY="379.0" mnemonicParsing="false" onAction="#saveContactInformation" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #667694; -fx-background-radius: 20;" text="SAVE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="596.0" layoutY="496.0" mnemonicParsing="false" onAction="#addGameToTradelist" opacity="0.0" prefHeight="124.0" prefWidth="80.0" />
+      <Button layoutX="27.0" layoutY="496.0" mnemonicParsing="false" onAction="#addGameToWishlist" opacity="0.0" prefHeight="124.0" prefWidth="80.0" />
+      <Button fx:id="updatePhotoButton" defaultButton="true" layoutX="460.0" layoutY="358.0" mnemonicParsing="false" onAction="#updateProfilePhoto" opacity="0.0" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #667694; -fx-background-radius: 20;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="420.0" layoutY="192.0" mnemonicParsing="false" onAction="#showUpdatePhotoButton" onMouseEntered="#showUpdatePhotoButton" onMouseExited="#hideUpdatePhotoButton" opacity="0.0" prefHeight="162.0" prefWidth="162.0" />
    </children>
 </AnchorPane>
