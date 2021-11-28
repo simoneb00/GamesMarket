@@ -11,6 +11,7 @@ module login.loginwindow {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires java.desktop;
+    requires javafx.graphics;
 
     opens GamesMarket to javafx.fxml;
     exports GamesMarket;

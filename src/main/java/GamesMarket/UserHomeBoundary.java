@@ -35,7 +35,7 @@ public class UserHomeBoundary {
             loginStage.setScene(loginScene);
 
             GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(0, 0, 0, 0);
+            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
             adj.setInput(blur);
             homePane.setEffect(adj);
             loginStage.showAndWait();

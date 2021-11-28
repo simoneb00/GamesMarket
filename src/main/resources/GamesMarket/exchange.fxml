@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="711.0" fitWidth="1000.0" layoutX="397.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../images/exchange.jpg" />
+            <Image url="@../images/exchange.jpg" />
          </image></ImageView>
       <Button layoutX="961.0" layoutY="8.0" mnemonicParsing="false" onAction="#exchangeCloseButtonController" opacity="0.0" prefHeight="30.0" prefWidth="31.0" />
       <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#homeButtonController" opacity="0.0" prefHeight="30.0" prefWidth="9.0" />

@@ -18,16 +18,8 @@ public class ProfileController {
         return;
     }
 
-    public void updateProfilePhoto(ImageView profileImage) throws IOException {
-
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(null);
-
-        if (file != null) {
-            Image image = new Image(file.toURI().toString());
-            profileImage.setImage(image);
-
-        }
+    public void updateProfilePhoto()  {
+        return;
     }
 
     public void addGameToWishlist(){
