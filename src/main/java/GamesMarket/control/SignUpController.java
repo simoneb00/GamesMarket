@@ -1,6 +1,8 @@
 package GamesMarket.control;
 
 import GamesMarket.bean.RegisterCredentialsBean;
+import GamesMarket.model.ShopOwner;
+import GamesMarket.model.User;
 
 public class SignUpController {
 
@@ -15,5 +17,10 @@ public class SignUpController {
         String email = registerCredentialsBean.getEmail();
         String typeOfUser = registerCredentialsBean.getTypeOfUser();
 
+        if (typeOfUser.equals("User")) {
+            User user = new User(firstName, lastName, username, password, email);
+        } else {
+            ShopOwner shopOwner = new ShopOwner(firstName, lastName, email, password);
+        }
     }
 }

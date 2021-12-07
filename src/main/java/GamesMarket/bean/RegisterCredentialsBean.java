@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 
 public class RegisterCredentialsBean {
 
-    String firstName;
-    String lastName;
-    String email;
-    String password;
-    String username;
-    String typeOfUser;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    private String username;
+    private String typeOfUser;
 
     public String getTypeOfUser() {
         return typeOfUser;
