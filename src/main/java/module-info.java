@@ -18,4 +18,14 @@ module login.loginwindow {
 
     opens GamesMarket.view to javafx.fxml;
     exports GamesMarket.view;
+
+    opens GamesMarket.control to javafx.fxml;
+    exports GamesMarket.control;
+
+    opens GamesMarket.bean to javafx.fxml;
+    exports GamesMarket.bean;
+
+    opens GamesMarket.graphicControl to javafx.fxml;
+    exports GamesMarket.graphicControl;
+
 }

@@ -23,11 +23,20 @@ public class LoginCredentialsBean {
         this.password = pw;
     }
 
+    public String getEmailAddress() {
+        return this.emailAddress;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
     private boolean checkEmailAddress(String email) {
 
-        Pattern pattern = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$");
+        Pattern pattern = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher matcher = pattern.matcher(email);
         if (matcher.matches()) return true;
         return false;
+
     }
 }

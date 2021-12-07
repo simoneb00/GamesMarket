@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="429.0" style="-fx-border-radius: 30; -fx-background-color: WHITE; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.UserSignUpBoundary">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="429.0" style="-fx-border-radius: 30; -fx-background-color: WHITE; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.view.SignUpView">
    <children>
       <Text layoutX="167.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
          <font>
@@ -21,8 +21,8 @@
       <TextField fx:id="lastNameTextField" layoutX="105.0" layoutY="175.0" prefHeight="30.0" prefWidth="220.0" promptText="Last Name" style="-fx-background-radius: 20;" />
       <TextField fx:id="emailTextField" layoutX="105.0" layoutY="232.0" prefHeight="30.0" prefWidth="220.0" promptText="Email" style="-fx-background-radius: 20;" />
       <TextField fx:id="usernameTextField" layoutX="105.0" layoutY="291.0" prefHeight="30.0" prefWidth="220.0" promptText="Username" style="-fx-background-radius: 20;" />
-      <PasswordField fx:id="passwordTextField" layoutX="105.0" layoutY="353.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" style="-fx-background-radius: 20;" />
-      <Button fx:id="loginButton" defaultButton="true" layoutX="167.0" layoutY="449.0" mnemonicParsing="false" onAction="#signUp" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #667694; -fx-background-radius: 20;" text="REGISTER" textFill="WHITE">
+      <PasswordField fx:id="passwordField" layoutX="105.0" layoutY="353.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" style="-fx-background-radius: 20;" />
+      <Button fx:id="loginButton" defaultButton="true" layoutX="167.0" layoutY="449.0" mnemonicParsing="false" onAction="#registerButtonHandler" prefHeight="40.0" prefWidth="96.0" style="-fx-background-color: #667694; -fx-background-radius: 20;" text="REGISTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -33,7 +33,7 @@
          </image>
       </ImageView>
       <Text layoutX="33.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Back to Login" />
-      <Button layoutX="9.0" layoutY="17.0" mnemonicParsing="false" onAction="#registerCloseButtonController" opacity="0.0" prefHeight="25.0" prefWidth="21.0" />
+      <Button layoutX="9.0" layoutY="17.0" mnemonicParsing="false" onAction="#backButtonHandler" opacity="0.0" prefHeight="25.0" prefWidth="21.0" />
       <Label fx:id="registerLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="416.0" prefHeight="17.0" prefWidth="220.0" />
    </children>
 </AnchorPane>

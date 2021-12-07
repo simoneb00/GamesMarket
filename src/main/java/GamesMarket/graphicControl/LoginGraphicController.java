@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl;
 
+import GamesMarket.Main;
 import GamesMarket.bean.LoginCredentialsBean;
 import GamesMarket.control.LoginController;
 import javafx.event.ActionEvent;
@@ -59,7 +60,7 @@ public class LoginGraphicController {
 
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
+            Parent root = FXMLLoader.load(Main.class.getResource("register.fxml"));
             Stage registerStage = new Stage();
             Scene registerScene = new Scene(root, 429, 601);
             registerScene.setFill(Color.TRANSPARENT);
