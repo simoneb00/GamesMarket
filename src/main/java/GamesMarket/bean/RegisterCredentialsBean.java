@@ -10,6 +10,15 @@ public class RegisterCredentialsBean {
     String email;
     String password;
     String username;
+    String typeOfUser;
+
+    public String getTypeOfUser() {
+        return typeOfUser;
+    }
+
+    public void setTypeOfUser(String typeOfUser) {
+        this.typeOfUser = typeOfUser;
+    }
 
     public String getFirstName() {
         return firstName;

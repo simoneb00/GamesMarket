@@ -13,5 +13,7 @@ public class SignUpController {
         String username = registerCredentialsBean.getUsername();
         String password = registerCredentialsBean.getPassword();
         String email = registerCredentialsBean.getEmail();
+        String typeOfUser = registerCredentialsBean.getTypeOfUser();
+
     }
 }
