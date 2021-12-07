@@ -15,4 +15,7 @@ module login.loginwindow {
 
     opens GamesMarket to javafx.fxml;
     exports GamesMarket;
+
+    opens GamesMarket.view to javafx.fxml;
+    exports GamesMarket.view;
 }
