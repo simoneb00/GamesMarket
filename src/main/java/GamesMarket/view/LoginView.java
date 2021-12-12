@@ -20,7 +20,7 @@ public class LoginView {
     LoginGraphicController loginGraphicController = new LoginGraphicController();
 
     public void closeButtonHandler(ActionEvent event) {
-        loginGraphicController.closeButtonHandler(event);
+        loginGraphicController.close(event);
     }
 
     public void loginButtonHandler(ActionEvent event) {

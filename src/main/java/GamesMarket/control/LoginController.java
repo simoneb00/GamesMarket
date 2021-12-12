@@ -1,6 +1,7 @@
 package GamesMarket.control;
 
 import GamesMarket.bean.LoginCredentialsBean;
+import GamesMarket.model.User;
 
 public class LoginController {
 
@@ -9,6 +10,10 @@ public class LoginController {
         String emailAddress = loginCredentialsBean.getEmailAddress();
         String password = loginCredentialsBean.getPassword();
 
+        User user = User.getInstance();
+        user.setLoggedIn();
+
         return true;
+
     }
 }

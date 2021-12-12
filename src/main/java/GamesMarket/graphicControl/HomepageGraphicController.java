@@ -1,6 +1,8 @@
 package GamesMarket.graphicControl;
 
 import GamesMarket.Main;
+import GamesMarket.model.User;
+import GamesMarket.view.HomepageView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class HomepageGraphicController {
+
+    User user = User.getInstance();
 
 
     public void signInButtonPressed(AnchorPane homePane) {
@@ -41,7 +45,7 @@ public class HomepageGraphicController {
 
     }
 
-    public void homeCloseButtonController(AnchorPane homePane) {
+    public void close(AnchorPane homePane) {
         try {
             Stage exitStage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("exit.fxml"));
@@ -91,5 +95,6 @@ public class HomepageGraphicController {
             e.printStackTrace();
             e.getCause();
         }
+
     }
 }

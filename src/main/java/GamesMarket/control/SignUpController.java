@@ -18,7 +18,12 @@ public class SignUpController {
         String typeOfUser = registerCredentialsBean.getTypeOfUser();
 
         if (typeOfUser.equals("User")) {
-            User user = new User(firstName, lastName, username, password, email);
+            User user = User.getInstance();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmailAddress(email);
+            user.setUsername(username);
+            user.setPassword(password);
         } else {
             ShopOwner shopOwner = new ShopOwner(firstName, lastName, email, password);
         }

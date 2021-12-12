@@ -19,7 +19,7 @@ public class LoginGraphicController {
 
     private Stage loginStage = new Stage();
 
-    public void closeButtonHandler(ActionEvent event) {
+    public void close(ActionEvent event) {
         loginStage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         loginStage.close();
     }
@@ -39,6 +39,7 @@ public class LoginGraphicController {
 
                 if (lc.validateLogin(loginCredentialsBean)) {
                     loginLabel.setText("Welcome!");
+                    this.close(event);
                 } else {
                     loginLabel.setText("Invalid login, please try again.");
                 }

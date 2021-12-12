@@ -1,6 +1,7 @@
 package GamesMarket.view;
 
 import GamesMarket.graphicControl.HomepageGraphicController;
+import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -11,6 +12,8 @@ public class HomepageView {
     @FXML
     private AnchorPane homePane;
 
+    User user = User.getInstance();
+
     HomepageGraphicController homepageGraphicController = new HomepageGraphicController();
 
     public void signInButtonHandler() {
@@ -18,11 +21,15 @@ public class HomepageView {
     }
 
     public void closeButtonHandler() {
-        homepageGraphicController.homeCloseButtonController(homePane);
+        homepageGraphicController.close(homePane);
     }
 
     public void profileButtonHandler(ActionEvent event) {
-        homepageGraphicController.profileButtonController(event);
+
+        if (user.isLoggedIn())
+            homepageGraphicController.profileButtonController(event);
+        else
+            this.signInButtonHandler();
     }
 
     public void yesExitController() {
@@ -32,4 +39,6 @@ public class HomepageView {
     public void noExitController(ActionEvent event) {
         homepageGraphicController.noExitController(event);
     }
+
+
 }

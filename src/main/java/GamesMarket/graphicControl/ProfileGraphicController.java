@@ -1,6 +1,6 @@
 package GamesMarket.graphicControl;
 
-import GamesMarket.control.ProfileController;
+import GamesMarket.control.UserProfileController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +15,7 @@ import javafx.stage.StageStyle;
 
 public class ProfileGraphicController {
 
-    ProfileController pc = new ProfileController();
+    UserProfileController pc = new UserProfileController();
 
     public void profileCloseButtonClicked(ActionEvent event){
         Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
