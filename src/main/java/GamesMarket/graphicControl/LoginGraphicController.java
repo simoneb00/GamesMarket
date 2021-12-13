@@ -1,6 +1,6 @@
 package GamesMarket.graphicControl;
 
-import GamesMarket.Main;
+import GamesMarket.main.Main;
 import GamesMarket.bean.LoginCredentialsBean;
 import GamesMarket.control.LoginController;
 import javafx.event.ActionEvent;

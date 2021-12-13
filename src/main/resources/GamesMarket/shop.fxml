@@ -1,23 +1,241 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="711.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ShopController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.shop.ShopController">
    <children>
-      <ImageView fitHeight="711.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../images/shop.jpg" />
-         </image></ImageView>
-      <Button layoutX="966.0" layoutY="8.0" mnemonicParsing="false" onAction="#shopCloseButtonController" opacity="0.0" prefHeight="30.0" prefWidth="27.0" text="Button" />
-      <Button layoutX="587.0" layoutY="51.0" mnemonicParsing="false" onAction="#homeButtonController" opacity="0.0" prefHeight="25.0" prefWidth="53.0" />
-      <Button layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#homeButtonController" opacity="0.0" prefHeight="25.0" prefWidth="21.0" />
-      <TextField layoutX="318.0" layoutY="51.0" prefHeight="25.0" prefWidth="233.0" promptText="Search game" />
-      <Button layoutX="734.0" layoutY="51.0" mnemonicParsing="false" onAction="#exchangeButtonController" opacity="0.0" prefHeight="25.0" prefWidth="79.0" />
-      <Button layoutX="836.0" layoutY="51.0" mnemonicParsing="false" onAction="#forumButtonController" opacity="0.0" prefHeight="25.0" prefWidth="60.0" />
-      <Button layoutX="920.0" layoutY="46.0" mnemonicParsing="false" onAction="#profileButtonController" opacity="0.0" prefHeight="30.0" prefWidth="35.0" />
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="435.0" style="-fx-background-color: e3e3e3;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="108.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/GamesMarket_logo.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;">
+                     <children>
+                        <TextField prefHeight="40.0" prefWidth="250.0" promptText="Search for a game" style="-fx-background-radius: 30; -fx-background-color: #00000000;">
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #667694; -fx-background-radius: 30;" text="SEARCH" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="20.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="7.5" offsetY="10.0" radius="3.875" width="10.0">
+                           <color>
+                              <Color red="0.7236841917037964" green="0.7035818696022034" blue="0.7035818696022034" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </HBox>
+                  <Pane prefHeight="44.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="chosenGameCard" alignment="CENTER" prefHeight="435.0" prefWidth="100.0" style="-fx-background-color: #667694; -fx-background-radius: 30;">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="315.0">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label fx:id="gameNameLabel" prefHeight="53.0" prefWidth="109.0" text="GTA V" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="30.0" top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="gameimage" fitHeight="270.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/gtaV.jpg" />
+                           </image>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ImageView>
+                        <HBox alignment="CENTER" prefHeight="55.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="gamePriceLabel" alignment="CENTER" prefHeight="38.0" prefWidth="100.0" text="\$ 59.99" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="BUY NOW" textFill="#667694">
+                           <VBox.margin>
+                              <Insets bottom="30.0" top="30.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <effect>
+                        <DropShadow offsetY="10.0">
+                           <color>
+                              <Color red="0.7254902124404907" green="0.7019608020782471" blue="0.7019608020782471" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </VBox>
+                  <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="195.0" style="-fx-background-color: #667694; -fx-background-radius: 30;" text="Sign in" textFill="WHITE">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <effect>
+                        <DropShadow offsetY="10.0">
+                           <color>
+                              <Color red="0.7254902124404907" green="0.7019608020782471" blue="0.7019608020782471" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <Pane prefHeight="55.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="881.0" style="-fx-background-color: ededed;">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="140.0" style="-fx-background-color: ededed;" text="Home">
+                           <HBox.margin>
+                              <Insets left="10.0" right="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/homepage-icon-png-16.jpg" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="105.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="140.0" style="-fx-background-color: ededed;" text="Shop">
+                           <HBox.margin>
+                              <Insets right="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/free-fast-buy-icon-3048-thumb.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="105.0" prefWidth="2.0" HBox.hgrow="ALWAYS" />
+                        <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="165.0" style="-fx-background-color: ededed;" text="Exchange">
+                           <HBox.margin>
+                              <Insets right="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/exchange-icon-0.jpg" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="105.0" prefWidth="4.0" HBox.hgrow="ALWAYS" />
+                        <Button layoutX="114.0" layoutY="10.0" mnemonicParsing="false" prefWidth="140.0" style="-fx-background-color: ededed;" text="Forum">
+                           <HBox.margin>
+                              <Insets right="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="20.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/3327115-200.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Pane prefHeight="105.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+                        <Button layoutX="166.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: ededed;">
+                           <HBox.margin>
+                              <Insets right="40.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: e3e3e3;">
+                                 <image>
+                                    <Image url="@../images/4353753.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="786.0" style="-fx-background-color: 00000000;">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="19.0" prefWidth="63.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

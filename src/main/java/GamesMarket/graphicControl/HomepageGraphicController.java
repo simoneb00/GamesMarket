@@ -1,8 +1,7 @@
 package GamesMarket.graphicControl;
 
-import GamesMarket.Main;
+import GamesMarket.main.Main;
 import GamesMarket.model.User;
-import GamesMarket.view.HomepageView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

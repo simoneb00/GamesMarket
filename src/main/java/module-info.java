@@ -13,9 +13,6 @@ module login.loginwindow {
     requires java.desktop;
     requires javafx.graphics;
 
-    opens GamesMarket to javafx.fxml;
-    exports GamesMarket;
-
     opens GamesMarket.view to javafx.fxml;
     exports GamesMarket.view;
 
@@ -28,4 +25,9 @@ module login.loginwindow {
     opens GamesMarket.graphicControl to javafx.fxml;
     exports GamesMarket.graphicControl;
 
+    opens GamesMarket.graphicControl.shop to javafx.fxml;
+    exports GamesMarket.graphicControl.shop;
+
+    opens GamesMarket.main to javafx.fxml;
+    exports GamesMarket.main;
 }
