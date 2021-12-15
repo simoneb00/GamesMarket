@@ -4,6 +4,7 @@ import GamesMarket.main.Main;
 import GamesMarket.model.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,8 +20,11 @@ public class HomepageGraphicController {
 
     User user = User.getInstance();
 
+    @FXML
+    private AnchorPane homePane;
 
-    public void signInButtonPressed(AnchorPane homePane) {
+
+    public void signInButtonPressed() {
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("login.fxml"));
@@ -44,7 +48,7 @@ public class HomepageGraphicController {
 
     }
 
-    public void close(AnchorPane homePane) {
+    public void close() {
         try {
             Stage exitStage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("exit.fxml"));
@@ -77,23 +81,28 @@ public class HomepageGraphicController {
 
     public void profileButtonController(ActionEvent event) {
 
-        try {
-            Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profile.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1000, 703);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-            stage.show();
+        if (user.isLoggedIn()) {
 
-            Stage stage1 = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage1.setIconified(true);
-            stage1.close();
+            try {
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profile.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1000, 703);
+                scene.setFill(Color.TRANSPARENT);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(scene);
+                stage.show();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+                Stage stage1 = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                stage1.setIconified(true);
+                stage1.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
+
+        } else {
+            this.signInButtonPressed();
         }
-
     }
 }
