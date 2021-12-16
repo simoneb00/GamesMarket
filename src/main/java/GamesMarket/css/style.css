@@ -1,0 +1,54 @@
+.button {
+    -fx-background-color: #88C5CC;
+}
+.mouse-moved:hover{
+    -fx-background-color: #5A8388;
+}
+
+.mouse-pressed:pressed{
+    -fx-background-color: #263740;
+}
+
+.signin-mouse-moved:hover{
+    -fx-background-radius: 30;
+    -fx-background-color: #5A8388;
+}
+
+.signin-mouse-pressed:pressed{
+    -fx-background-radius: 30;
+    -fx-background-color: #263740;
+}
+
+.shop-card{
+    -fx-border-color: #263740;
+}
+
+.create-shop-card{
+    -fx-background-color: #5A8388;
+    -fx-background-radius: 30;
+}
+
+.text-underline:hover{
+    -fx-underline: true;
+}
+
+.selected-button{
+    -fx-background-color: #5A8388;
+}
+
+.update-button{
+    -fx-background-color: #00000000;
+    -fx-background-radius: 30;
+}
+
+.update-button:hover{
+    -fx-background-color: #88C5CC;
+}
+
+.profile-pic-button:hover{
+    -fx-background-color: #00000000;
+}
+
+.try{
+    -fx-background-color: #000000;
+}

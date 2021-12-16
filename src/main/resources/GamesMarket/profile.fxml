@@ -16,22 +16,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.ProfileGraphicController">
    <children>
       <BorderPane layoutX="404.0" layoutY="199.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox prefHeight="810.0" prefWidth="339.0" style="-fx-background-color: #88c5cc;" stylesheets="@../main/style.css" BorderPane.alignment="CENTER">
+            <VBox prefHeight="810.0" prefWidth="339.0" style="-fx-background-color: #88c5cc;" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="283.0" prefWidth="339.0">
                      <children>
                         <ImageView fitHeight="198.0" fitWidth="204.0" layoutX="68.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../resources/images/GamesMarketLogo.png" />
+                              <Image url="@../images/GamesMarketLogo.png" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../main/style.css" text="Home" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" onAction="#homeButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Home" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -45,12 +45,12 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../resources/images/home_50px.png" />
+                              <Image url="@../images/home_50px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../main/style.css" text="Shop" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onAction="#shopButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Shop" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -64,12 +64,12 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../resources/images/shopping_bag_64px.png" />
+                              <Image url="@../images/shopping_bag_64px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../main/style.css" text="Exchange" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Exchange" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -83,12 +83,12 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../resources/images/synchronize_64px.png" />
+                              <Image url="@../images/synchronize_64px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../main/style.css" text="Forum" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Forum" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -102,12 +102,12 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../resources/images/chat_50px.png" />
+                              <Image url="@../images/chat_50px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../main/style.css" text="Profile" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -122,25 +122,13 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../resources/images/customer_50px.png" />
+                              <Image url="@../images/customer_50px.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                   <Pane prefHeight="133.0" prefWidth="339.0" VBox.vgrow="ALWAYS" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="150.0" style="-fx-border-color: ffffff; -fx-border-radius: 30;" stylesheets="@../main/style.css" text="Sign In" textFill="WHITE">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="signin-mouse-pressed" />
-                              <String fx:value="signin-mouse-moved" />
-                           </styleClass>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                </children>
             </VBox>
          </left>
@@ -149,7 +137,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="48.0" prefWidth="976.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="995.0" text="USERNAME" textFill="#88c5cc">
+                        <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="995.0" textFill="#88c5cc">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -165,7 +153,7 @@
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../resources/images/blank-profile-picture-973460_1280.png" />
+                                    <Image url="@../images/blank-profile-picture-973460_1280.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -174,7 +162,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="56.0" prefWidth="976.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="118.0" stylesheets="@../main/style.css" text="UPDATE" textFill="WHITE" />
+                        <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="118.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox prefHeight="252.0" prefWidth="976.0">
@@ -204,7 +192,7 @@
                                     </Label>
                                     <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="404.0">
                                        <children>
-                                          <Label prefHeight="20.0" prefWidth="128.0" text="simone@gmail.com" textFill="#797979">
+                                          <Label fx:id="emailLabel" prefHeight="20.0" prefWidth="128.0" textFill="#797979">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -231,7 +219,7 @@
                                     </Label>
                                     <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
                                        <children>
-                                          <Label text="simone@gmail.com" textFill="#797979">
+                                          <Label fx:id="telLabel" textFill="#797979">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -258,7 +246,7 @@
                                     </Label>
                                     <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
                                        <children>
-                                          <Label text="simone@gmail.com" textFill="#797979">
+                                          <Label fx:id="addressLabel" textFill="#797979">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -285,7 +273,7 @@
                                     </Label>
                                     <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
                                        <children>
-                                          <Label text="simone@gmail.com" textFill="#797979">
+                                          <Label fx:id="countryLabel" textFill="#797979">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>

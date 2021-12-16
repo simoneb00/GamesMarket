@@ -1,11 +1,15 @@
 package GamesMarket.graphicControl;
 
 import GamesMarket.control.UserProfileController;
+import GamesMarket.main.Main;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
@@ -13,24 +17,37 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
+import java.io.IOException;
+
 public class ProfileGraphicController {
 
-    UserProfileController pc = new UserProfileController();
+    @FXML
+    private Label addressLabel;
 
-    public void profileCloseButtonClicked(ActionEvent event){
-        Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        stage.close();
-    }
+    @FXML
+    private Label countryLabel;
 
+    @FXML
+    private Label emailLabel;
+
+    @FXML
+    private Label telLabel;
+
+    @FXML
+    private Label usernameLabel;
+
+    private UserProfileController pc = new UserProfileController();
+    private Parent root;
+    private Scene scene;
+    private Stage stage;
+
+/*
     public void saveBio(Button saveBioButton) {
         saveBioButton.setOpacity(0);
         pc.saveBio();
     }
 
-    public void saveContactInformation(Button saveCIButton) {
-        saveCIButton.setOpacity(0);
-        pc.saveContactInformation();
-    }
 
     public void addGameToTradelist(ActionEvent event, AnchorPane profilePane) {
         try {
@@ -95,5 +112,42 @@ public class ProfileGraphicController {
     public void hideUpdatePhotoButton(Button updatePhotoButton) throws Exception {
         Thread.sleep(1000);
         updatePhotoButton.setOpacity(0);
+    }
+*/
+    public void homeButton(ActionEvent event) {
+
+        try {
+            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/home.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void shopButton(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shop.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }

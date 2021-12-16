@@ -3,13 +3,38 @@ package GamesMarket.graphicControl;
 import GamesMarket.bean.RegisterCredentialsBean;
 import GamesMarket.control.SignUpController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import net.synedra.validatorfx.Check;
-import org.w3c.dom.Text;
+
 
 
 public class SignUpGraphicController {
+
+
+    @FXML
+    private CheckBox checkBox;
+
+    @FXML
+    private TextField emailTextField;
+
+    @FXML
+    private TextField firstNameTextField;
+
+    @FXML
+    private TextField lastNameTextField;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private Label registerLabel;
+
+    @FXML
+    private TextField usernameTextField;
 
     private boolean isShopOwner = false;
 
@@ -18,17 +43,17 @@ public class SignUpGraphicController {
         stage.close();
     }
 
-    public void registerButtonPressed(TextField firstName, TextField lastName, TextField username, PasswordField password, TextField email, Label registerLabel) {
+    public void registerButtonPressed(ActionEvent event) {
 
         try {
 
             RegisterCredentialsBean registerCredentialsBean = new RegisterCredentialsBean();
 
-            registerCredentialsBean.setEmail(email.getText());
-            registerCredentialsBean.setFirstName(firstName.getText());
-            registerCredentialsBean.setLastName(lastName.getText());
-            registerCredentialsBean.setUsername(username.getText());
-            registerCredentialsBean.setPassword(password.getText());
+            registerCredentialsBean.setEmail(emailTextField.getText());
+            registerCredentialsBean.setFirstName(firstNameTextField.getText());
+            registerCredentialsBean.setLastName(lastNameTextField.getText());
+            registerCredentialsBean.setUsername(usernameTextField.getText());
+            registerCredentialsBean.setPassword(passwordField.getText());
 
             if (isShopOwner) {
                 registerCredentialsBean.setTypeOfUser("ShopOwner");
@@ -49,7 +74,7 @@ public class SignUpGraphicController {
 
     }
 
-    public void shopOwnerChecked(TextField usernameTextField, CheckBox checkBox) {
+    public void shopOwnerChecked(ActionEvent event) {
 
         if (checkBox.isSelected()) {
             usernameTextField.setEditable(false);
