@@ -2,6 +2,8 @@ package GamesMarket.graphicControl;
 
 import GamesMarket.bean.RegisterCredentialsBean;
 import GamesMarket.control.SignUpController;
+import GamesMarket.exceptions.DuplicatedEmailException;
+import GamesMarket.exceptions.DuplicatedUsernameException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -62,14 +64,16 @@ public class SignUpGraphicController {
             }
 
             SignUpController signUpController = new SignUpController();
-
-
             signUpController.signUp(registerCredentialsBean);
 
             registerLabel.setText("Success!");
 
         } catch (Exception e) {
             registerLabel.setText("Invalid email address. Try again.");
+        } catch (DuplicatedEmailException duplicatedEmailException) {
+            registerLabel.setText("This email address is already used.");
+        } catch (DuplicatedUsernameException duplicatedUsernameException) {
+            registerLabel.setText("This username is already used.");
         }
 
     }
