@@ -1,8 +1,8 @@
 package GamesMarket.graphicControl.shop;
 
-import GamesMarket.graphicControl.HomepageGraphicController;
 import GamesMarket.main.Main;
 import GamesMarket.model.Game;
+import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ShopController implements Initializable {
+public class ShopGraphicController implements Initializable {
     @FXML
     private VBox chosenGameCard;
 
@@ -54,11 +54,13 @@ public class ShopController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
+    @FXML
+    private Button signInButton;
+
     private User user = User.getInstance();
     private Parent root;
     private Scene scene;
     private Stage stage;
-    private HomepageGraphicController homepageGraphicController = new HomepageGraphicController();
 
     private List<Game> games = new ArrayList<>();
 
@@ -67,7 +69,7 @@ public class ShopController implements Initializable {
         Game game;
 
 
-        for (int i=0; i< 20; i++) {
+        for (int i=0; i< 25; i++) {
             game = new Game();
             game.setName("FIFA 22");
             game.setPrice(69.99);
@@ -84,13 +86,19 @@ public class ShopController implements Initializable {
         games.addAll(getData());
         int column = 0;
         int row = 1;
+
+        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+            signInButton.setVisible(false);
+            signInButton.isDisabled();
+        }
+
         try {
             for (int i = 0; i < games.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/shopItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemController itemController = fxmlLoader.getController();
+                ItemGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(games.get(i));
 
                 if (column == 3) {
@@ -182,5 +190,25 @@ public class ShopController implements Initializable {
             e.getCause();
         }
 
+    }
+
+
+    public void forumButton(ActionEvent event) {
+
+        try {
+            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/forum.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }

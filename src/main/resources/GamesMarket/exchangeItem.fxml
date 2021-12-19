@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.exchange.ExchangeItemGraphicController">
+   <children>
+      <VBox layoutX="32.0" layoutY="38.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="48.0" prefWidth="250.0">
+               <children>
+                  <VBox prefHeight="60.0" prefWidth="263.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="250.0">
+                           <children>
+                              <Label fx:id="username" alignment="CENTER" prefHeight="17.0" prefWidth="265.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="250.0">
+                           <children>
+                              <Label text="trades" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="165.0" prefWidth="250.0" style="-fx-background-color: ehite;">
+               <children>
+                  <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <HBox prefHeight="89.0" prefWidth="250.0">
+               <children>
+                  <VBox prefHeight="88.0" prefWidth="250.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="15.0" prefWidth="250.0">
+                           <children>
+                              <Label text="for" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="69.0" prefWidth="250.0" style="-fx-background-color: #88C5CC;">
+                           <children>
+                              <VBox prefHeight="69.0" prefWidth="258.0" style="-fx-background-color: white;">
+                                 <children>
+                                    <HBox prefHeight="21.0" prefWidth="250.0">
+                                       <children>
+                                          <Label fx:id="gameLabel" alignment="CENTER" prefHeight="7.0" prefWidth="250.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="63.0" prefWidth="250.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-border-radius: 30;" stylesheets="@../../java/GamesMarket/css/style.css" text="CONTACT" textFill="WHITE">
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" top="10.0" />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="mouse-moved" />
+                                                <String fx:value="mouse-pressed" />
+                                             </styleClass>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

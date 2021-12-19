@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -21,9 +22,13 @@ public class Main extends Application {
         scene.getStylesheets().clear();
         scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
+        stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+        stage.setTitle("GamesMarket");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) { launch(); }
+    public static void main(String[] args) {
+        launch();
+    }
 }

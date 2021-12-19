@@ -1,15 +1,18 @@
 package GamesMarket.graphicControl;
 
 import GamesMarket.main.Main;
+import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
@@ -18,17 +21,21 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class HomepageGraphicController {
+public class HomepageGraphicController implements Initializable {
 
-    private User user = User.getInstance();
     private Stage stage;
     private Parent root;
     private Scene scene;
 
     @FXML
     private AnchorPane homePane;
-
+    @FXML
+    private Label welcomeLabel;
+    @FXML
+    private Button signInButton;
 
     public void signInButtonPressed() {
         try {
@@ -48,6 +55,11 @@ public class HomepageGraphicController {
             loginStage.showAndWait();
             homePane.setEffect(null);
 
+            if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+                signInButton.setVisible(false);
+                signInButton.isDisabled();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
@@ -57,7 +69,7 @@ public class HomepageGraphicController {
 
     public void profileButton(ActionEvent event) {
 
-        if (user.isLoggedIn()) {
+        if (User.getInstance().isLoggedIn()) {
 
             try {
                 root = FXMLLoader.load(Main.class.getResource("/GamesMarket/profile.fxml"));
@@ -116,4 +128,29 @@ public class HomepageGraphicController {
         }
     }
 
+    public void exchangeButton(ActionEvent event) {
+        try {
+            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/exchange.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+            signInButton.setVisible(false);
+            signInButton.isDisabled();
+        }
+    }
 }

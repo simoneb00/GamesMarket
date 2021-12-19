@@ -1,8 +1,11 @@
 package GamesMarket.graphicControl;
 
+import GamesMarket.exceptions.InvalidEmailException;
 import GamesMarket.main.Main;
 import GamesMarket.bean.LoginCredentialsBean;
 import GamesMarket.control.LoginController;
+import GamesMarket.model.ShopOwner;
+import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,15 +66,17 @@ public class LoginGraphicController {
                 loginCredentialsBean.setEmailAddress(emailTextField.getText());
                 loginCredentialsBean.setPassword(passwordField.getText());
 
-                if (lc.validateLogin(loginCredentialsBean)) {
-                    loginLabel.setText("Welcome!");
+                if (lc.validateLogin(loginCredentialsBean) == 0) {              // a normal user logged in
                     this.close(event);
-                } else {
+                } else if (lc.validateLogin(loginCredentialsBean) == 1) {       // a shop owner logged in
+                    this.close(event);
+                }
+                else {                                                          // the login was unsuccessful
                     loginLabel.setText("Invalid login, please try again.");
                 }
             }
-        } catch (Exception e) {
-            loginLabel.setText("Invalid email address. Try again.");
+        } catch (InvalidEmailException e) {
+            loginLabel.setText("Invalid email address, please try again.");
         }
     }
 

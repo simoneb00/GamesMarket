@@ -1,5 +1,7 @@
 package GamesMarket.bean;
 
+import GamesMarket.exceptions.InvalidEmailException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,13 +10,13 @@ public class LoginCredentialsBean {
     private String emailAddress;
     private String password;
 
-    public void setEmailAddress(String email) throws Exception{
+    public void setEmailAddress(String email) throws InvalidEmailException {
 
         if (checkEmailAddress(email)) {
             this.emailAddress = email;
         }
         else {
-            Exception e = new Exception();
+            InvalidEmailException e = new InvalidEmailException();
             throw e;
         }
     }

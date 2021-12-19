@@ -25,9 +25,12 @@ module login.loginwindow {
     opens GamesMarket.graphicControl.shop to javafx.fxml;
     exports GamesMarket.graphicControl.shop;
 
-//    opens GamesMarket.main to javafx.fxml;
-//    exports GamesMarket.main;
-
     exports GamesMarket.main;
     opens GamesMarket.main to javafx.fxml;
+
+    opens GamesMarket.graphicControl.forum to javafx.fxml;
+    exports GamesMarket.graphicControl.forum;
+
+    opens GamesMarket.graphicControl.exchange to javafx.fxml;
+    exports GamesMarket.graphicControl.exchange;
 }
