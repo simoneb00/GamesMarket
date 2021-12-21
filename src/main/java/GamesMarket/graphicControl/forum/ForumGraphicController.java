@@ -78,6 +78,7 @@ public class ForumGraphicController implements Initializable {
 
                 PostGraphicController postGraphicController = fxmlLoader.getController();
                 postGraphicController.setData(oldposts.get(i));
+                postGraphicController.retrieveComments(oldposts.get(i));
 
                 if (column == 1) {
                     column = 0;
@@ -95,6 +96,7 @@ public class ForumGraphicController implements Initializable {
 
                 UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(userOldPosts.get(i));
+                userPostGraphicController.retrieveComments(userOldPosts.get(i));
 
                 if (column == 1) {
                     column = 0;
@@ -108,6 +110,7 @@ public class ForumGraphicController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void retrieveUserPosts() {
@@ -160,7 +163,6 @@ public class ForumGraphicController implements Initializable {
             }
         }
     }
-
 
 
     public void postButton() {
@@ -227,7 +229,7 @@ public class ForumGraphicController implements Initializable {
 
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/home.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
 
             scene.getStylesheets().clear();

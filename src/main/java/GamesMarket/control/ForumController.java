@@ -1,9 +1,12 @@
 package GamesMarket.control;
 
 
+import GamesMarket.bean.CommentBean;
 import GamesMarket.bean.PostBean;
 import GamesMarket.graphicControl.forum.ForumGraphicController;
 import GamesMarket.graphicControl.forum.PostGraphicController;
+import GamesMarket.model.Comment;
+import GamesMarket.model.DAO.CommentDAO;
 import GamesMarket.model.DAO.PostDAO;
 import GamesMarket.model.Post;
 import GamesMarket.model.User;
@@ -25,6 +28,9 @@ public class ForumController {
         post.setText(text);
 
         postDAO.delete(post);
+
+        CommentDAO commentDAO = new CommentDAO();
+        commentDAO.delete(post);
     }
 
     public List<Post> retrievePosts() {
@@ -48,4 +54,37 @@ public class ForumController {
 
         postDAO.savePost(post);
     }
+
+    public void saveComment(CommentBean commentBean, PostBean postBean){
+        CommentDAO commentDAO = new CommentDAO();
+
+        Comment comment = new Comment();
+        comment.setUsername(commentBean.getUsername());
+        comment.setText(commentBean.getText());
+
+        Post post = new Post();
+        post.setUsername(postBean.getUsername());
+        post.setText(postBean.getText());
+
+        commentDAO.saveComment(comment, post);
+    }
+
+
+
+    public List<Comment> retrieveComments(PostBean postBean) {
+        List<Comment> comments = new ArrayList<>();
+
+        String username = postBean.getUsername();
+        String text = postBean.getText();
+
+        Post post = new Post();
+        post.setText(text);
+        post.setUsername(username);
+
+        CommentDAO commentDAO = new CommentDAO();
+        comments = commentDAO.retrieveComments(post);
+
+        return comments;
+    }
+
 }
