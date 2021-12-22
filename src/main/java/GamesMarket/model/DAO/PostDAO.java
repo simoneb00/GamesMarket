@@ -100,7 +100,6 @@ public class PostDAO {
         Statement statement = null;
         Connection connection = null;
         String deletePost = "delete from posts where username = '" + username + "' and text = '" + text + "';";
-        System.out.println(deletePost);
 
         try {
             connection = DatabaseConnection.getInstance().getConnection();

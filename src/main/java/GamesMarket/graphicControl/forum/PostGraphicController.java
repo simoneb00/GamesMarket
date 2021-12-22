@@ -45,7 +45,6 @@ public class PostGraphicController{
     private List<Comment> oldComments = new ArrayList<>();
     private List<Comment> userOldComments = new ArrayList<>();
     private Post post = new Post();
-    private ForumGraphicController forumGraphicController = new ForumGraphicController();
     private ForumController forumController = new ForumController();
     private int row = 1;
     private int column = 0;

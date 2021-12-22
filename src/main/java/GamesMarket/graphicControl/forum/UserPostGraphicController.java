@@ -42,7 +42,6 @@ public class UserPostGraphicController extends PostGraphicController{
 
         ForumController forumController = new ForumController();
         forumController.delete(postBean);
-
     }
 
 

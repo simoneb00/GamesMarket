@@ -1,10 +1,14 @@
 package GamesMarket.control;
 
+import GamesMarket.bean.UserBean;
+import GamesMarket.model.DAO.UserDAO;
 import GamesMarket.model.User;
 import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserProfileController {
 
@@ -14,6 +18,26 @@ public class UserProfileController {
 
     public void saveBio(){
         return;
+    }
+
+    public List<String> retrieveContactInf() {
+        List<String> ci = new ArrayList<>();
+        UserDAO userDAO = new UserDAO();
+
+        ci = userDAO.retrieveContactInf(); // retrieve user's contact information in this order: [email, tel, address, country]
+
+        return ci;
+
+    }
+
+    public void updateCI(UserBean userBean) {
+        String email = userBean.getEmail();
+        String tel = userBean.getTel();
+        String address = userBean.getAddress();
+        String country = userBean.getCountry();
+
+        UserDAO userDAO = new UserDAO();
+        userDAO.updateCI(email, tel, address, country);
     }
 
     public void updateProfilePhoto()  {

@@ -68,4 +68,58 @@ public class UserDAO {
 
         return list;
     }
+
+
+    public List<String> retrieveContactInf() {
+        String username = User.getInstance().getUsername();
+        List<String> ci = new ArrayList<>();
+
+        Connection connection = null;
+        Statement statement = null;
+        String retrieveCI = "select email, tel, address, country from contactinf where username = '" + username + "';";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieveCI);
+
+            while (resultSet.next()) {
+                ci.add(resultSet.getString("email"));
+                ci.add(resultSet.getString("tel"));
+                ci.add(resultSet.getString("address"));
+                ci.add(resultSet.getString("country"));
+            }
+
+            resultSet.close();
+            if (statement != null)
+                statement.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ci;
+    }
+
+    public void updateCI(String email, String tel, String address, String country) {
+
+        Connection connection = null;
+        Statement statement = null;
+        String deleteCI = "delete from contactinf where username = '" + User.getInstance().getUsername() + "';";
+        String updateCI = "insert into contactinf (username, email, tel, address, country) values ('" + User.getInstance().getUsername() + "', '" + email + "', '" + tel + "', '" + address + "', '" + country + "');";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+
+            statement.execute(deleteCI);
+            statement.execute(updateCI);
+
+            if (statement != null)
+                statement.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

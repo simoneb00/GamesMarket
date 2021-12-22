@@ -69,7 +69,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Exchange" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" onAction="#exchangeButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Exchange" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -88,7 +88,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Forum" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" onAction="#forumButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Forum" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -149,7 +149,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="41.0" prefWidth="976.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="33.0" prefWidth="976.0">
+                        <HBox alignment="CENTER" prefHeight="167.0" prefWidth="976.0">
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -160,146 +160,172 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="56.0" prefWidth="976.0">
+                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="976.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="118.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#updatePhoto" prefHeight="15.0" prefWidth="118.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE">
+                           <styleClass>
+                              <String fx:value="mouse-moved" />
+                              <String fx:value="mouse-pressed" />
+                           </styleClass></Button>
                      </children>
                   </HBox>
-                  <HBox prefHeight="252.0" prefWidth="976.0">
-                     <children>
-                        <TextField alignment="TOP_LEFT" prefHeight="252.0" prefWidth="388.0" promptText="Bio" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="20.0" top="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <VBox alignment="CENTER" prefHeight="242.0" prefWidth="380.0" style="-fx-border-color: #CFCFCF;" HBox.hgrow="ALWAYS">
-                           <children>
-                              <HBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="567.0">
-                                 <children>
-                                    <Label prefHeight="43.0" prefWidth="206.0" text="CONTACT INFORMATION" textFill="#88c5cc">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="567.0">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="179.0" text="Email Address:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="404.0">
-                                       <children>
-                                          <Label fx:id="emailLabel" prefHeight="20.0" prefWidth="128.0" textFill="#797979">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" layoutX="51.0" layoutY="115.0" prefHeight="37.0" prefWidth="567.0">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="232.0" text="Telephone Number:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
-                                       <children>
-                                          <Label fx:id="telLabel" textFill="#797979">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets left="40.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="134.0" prefHeight="37.0" prefWidth="567.0">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="101.0" text="Address:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
-                                       <children>
-                                          <Label fx:id="addressLabel" textFill="#797979">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets left="40.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="152.0" prefHeight="37.0" prefWidth="567.0">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="98.0" text="Country:">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
-                                       <children>
-                                          <Label fx:id="countryLabel" textFill="#797979">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                                 <padding>
-                                    <Insets left="40.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
+                  <HBox prefHeight="285.0" prefWidth="976.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="20.0" />
                      </VBox.margin>
+                     <children>
+                        <VBox prefHeight="253.0" prefWidth="1128.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="207.0" prefWidth="976.0">
+                                 <children>
+                                    <TextField alignment="TOP_LEFT" prefHeight="207.0" prefWidth="467.0" promptText="Bio">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <VBox alignment="CENTER" prefHeight="207.0" prefWidth="459.0" style="-fx-border-color: #CFCFCF;">
+                                       <children>
+                                          <HBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="567.0">
+                                             <children>
+                                                <Label prefHeight="43.0" prefWidth="206.0" text="CONTACT INFORMATION" textFill="#88c5cc">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="567.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="179.0" text="Email Address:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <VBox alignment="CENTER" prefHeight="37.0" prefWidth="409.0">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                   <children>
+                                                      <TextField fx:id="email" prefHeight="25.0" prefWidth="173.0" styleClass="invisible" stylesheets="@../../java/GamesMarket/css/style.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets left="40.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="51.0" layoutY="115.0" prefHeight="37.0" prefWidth="567.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="235.0" text="Telephone Number:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                   <children>
+                                                      <TextField fx:id="tel" prefHeight="25.0" prefWidth="314.0" styleClass="invisible" stylesheets="@../../java/GamesMarket/css/style.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="134.0" prefHeight="37.0" prefWidth="567.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="101.0" text="Address:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                   <children>
+                                                      <TextField fx:id="address" prefHeight="25.0" prefWidth="314.0" styleClass="invisible" stylesheets="@../../java/GamesMarket/css/style.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="152.0" prefHeight="37.0" prefWidth="567.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="98.0" text="Country:">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="401.0">
+                                                   <padding>
+                                                      <Insets left="20.0" />
+                                                   </padding>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                   <children>
+                                                      <TextField fx:id="country" prefHeight="25.0" prefWidth="314.0" styleClass="invisible" stylesheets="@../../java/GamesMarket/css/style.css" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="20.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="44.0" prefWidth="976.0">
+                                 <children>
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="502.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#saveBio" prefHeight="25.0" prefWidth="80.0" stylesheets="@../../java/GamesMarket/css/style.css" text="SAVE" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets right="7.0" />
+                                             </VBox.margin>
+                                             <styleClass>
+                                                <String fx:value="mouse-moved" />
+                                                <String fx:value="mouse-pressed" />
+                                             </styleClass>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="486.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#updateCI" prefWidth="80.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE">
+                                             <VBox.margin>
+                                                <Insets right="20.0" />
+                                             </VBox.margin>
+                                             <styleClass>
+                                                <String fx:value="mouse-moved" />
+                                                <String fx:value="mouse-pressed" />
+                                             </styleClass>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
                   </HBox>
                   <HBox prefHeight="331.0" prefWidth="976.0">
                      <children>
