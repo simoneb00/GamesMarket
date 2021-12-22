@@ -2,33 +2,39 @@ package GamesMarket.control;
 
 import GamesMarket.bean.UserBean;
 import GamesMarket.model.DAO.UserDAO;
-import GamesMarket.model.User;
 import javafx.stage.FileChooser;
 
+import java.awt.*;
 import java.io.*;
-import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserProfileController {
 
+    UserDAO userDAO = new UserDAO();
+
     public void saveContactInformation(){
         return;
     }
 
-    public void saveBio(){
-        return;
+    public void saveBio(UserBean userBean){
+        String bio = userBean.getBio();
+        userDAO.saveBio(bio);
     }
 
     public List<String> retrieveContactInf() {
         List<String> ci = new ArrayList<>();
-        UserDAO userDAO = new UserDAO();
-
         ci = userDAO.retrieveContactInf(); // retrieve user's contact information in this order: [email, tel, address, country]
 
         return ci;
 
     }
+
+    public String retrieveBio() {
+        String bio = userDAO.retrieveBio();
+        return bio;
+    }
+
 
     public void updateCI(UserBean userBean) {
         String email = userBean.getEmail();
@@ -42,26 +48,20 @@ public class UserProfileController {
 
     public void updateProfilePhoto()  {
 
-        try {
 
-            FileChooser fileChooser = new FileChooser();
-            File selectedFile = fileChooser.showOpenDialog(null);
-            String path = selectedFile.getAbsolutePath();
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        String path = selectedFile.getAbsolutePath();
 
-            Path source = Paths.get(path);
-            Path target = Paths.get("C:\\Users\\Simone Bauco\\IdeaProjects\\GamesMarket\\src\\main\\resources\\profileImages\\" + selectedFile.getName());
+        userDAO.updateProfilePhoto(path);
 
-            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-
-            User user = User.getInstance();
-            user.updateProfileImage("C:\\Users\\Simone Bauco\\IdeaProjects\\GamesMarket\\src\\main\\resources\\profileImages\\" + selectedFile.getName());
-
-
-        } catch(IOException e) {
-            e.getCause();
-            e.printStackTrace();
-        }
     }
+
+    public File retrieveProfilePhoto(){
+        File file = userDAO.retrieveProfilePhoto();
+        return file;
+    }
+
 
     public void addGameToWishlist(){
         return;

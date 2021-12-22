@@ -3,10 +3,13 @@ package GamesMarket.model.DAO;
 import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,4 +125,113 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+
+    public String retrieveBio() {
+        String bio = new String();
+        Connection connection = null;
+        Statement statement = null;
+        String retrieveBio = "select bio from bio where username = '" + User.getInstance().getUsername() + "';";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieveBio);
+
+            while(resultSet.next()) {
+                bio = resultSet.getString("bio");
+            }
+
+            resultSet.close();
+            if (statement != null)
+                statement.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return bio;
+    }
+
+    public void saveBio(String bio) {
+        Connection connection = null;
+        Statement statement = null;
+        String deleteBio = "delete from bio where username = '" + User.getInstance().getUsername() + "';";
+        String saveBio = "insert into bio (username, bio) values ('" + User.getInstance().getUsername() + "', '" + bio + "');";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            if (bio != null)
+                statement.execute(deleteBio);
+            statement.execute(saveBio);
+
+            if (statement != null)
+                statement.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateProfilePhoto(String path) {
+        try {
+            File image = new File(path);
+            FileInputStream inputStream = new FileInputStream(image);
+            String delete = "delete from profileimage where username = '" + User.getInstance().getUsername() + "';";
+            String updatePhoto = "insert into profileimage (username, image) values (?, ?)";
+            Connection connection = DatabaseConnection.getInstance().getConnection();
+            Statement statement1 = connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement(updatePhoto);
+            statement.setString(1, User.getInstance().getUsername());
+            statement.setBinaryStream(2, (InputStream) inputStream, (int)(image.length()));
+
+            statement1.execute(delete);
+            statement.executeUpdate();
+
+            if (statement != null)
+                statement.close();
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public File retrieveProfilePhoto() {
+        Connection connection = null;
+        Statement statement = null;
+        File file = new File("image.jpg");
+        String retrieve = "select * from profileimage where username = '" + User.getInstance().getUsername() + "';";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieve);
+            byte b[];
+            Blob blob;
+            FileOutputStream fos = new FileOutputStream(file);
+
+            while(resultSet.next()) {
+                blob = resultSet.getBlob("image");
+                b = blob.getBytes(1, (int)blob.length());
+                fos.write(b);
+            }
+
+            resultSet.close();
+            if (statement != null)
+                statement.close();
+            fos.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file;
+    }
+
 }

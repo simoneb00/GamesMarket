@@ -3,31 +3,22 @@ package GamesMarket.graphicControl;
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.UserProfileController;
 import GamesMarket.main.Main;
-import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.AccessibleRole;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import javax.swing.*;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,6 +34,10 @@ public class ProfileGraphicController implements Initializable {
     private TextField tel;
     @FXML
     private Label usernameLabel;
+    @FXML
+    private TextField bioTF;
+    @FXML
+    private ImageView profilePhoto;
 
     private UserProfileController userProfileController = new UserProfileController();
     private Parent root;
@@ -52,6 +47,7 @@ public class ProfileGraphicController implements Initializable {
 
     public void updatePhoto() {
         userProfileController.updateProfilePhoto();
+        this.initialize(null, null);
     }
 
     public void updateCI() {
@@ -65,9 +61,6 @@ public class ProfileGraphicController implements Initializable {
         this.setCI();
     }
 
-    public void saveBio() {
-
-    }
 
     public void homeButton(ActionEvent event) {
 
@@ -153,11 +146,34 @@ public class ProfileGraphicController implements Initializable {
         }
     }
 
+    private void setBio() {
+        String bio = userProfileController.retrieveBio();
+        if(bio != null) {
+            bioTF.setText(bio);
+        }
+    }
+
+    private void setProfilePhoto() {
+        File file = userProfileController.retrieveProfilePhoto();
+        if (file != null){
+            Image image = new Image(file.getAbsolutePath());
+            profilePhoto.setImage(image);
+        }
+
+    }
+
+    public void saveBio() {
+        UserBean userBean = new UserBean();
+        userBean.setBio(bioTF.getText());
+        userProfileController.saveBio(userBean);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.usernameLabel.setText(User.getInstance().getUsername());
 
         setCI();
-
+        setBio();
+        setProfilePhoto();
     }
 }

@@ -151,7 +151,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="167.0" prefWidth="976.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="profilePhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/blank-profile-picture-973460_1280.png" />
                                  </image>
@@ -178,7 +178,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="207.0" prefWidth="976.0">
                                  <children>
-                                    <TextField alignment="TOP_LEFT" prefHeight="207.0" prefWidth="467.0" promptText="Bio">
+                                    <TextField fx:id="bioTF" alignment="TOP_LEFT" prefHeight="207.0" prefWidth="467.0" promptText="Bio">
                                        <HBox.margin>
                                           <Insets left="20.0" />
                                        </HBox.margin>
