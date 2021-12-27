@@ -1,7 +1,9 @@
-package GamesMarket.control;
+package GamesMarket.control.profile;
 
+import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.model.DAO.UserDAO;
+import GamesMarket.model.Game;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
@@ -63,11 +65,19 @@ public class UserProfileController {
     }
 
 
-    public void addGameToWishlist(){
-        return;
+    public List<String> retrieveWishlist() {
+        return userDAO.retrieveWishlist();
     }
 
-    public void addGameToTradelist(){
-        return;
+    public List<String> retrieveTradelist() {
+        return userDAO.retrieveTradelist();
+    }
+
+    public void removeFromWishlist(GameBean gameBean) {
+        userDAO.removeFromWishlist(gameBean.getName(), gameBean.getPlatform());
+    }
+
+    public void removeFromTradelist(GameBean gameBean) {
+        userDAO.removeFromTradelist(gameBean.getName(), gameBean.getPlatform());
     }
 }

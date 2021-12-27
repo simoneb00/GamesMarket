@@ -1,6 +1,8 @@
 package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
+import GamesMarket.model.ExchangePost;
+import GamesMarket.model.Game;
 import GamesMarket.model.User;
 
 import javax.imageio.ImageIO;
@@ -232,6 +234,220 @@ public class UserDAO {
         }
 
         return file;
+    }
+
+    public List<String> retrieveWishlist() {
+        List <String> list = new ArrayList<>();
+        String game, platform, add = null;
+
+        Connection connection = null;
+        Statement statement = null;
+        String retrieve = "select game, platform from wishlist where username = '" + User.getInstance().getUsername() + "';";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieve);
+
+            while(resultSet.next()) {
+                game = resultSet.getString("game");
+                platform = resultSet.getString("platform");
+                add = game + " - " + platform;
+                list.add(add);
+            }
+
+            if (statement != null)
+                statement.close();
+
+            resultSet.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<String> retrieveTradelist() {
+        List <String> list = new ArrayList<>();
+        String game, platform, add = null;
+
+        Connection connection = null;
+        Statement statement = null;
+        String retrieve = "select game, platform from tradelist where username = '" + User.getInstance().getUsername() + "';";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieve);
+
+            while(resultSet.next()) {
+                game = resultSet.getString("game");
+                platform = resultSet.getString("platform");
+                add = game + " - "  + platform;
+                list.add(add);
+            }
+
+            if (statement != null)
+                statement.close();
+
+            resultSet.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public void addToTradelist(String name, String platform) {
+        Connection connection = null;
+        Statement statement = null;
+        String add = "insert into tradelist (username, game, platform) values ('" + User.getInstance().getUsername() + "', '" + name + "', '" + platform + "');";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            statement.execute(add);
+
+            if (statement != null)
+                statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addToWishlist(String name, String platform) {
+        Connection connection = null;
+        Statement statement = null;
+        String add = "insert into wishlist (username, game, platform) values ('" + User.getInstance().getUsername() + "', '" + name + "', '" + platform + "');";
+
+        try {
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            statement.execute(add);
+
+            if (statement != null)
+                statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeFromTradelist(String name, String platform) {
+
+        Connection connection = null;
+        Statement statement = null;
+        String remove = "delete from tradelist where username = '" + User.getInstance().getUsername() +  "' and game = '" + name + "' and platform = '" + platform + "';";
+
+        try {
+
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            statement.execute(remove);
+
+            if (statement != null)
+                statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeFromWishlist(String name, String platform) {
+
+        Connection connection = null;
+        Statement statement = null;
+        String remove = "delete from wishlist where username = '" + User.getInstance().getUsername() +  "' and game = '" + name + "' and platform = '" + platform + "';";
+
+        try {
+
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            statement.execute(remove);
+
+            if (statement != null)
+                statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<ExchangePost> retrieveExchange() {
+        List<ExchangePost> exchangePosts = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+        Statement statement1 = null;
+
+
+        // this query retrieve the games the current user wants to receive
+        String retrieveGamesToReceive = "-- find games current user wants to receive\n" +
+                "select t_other_user.username, t_other_user.game, t_other_user.platform\n" +
+                "from wishlist as w_current_user join tradelist as t_other_user\n" +
+                "where w_current_user.username = '" + User.getInstance().getUsername() + "' and \n" +
+                "w_current_user.username <> t_other_user.username and\n" +
+                "w_current_user.game = t_other_user.game and \n" +
+                "w_current_user.platform = t_other_user.platform;";
+
+        // this query retrieves the games (if they exists) other users want to receive in exchange for the previous game
+        String retrieveGamesToGive = "-- find games other user wants to receive for that (those) game (games)\n" +
+                "select w_other_user.username, t_current_user.game, t_current_user.platform\n" +
+                "from wishlist as w_other_user join tradelist as t_current_user\n" +
+                "where t_current_user.username = '" + User.getInstance().getUsername() + "' and\n" +
+                "w_other_user.username <> t_current_user.username and\n" +
+                "t_current_user.game = w_other_user.game and\n" +
+                "t_current_user.platform = w_other_user.platform;";
+
+
+        try {
+
+            connection = DatabaseConnection.getInstance().getConnection();
+            statement = connection.createStatement();
+            statement1 = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieveGamesToReceive);
+
+            while(resultSet.next()) {
+                ExchangePost exchangePost = new ExchangePost();
+                String username = resultSet.getString("username");
+                String game = resultSet.getString("game");
+                String platform = resultSet.getString("platform");
+
+                exchangePost.setGame(game);
+                exchangePost.setPlatform(platform);
+                exchangePost.setUsername(username);
+
+                ResultSet resultSet1 = statement1.executeQuery(retrieveGamesToGive);
+
+                while(resultSet1.next()) {
+                    String gameToGive = resultSet1.getString("game");
+                    String platformToGive = resultSet1.getString("platform");
+
+                    if (!gameToGive.isEmpty() && !platformToGive.isEmpty()) {
+                        exchangePost.setGameToGive(gameToGive);
+                        exchangePost.setPlatformGameToGive(platformToGive);
+                        exchangePosts.add(exchangePost);
+                    } else
+                        break;
+                }
+
+                resultSet.close();
+                resultSet1.close();
+
+                if (statement != null)
+                    statement.close();
+                if (statement1 != null)
+                    statement1.close();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return exchangePosts;
     }
 
 }

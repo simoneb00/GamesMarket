@@ -1,7 +1,9 @@
 package GamesMarket.graphicControl.exchange;
 
+import GamesMarket.control.ExchangeController;
 import GamesMarket.graphicControl.shop.ItemGraphicController;
 import GamesMarket.main.Main;
+import GamesMarket.model.ExchangePost;
 import GamesMarket.model.Game;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
@@ -41,27 +43,13 @@ public class ExchangeGraphicController implements Initializable {
     private Scene scene;
     private Stage stage;
 
-    private List<Game> games = new ArrayList<>();
+    private List<ExchangePost> exchangePosts = new ArrayList<>();
+    private ExchangeController exchangeController = new ExchangeController();
 
-    private List<Game> getData() {
-        List<Game> games = new ArrayList<>();
-        Game game;
-
-
-        for (int i=0; i< 25; i++) {
-            game = new Game();
-            game.setName("FIFA 22");
-            game.setImgSrc("/images/FIFA22.jpg");
-            games.add(game);
-        }
-
-
-        return games;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        games.addAll(getData());
+        exchangePosts.addAll(exchangeController.retrieveExchange());
         int column = 0;
         int row = 1;
 
@@ -71,13 +59,13 @@ public class ExchangeGraphicController implements Initializable {
         }
 
         try {
-            for (int i = 0; i < games.size(); i++) {
+            for (int i = 0; i < exchangePosts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/exchangeItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ExchangeItemGraphicController itemController = fxmlLoader.getController();
-                itemController.setData(games.get(i));
+                itemController.setData(exchangePosts.get(i));
 
                 if (column == 3) {
                     column = 0;

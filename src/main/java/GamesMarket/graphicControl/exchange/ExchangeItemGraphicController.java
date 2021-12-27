@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl.exchange;
 
+import GamesMarket.model.ExchangePost;
 import GamesMarket.model.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,13 +18,13 @@ public class ExchangeItemGraphicController {
     @FXML
     private Label username;
 
-    private Game game;
+    private ExchangePost exchangePost;
 
-    public void setData(Game game) {
-        this.game = game;
-        username.setText("test");
-        gameLabel.setText(game.getName());
-        Image image = new Image(getClass().getResourceAsStream(game.getImgSrc()));
-        img.setImage(image);
+    public void setData(ExchangePost exchangePost) {
+        this.exchangePost = exchangePost;
+        username.setText(exchangePost.getUsername());
+        gameLabel.setText(exchangePost.getGame());
+        //Image image = new Image(getClass().getResourceAsStream(exchangePost.getImgSrc()));
+        //img.setImage(image);
     }
 }

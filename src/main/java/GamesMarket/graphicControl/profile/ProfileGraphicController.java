@@ -1,8 +1,10 @@
-package GamesMarket.graphicControl;
+package GamesMarket.graphicControl.profile;
 
+import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
-import GamesMarket.control.UserProfileController;
+import GamesMarket.control.profile.UserProfileController;
 import GamesMarket.main.Main;
+import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,11 +13,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.net.URL;
@@ -38,11 +47,24 @@ public class ProfileGraphicController implements Initializable {
     private TextField bioTF;
     @FXML
     private ImageView profilePhoto;
+    @FXML
+    private ListView<String> wishlist;
+    @FXML
+    private ListView<String> tradelist;
+    @FXML
+    private AnchorPane pane;
+    @FXML
+    private Button removeSelectedTL;
+    @FXML
+    private Button removeSelectedWL;
 
     private UserProfileController userProfileController = new UserProfileController();
     private Parent root;
     private Scene scene;
     private Stage stage;
+    private String wishlistSelected;
+    private String tradelistSelected;
+    private String selectedGame, selectedPlatform;
 
 
     public void updatePhoto() {
@@ -168,6 +190,74 @@ public class ProfileGraphicController implements Initializable {
         userProfileController.saveBio(userBean);
     }
 
+    public void addToTradelist() {
+        try {
+
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/gamesTable.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+
+            GaussianBlur blur = new GaussianBlur(55);
+            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+            adj.setInput(blur);
+            pane.setEffect(adj);
+
+            stage.showAndWait();
+            refresh();
+            pane.setEffect(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void addToWishlist(){
+        try {
+
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/gamesTable.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+
+            GaussianBlur blur = new GaussianBlur(55);
+            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+            adj.setInput(blur);
+            pane.setEffect(adj);
+
+            stage.showAndWait();
+            refresh();
+            pane.setEffect(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+
+    public void retrieveTradelist(){
+        List<String> tl = userProfileController.retrieveTradelist();
+
+        for (int i = 0; i < tl.size(); i++) {
+            tradelist.getItems().add(tl.get(i));
+        }
+    }
+
+    public void retrieveWishlist() {
+        List<String> wl = userProfileController.retrieveWishlist();
+
+        for (int i = 0; i < wl.size(); i++) {
+            wishlist.getItems().add(wl.get(i));
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.usernameLabel.setText(User.getInstance().getUsername());
@@ -175,5 +265,66 @@ public class ProfileGraphicController implements Initializable {
         setCI();
         setBio();
         setProfilePhoto();
+        retrieveTradelist();
+        retrieveWishlist();
+    }
+
+    private void refresh() {
+        wishlist.getItems().clear();
+        this.retrieveWishlist();
+
+        tradelist.getItems().clear();
+        this.retrieveTradelist();
+    }
+
+
+    public void wishlistMouseClicked() {
+        wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
+        if (wishlistSelected != "[]") {
+            wishlistSelected = wishlistSelected.replaceAll("\\[|\\]", "");
+            String[] strings = wishlistSelected.split(" - ");
+            selectedGame = strings[0];
+            selectedPlatform = strings[1];
+            removeSelectedWL.setVisible(true);
+            removeSelectedWL.setDisable(false);
+        }
+    }
+
+    public void tradelistMouseClicked() {
+        tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();
+        if (tradelistSelected != "[]") {
+            tradelistSelected = tradelistSelected.replaceAll("\\[|\\]", "");
+            String[] strings = tradelistSelected.split(" - ");
+            selectedGame = strings[0];
+            selectedPlatform = strings[1];
+            removeSelectedTL.setVisible(true);
+            removeSelectedTL.setDisable(false);
+        }
+    }
+
+    public void removeFromWL() {
+        GameBean gameBean = new GameBean();
+        gameBean.setPlatform(selectedPlatform);
+        gameBean.setName(selectedGame);
+
+        userProfileController.removeFromWishlist(gameBean);
+
+        removeSelectedWL.setVisible(false);
+        removeSelectedWL.setDisable(true);
+
+        refresh();
+    }
+
+    public void removeFromTL() {
+        GameBean gameBean = new GameBean();
+        gameBean.setPlatform(selectedPlatform);
+        gameBean.setName(selectedGame);
+
+        userProfileController.removeFromTradelist(gameBean);
+
+        removeSelectedTL.setDisable(true);
+        removeSelectedTL.setVisible(false);
+
+        refresh();
     }
 }

@@ -1,21 +1,13 @@
-package GamesMarket.model;
+package GamesMarket.bean;
 
-public class Game {
+public class GameBean {
+
     private String name;
     private String imgSrc;
     private String genre;
     private String description;
     private String platform;
     private String year;
-    private double price;
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     public String getName() {
         return name;

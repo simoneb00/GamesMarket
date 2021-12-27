@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.ProfileGraphicController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.profile.ProfileGraphicController">
    <children>
       <BorderPane layoutX="404.0" layoutY="199.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -340,11 +340,29 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <ListView prefHeight="279.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="tradelist" onMouseClicked="#tradelistMouseClicked" prefHeight="233.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="20.0" left="20.0" />
                                  </VBox.margin>
                               </ListView>
+                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="removeSelectedTL" disable="true" mnemonicParsing="false" onAction="#removeFromTL" prefHeight="25.0" prefWidth="134.0" stylesheets="@../../java/GamesMarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE" visible="false">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#addToTradelist" prefHeight="25.0" prefWidth="80.0" stylesheets="@../../java/GamesMarket/css/style.css" text="ADD" textFill="WHITE">
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass></Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" prefHeight="330.0" prefWidth="487.0" HBox.hgrow="ALWAYS">
@@ -358,11 +376,33 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <ListView prefHeight="279.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="wishlist" onMouseClicked="#wishlistMouseClicked" prefHeight="279.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="20.0" left="10.0" right="20.0" />
                                  </VBox.margin>
                               </ListView>
+                              <HBox alignment="TOP_RIGHT" prefHeight="146.0" prefWidth="488.0">
+                                 <children>
+                                    <Button fx:id="removeSelectedWL" disable="true" mnemonicParsing="false" onAction="#removeFromWL" prefHeight="25.0" prefWidth="134.0" stylesheets="@../../java/GamesMarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE" visible="false">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#addToWishlist" prefHeight="25.0" prefWidth="80.0" stylesheets="@../../java/GamesMarket/css/style.css" text="ADD" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
