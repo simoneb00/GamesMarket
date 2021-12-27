@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl.shop;
 
+import GamesMarket.graphicControl.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Game;
 import GamesMarket.model.ShopOwner;
@@ -28,11 +29,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.spec.NamedParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ShopGraphicController implements Initializable {
+public class ShopGraphicController extends NavigationButtons implements Initializable {
     @FXML
     private VBox chosenGameCard;
 
@@ -101,7 +103,7 @@ public class ShopGraphicController implements Initializable {
                 ItemGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(games.get(i));
 
-                if (column == 3) {
+                if (column == 6) {
                     column = 0;
                     row++;
                 }
@@ -124,44 +126,17 @@ public class ShopGraphicController implements Initializable {
         }
     }
 
-    public void homeButton(ActionEvent event) {
-
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/home.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+    public void profileButtonPressed(ActionEvent event) {
+        if (User.getInstance().isLoggedIn()) {
+            this.profileButton(event);
+        } else {
+            this.signInButtonPressed();
         }
     }
 
-    public void profileButton(ActionEvent event) {
-
-        if (user.isLoggedIn()) {
-
-            try {
-                root = FXMLLoader.load(Main.class.getResource("/GamesMarket/profile.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-                stage.setScene(scene);
-                stage.show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
+    public void exchangeButtonPressed(ActionEvent event) {
+        if (User.getInstance().isLoggedIn()) {
+            this.exchangeButton(event);
         } else {
             this.signInButtonPressed();
         }
@@ -193,22 +168,5 @@ public class ShopGraphicController implements Initializable {
     }
 
 
-    public void forumButton(ActionEvent event) {
 
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/forum.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
 }

@@ -1,5 +1,7 @@
 package GamesMarket.model;
 
+import java.io.File;
+
 public class ExchangePost {
 
     private String username;
@@ -7,6 +9,15 @@ public class ExchangePost {
     private String platform;
     private String gameToGive;
     private String platformGameToGive;
+    private File imageFile;
+
+    public File getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
+    }
 
     public String getUsername() {
         return username;

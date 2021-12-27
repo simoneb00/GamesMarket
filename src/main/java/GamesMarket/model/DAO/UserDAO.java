@@ -302,16 +302,19 @@ public class UserDAO {
 
     public void addToTradelist(String name, String platform) {
         Connection connection = null;
-        Statement statement = null;
-        String add = "insert into tradelist (username, game, platform) values ('" + User.getInstance().getUsername() + "', '" + name + "', '" + platform + "');";
+        PreparedStatement preparedStatement = null;
+        String add = "insert into tradelist (username, game, platform) values (?, ?, ?)";
 
         try {
             connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(add);
+            preparedStatement = connection.prepareStatement(add);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.executeUpdate();
 
-            if (statement != null)
-                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -320,16 +323,19 @@ public class UserDAO {
 
     public void addToWishlist(String name, String platform) {
         Connection connection = null;
-        Statement statement = null;
-        String add = "insert into wishlist (username, game, platform) values ('" + User.getInstance().getUsername() + "', '" + name + "', '" + platform + "');";
+        PreparedStatement preparedStatement = null;
+        String add = "insert into wishlist (username, game, platform) values (?, ?, ?)";
 
         try {
             connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(add);
+            preparedStatement = connection.prepareStatement(add);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.executeUpdate();
 
-            if (statement != null)
-                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -339,17 +345,19 @@ public class UserDAO {
     public void removeFromTradelist(String name, String platform) {
 
         Connection connection = null;
-        Statement statement = null;
-        String remove = "delete from tradelist where username = '" + User.getInstance().getUsername() +  "' and game = '" + name + "' and platform = '" + platform + "';";
+        PreparedStatement preparedStatement = null;
+        String remove = "delete from tradelist where username = ? and game = ? and platform = ?";
 
         try {
-
             connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(remove);
+            preparedStatement = connection.prepareStatement(remove);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.executeUpdate();
 
-            if (statement != null)
-                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -359,17 +367,19 @@ public class UserDAO {
     public void removeFromWishlist(String name, String platform) {
 
         Connection connection = null;
-        Statement statement = null;
-        String remove = "delete from wishlist where username = '" + User.getInstance().getUsername() +  "' and game = '" + name + "' and platform = '" + platform + "';";
+        PreparedStatement preparedStatement = null;
+        String remove = "delete from wishlist where username = ? and game = ? and platform = ?";
 
         try {
-
             connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(remove);
+            preparedStatement = connection.prepareStatement(remove);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.executeUpdate();
 
-            if (statement != null)
-                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -428,19 +438,29 @@ public class UserDAO {
                     if (!gameToGive.isEmpty() && !platformToGive.isEmpty()) {
                         exchangePost.setGameToGive(gameToGive);
                         exchangePost.setPlatformGameToGive(platformToGive);
-                        exchangePosts.add(exchangePost);
+                        if (!exchangePosts.contains(exchangePost)) {
+                            File file = new File(game + ".jpg");
+                            if (file.exists())
+                                exchangePost.setImageFile(file);
+                            else {
+                                GameDAO gameDAO = new GameDAO();
+                                exchangePost.setImageFile(gameDAO.retrieveGamePhoto(game));
+                            }
+                            exchangePosts.add(exchangePost);
+                        }
                     } else
                         break;
                 }
 
-                resultSet.close();
                 resultSet1.close();
-
-                if (statement != null)
-                    statement.close();
-                if (statement1 != null)
-                    statement1.close();
             }
+
+            resultSet.close();
+
+            if (statement != null)
+                statement.close();
+            if (statement1 != null)
+                statement1.close();
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -66,7 +66,7 @@
                         <String fx:value="mouse-moved" />
                      </styleClass>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" onAction="#exchangeButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Exchange" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" onAction="#exchangeButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Exchange" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -104,7 +104,7 @@
                         <String fx:value="mouse-pressed" />
                      </styleClass>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -202,11 +202,11 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="89.0" prefWidth="266.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="53.0" prefWidth="168.0" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Exchange" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#exchangeButtonPressed" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Exchange" textFill="WHITE">
                                        <font>
                                           <Font size="23.0" />
                                        </font>
-                                    </Label>
+                                    </Button>
                                  </children>
                               </HBox>
                            </children>
@@ -230,13 +230,13 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox alignment="BOTTOM_CENTER" prefHeight="59.0" prefWidth="290.0">
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="73.0" prefWidth="297.0">
                                  <children>
-                                    <Label styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Forum" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#forumButton" prefHeight="28.0" prefWidth="159.0" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Forum" textFill="WHITE">
                                        <font>
                                           <Font size="23.0" />
                                        </font>
-                                    </Label>
+                                    </Button>
                                  </children>
                               </HBox>
                            </children>

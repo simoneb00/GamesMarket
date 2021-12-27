@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.forum;
 
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
+import GamesMarket.graphicControl.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.DAO.PostDAO;
 import GamesMarket.model.Post;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ForumGraphicController implements Initializable {
+public class ForumGraphicController extends NavigationButtons implements Initializable {
 
     @FXML
     private GridPane postsGrid;
@@ -225,22 +226,19 @@ public class ForumGraphicController implements Initializable {
 
     }
 
-    public void homeButton(ActionEvent event) {
+    public void exchangeButtonPressed(ActionEvent event) {
+        if (User.getInstance().isLoggedIn()) {
+            this.exchangeButton(event);
+        } else {
+            this.signInButtonPressed();
+        }
+    }
 
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/home.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+    public void profileButtonPressed(ActionEvent event) {
+        if (User.getInstance().isLoggedIn()) {
+            this.profileButton(event);
+        } else {
+            this.signInButtonPressed();
         }
     }
 

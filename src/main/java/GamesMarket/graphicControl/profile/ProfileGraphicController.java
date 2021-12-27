@@ -3,6 +3,7 @@ package GamesMarket.graphicControl.profile;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.profile.UserProfileController;
+import GamesMarket.graphicControl.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
@@ -26,12 +27,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProfileGraphicController implements Initializable {
+public class ProfileGraphicController extends NavigationButtons implements Initializable  {
 
     @FXML
     private TextField address;
@@ -83,79 +85,6 @@ public class ProfileGraphicController implements Initializable {
         this.setCI();
     }
 
-
-    public void homeButton(ActionEvent event) {
-
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/home.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void shopButton(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shop.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void forumButton(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/forum.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void exchangeButton(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/exchange.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
 
     private void setCI() {
         List<String> contactInformation = userProfileController.retrieveContactInf(); // retrieve user's contact information in this order: [email, tel, address, country]
