@@ -1,4 +1,4 @@
-package GamesMarket.control;
+package GamesMarket.exchange;
 
 import GamesMarket.model.DAO.UserDAO;
 import GamesMarket.model.ExchangePost;

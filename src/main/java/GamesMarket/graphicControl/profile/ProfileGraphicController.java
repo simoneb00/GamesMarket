@@ -3,15 +3,12 @@ package GamesMarket.graphicControl.profile;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.profile.UserProfileController;
-import GamesMarket.graphicControl.NavigationButtons;
+import GamesMarket.graphicControl.navigation.UserNavigationButtons;
 import GamesMarket.main.Main;
-import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,13 +24,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProfileGraphicController extends NavigationButtons implements Initializable  {
+public class ProfileGraphicController extends UserNavigationButtons implements Initializable  {
 
     @FXML
     private TextField address;
@@ -87,7 +83,9 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
 
 
     private void setCI() {
-        List<String> contactInformation = userProfileController.retrieveContactInf(); // retrieve user's contact information in this order: [email, tel, address, country]
+        UserBean userBean = new UserBean();
+        userBean.setUsername(User.getInstance().getUsername());
+        List<String> contactInformation = userProfileController.retrieveContactInf(userBean); // retrieve user's contact information in this order: [email, tel, address, country]
 
         if (!contactInformation.isEmpty()) {
             email.setText(contactInformation.get(0));

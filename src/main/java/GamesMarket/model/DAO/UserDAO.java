@@ -75,8 +75,7 @@ public class UserDAO {
     }
 
 
-    public List<String> retrieveContactInf() {
-        String username = User.getInstance().getUsername();
+    public List<String> retrieveContactInf(String username) {
         List<String> ci = new ArrayList<>();
 
         Connection connection = null;

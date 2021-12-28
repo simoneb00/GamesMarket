@@ -24,9 +24,9 @@ public class UserProfileController {
         userDAO.saveBio(bio);
     }
 
-    public List<String> retrieveContactInf() {
+    public List<String> retrieveContactInf(UserBean userBean) {
         List<String> ci = new ArrayList<>();
-        ci = userDAO.retrieveContactInf(); // retrieve user's contact information in this order: [email, tel, address, country]
+        ci = userDAO.retrieveContactInf(userBean.getUsername()); // retrieve user's contact information in this order: [email, tel, address, country]
 
         return ci;
 

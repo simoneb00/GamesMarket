@@ -2,9 +2,8 @@ package GamesMarket.graphicControl.forum;
 
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
-import GamesMarket.graphicControl.NavigationButtons;
+import GamesMarket.graphicControl.navigation.UserNavigationButtons;
 import GamesMarket.main.Main;
-import GamesMarket.model.DAO.PostDAO;
 import GamesMarket.model.Post;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
@@ -13,8 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,13 +24,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.io.PipedOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ForumGraphicController extends NavigationButtons implements Initializable {
+public class ForumGraphicController extends UserNavigationButtons implements Initializable {
 
     @FXML
     private GridPane postsGrid;

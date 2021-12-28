@@ -1,6 +1,6 @@
 package GamesMarket.graphicControl.shop;
 
-import GamesMarket.graphicControl.NavigationButtons;
+import GamesMarket.graphicControl.navigation.UserNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Game;
 import GamesMarket.model.ShopOwner;
@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,12 +28,11 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.spec.NamedParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ShopGraphicController extends NavigationButtons implements Initializable {
+public class ShopGraphicController extends UserNavigationButtons implements Initializable {
     @FXML
     private VBox chosenGameCard;
 

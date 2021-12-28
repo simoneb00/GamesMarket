@@ -1,10 +1,5 @@
 package GamesMarket.model;
 
-import GamesMarket.graphicControl.HomepageGraphicController;
-import javafx.scene.image.ImageView;
-
-import java.awt.*;
-
 public class User {
 
     private String firstName;

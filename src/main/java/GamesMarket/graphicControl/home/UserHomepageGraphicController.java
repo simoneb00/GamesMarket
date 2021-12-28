@@ -1,9 +1,9 @@
-package GamesMarket.graphicControl;
+package GamesMarket.graphicControl.home;
 
+import GamesMarket.graphicControl.navigation.UserNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,12 +20,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.swing.*;
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomepageGraphicController extends NavigationButtons implements Initializable {
+public class UserHomepageGraphicController extends UserNavigationButtons implements Initializable {
 
     private Stage stage;
     private Parent root;
@@ -38,7 +36,7 @@ public class HomepageGraphicController extends NavigationButtons implements Init
     @FXML
     private Button signInButton;
 
-    public void signInButtonPressed() {
+    public void signInButtonPressed(ActionEvent event) {
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/login.fxml"));
@@ -56,9 +54,25 @@ public class HomepageGraphicController extends NavigationButtons implements Init
             loginStage.showAndWait();
             homePane.setEffect(null);
 
-            if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+            if (User.getInstance().isLoggedIn()) {
                 signInButton.setVisible(false);
                 signInButton.isDisabled();
+            } else if (ShopOwner.getInstance().isLoggedIn()) {
+                try {
+                    root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerHome.fxml"));
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+
+                    scene.getStylesheets().clear();
+                    scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
             }
 
         } catch (Exception e) {
@@ -72,7 +86,7 @@ public class HomepageGraphicController extends NavigationButtons implements Init
         if (User.getInstance().isLoggedIn()) {
             this.profileButton(event);
         } else {
-            this.signInButtonPressed();
+            this.signInButtonPressed(event);
         }
     }
 
@@ -80,7 +94,7 @@ public class HomepageGraphicController extends NavigationButtons implements Init
         if (User.getInstance().isLoggedIn()) {
             this.exchangeButton(event);
         } else {
-            this.signInButtonPressed();
+            this.signInButtonPressed(event);
         }
     }
 

@@ -1,7 +1,5 @@
 package GamesMarket.model;
 
-import GamesMarket.graphicControl.HomepageGraphicController;
-
 public class ShopOwner {
 
     private String firstName;

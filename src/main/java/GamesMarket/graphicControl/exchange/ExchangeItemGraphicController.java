@@ -30,16 +30,6 @@ public class ExchangeItemGraphicController {
     private Label username;
     @FXML
     private ImageView imageView;
-    @FXML
-    private Label address;
-    @FXML
-    private Label country;
-    @FXML
-    private Label email;
-    @FXML
-    private Label tel;
-    @FXML
-    private Label contactUsername;
 
 
     public void setData(ExchangePost exchangePost) {
@@ -55,7 +45,13 @@ public class ExchangeItemGraphicController {
 
     public void contactButton() {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/contact.fxml"));
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/contact.fxml"));
+            ContactWindowGraphicController contactWindowGraphicController = new ContactWindowGraphicController(username.getText());
+            fxmlLoader.setController(contactWindowGraphicController);
+
+            Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             Scene scene = new Scene(root);
 
@@ -64,14 +60,11 @@ public class ExchangeItemGraphicController {
             stage.setScene(scene);
             stage.showAndWait();
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
-    }
-
-    public void close(ActionEvent event) {
-        Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        stage.close();
     }
 }
