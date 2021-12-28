@@ -128,7 +128,7 @@
                   <Pane prefHeight="133.0" prefWidth="339.0" VBox.vgrow="ALWAYS" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="signInButton" mnemonicParsing="false" prefHeight="53.0" prefWidth="150.0" style="-fx-border-color: ffffff; -fx-border-radius: 30;" stylesheets="@../../java/GamesMarket/css/style.css" text="Sign In" textFill="WHITE">
+                        <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonPressed" prefHeight="53.0" prefWidth="150.0" style="-fx-border-color: ffffff; -fx-border-radius: 30;" stylesheets="@../../java/GamesMarket/css/style.css" text="Sign In" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>

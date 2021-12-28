@@ -25,6 +25,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -103,10 +106,13 @@ public class ProfileGraphicController extends UserNavigationButtons implements I
     }
 
     private void setProfilePhoto() {
-        File file = userProfileController.retrieveProfilePhoto();
-        if (file != null){
-            Image image = new Image(file.getAbsolutePath());
-            profilePhoto.setImage(image);
+
+        try {
+            File file = userProfileController.retrieveProfilePhoto();
+            InputStream isImage = (InputStream) new FileInputStream(file);
+            profilePhoto.setImage(new Image(isImage));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
     }

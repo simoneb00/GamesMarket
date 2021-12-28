@@ -1,4 +1,4 @@
-package GamesMarket.graphicControl.profile;
+package GamesMarket.graphicControl;
 
 import GamesMarket.bean.GameBean;
 import GamesMarket.control.profile.GamesTableController;
@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -36,6 +33,11 @@ public class GamesTableGraphicController implements Initializable {
     private TableView<Game> table;
     @FXML
     private Label label;
+    @FXML
+    private Label label1;
+    @FXML
+    private TextField price;
+
 
     private ObservableList<Game> gameObservableList = FXCollections.observableArrayList();
     private Game selectedGame = null;
@@ -88,6 +90,38 @@ public class GamesTableGraphicController implements Initializable {
             gameBean.setName(selectedGame.getName());
             gameBean.setPlatform(selectedGame.getPlatform());
             gamesTableController.addToWishlist(gameBean);
+        }
+    }
+
+    public void add() {
+
+        double prc;
+
+        try {
+            prc = Double.parseDouble(price.getText());
+        } catch (NullPointerException e) {
+            label1.setText("Invalid price");
+            prc = -1.0;
+        } catch (NumberFormatException e) {
+            label1.setText("Invalid price");
+            prc = -1.0;
+        }
+        if (selectedGame == null)
+            label1.setText("No game selected");
+        else if (price.getText().isEmpty())
+            label1.setText("No price set");
+        else {
+            label1.setText(selectedGame.getName() + " added");
+        }
+
+        if (prc >= 0) {
+            GameBean gameBean = new GameBean();
+            gameBean.setName(selectedGame.getName());
+            gameBean.setPlatform(selectedGame.getPlatform());
+            gameBean.setPrice(prc);
+            gamesTableController.putForSale(gameBean);
+        } else {
+            label1.setText("Invalid price");
         }
     }
 

@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -128,7 +129,7 @@ public class ShopGraphicController extends UserNavigationButtons implements Init
         if (User.getInstance().isLoggedIn()) {
             this.profileButton(event);
         } else {
-            this.signInButtonPressed();
+            this.signInButtonPressed(event);
         }
     }
 
@@ -136,11 +137,11 @@ public class ShopGraphicController extends UserNavigationButtons implements Init
         if (User.getInstance().isLoggedIn()) {
             this.exchangeButton(event);
         } else {
-            this.signInButtonPressed();
+            this.signInButtonPressed(event);
         }
     }
 
-    public void signInButtonPressed() {
+    public void signInButtonPressed(ActionEvent event) {
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/login.fxml"));
@@ -161,6 +162,24 @@ public class ShopGraphicController extends UserNavigationButtons implements Init
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
+        }
+
+        if (ShopOwner.getInstance().isLoggedIn()) {
+            try {
+                root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerHome.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
         }
 
     }

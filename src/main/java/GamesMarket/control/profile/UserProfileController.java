@@ -49,8 +49,6 @@ public class UserProfileController {
     }
 
     public void updateProfilePhoto()  {
-
-
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
         String path = selectedFile.getAbsolutePath();

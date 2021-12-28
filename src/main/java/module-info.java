@@ -12,6 +12,7 @@ module login.loginwindow {
     requires java.sql;
     requires java.desktop;
     requires javafx.graphics;
+    requires java.security.jgss;
 
     opens GamesMarket.control to javafx.fxml;
     exports GamesMarket.control;
@@ -45,4 +46,7 @@ module login.loginwindow {
     opens GamesMarket.graphicControl.home to javafx.fxml;
     exports GamesMarket.graphicControl.navigation;
     opens GamesMarket.graphicControl.navigation to javafx.fxml;
+
+    exports GamesMarket.graphicControl.yourShop to javafx.fxml;
+    opens GamesMarket.graphicControl.yourShop;
 }

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.home.ShopOwnerHomeGraphicController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.yourShop.YourShopGraphicController">
     <children>
         <BorderPane layoutX="531.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -31,7 +31,7 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Home" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" onAction="#homeButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Home" textFill="WHITE">
                             <padding>
                                 <Insets left="50.0" />
                             </padding>
@@ -50,7 +50,7 @@
                                 <String fx:value="mouse-pressed" />
                             </styleClass>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onAction="#yourShopButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Your Shop" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Your Shop" textFill="WHITE">
                             <padding>
                                 <Insets left="50.0" />
                             </padding>
@@ -89,7 +89,7 @@
                                 <String fx:value="mouse-pressed" />
                             </styleClass>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
                             <padding>
                                 <Insets left="50.0" />
                             </padding>
@@ -123,7 +123,7 @@
             <center>
                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="simone's shop" textFill="#88c5cc">
+                  <Label fx:id="shopName" textFill="#88c5cc">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -135,18 +135,14 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="183.0" prefWidth="976.0">
                            <children>
-                              <ImageView fitHeight="181.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Desktop/Simone/GamesMarket_logo.png" />
-                                 </image>
-                              </ImageView>
+                              <ImageView fx:id="shopImg" fitHeight="181.0" fitWidth="253.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="976.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#updatePhoto" prefHeight="25.0" prefWidth="86.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -166,22 +162,30 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <ListView prefHeight="432.0" prefWidth="448.0">
+                              <ListView fx:id="gamesList" onMouseClicked="#listMouseClicked" prefHeight="432.0" prefWidth="448.0">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
                               </ListView>
                               <HBox alignment="CENTER_RIGHT" prefHeight="106.0" prefWidth="488.0">
                                  <children>
-                                    <Button mnemonicParsing="false" stylesheets="@../../java/GamesMarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE">
+                                    <Button fx:id="removeSelectedGame" disable="true" mnemonicParsing="false" onAction="#removeSelectedGame" stylesheets="@../../java/GamesMarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE" visible="false">
                                        <HBox.margin>
                                           <Insets right="30.0" />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
                                     </Button>
-                                    <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" stylesheets="@../../java/GamesMarket/css/style.css" text="ADD" textFill="WHITE">
+                                    <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="84.0" stylesheets="@../../java/GamesMarket/css/style.css" text="ADD" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets right="20.0" />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
                                     </Button>
                                  </children>
                               </HBox>
@@ -198,12 +202,12 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <TableView prefHeight="485.0" prefWidth="488.0">
+                              <TableView fx:id="ordersTable" prefHeight="485.0" prefWidth="488.0">
                                 <columns>
-                                  <TableColumn prefWidth="87.0" text="username" />
-                                  <TableColumn prefWidth="131.0" text="game" />
-                                    <TableColumn prefWidth="68.0" text="platform" />
-                                    <TableColumn prefWidth="161.0" text="payment method" />
+                                  <TableColumn fx:id="usernameCol" prefWidth="87.0" text="username" />
+                                  <TableColumn fx:id="gameCol" prefWidth="131.0" text="game" />
+                                    <TableColumn fx:id="platformCol" prefWidth="68.0" text="platform" />
+                                    <TableColumn fx:id="paymentCol" prefWidth="161.0" text="payment method" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
