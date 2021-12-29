@@ -4,10 +4,7 @@ import GamesMarket.bean.ShopPostBean;
 import GamesMarket.control.ShopController;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
-import GamesMarket.model.Game;
-import GamesMarket.model.ShopOwner;
-import GamesMarket.model.ShopPost;
-import GamesMarket.model.User;
+import GamesMarket.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
@@ -34,20 +32,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ShopGraphicController extends NavigationButtons implements Initializable {
-    @FXML
-    private VBox chosenGameCard;
 
     @FXML
-    private Label gameNameLabel;
-
-    @FXML
-    private Label gamePriceLabel;
-
-    @FXML
-    private ImageView gameimage;
+    private AnchorPane anchorPane;
 
     @FXML
     private GridPane grid;
@@ -56,22 +47,22 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     private ScrollPane scroll;
 
     @FXML
-    private AnchorPane anchorPane;
+    private TextField searchBar;
 
     @FXML
     private Button signInButton;
+
 
     private User user = User.getInstance();
     private Parent root;
     private Scene scene;
     private Stage stage;
     private ShopController shopController = new ShopController();
-
+    private List<ShopPost> posts = new ArrayList<>();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<ShopPost> posts = new ArrayList<>();
         List<ShopPostBean> postBeans = shopController.retrieveShop();
 
         for (int i = 0; i < postBeans.size(); i++) {
@@ -84,14 +75,16 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
             posts.add(shopPost);
         }
 
-        int column = 0;
-        int row = 1;
+        //int column = 0;
+        //int row = 1;
 
         if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             signInButton.setVisible(false);
             signInButton.isDisabled();
         }
 
+        this.showGrid(posts);
+/*
         try {
             for (int i = 0; i < posts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -122,6 +115,8 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
         } catch(IOException e) {
             e.printStackTrace();
         }
+
+ */
     }
 
     public void profileButtonPressed(ActionEvent event) {
@@ -181,6 +176,55 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
             }
         }
 
+    }
+
+    public void showGrid(List<ShopPost> posts) {
+        int column = 0;
+        int row = 1;
+
+        try {
+            for (int i = 0; i < posts.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/shopItem.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemGraphicController itemController = fxmlLoader.getController();
+                itemController.setData(posts.get(i));
+
+                if (column == 5) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(20));
+
+            }
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void search() {
+        String search = searchBar.getText();
+        grid.getChildren().clear();
+        List<ShopPost> searchedPosts = new ArrayList<>();
+
+        for (int i = 0; i < posts.size(); i++) {
+            if (posts.get(i).getGame().toLowerCase().contains(search.toLowerCase()))
+                searchedPosts.add(posts.get(i));
+        }
+
+        this.showGrid(searchedPosts);
     }
 
 
