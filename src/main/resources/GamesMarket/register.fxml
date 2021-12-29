@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="429.0" style="-fx-border-radius: 30; -fx-background-color: WHITE; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.SignUpGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="429.0" style="-fx-border-radius: 30; -fx-background-color: WHITE; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.signup.SignUpGraphicController">
    <children>
       <Text layoutX="167.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP">
          <font>

@@ -4,6 +4,7 @@ import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.model.DAO.UserDAO;
 import GamesMarket.model.Game;
+import GamesMarket.model.User;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
@@ -21,6 +22,7 @@ public class UserProfileController {
 
     public void saveBio(UserBean userBean){
         String bio = userBean.getBio();
+        User.getInstance().setBio(bio);
         userDAO.saveBio(bio);
     }
 
@@ -44,6 +46,13 @@ public class UserProfileController {
         String address = userBean.getAddress();
         String country = userBean.getCountry();
 
+        List<String> contacts = new ArrayList<>();
+        contacts.add(email);
+        contacts.add(tel);
+        contacts.add(address);
+        contacts.add(country);
+        User.getInstance().setContacts(contacts);
+
         UserDAO userDAO = new UserDAO();
         userDAO.updateCI(email, tel, address, country);
     }
@@ -54,6 +63,7 @@ public class UserProfileController {
         String path = selectedFile.getAbsolutePath();
 
         userDAO.updateProfilePhoto(path);
+        User.getInstance().setProfileImagePath(path);
 
     }
 

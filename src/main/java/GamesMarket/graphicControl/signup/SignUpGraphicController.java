@@ -1,4 +1,4 @@
-package GamesMarket.graphicControl;
+package GamesMarket.graphicControl.signup;
 
 import GamesMarket.bean.RegisterCredentialsBean;
 import GamesMarket.control.SignUpController;

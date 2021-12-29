@@ -34,8 +34,8 @@ module login.loginwindow {
 
     opens GamesMarket.graphicControl.exchange to javafx.fxml;
     exports GamesMarket.graphicControl.exchange;
-    exports GamesMarket.graphicControl.profile;
-    opens GamesMarket.graphicControl.profile to javafx.fxml;
+    exports GamesMarket.graphicControl.userProfile;
+    opens GamesMarket.graphicControl.userProfile to javafx.fxml;
     exports GamesMarket.control.profile;
     opens GamesMarket.control.profile to javafx.fxml;
 
@@ -49,4 +49,8 @@ module login.loginwindow {
 
     exports GamesMarket.graphicControl.yourShop to javafx.fxml;
     opens GamesMarket.graphicControl.yourShop;
+    exports GamesMarket.graphicControl.signup;
+    opens GamesMarket.graphicControl.signup to javafx.fxml;
+    exports GamesMarket.graphicControl.login;
+    opens GamesMarket.graphicControl.login to javafx.fxml;
 }

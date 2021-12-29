@@ -6,10 +6,19 @@ public class ShopOwner {
     private String lastName;
     private String email;
     private String password;
+    private Shop shop;
     private static ShopOwner instance = null;
     private boolean isLoggedIn = false;
 
     private ShopOwner(){return;}
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -22,7 +22,31 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
 
     public void yourShopButtonPressed(ActionEvent event) {
         if (ShopOwner.getInstance().isLoggedIn())
-            this.yourShopButton(event);
+            if (ShopOwner.getInstance().getShop() != null)
+                this.yourShopButton(event);
+            else {
+                try {
+                    Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/createNewShop.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    scene.setFill(Color.TRANSPARENT);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setScene(scene);
+
+                    GaussianBlur blur = new GaussianBlur(55);
+                    ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+                    adj.setInput(blur);
+                    anchorPane.setEffect(adj);
+
+                    stage.showAndWait();
+                    anchorPane.setEffect(null);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            }
+
         else
             this.signIn();
     }
@@ -33,6 +57,7 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
         else
             this.signIn();
     }
+
 
     public void signIn() {
         try {

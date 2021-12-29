@@ -1,4 +1,4 @@
-package GamesMarket.graphicControl;
+package GamesMarket.graphicControl.login;
 
 import GamesMarket.exceptions.InvalidEmailException;
 import GamesMarket.main.Main;

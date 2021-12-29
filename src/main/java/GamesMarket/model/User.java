@@ -1,5 +1,7 @@
 package GamesMarket.model;
 
+import java.util.List;
+
 public class User {
 
     private String firstName;
@@ -8,12 +10,57 @@ public class User {
     private String password;
     private String emailAddress;
     private String profileImagePath;
+    private String bio;
+    private List<String> contacts;
+    private List<String> wishlist;
+    private List<String> tradelist;
     private boolean isLoggedIn = false;
 
     private static User instance = null;
 
     private User() {
         return;
+    }
+
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<String> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<String> contacts) {
+        this.contacts = contacts;
+    }
+
+    public List<String> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(List<String> wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    public List<String> getTradelist() {
+        return tradelist;
+    }
+
+    public void setTradelist(List<String> tradelist) {
+        this.tradelist = tradelist;
+    }
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
     }
 
     public String getFirstName() {

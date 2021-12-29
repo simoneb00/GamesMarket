@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 30; -fx-background-color: WHITE; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.LoginGraphicController">
+<AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-border-radius: 30; -fx-background-color: WHITE; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.login.LoginGraphicController">
    <children>
       <ImageView fitHeight="76.0" fitWidth="172.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>

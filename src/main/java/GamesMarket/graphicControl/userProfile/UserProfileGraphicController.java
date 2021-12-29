@@ -1,4 +1,4 @@
-package GamesMarket.graphicControl.profile;
+package GamesMarket.graphicControl.userProfile;
 
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProfileGraphicController extends UserNavigationButtons implements Initializable  {
+public class UserProfileGraphicController extends UserNavigationButtons implements Initializable  {
 
     @FXML
     private TextField address;
@@ -86,10 +86,12 @@ public class ProfileGraphicController extends UserNavigationButtons implements I
 
 
     private void setCI() {
+        /*
         UserBean userBean = new UserBean();
         userBean.setUsername(User.getInstance().getUsername());
         List<String> contactInformation = userProfileController.retrieveContactInf(userBean); // retrieve user's contact information in this order: [email, tel, address, country]
-
+*/
+        List<String> contactInformation = User.getInstance().getContacts();
         if (!contactInformation.isEmpty()) {
             email.setText(contactInformation.get(0));
             tel.setText(contactInformation.get(1));
@@ -99,7 +101,7 @@ public class ProfileGraphicController extends UserNavigationButtons implements I
     }
 
     private void setBio() {
-        String bio = userProfileController.retrieveBio();
+        String bio = User.getInstance().getBio();
         if(bio != null) {
             bioTF.setText(bio);
         }
@@ -108,9 +110,12 @@ public class ProfileGraphicController extends UserNavigationButtons implements I
     private void setProfilePhoto() {
 
         try {
-            File file = userProfileController.retrieveProfilePhoto();
-            InputStream isImage = (InputStream) new FileInputStream(file);
-            profilePhoto.setImage(new Image(isImage));
+            String path = User.getInstance().getProfileImagePath();
+            if (path != null) {
+                File file = new File(path);
+                InputStream isImage = (InputStream) new FileInputStream(file);
+                profilePhoto.setImage(new Image(isImage));
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -175,7 +180,7 @@ public class ProfileGraphicController extends UserNavigationButtons implements I
 
 
     public void retrieveTradelist(){
-        List<String> tl = userProfileController.retrieveTradelist();
+        List<String> tl = User.getInstance().getTradelist();
 
         for (int i = 0; i < tl.size(); i++) {
             tradelist.getItems().add(tl.get(i));
@@ -183,7 +188,7 @@ public class ProfileGraphicController extends UserNavigationButtons implements I
     }
 
     public void retrieveWishlist() {
-        List<String> wl = userProfileController.retrieveWishlist();
+        List<String> wl = User.getInstance().getWishlist();
 
         for (int i = 0; i < wl.size(); i++) {
             wishlist.getItems().add(wl.get(i));
