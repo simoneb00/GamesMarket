@@ -6,6 +6,7 @@ import GamesMarket.control.ForumController;
 import GamesMarket.main.Main;
 import GamesMarket.model.Comment;
 import GamesMarket.model.Post;
+import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -94,6 +95,8 @@ public class PostGraphicController{
         String username;
         if (User.getInstance().isLoggedIn())
             username = User.getInstance().getUsername();
+        else if (ShopOwner.getInstance().isLoggedIn())
+            username = ShopOwner.getInstance().getEmail();
         else
             username = "unknown";
 

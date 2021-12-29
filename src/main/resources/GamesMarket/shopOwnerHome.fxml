@@ -66,7 +66,7 @@
                                 <String fx:value="mouse-moved" />
                             </styleClass>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" onAction="#forumButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Forum" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" onAction="#forumButtonSO" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Forum" textFill="WHITE">
                             <padding>
                                 <Insets left="50.0" />
                             </padding>
@@ -145,7 +145,7 @@
                                         </HBox>
                                         <HBox alignment="CENTER" prefHeight="79.0" prefWidth="334.0">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#yourShopButton" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Your Shop" textFill="WHITE">
+                                                <Button mnemonicParsing="false" onAction="#yourShopButtonSO" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Your Shop" textFill="WHITE">
                                                     <font>
                                                         <Font size="23.0" />
                                                     </font>
@@ -174,7 +174,7 @@
                                         </HBox>
                                         <HBox alignment="CENTER" prefHeight="89.0" prefWidth="266.0">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#yourShopButton" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Update your Shop" textFill="WHITE">
+                                                <Button mnemonicParsing="false" onAction="#yourShopButtonSO" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Update your Shop" textFill="WHITE">
                                                     <font>
                                                         <Font size="23.0" />
                                                     </font>

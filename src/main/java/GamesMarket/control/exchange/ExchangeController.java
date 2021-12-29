@@ -1,10 +1,8 @@
-package GamesMarket.exchange;
+package GamesMarket.control.exchange;
 
 import GamesMarket.model.DAO.UserDAO;
 import GamesMarket.model.ExchangePost;
-import GamesMarket.model.Game;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExchangeController {

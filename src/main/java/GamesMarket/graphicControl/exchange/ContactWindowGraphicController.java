@@ -1,9 +1,7 @@
 package GamesMarket.graphicControl.exchange;
 
 import GamesMarket.bean.UserBean;
-import GamesMarket.exchange.ContactWindowController;
-import GamesMarket.graphicControl.forum.UserPostGraphicController;
-import GamesMarket.model.DAO.UserDAO;
+import GamesMarket.control.exchange.ContactWindowController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

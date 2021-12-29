@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl.home;
 
+import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.graphicControl.navigation.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopOwner;
@@ -15,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
+public class ShopOwnerHomeGraphicController extends NavigationButtons {
 
     @FXML
     private AnchorPane anchorPane;
@@ -23,7 +24,7 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
     public void yourShopButtonPressed(ActionEvent event) {
         if (ShopOwner.getInstance().isLoggedIn())
             if (ShopOwner.getInstance().getShop() != null)
-                this.yourShopButton(event);
+                this.yourShopButtonSO(event);
             else {
                 try {
                     Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/createNewShop.fxml"));
@@ -53,7 +54,7 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
 
     public void profileButtonPressed(ActionEvent event) {
         if (ShopOwner.getInstance().isLoggedIn())
-            this.profileButton(event);
+            this.profileButtonSO(event);
         else
             this.signIn();
     }

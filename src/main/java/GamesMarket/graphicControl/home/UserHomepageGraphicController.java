@@ -1,6 +1,6 @@
 package GamesMarket.graphicControl.home;
 
-import GamesMarket.graphicControl.navigation.UserNavigationButtons;
+import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
@@ -23,7 +23,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UserHomepageGraphicController extends UserNavigationButtons implements Initializable {
+public class UserHomepageGraphicController extends NavigationButtons implements Initializable {
 
     private Stage stage;
     private Parent root;

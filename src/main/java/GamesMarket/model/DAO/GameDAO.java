@@ -49,7 +49,6 @@ public class GameDAO {
     public File retrieveGamePhoto(String name) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        Random random = new Random();
         File file = new File(name + ".jpg");
         String retrieve = "select image from games where name = ?";
 

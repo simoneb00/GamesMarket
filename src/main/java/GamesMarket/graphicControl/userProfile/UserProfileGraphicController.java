@@ -3,7 +3,7 @@ package GamesMarket.graphicControl.userProfile;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.profile.UserProfileController;
-import GamesMarket.graphicControl.navigation.UserNavigationButtons;
+import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UserProfileGraphicController extends UserNavigationButtons implements Initializable  {
+public class UserProfileGraphicController extends NavigationButtons implements Initializable  {
 
     @FXML
     private TextField address;

@@ -2,7 +2,7 @@ package GamesMarket.graphicControl.forum;
 
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
-import GamesMarket.graphicControl.navigation.UserNavigationButtons;
+import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Post;
 import GamesMarket.model.ShopOwner;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ForumGraphicController extends UserNavigationButtons implements Initializable {
+public class ForumGraphicController extends NavigationButtons implements Initializable {
 
     @FXML
     private GridPane postsGrid;
@@ -139,7 +139,7 @@ public class ForumGraphicController extends UserNavigationButtons implements Ini
 
     public void addPostToUserGrid(Post post) {
 
-        if (User.getInstance().isLoggedIn()) {
+        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/userPost.fxml"));
@@ -168,9 +168,10 @@ public class ForumGraphicController extends UserNavigationButtons implements Ini
 
         if (User.getInstance().isLoggedIn()) {
             username = User.getInstance().getUsername();
-        } else {
+        } else if (ShopOwner.getInstance().isLoggedIn()) {
+            username = ShopOwner.getInstance().getEmail();
+        } else
             username = "unknown";
-        }
 
         Post post = new Post();
         post.setUsername(username);

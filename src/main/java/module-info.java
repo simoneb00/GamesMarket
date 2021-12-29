@@ -40,8 +40,8 @@ module login.loginwindow {
     opens GamesMarket.control.profile to javafx.fxml;
 
     opens GamesMarket.model to javafx.base;
-    exports GamesMarket.exchange;
-    opens GamesMarket.exchange to javafx.fxml;
+    exports GamesMarket.control.exchange;
+    opens GamesMarket.control.exchange to javafx.fxml;
     exports GamesMarket.graphicControl.home;
     opens GamesMarket.graphicControl.home to javafx.fxml;
     exports GamesMarket.graphicControl.navigation;

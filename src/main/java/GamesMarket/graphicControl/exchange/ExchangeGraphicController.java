@@ -1,7 +1,7 @@
 package GamesMarket.graphicControl.exchange;
 
-import GamesMarket.exchange.ExchangeController;
-import GamesMarket.graphicControl.navigation.UserNavigationButtons;
+import GamesMarket.control.exchange.ExchangeController;
+import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ExchangePost;
 import GamesMarket.model.ShopOwner;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ExchangeGraphicController extends UserNavigationButtons implements Initializable {
+public class ExchangeGraphicController extends NavigationButtons implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 

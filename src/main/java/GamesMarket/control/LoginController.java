@@ -55,6 +55,10 @@ public class LoginController {
             shop.setOwner(email);
             shop.setGames(shopDAO.retrieveList(email));
             shop.setImageFile(shopDAO.retrievePhoto(email));
+            List<String> completeAddress = shopDAO.retrieveAddress(email);  // retrieve complete address in this order [address, city, country]
+            shop.setAddress(completeAddress.get(0));
+            shop.setCity(completeAddress.get(1));
+            shop.setCountry(completeAddress.get(2));
             shopOwner.setShop(shop);
         }
     }

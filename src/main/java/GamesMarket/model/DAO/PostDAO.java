@@ -2,6 +2,7 @@ package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.model.Post;
+import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 
 import java.sql.Connection;
@@ -66,7 +67,11 @@ public class PostDAO {
     public List<Post> retrieveUserPosts() {
 
         List<Post> posts = new ArrayList<>();
-        String username = User.getInstance().getUsername();
+        String username = null;
+        if (User.getInstance().isLoggedIn())
+            username = User.getInstance().getUsername();
+        else if (ShopOwner.getInstance().isLoggedIn())
+            username = ShopOwner.getInstance().getEmail();
 
         Statement statement = null;
         Connection connection = null;

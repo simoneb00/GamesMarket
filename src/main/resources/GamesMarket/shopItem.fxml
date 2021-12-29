@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,32 +11,58 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.shop.ItemGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.shop.ItemGraphicController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="71.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="45.0" prefWidth="220.0">
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="250.0">
                <children>
-                  <Label fx:id="nameLabel" prefHeight="39.0" prefWidth="170.0" text="FIFA 22">
+                  <Label fx:id="shopNameLabel" textFill="#88c5cc" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="250.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Label fx:id="gameLabel" alignment="CENTER" prefHeight="66.0" prefWidth="274.0" textAlignment="CENTER" wrapText="true">
                      <font>
-                        <Font name="Cambria" size="24.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="priceLabel" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="81.0" text="\$ 69.99">
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="173.0" prefWidth="250.0">
+               <children>
+                  <ImageView fx:id="img" fitHeight="179.0" fitWidth="179.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/FIFA22.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="250.0">
+               <children>
+                  <Label fx:id="priceLabel" alignment="CENTER" prefHeight="39.0" prefWidth="294.0">
                      <font>
                         <Font name="Cambria Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" top="10.0" />
-               </VBox.margin>
             </HBox>
-            <ImageView fx:id="img" fitHeight="157.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/FIFA22.jpg" />
-               </image>
-            </ImageView>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="250.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" stylesheets="@../../java/GamesMarket/css/style.css" text="BUY" textFill="WHITE">
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

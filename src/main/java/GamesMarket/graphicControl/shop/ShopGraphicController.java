@@ -1,9 +1,12 @@
 package GamesMarket.graphicControl.shop;
 
-import GamesMarket.graphicControl.navigation.UserNavigationButtons;
+import GamesMarket.bean.ShopPostBean;
+import GamesMarket.control.ShopController;
+import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Game;
 import GamesMarket.model.ShopOwner;
+import GamesMarket.model.ShopPost;
 import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ShopGraphicController extends UserNavigationButtons implements Initializable {
+public class ShopGraphicController extends NavigationButtons implements Initializable {
     @FXML
     private VBox chosenGameCard;
 
@@ -62,29 +65,25 @@ public class ShopGraphicController extends UserNavigationButtons implements Init
     private Parent root;
     private Scene scene;
     private Stage stage;
-
-    private List<Game> games = new ArrayList<>();
-
-    private List<Game> getData() {
-        List<Game> games = new ArrayList<>();
-        Game game;
+    private ShopController shopController = new ShopController();
 
 
-        for (int i=0; i< 25; i++) {
-            game = new Game();
-            game.setName("FIFA 22");
-            game.setPrice(69.99);
-            game.setImgSrc("/images/FIFA22.jpg");
-            games.add(game);
-        }
-
-
-        return games;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        games.addAll(getData());
+        List<ShopPost> posts = new ArrayList<>();
+        List<ShopPostBean> postBeans = shopController.retrieveShop();
+
+        for (int i = 0; i < postBeans.size(); i++) {
+            ShopPost shopPost = new ShopPost();
+            shopPost.setShopName(postBeans.get(i).getShopName());
+            shopPost.setGame(postBeans.get(i).getGame());
+            shopPost.setPrice(postBeans.get(i).getPrice());
+            shopPost.setImageFile(postBeans.get(i).getImageFile());
+
+            posts.add(shopPost);
+        }
+
         int column = 0;
         int row = 1;
 
@@ -94,15 +93,15 @@ public class ShopGraphicController extends UserNavigationButtons implements Init
         }
 
         try {
-            for (int i = 0; i < games.size(); i++) {
+            for (int i = 0; i < posts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/shopItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemGraphicController itemController = fxmlLoader.getController();
-                itemController.setData(games.get(i));
+                itemController.setData(posts.get(i));
 
-                if (column == 6) {
+                if (column == 5) {
                     column = 0;
                     row++;
                 }
@@ -117,7 +116,7 @@ public class ShopGraphicController extends UserNavigationButtons implements Init
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setMargin(anchorPane, new Insets(20));
 
             }
         } catch(IOException e) {

@@ -1,9 +1,8 @@
-package GamesMarket.exchange;
+package GamesMarket.control.exchange;
 
 import GamesMarket.bean.UserBean;
 import GamesMarket.model.DAO.UserDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactWindowController {
