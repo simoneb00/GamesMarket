@@ -160,7 +160,7 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="976.0">
+                  <HBox alignment="CENTER" prefHeight="92.0" prefWidth="976.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#updatePhoto" prefHeight="15.0" prefWidth="118.0" stylesheets="@../../java/GamesMarket/css/style.css" text="UPDATE" textFill="WHITE">
                            <styleClass>
@@ -169,12 +169,17 @@
                            </styleClass></Button>
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="976.0">
+                     <children>
+                        <Label fx:id="photoLabel" />
+                     </children>
+                  </HBox>
                   <HBox prefHeight="285.0" prefWidth="976.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <VBox prefHeight="253.0" prefWidth="1128.0" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="257.0" prefWidth="976.0" HBox.hgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" prefHeight="207.0" prefWidth="976.0">
                                  <children>

@@ -18,19 +18,6 @@ public class YourShopController {
 
     private ShopDAO shopDAO = new ShopDAO();
 
-    public ShopBean retrieveShopName(ShopOwnerBean shopOwnerBean) {
-        String shopName = shopDAO.retrieveShopName(shopOwnerBean.getEmail());
-        if (shopName != null) {
-            ShopOwner.getInstance().setShop(Shop.getInstance());
-            ShopOwner.getInstance().getShop().setName(shopName);
-            ShopBean shopBean = new ShopBean();
-            shopBean.setName(shopName);
-            return shopBean;
-        }
-
-        return null;
-    }
-
     public ShopBean retrieveImageFile() {
         ShopBean shopBean = new ShopBean();
         File file = shopDAO.retrievePhoto(ShopOwner.getInstance().getEmail());
@@ -48,22 +35,6 @@ public class YourShopController {
         ShopOwner.getInstance().getShop().setImageFile(shopDAO.retrievePhoto(ShopOwner.getInstance().getEmail()));
     }
 
-    public List<GameBean> retrieveList() {
-        List<GameBean> list = new ArrayList<>();
-        List<Game> games = shopDAO.retrieveList(ShopOwner.getInstance().getEmail());
-        ShopOwner.getInstance().getShop().setGames(games);
-
-        for (int i = 0; i < games.size(); i++) {
-            GameBean gameBean = new GameBean();
-            gameBean.setName(games.get(i).getName());
-            gameBean.setPlatform(games.get(i).getPlatform());
-            gameBean.setPrice(games.get(i).getPrice());
-            list.add(gameBean);
-
-        }
-
-        return list;
-    }
 
     public void removeGame(GameBean gameBean) {
         String name = gameBean.getName();
@@ -71,6 +42,11 @@ public class YourShopController {
         double price = gameBean.getPrice();
 
         shopDAO.removeGameFromSale(name, platform, price);
+
+        for (int i = 0; i < Shop.getInstance().getGames().size(); i++) {
+            if (Shop.getInstance().getGames().get(i).getName().equals(name) && Shop.getInstance().getGames().get(i).getPlatform().equals(platform) && Shop.getInstance().getGames().get(i).getPrice() == price)
+                Shop.getInstance().getGames().remove(i);
+        }
     }
 
     public void createNewShop(ShopBean shopBean) {

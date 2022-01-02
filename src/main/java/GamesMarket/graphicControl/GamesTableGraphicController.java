@@ -1,7 +1,8 @@
 package GamesMarket.graphicControl;
 
 import GamesMarket.bean.GameBean;
-import GamesMarket.control.profile.GamesTableController;
+import GamesMarket.control.GamesTableController;
+import GamesMarket.exceptions.DuplicatedGameException;
 import GamesMarket.model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -70,59 +70,70 @@ public class GamesTableGraphicController implements Initializable {
     }
 
     public void addToTradelist() {
-        if (selectedGame == null)
-            label.setText("No game selected");
-        else {
-            label.setText(selectedGame.getName() + " added to Tradelist");
-            GameBean gameBean = new GameBean();
-            gameBean.setName(selectedGame.getName());
-            gameBean.setPlatform(selectedGame.getPlatform());
-            gamesTableController.addToTradelist(gameBean);
+        try {
+            if (selectedGame == null)
+                label.setText("No game selected");
+            else {
+                label.setText(selectedGame.getName() + " added to Tradelist");
+                GameBean gameBean = new GameBean();
+                gameBean.setName(selectedGame.getName());
+                gameBean.setPlatform(selectedGame.getPlatform());
+                gamesTableController.addToTradelist(gameBean);
+            }
+        } catch (DuplicatedGameException e) {
+            label.setText("This game is already present in your tradelist.");
         }
     }
 
     public void addToWishlist() {
-        if (selectedGame == null)
-            label.setText("No game selected");
-        else {
-            label.setText(selectedGame.getName() + " added to Wishlist");
-            GameBean gameBean = new GameBean();
-            gameBean.setName(selectedGame.getName());
-            gameBean.setPlatform(selectedGame.getPlatform());
-            gamesTableController.addToWishlist(gameBean);
+        try {
+            if (selectedGame == null)
+                label.setText("No game selected");
+            else {
+                label.setText(selectedGame.getName() + " added to Wishlist");
+                GameBean gameBean = new GameBean();
+                gameBean.setName(selectedGame.getName());
+                gameBean.setPlatform(selectedGame.getPlatform());
+                gamesTableController.addToWishlist(gameBean);
+            }
+        } catch (DuplicatedGameException e) {
+            label.setText("This game is already present in your wishlist.");
         }
     }
 
-    public void add() {
-
+    public void addToShop() {
         double prc;
 
-        try {
-            prc = Double.parseDouble(price.getText());
-        } catch (NullPointerException e) {
-            label1.setText("Invalid price");
-            prc = -1.0;
-        } catch (NumberFormatException e) {
-            label1.setText("Invalid price");
-            prc = -1.0;
-        }
-        if (selectedGame == null)
-            label1.setText("No game selected");
-        else if (price.getText().isEmpty())
-            label1.setText("No price set");
-        else {
-            label1.setText(selectedGame.getName() + " added");
-        }
+            try {
+                prc = Double.parseDouble(price.getText());
+            } catch (NullPointerException e) {
+                label1.setText("Invalid price");
+                prc = -1.0;
+            } catch (NumberFormatException e) {
+                label1.setText("Invalid price");
+                prc = -1.0;
+            }
+            if (selectedGame == null)
+                label1.setText("No game selected");
+            else if (price.getText().isEmpty())
+                label1.setText("No price set");
+            else {
+                label1.setText(selectedGame.getName() + " added");
+            }
 
-        if (prc >= 0) {
-            GameBean gameBean = new GameBean();
-            gameBean.setName(selectedGame.getName());
-            gameBean.setPlatform(selectedGame.getPlatform());
-            gameBean.setPrice(prc);
-            gamesTableController.putForSale(gameBean);
-        } else {
-            label1.setText("Invalid price");
-        }
+            if (prc >= 0) {
+                try {
+                    GameBean gameBean = new GameBean();
+                    gameBean.setName(selectedGame.getName());
+                    gameBean.setPlatform(selectedGame.getPlatform());
+                    gameBean.setPrice(prc);
+                    gamesTableController.putForSale(gameBean);
+                } catch (DuplicatedGameException e) {
+                    label1.setText("This game is already present in your shop");
+                }
+            } else {
+                label1.setText("Invalid price");
+            }
     }
 
     public void mouseClicked() {

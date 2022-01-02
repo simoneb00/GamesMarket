@@ -23,7 +23,7 @@
          <left>
             <VBox prefHeight="810.0" prefWidth="339.0" style="-fx-background-color: #88c5cc;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="320.0" prefWidth="339.0">
+                  <Pane prefHeight="355.0" prefWidth="339.0">
                      <children>
                         <ImageView fitHeight="198.0" fitWidth="204.0" layoutX="68.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -86,25 +86,6 @@
                         <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/chat_50px.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButtonSO" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="mouse-moved" />
-                        <String fx:value="mouse-pressed" />
-                     </styleClass>
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/customer_50px.png" />
                            </image>
                         </ImageView>
                      </graphic>

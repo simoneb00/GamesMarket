@@ -16,27 +16,11 @@ public class UserProfileController {
 
     UserDAO userDAO = new UserDAO();
 
-    public void saveContactInformation(){
-        return;
-    }
 
     public void saveBio(UserBean userBean){
         String bio = userBean.getBio();
         User.getInstance().setBio(bio);
         userDAO.saveBio(bio);
-    }
-
-    public List<String> retrieveContactInf(UserBean userBean) {
-        List<String> ci = new ArrayList<>();
-        ci = userDAO.retrieveContactInf(userBean.getUsername()); // retrieve user's contact information in this order: [email, tel, address, country]
-
-        return ci;
-
-    }
-
-    public String retrieveBio() {
-        String bio = userDAO.retrieveBio();
-        return bio;
     }
 
 
@@ -67,25 +51,24 @@ public class UserProfileController {
 
     }
 
-    public File retrieveProfilePhoto(){
-        File file = userDAO.retrieveProfilePhoto();
-        return file;
-    }
-
-
-    public List<String> retrieveWishlist() {
-        return userDAO.retrieveWishlist();
-    }
-
-    public List<String> retrieveTradelist() {
-        return userDAO.retrieveTradelist();
-    }
 
     public void removeFromWishlist(GameBean gameBean) {
-        userDAO.removeFromWishlist(gameBean.getName(), gameBean.getPlatform());
+        String name = gameBean.getName();
+        String platform = gameBean.getPlatform();
+        userDAO.removeFromWishlist(name, platform);
+        for (int i = 0; i < User.getInstance().getWishlist().size(); i++) {
+            if (User.getInstance().getWishlist().get(i).equals(name + " - " + platform))
+                User.getInstance().getWishlist().remove(i);
+        }
     }
 
     public void removeFromTradelist(GameBean gameBean) {
-        userDAO.removeFromTradelist(gameBean.getName(), gameBean.getPlatform());
+        String name = gameBean.getName();
+        String platform = gameBean.getPlatform();
+        userDAO.removeFromTradelist(name, platform);
+        for (int i = 0; i < User.getInstance().getTradelist().size(); i++) {
+            if (User.getInstance().getTradelist().get(i).equals(name + " - " + platform))
+                User.getInstance().getTradelist().remove(i);
+        }
     }
 }

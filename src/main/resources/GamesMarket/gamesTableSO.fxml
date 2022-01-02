@@ -65,7 +65,7 @@
                   </VBox>
                         <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="313.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="210.0" stylesheets="@../../java/GamesMarket/css/style.css" text="ADD" textFill="WHITE">
+                                <Button mnemonicParsing="false" onAction="#addToShop" prefHeight="25.0" prefWidth="210.0" stylesheets="@../../java/GamesMarket/css/style.css" text="ADD" textFill="WHITE">
                                     <font>
                                         <Font size="14.0" />
                                     </font>

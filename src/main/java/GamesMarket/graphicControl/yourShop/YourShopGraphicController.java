@@ -60,22 +60,13 @@ public class YourShopGraphicController extends NavigationButtons implements Init
     private Button removeSelectedGame;
     @FXML
     private Label shopAddress;
+    @FXML
+    private Label photoLabel;
 
     private YourShopController yourShopController = new YourShopController();
     private String selected, selectedGame, selectedPlatform;
     private double selectedPrice;
 
-    private String retrieveShopName() {
-        String shopOwner = ShopOwner.getInstance().getEmail();
-        ShopOwnerBean shopOwnerBean = new ShopOwnerBean();
-        shopOwnerBean.setEmail(shopOwner);
-        ShopBean shopBean = yourShopController.retrieveShopName(shopOwnerBean);
-        if (shopBean != null) {
-            return shopBean.getName();
-        }
-
-        return null;
-    }
 
     private void retrieveImage() {
         try {
@@ -91,9 +82,14 @@ public class YourShopGraphicController extends NavigationButtons implements Init
     }
 
     public void updatePhoto() {
-        yourShopController.updatePhoto();
-        gamesList.getItems().clear();
-        this.initialize(null, null);
+        try {
+            yourShopController.updatePhoto();
+            gamesList.getItems().clear();
+            this.initialize(null, null);
+            photoLabel.setText("");
+        } catch (RuntimeException e) {
+            photoLabel.setText("No photo selected.");
+        }
     }
 
     public void retrieveList() {
@@ -159,6 +155,12 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         gameBean.setPlatform(selectedPlatform);
         gameBean.setPrice(selectedPrice);
 
+        Game game = new Game();
+        game.setName(selectedGame);
+        game.setPrice(selectedPrice);
+        game.setPlatform(selectedPlatform);
+        int index = Shop.getInstance().getGames().indexOf(game);
+        System.out.println(index);
         yourShopController.removeGame(gameBean);
 
         removeSelectedGame.setDisable(true);

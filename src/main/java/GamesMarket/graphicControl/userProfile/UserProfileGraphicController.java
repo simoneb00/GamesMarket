@@ -58,6 +58,8 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     private Button removeSelectedTL;
     @FXML
     private Button removeSelectedWL;
+    @FXML
+    private Label photoLabel;
 
     private UserProfileController userProfileController = new UserProfileController();
     private Parent root;
@@ -69,8 +71,15 @@ public class UserProfileGraphicController extends NavigationButtons implements I
 
 
     public void updatePhoto() {
-        userProfileController.updateProfilePhoto();
-        this.initialize(null, null);
+        try {
+            userProfileController.updateProfilePhoto();
+            tradelist.getItems().clear();
+            wishlist.getItems().clear();
+            this.initialize(null, null);
+            photoLabel.setText("");
+        } catch (RuntimeException e) {
+            photoLabel.setText("No photo selected.");
+        }
     }
 
     public void updateCI() {
@@ -86,11 +95,6 @@ public class UserProfileGraphicController extends NavigationButtons implements I
 
 
     private void setCI() {
-        /*
-        UserBean userBean = new UserBean();
-        userBean.setUsername(User.getInstance().getUsername());
-        List<String> contactInformation = userProfileController.retrieveContactInf(userBean); // retrieve user's contact information in this order: [email, tel, address, country]
-*/
         List<String> contactInformation = User.getInstance().getContacts();
         if (!contactInformation.isEmpty()) {
             email.setText(contactInformation.get(0));
