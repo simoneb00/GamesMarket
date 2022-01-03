@@ -63,6 +63,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         List<ShopPostBean> postBeans = shopController.retrieveShop();
 
         for (int i = 0; i < postBeans.size(); i++) {
@@ -151,6 +152,10 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
             anchorPane.setEffect(adj);
 
             loginStage.showAndWait();
+            if (User.getInstance().isLoggedIn()) {
+                signInButton.setVisible(false);
+                signInButton.setDisable(true);
+            }
             anchorPane.setEffect(null);
 
         } catch (Exception e) {
@@ -226,6 +231,8 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
         this.showGrid(searchedPosts);
     }
+
+
 
 
 

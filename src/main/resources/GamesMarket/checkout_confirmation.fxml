@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="477.0" layoutY="186.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="65.0" prefWidth="1000.0">
+               <children>
+                  <Label text="Thank you for your order.">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="114.0" prefWidth="1000.0" style="-fx-background-color: #CFE7EA;">
+               <children>
+                  <VBox prefHeight="110.0" prefWidth="1000.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1000.0">
+                           <children>
+                              <Label text="ORDER CONFIRMATION">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="52.0" prefWidth="1000.0">
+                           <children>
+                              <Label text="Your order has been recieved and is now being processed.  An email will be sent to you containing further information." />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox layoutX="60.0" layoutY="95.0" prefHeight="345.0" prefWidth="900.0">
+               <children>
+                  <VBox prefHeight="110.0" prefWidth="1000.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1000.0">
+                           <children>
+                              <Label text="ORDER SUMMARY">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="295.0" prefWidth="900.0">
+                           <children>
+                              <VBox prefHeight="286.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="img" fitHeight="281.0" fitWidth="186.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="20.0" left="80.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox prefHeight="215.0" prefWidth="835.0">
+                                 <children>
+                                    <Separator prefWidth="200.0">
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </Separator>
+                                    <HBox prefHeight="318.0" prefWidth="639.0">
+                                       <children>
+                                          <VBox prefHeight="301.0" prefWidth="50.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="52.0" prefWidth="319.0">
+                                                   <children>
+                                                      <Label text="Product:">
+                                                         <font>
+                                                            <Font name="System Bold" size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="15.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="319.0">
+                                                   <children>
+                                                      <Label text="Final price:">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="319.0">
+                                                   <children>
+                                                      <Label text="Platform:">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="114.0" prefHeight="52.0" prefWidth="319.0">
+                                                   <children>
+                                                      <Label text="Vendor:">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="52.0" prefWidth="200.0">
+                                                   <VBox.margin>
+                                                      <Insets top="15.0" />
+                                                   </VBox.margin>
+                                                   <children>
+                                                      <Label fx:id="gameLabel" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="25.0" prefHeight="52.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="priceLabel" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="52.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="platformLabel" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" layoutX="10.0" layoutY="129.0" prefHeight="52.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label fx:id="vendorLabel" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="80.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

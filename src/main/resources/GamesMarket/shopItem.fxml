@@ -52,7 +52,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="65.0" prefWidth="250.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" stylesheets="@../../java/GamesMarket/css/style.css" text="BUY" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#buy" prefHeight="25.0" prefWidth="98.0" stylesheets="@../../java/GamesMarket/css/style.css" text="BUY" textFill="WHITE">
                      <styleClass>
                         <String fx:value="mouse-moved" />
                         <String fx:value="mouse-pressed" />
