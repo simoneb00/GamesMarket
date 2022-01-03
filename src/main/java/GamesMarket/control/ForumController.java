@@ -3,88 +3,89 @@ package GamesMarket.control;
 
 import GamesMarket.bean.CommentBean;
 import GamesMarket.bean.PostBean;
-import GamesMarket.graphicControl.forum.ForumGraphicController;
-import GamesMarket.graphicControl.forum.PostGraphicController;
 import GamesMarket.model.Comment;
 import GamesMarket.model.DAO.CommentDAO;
 import GamesMarket.model.DAO.PostDAO;
 import GamesMarket.model.Post;
-import GamesMarket.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ForumController {
 
-    PostDAO postDAO = new PostDAO();
-
-
     public void delete(PostBean postBean) {
         String username = postBean.getUsername();
         String text = postBean.getText();
 
-        Post post = new Post();
-        post.setUsername(username);
-        post.setText(text);
+        Post post = new Post(username, text);
 
-        postDAO.delete(post);
-
-        CommentDAO commentDAO = new CommentDAO();
-        commentDAO.delete(post);
+        PostDAO.delete(post);
+        CommentDAO.delete(post);
     }
 
-    public List<Post> retrievePosts() {
-        List<Post> posts = new ArrayList<>();
-        posts = postDAO.retrievePosts();
-        return posts;
+    public List<PostBean> retrievePosts() {
+        List<Post> posts = PostDAO.retrievePosts();
+        List<PostBean> beans = new ArrayList<>();
+
+        for (int i = 0; i < posts.size(); i++) {
+            PostBean bean = new PostBean(
+                    posts.get(i).getUsername(),
+                    posts.get(i).getText()
+            );
+
+            beans.add(bean);
+        }
+
+        return beans;
     }
 
-    public List<Post> retrieveUserPosts() {
-        List<Post> posts = new ArrayList<>();
-        posts = postDAO.retrieveUserPosts();
-        return posts;
+    public List<PostBean> retrieveUserPosts() {
+        List<Post> posts = PostDAO.retrieveUserPosts();
+        List<PostBean> beans = new ArrayList<>();
+
+        for (int i = 0; i < posts.size(); i++) {
+            PostBean bean = new PostBean(
+                    posts.get(i).getUsername(),
+                    posts.get(i).getText()
+            );
+
+            beans.add(bean);
+        }
+
+        return beans;
     }
 
     public void savePost(PostBean postBean){
-        PostDAO postDAO = new PostDAO();
-
-        Post post = new Post();
-        post.setUsername(postBean.getUsername());
-        post.setText(postBean.getText());
-
-        postDAO.savePost(post);
+        Post post = new Post(postBean.getUsername(), postBean.getText());
+        PostDAO.savePost(post);
     }
 
     public void saveComment(CommentBean commentBean, PostBean postBean){
-        CommentDAO commentDAO = new CommentDAO();
 
         Comment comment = new Comment();
         comment.setUsername(commentBean.getUsername());
         comment.setText(commentBean.getText());
 
-        Post post = new Post();
-        post.setUsername(postBean.getUsername());
-        post.setText(postBean.getText());
+        Post post = new Post(postBean.getUsername(), postBean.getText());
 
-        commentDAO.saveComment(comment, post);
+        CommentDAO.saveComment(comment, post);
     }
 
 
 
-    public List<Comment> retrieveComments(PostBean postBean) {
-        List<Comment> comments = new ArrayList<>();
+    public List<CommentBean> retrieveComments(PostBean postBean) {
 
-        String username = postBean.getUsername();
-        String text = postBean.getText();
+        Post post = new Post(postBean.getUsername(), postBean.getText());
+        List<Comment> comments = CommentDAO.retrieveComments(post);
+        List<CommentBean> beans = new ArrayList<>();
 
-        Post post = new Post();
-        post.setText(text);
-        post.setUsername(username);
+        for (int i = 0; i < comments.size(); i++) {
+            CommentBean bean = new CommentBean();
+            bean.setUsername(comments.get(i).getUsername());
+            bean.setText(comments.get(i).getText());
+            beans.add(bean);
+        }
 
-        CommentDAO commentDAO = new CommentDAO();
-        comments = commentDAO.retrieveComments(post);
-
-        return comments;
+        return beans;
     }
 
 }

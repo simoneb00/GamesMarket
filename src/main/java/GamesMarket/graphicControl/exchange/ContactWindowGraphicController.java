@@ -41,17 +41,17 @@ public class ContactWindowGraphicController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        contactUsername.setText(username);
 
         ContactWindowController contactWindowController = new ContactWindowController();
         UserBean userBean = new UserBean();
         userBean.setUsername(username);
-        List<String> ci = contactWindowController.retrieveCI(userBean); // retrieve contact information in this order: [email, tel, address, country]
+        UserBean userBean1 = contactWindowController.retrieveCI(userBean);
 
-        email.setText(ci.get(0));
-        tel.setText(ci.get(1));
-        address.setText(ci.get(2));
-        country.setText(ci.get(3));
+        contactUsername.setText(username);
+        email.setText(userBean1.getEmail());
+        tel.setText(userBean1.getTel());
+        address.setText(userBean1.getAddress());
+        country.setText(userBean1.getCountry());
 
     }
 }

@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl.exchange;
 
+import GamesMarket.bean.ExchangePostBean;
 import GamesMarket.control.exchange.ExchangeController;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
@@ -45,10 +46,30 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
     private List<ExchangePost> exchangePosts = new ArrayList<>();
     private ExchangeController exchangeController = new ExchangeController();
 
+    private List<ExchangePost> retrieveExchange() {
+        List<ExchangePostBean> beans = exchangeController.retrieveExchange();
+        List<ExchangePost> posts = new ArrayList<>();
+
+        for (int i = 0; i < beans.size(); i++) {
+            ExchangePost exchangePost = new ExchangePost(
+                    beans.get(i).getUsername(),
+                    beans.get(i).getGame(),
+                    beans.get(i).getPlatform(),
+                    beans.get(i).getGameToGive(),
+                    beans.get(i).getPlatformGameToGive(),
+                    beans.get(i).getImageFile()
+            );
+
+            posts.add(exchangePost);
+        }
+
+        return posts;
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        exchangePosts.addAll(exchangeController.retrieveExchange());
+        exchangePosts.addAll(this.retrieveExchange());
         int column = 0;
         int row = 1;
 

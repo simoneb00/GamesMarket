@@ -1,15 +1,7 @@
 package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
-import GamesMarket.model.ExchangePost;
-import GamesMarket.model.Game;
 import GamesMarket.model.User;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +9,7 @@ import java.util.List;
 
 public class UserDAO {
 
-    public boolean validateLogin(String email, String password) {
+    public static boolean validateLogin(String email, String password) {
         boolean returnValue = false;
         Statement statement = null;
         Connection connection = null;
@@ -44,7 +36,7 @@ public class UserDAO {
         return returnValue;
     }
 
-    public List<String> retrieveUser(String email) {
+    public static List<String> retrieveUser(String email) {
 
         List<String> list = new ArrayList<>();
         Statement statement = null;
@@ -75,7 +67,7 @@ public class UserDAO {
     }
 
 
-    public List<String> retrieveContactInf(String username) {
+    public static List<String> retrieveContactInf(String username) {
         List<String> ci = new ArrayList<>();
 
         Connection connection = null;
@@ -105,7 +97,7 @@ public class UserDAO {
         return ci;
     }
 
-    public void updateCI(String email, String tel, String address, String country) {
+    public static void updateCI(String email, String tel, String address, String country) {
 
         Connection connection = null;
         Statement statement = null;
@@ -128,7 +120,7 @@ public class UserDAO {
     }
 
 
-    public String retrieveBio() {
+    public static String retrieveBio() {
         String bio = new String();
         Connection connection = null;
         Statement statement = null;
@@ -154,7 +146,7 @@ public class UserDAO {
         return bio;
     }
 
-    public void saveBio(String bio) {
+    public static void saveBio(String bio) {
         Connection connection = null;
         Statement statement = null;
         String deleteBio = "delete from bio where username = '" + User.getInstance().getUsername() + "';";
@@ -175,7 +167,7 @@ public class UserDAO {
         }
     }
 
-    public void updateProfilePhoto(String path) {
+    public static void updateProfilePhoto(String path) {
         try {
             File image = new File(path);
             FileInputStream inputStream = new FileInputStream(image);
@@ -201,7 +193,7 @@ public class UserDAO {
     }
 
 
-    public File retrieveProfilePhoto() {
+    public static File retrieveProfilePhoto() {
         Connection connection = null;
         Statement statement = null;
         File file = new File("image.jpg");
@@ -235,7 +227,7 @@ public class UserDAO {
         return file;
     }
 
-    public List<String> retrieveWishlist() {
+    public static List<String> retrieveWishlist() {
         List <String> list = new ArrayList<>();
         String game, platform, add = null;
 
@@ -267,7 +259,7 @@ public class UserDAO {
         return list;
     }
 
-    public List<String> retrieveTradelist() {
+    public static List<String> retrieveTradelist() {
         List <String> list = new ArrayList<>();
         String game, platform, add = null;
 
@@ -299,7 +291,7 @@ public class UserDAO {
         return list;
     }
 
-    public void addToTradelist(String name, String platform) {
+    public static void addToTradelist(String name, String platform) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String add = "insert into tradelist (username, game, platform) values (?, ?, ?)";
@@ -320,7 +312,7 @@ public class UserDAO {
         }
     }
 
-    public void addToWishlist(String name, String platform) {
+    public static void addToWishlist(String name, String platform) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String add = "insert into wishlist (username, game, platform) values (?, ?, ?)";
@@ -341,7 +333,7 @@ public class UserDAO {
         }
     }
 
-    public void removeFromTradelist(String name, String platform) {
+    public static void removeFromTradelist(String name, String platform) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -363,7 +355,7 @@ public class UserDAO {
         }
     }
 
-    public void removeFromWishlist(String name, String platform) {
+    public static void removeFromWishlist(String name, String platform) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -383,90 +375,6 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<ExchangePost> retrieveExchange() {
-        List<ExchangePost> exchangePosts = new ArrayList<>();
-        Connection connection = null;
-        Statement statement = null;
-        Statement statement1 = null;
-
-
-        // this query retrieve the games the current user wants to receive
-        String retrieveGamesToReceive = "-- find games current user wants to receive\n" +
-                "select t_other_user.username, t_other_user.game, t_other_user.platform\n" +
-                "from wishlist as w_current_user join tradelist as t_other_user\n" +
-                "where w_current_user.username = '" + User.getInstance().getUsername() + "' and \n" +
-                "w_current_user.username <> t_other_user.username and\n" +
-                "w_current_user.game = t_other_user.game and \n" +
-                "w_current_user.platform = t_other_user.platform;";
-
-        // this query retrieves the games (if they exists) other users want to receive in exchange for the previous game
-        String retrieveGamesToGive = "-- find games other user wants to receive for that (those) game (games)\n" +
-                "select w_other_user.username, t_current_user.game, t_current_user.platform\n" +
-                "from wishlist as w_other_user join tradelist as t_current_user\n" +
-                "where t_current_user.username = '" + User.getInstance().getUsername() + "' and\n" +
-                "w_other_user.username <> t_current_user.username and\n" +
-                "t_current_user.game = w_other_user.game and\n" +
-                "t_current_user.platform = w_other_user.platform;";
-
-
-        try {
-
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement1 = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(retrieveGamesToReceive);
-
-            while(resultSet.next()) {
-                ExchangePost exchangePost = new ExchangePost();
-                String username = resultSet.getString("username");
-                String game = resultSet.getString("game");
-                String platform = resultSet.getString("platform");
-
-                exchangePost.setGame(game);
-                exchangePost.setPlatform(platform);
-                exchangePost.setUsername(username);
-
-                ResultSet resultSet1 = statement1.executeQuery(retrieveGamesToGive);
-
-                while(resultSet1.next()) {
-                    String gameToGive = resultSet1.getString("game");
-                    String platformToGive = resultSet1.getString("platform");
-
-                    if (!gameToGive.isEmpty() && !platformToGive.isEmpty()) {
-                        exchangePost.setGameToGive(gameToGive);
-                        exchangePost.setPlatformGameToGive(platformToGive);
-                        if (!exchangePosts.contains(exchangePost)) {
-                            File file = new File(game + ".jpg");
-                            if (file.exists())
-                                exchangePost.setImageFile(file);
-                            else {
-                                GameDAO gameDAO = new GameDAO();
-                                exchangePost.setImageFile(gameDAO.retrieveGamePhoto(game));
-                            }
-                            exchangePosts.add(exchangePost);
-                        }
-                    } else
-                        break;
-                }
-
-                resultSet1.close();
-            }
-
-            resultSet.close();
-
-            if (statement != null)
-                statement.close();
-            if (statement1 != null)
-                statement1.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        return exchangePosts;
     }
 
 }

@@ -36,9 +36,7 @@ public class UserPostGraphicController extends PostGraphicController{
     Post post;
 
     public void deleteButton() {
-        PostBean postBean = new PostBean();
-        postBean.setUsername(usernameLabel.getText());
-        postBean.setText(text.getText());
+        PostBean postBean = new PostBean(usernameLabel.getText(), text.getText());
 
         ForumController forumController = new ForumController();
         forumController.delete(postBean);

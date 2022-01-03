@@ -37,7 +37,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="52.0" prefWidth="1000.0">
                            <children>
-                              <Label text="Your order has been recieved and is now being processed.  An email will be sent to you containing further information." />
+                              <Label text="Your order has been received and is now being processed.  An email will be sent to you containing further information." />
                            </children>
                         </HBox>
                      </children>

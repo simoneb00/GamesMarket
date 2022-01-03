@@ -10,15 +10,27 @@ import GamesMarket.model.Shop;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GamesTableController{
 
-    GameDAO gameDAO = new GameDAO();
-    UserDAO userDAO = new UserDAO();
+    public List<GameBean> retrieveGames() {
+        List<Game> games = GameDAO.retrieveGames();
+        List<GameBean> beans = new ArrayList<>();
 
-    public List<Game> retrieveGames() {
-        return gameDAO.retrieveGames();
+        for (int i = 0; i < games.size(); i++) {
+            GameBean bean = new GameBean();
+            bean.setName(games.get(i).getName());
+            bean.setPlatform(games.get(i).getPlatform());
+            bean.setGenre(games.get(i).getGenre());
+            bean.setDescription(games.get(i).getDescription());
+            bean.setYear(games.get(i).getYear());
+
+            beans.add(bean);
+        }
+
+        return beans;
     }
 
     public void addToTradelist(GameBean gameBean) throws DuplicatedGameException{
@@ -32,7 +44,7 @@ public class GamesTableController{
         }
 
         User.getInstance().getTradelist().add(game);
-        userDAO.addToTradelist(name, platform);
+        UserDAO.addToTradelist(name, platform);
     }
 
     public void addToWishlist(GameBean gameBean) throws DuplicatedGameException{
@@ -46,7 +58,7 @@ public class GamesTableController{
         }
 
         User.getInstance().getWishlist().add(game);
-        userDAO.addToWishlist(name, platform);
+        UserDAO.addToWishlist(name, platform);
     }
 
     public void putForSale(GameBean gameBean) throws DuplicatedGameException {
@@ -62,8 +74,7 @@ public class GamesTableController{
             }
         }
 
-        ShopDAO shopDAO = new ShopDAO();
-        shopDAO.putForSale(name, platform, price);
+        ShopDAO.putForSale(name, platform, price);
 
         Game game = new Game();
         game.setPrice(price);

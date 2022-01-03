@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -53,7 +54,7 @@ public class GamesTableGraphicController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GamesTableController gamesTableController = new GamesTableController();
-        List<Game> games = gamesTableController.retrieveGames();
+        List<Game> games = this.retrieveGames();
 
         for (int i = 0; i < games.size(); i++) {
             gameObservableList.add(games.get(i));
@@ -67,6 +68,24 @@ public class GamesTableGraphicController implements Initializable {
 
         table.setItems(gameObservableList);
 
+    }
+
+    public List<Game> retrieveGames() {
+        List<GameBean> beans = gamesTableController.retrieveGames();
+        List<Game> games = new ArrayList<>();
+
+        for (int i = 0; i < beans.size(); i++) {
+            Game game = new Game();
+            game.setName(beans.get(i).getName());
+            game.setPlatform(beans.get(i).getPlatform());
+            game.setGenre(beans.get(i).getGenre());
+            game.setYear(beans.get(i).getYear());
+            game.setDescription(beans.get(i).getDescription());
+
+            games.add(game);
+        }
+
+        return games;
     }
 
     public void addToTradelist() {

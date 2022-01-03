@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ShopPostDAO {
 
-    public List<ShopPost> retrieveShop() {
+    public static List<ShopPost> retrieveShop() {
         List<ShopPost> posts = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;

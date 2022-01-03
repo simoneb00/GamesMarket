@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class ShopOwnerDAO {
 
-    public boolean validateLogin(String email, String password) {
+    public static boolean validateLogin(String email, String password) {
         boolean returnValue = false;
         Statement statement = null;
         Connection connection = null;
@@ -41,7 +41,7 @@ public class ShopOwnerDAO {
         return returnValue;
     }
 
-    public List<String> retrieveShopOwner(String email) {
+    public static List<String> retrieveShopOwner(String email) {
         List<String> list = new ArrayList<>();
         Statement statement = null;
         Connection connection = null;

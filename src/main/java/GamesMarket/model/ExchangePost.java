@@ -11,6 +11,17 @@ public class ExchangePost {
     private String platformGameToGive;
     private File imageFile;
 
+    public ExchangePost() {}
+
+    public ExchangePost(String username, String game, String platform, String gameToGive, String platformGameToGive, File imageFile) {
+        this.username = username;
+        this.game = game;
+        this.platform = platform;
+        this.gameToGive = gameToGive;
+        this.platformGameToGive = platformGameToGive;
+        this.imageFile = imageFile;
+    }
+
     public File getImageFile() {
         return imageFile;
     }

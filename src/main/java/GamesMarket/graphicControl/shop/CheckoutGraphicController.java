@@ -1,6 +1,7 @@
 package GamesMarket.graphicControl.shop;
 
 import GamesMarket.main.Main;
+import GamesMarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,7 @@ public class CheckoutGraphicController implements Initializable {
     private double gamePrice;
     private String vendor;
     private int numCheckBoxesSelected = 0;
+    private String paymentMethod;
 
 
     public CheckoutGraphicController(String name, String platform, double price, String imagePath, String vendor) {
@@ -127,11 +129,38 @@ public class CheckoutGraphicController implements Initializable {
     }
 
     public void confirmButton(ActionEvent event) {
+
+        if (!pickUpInStore.isSelected()) {
+            String buyerName = nameTF.toString();
+            String buyerAddress = addressTF.toString();
+            String buyerCity = cityTF.toString();
+            String buyerTel = telTF.toString();
+        }
+
+        if (cashOnDelivery.isSelected())
+            paymentMethod = "Cash on delivery";
+        else if (paypal.isSelected())
+            paymentMethod = "PayPal";
+        else if (card.isSelected())
+            paymentMethod = "Credit/Debit card";
+        else if (pickUpInStore.isSelected())
+            paymentMethod = "Pick up in store";
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/checkout_confirmation.fxml"));
 
-            ConfirmationGraphicController confirmationGraphicController = new ConfirmationGraphicController(vendor, gamePlatform, gameName, gamePrice, gameImgPath);
+            ConfirmationGraphicController confirmationGraphicController = new ConfirmationGraphicController(vendor, gamePlatform, gameName, gamePrice, gameImgPath, paymentMethod, User.getInstance().getEmailAddress());
+
+            if (!pickUpInStore.isSelected()) {
+                confirmationGraphicController.setBuyerName(nameTF.getText());
+                confirmationGraphicController.setBuyerAddress(addressTF.getText());
+                confirmationGraphicController.setBuyerCity(cityTF.getText());
+                confirmationGraphicController.setBuyerTel(telTF.getText());
+            } else {
+                confirmationGraphicController.setBuyerName(User.getInstance().getFirstName() + " " + User.getInstance().getLastName());
+            }
+
             fxmlLoader.setController(confirmationGraphicController);
 
             Parent root = fxmlLoader.load();

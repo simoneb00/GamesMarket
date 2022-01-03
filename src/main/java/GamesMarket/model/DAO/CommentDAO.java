@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CommentDAO {
 
-    public List<Comment> retrieveComments(Post post) {
+    public static List<Comment> retrieveComments(Post post) {
 
         List<Comment> comments = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class CommentDAO {
     }
 
 
-    public void saveComment(Comment comment, Post post) {
+    public static void saveComment(Comment comment, Post post) {
 
         String commUsername = comment.getUsername();
         String comm = comment.getText();
@@ -74,7 +74,7 @@ public class CommentDAO {
         }
     }
 
-    public void delete(Post post) {
+    public static void delete(Post post) {
         String username = post.getUsername();
         String text = post.getText();
 

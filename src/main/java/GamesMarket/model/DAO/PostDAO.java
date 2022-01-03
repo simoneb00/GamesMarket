@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PostDAO {
 
-    public List<Post> retrievePosts() {
+    public static List<Post> retrievePosts() {
 
         List<Post> posts = new ArrayList<>();
 
@@ -29,9 +29,11 @@ public class PostDAO {
             ResultSet result = statement.executeQuery(retrievePosts);
 
             while (result.next()) {
-                Post post = new Post();
-                post.setUsername(result.getString("username"));
-                post.setText(result.getString("text"));
+                Post post = new Post(
+                        result.getString("username"),
+                        result.getString("text")
+                );
+
                 posts.add(post);
             }
 
@@ -46,7 +48,7 @@ public class PostDAO {
         return posts;
     }
 
-    public void savePost(Post post) {
+    public static void savePost(Post post) {
         Statement statement = null;
         Connection connection = null;
         String savePost = "insert into posts (username, text) values ( '" + post.getUsername() + "' , '" + post.getText() + "');";
@@ -64,7 +66,7 @@ public class PostDAO {
         }
     }
 
-    public List<Post> retrieveUserPosts() {
+    public static List<Post> retrieveUserPosts() {
 
         List<Post> posts = new ArrayList<>();
         String username = null;
@@ -83,9 +85,7 @@ public class PostDAO {
             ResultSet resultSet = statement.executeQuery(retrieveUserPosts);
 
             while (resultSet.next()) {
-                Post post = new Post();
-                post.setUsername(username);
-                post.setText(resultSet.getString("text"));
+                Post post = new Post(username, resultSet.getString("text"));
                 posts.add(post);
             }
 
@@ -97,7 +97,7 @@ public class PostDAO {
 
     }
 
-    public void delete(Post post) {
+    public static void delete(Post post) {
 
         String username = post.getUsername();
         String text = post.getText();

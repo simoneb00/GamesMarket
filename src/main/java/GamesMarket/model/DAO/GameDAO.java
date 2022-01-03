@@ -1,9 +1,8 @@
 package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
-import GamesMarket.bean.GameBean;
 import GamesMarket.model.Game;
-import GamesMarket.model.User;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,11 +10,12 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class GameDAO {
 
-    public List<Game> retrieveGames() {
+
+    public static List<Game> retrieveGames() {
         List<Game> games = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;
@@ -46,7 +46,7 @@ public class GameDAO {
         return games;
     }
 
-    public File retrieveGamePhoto(String name) {
+    public static File retrieveGamePhoto(String name) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         File file = new File(name + ".jpg");

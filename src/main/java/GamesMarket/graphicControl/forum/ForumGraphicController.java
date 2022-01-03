@@ -42,9 +42,6 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     @FXML
     private GridPane userGrid;
 
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
 
     private int column = 0;
     private int row = 1;
@@ -64,7 +61,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             signInButton.isDisabled();
         }
 
-        oldposts = forumController.retrievePosts();
+        oldposts = this.retrievePosts();
         this.retrieveUserPosts();
 
         try {
@@ -110,8 +107,36 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     }
 
+    public List<Post> retrievePosts() {
+        List<PostBean> beans = forumController.retrievePosts();
+        List<Post> posts = new ArrayList<>();
+
+        for (int i = 0; i < beans.size(); i++) {
+            Post post = new Post(
+                    beans.get(i).getUsername(),
+                    beans.get(i).getText()
+            );
+
+            posts.add(post);
+        }
+
+        return posts;
+    }
+
     public void retrieveUserPosts() {
-        userOldPosts = forumController.retrieveUserPosts();
+        List<PostBean> beans = forumController.retrieveUserPosts();
+        List<Post> posts = new ArrayList<>();
+
+        for (int i = 0; i < beans.size(); i++) {
+            Post post = new Post(
+                    beans.get(i).getUsername(),
+                    beans.get(i).getText()
+            );
+
+            posts.add(post);
+        }
+
+        userOldPosts = posts;
     }
 
     public void addPostToGrid(Post post) {
@@ -173,16 +198,12 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         } else
             username = "unknown";
 
-        Post post = new Post();
-        post.setUsername(username);
-        post.setText(text);
+        Post post = new Post(username, text);
 
         addPostToGrid(post);
         addPostToUserGrid(post);
 
-        PostBean postBean = new PostBean();
-        postBean.setUsername(username);
-        postBean.setText(text);
+        PostBean postBean = new PostBean(username, text);
 
         forumController.savePost(postBean);
     }

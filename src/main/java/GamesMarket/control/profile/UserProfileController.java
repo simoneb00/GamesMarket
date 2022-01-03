@@ -14,13 +14,11 @@ import java.util.List;
 
 public class UserProfileController {
 
-    UserDAO userDAO = new UserDAO();
-
 
     public void saveBio(UserBean userBean){
         String bio = userBean.getBio();
         User.getInstance().setBio(bio);
-        userDAO.saveBio(bio);
+        UserDAO.saveBio(bio);
     }
 
 
@@ -37,8 +35,7 @@ public class UserProfileController {
         contacts.add(country);
         User.getInstance().setContacts(contacts);
 
-        UserDAO userDAO = new UserDAO();
-        userDAO.updateCI(email, tel, address, country);
+        UserDAO.updateCI(email, tel, address, country);
     }
 
     public void updateProfilePhoto()  {
@@ -46,7 +43,7 @@ public class UserProfileController {
         File selectedFile = fileChooser.showOpenDialog(null);
         String path = selectedFile.getAbsolutePath();
 
-        userDAO.updateProfilePhoto(path);
+        UserDAO.updateProfilePhoto(path);
         User.getInstance().setProfileImagePath(path);
 
     }
@@ -55,7 +52,7 @@ public class UserProfileController {
     public void removeFromWishlist(GameBean gameBean) {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
-        userDAO.removeFromWishlist(name, platform);
+        UserDAO.removeFromWishlist(name, platform);
         for (int i = 0; i < User.getInstance().getWishlist().size(); i++) {
             if (User.getInstance().getWishlist().get(i).equals(name + " - " + platform))
                 User.getInstance().getWishlist().remove(i);
@@ -65,7 +62,7 @@ public class UserProfileController {
     public void removeFromTradelist(GameBean gameBean) {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
-        userDAO.removeFromTradelist(name, platform);
+        UserDAO.removeFromTradelist(name, platform);
         for (int i = 0; i < User.getInstance().getTradelist().size(); i++) {
             if (User.getInstance().getTradelist().get(i).equals(name + " - " + platform))
                 User.getInstance().getTradelist().remove(i);

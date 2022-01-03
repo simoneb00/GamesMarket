@@ -45,7 +45,7 @@ public class PostGraphicController{
 
     private List<Comment> oldComments = new ArrayList<>();
     private List<Comment> userOldComments = new ArrayList<>();
-    private Post post = new Post();
+    private Post post = new Post("", "");
     private ForumController forumController = new ForumController();
     private int row = 1;
     private int column = 0;
@@ -57,15 +57,25 @@ public class PostGraphicController{
         text.setText(post.getText());
     }
 
+    public List<Comment> retrievePostComments(PostBean postBean) {
+        List<CommentBean> beans  = forumController.retrieveComments(postBean);
+        List<Comment> comments = new ArrayList<>();
+
+        for (int i = 0; i < beans.size(); i++) {
+            Comment comment = new Comment();
+            comment.setUsername(beans.get(i).getUsername());
+            comment.setText(beans.get(i).getText());
+            comments.add(comment);
+        }
+
+        return comments;
+    }
+
 
     public void retrieveComments(Post post) {
 
-        PostBean postBean = new PostBean();
-        postBean.setText(post.getText());
-        postBean.setUsername(post.getUsername());
-
-
-        oldComments = forumController.retrieveComments(postBean);
+        PostBean postBean = new PostBean(post.getUsername(), post.getText());
+        oldComments = this.retrievePostComments(postBean);
 
         try {
             for (int i = 0; i < oldComments.size(); i++) {
@@ -112,9 +122,7 @@ public class PostGraphicController{
         commentBean.setUsername(username);
         commentBean.setText(text);
 
-        PostBean postBean = new PostBean();
-        postBean.setUsername(post.getUsername());
-        postBean.setText(post.getText());
+        PostBean postBean = new PostBean(post.getUsername(), post.getText());
 
         forumController.saveComment(commentBean, postBean);
     }

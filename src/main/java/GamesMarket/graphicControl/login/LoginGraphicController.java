@@ -1,6 +1,7 @@
 package GamesMarket.graphicControl.login;
 
 import GamesMarket.exceptions.InvalidEmailException;
+import GamesMarket.exceptions.NotLoggedInException;
 import GamesMarket.main.Main;
 import GamesMarket.bean.LoginCredentialsBean;
 import GamesMarket.control.LoginController;
@@ -24,25 +25,18 @@ public class LoginGraphicController {
 
     @FXML
     private TextField emailTextField;
-
     @FXML
     private Button facebookLogin;
-
     @FXML
     private Button googleLogin;
-
     @FXML
     private Button loginButton;
-
     @FXML
     private Label loginLabel;
-
     @FXML
     private AnchorPane loginPane;
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private Button signUpButton;
 
@@ -66,17 +60,15 @@ public class LoginGraphicController {
                 loginCredentialsBean.setEmailAddress(emailTextField.getText());
                 loginCredentialsBean.setPassword(passwordField.getText());
 
-                if (lc.validateLogin(loginCredentialsBean) == 0) {              // a normal user logged in
-                    this.close(event);
-                } else if (lc.validateLogin(loginCredentialsBean) == 1) {       // a shop owner logged in
-                    this.close(event);
-                }
-                else {                                                          // the login was unsuccessful
-                    loginLabel.setText("Invalid login, please try again.");
-                }
+                lc.validateLogin(loginCredentialsBean);
+
+                this.close(event);
+
             }
         } catch (InvalidEmailException e) {
             loginLabel.setText("Invalid email address, please try again.");
+        } catch (NotLoggedInException e) {
+            loginLabel.setText("Invalid login, please try again.");
         }
     }
 

@@ -1,21 +1,20 @@
 package GamesMarket.graphicControl.yourShop;
 
 import GamesMarket.bean.GameBean;
-import GamesMarket.bean.ShopBean;
-import GamesMarket.bean.ShopOwnerBean;
+import GamesMarket.bean.OrderBean;
 import GamesMarket.control.YourShopController;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
-import GamesMarket.graphicControl.navigation.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.*;
-import GamesMarket.model.DAO.ShopOwnerDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -30,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -66,6 +66,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
     private YourShopController yourShopController = new YourShopController();
     private String selected, selectedGame, selectedPlatform;
     private double selectedPrice;
+    private ObservableList<Order> ordersObservableList = FXCollections.observableArrayList();
 
 
     private void retrieveImage() {
@@ -86,6 +87,8 @@ public class YourShopGraphicController extends NavigationButtons implements Init
             yourShopController.updatePhoto();
             gamesList.getItems().clear();
             this.initialize(null, null);
+            ordersTable.getItems().clear();
+            this.retrieveOrdersTable();
             photoLabel.setText("");
         } catch (RuntimeException e) {
             photoLabel.setText("No photo selected.");
@@ -132,6 +135,8 @@ public class YourShopGraphicController extends NavigationButtons implements Init
 
         gamesList.getItems().clear();
         this.retrieveList();
+        ordersTable.getItems().clear();
+        this.retrieveOrdersTable();
     }
 
     public void listMouseClicked() {
@@ -168,7 +173,70 @@ public class YourShopGraphicController extends NavigationButtons implements Init
 
         gamesList.getItems().clear();
         this.retrieveList();
+        ordersTable.getItems().clear();
+        this.retrieveOrdersTable();
     }
+
+    public void showCompleteTable() {
+        try {
+
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/orders_table.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setScene(scene);
+
+            GaussianBlur blur = new GaussianBlur(55);
+            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+            adj.setInput(blur);
+            anchorPane.setEffect(adj);
+
+            stage.showAndWait();
+            refresh();
+            anchorPane.setEffect(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    private void retrieveOrdersTable() {
+        List<OrderBean> orderBeans = yourShopController.retrieveOrders();
+        List<Order> orders = new ArrayList<>();
+
+        for (int i = 0; i < orderBeans.size(); i++) {
+            Order order = new Order(
+                 orderBeans.get(i).getVendor(),
+                 orderBeans.get(i).getPlatform(),
+                 orderBeans.get(i).getGame(),
+                 orderBeans.get(i).getPrice(),
+                 orderBeans.get(i).getBuyerName(),
+                 orderBeans.get(i).getBuyerAddress(),
+                 orderBeans.get(i).getBuyerCity(),
+                 orderBeans.get(i).getBuyerTel(),
+                 orderBeans.get(i).getPaymentMethod(),
+                 orderBeans.get(i).getUsername(),
+                 orderBeans.get(i).getBuyerEmail(),
+                 orderBeans.get(i).getStatus()
+            );
+
+            orders.add(order);
+        }
+
+        for (int i = 0; i < orders.size(); i++) {
+            ordersObservableList.add(orders.get(i));
+        }
+
+        usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+        gameCol.setCellValueFactory(new PropertyValueFactory<>("game"));
+        platformCol.setCellValueFactory(new PropertyValueFactory<>("platform"));
+        paymentCol.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
+
+        ordersTable.setItems(ordersObservableList);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -178,6 +246,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         shopAddress.setText(Shop.getInstance().getAddress() + ", " + Shop.getInstance().getCity() + ", " + Shop.getInstance().getCountry());
         this.retrieveImage();
         this.retrieveList();
+        this.retrieveOrdersTable();
     }
 }
 

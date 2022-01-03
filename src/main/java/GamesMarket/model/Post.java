@@ -5,6 +5,11 @@ public class Post {
     private String username;
     private String text;
 
+    public Post(String username, String text) {
+        this.username = username;
+        this.text = text;
+    }
+
     public String getUsername() {
         return username;
     }

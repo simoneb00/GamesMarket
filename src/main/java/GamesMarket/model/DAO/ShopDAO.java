@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ShopDAO {
 
-    public void createNewShop(String name, String address, String city, String country) {
+    public static void createNewShop(String name, String address, String city, String country) {
         String owner = ShopOwner.getInstance().getEmail();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -36,7 +36,7 @@ public class ShopDAO {
         }
     }
 
-    public String retrieveShopName(String email) {
+    public static String retrieveShopName(String email) {
         String shopName = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -63,7 +63,7 @@ public class ShopDAO {
         return shopName;
     }
 
-    public File retrievePhoto(String email) {
+    public static File retrievePhoto(String email) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         File file = new File(email + "-shop.jpg");
@@ -101,7 +101,7 @@ public class ShopDAO {
         return file;
     }
 
-    public void updatePhoto(String path) {
+    public static void updatePhoto(String path) {
         try {
             File image = new File(path);
             FileInputStream inputStream = new FileInputStream(image);
@@ -127,7 +127,7 @@ public class ShopDAO {
         }
     }
 
-    public List<Game> retrieveList(String email) {
+    public static List<Game> retrieveList(String email) {
         List<Game> games = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -158,7 +158,7 @@ public class ShopDAO {
         return games;
     }
 
-    public void putForSale(String name, String platform, double price) {
+    public static void putForSale(String name, String platform, double price) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String add = "insert into `games_for_sale` (emailOwner, game, platform, price) values (?, ?, ?, ?)";
@@ -182,7 +182,7 @@ public class ShopDAO {
         }
     }
 
-    public void removeGameFromSale(String name, String platform, double price) {
+    public static void removeGameFromSale(String name, String platform, double price) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         String remove = "delete from `games_for_sale` where emailOwner = ? and game = ? and platform = ? and price = ?";
@@ -206,7 +206,7 @@ public class ShopDAO {
         }
     }
 
-    public List<String> retrieveAddress(String email) {
+    public static List<String> retrieveAddress(String email) {
         List<String> completeAddress = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
