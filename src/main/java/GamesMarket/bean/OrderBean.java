@@ -1,6 +1,6 @@
-package GamesMarket.model;
+package GamesMarket.bean;
 
-public class Order {
+public class OrderBean {
 
     private String vendor;
     private String platform;
@@ -15,7 +15,7 @@ public class Order {
     private String buyerEmail;
     private String status;
 
-    public Order(String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
+    public OrderBean(String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
         this.vendor = vendor;
         this.platform = platform;
         this.game = game;

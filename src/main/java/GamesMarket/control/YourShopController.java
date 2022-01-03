@@ -1,13 +1,18 @@
 package GamesMarket.control;
 
 import GamesMarket.bean.GameBean;
+import GamesMarket.bean.OrderBean;
 import GamesMarket.bean.ShopBean;
 import GamesMarket.bean.ShopOwnerBean;
+import GamesMarket.model.DAO.OrderDAO;
 import GamesMarket.model.DAO.ShopDAO;
 import GamesMarket.model.DAO.ShopOwnerDAO;
 import GamesMarket.model.Game;
+import GamesMarket.model.Order;
 import GamesMarket.model.Shop;
 import GamesMarket.model.ShopOwner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -17,6 +22,8 @@ import java.util.List;
 public class YourShopController {
 
     private ShopDAO shopDAO = new ShopDAO();
+    private OrderDAO orderDAO = new OrderDAO();
+
 
     public ShopBean retrieveImageFile() {
         ShopBean shopBean = new ShopBean();
@@ -60,5 +67,32 @@ public class YourShopController {
         Shop.getInstance().setCity(city);
         Shop.getInstance().setCountry(country);
         ShopOwner.getInstance().setShop(Shop.getInstance());
+    }
+
+    public List<OrderBean> retrieveOrders() {
+
+        List<OrderBean> orderBeans = new ArrayList<>();
+        List<Order> orders = orderDAO.retrieveOrders();
+
+        for (int i = 0; i < orders.size(); i++) {
+            OrderBean orderBean = new OrderBean(
+                    orders.get(i).getVendor(),
+                    orders.get(i).getPlatform(),
+                    orders.get(i).getGame(),
+                    orders.get(i).getPrice(),
+                    orders.get(i).getBuyerName(),
+                    orders.get(i).getBuyerAddress(),
+                    orders.get(i).getBuyerCity(),
+                    orders.get(i).getBuyerTel(),
+                    orders.get(i).getPaymentMethod(),
+                    orders.get(i).getUsername(),
+                    orders.get(i).getBuyerEmail(),
+                    orders.get(i).getStatus()
+            );
+
+            orderBeans.add(orderBean);
+        }
+
+        return orderBeans;
     }
 }

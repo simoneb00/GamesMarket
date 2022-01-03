@@ -1,5 +1,6 @@
 package GamesMarket.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -15,6 +16,7 @@ public class User {
     private List<String> wishlist;
     private List<String> tradelist;
     private boolean isLoggedIn = false;
+    private List<Order> orders = new ArrayList<>();
 
     private static User instance = null;
 
@@ -22,6 +24,14 @@ public class User {
         return;
     }
 
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     public String getBio() {
         return bio;

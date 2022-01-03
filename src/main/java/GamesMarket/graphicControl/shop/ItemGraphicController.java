@@ -5,6 +5,7 @@ import GamesMarket.main.Main;
 import GamesMarket.model.Game;
 import GamesMarket.model.ShopPost;
 import GamesMarket.model.User;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -98,7 +99,7 @@ public class ItemGraphicController {
             Parent vBox1 = hBox1.getParent();
             Parent borderPane = vBox1.getParent();
             Parent anchorPane1 = borderPane.getParent();
-            Parent anchorPane = anchorPane1.getParent();
+            Parent shopAnchorPane = anchorPane1.getParent();
 
             try {
 
@@ -112,10 +113,10 @@ public class ItemGraphicController {
                 GaussianBlur blur = new GaussianBlur(55);
                 ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
                 adj.setInput(blur);
-                anchorPane.setEffect(adj);
+                shopAnchorPane.setEffect(adj);
 
                 loginStage.showAndWait();
-                anchorPane.setEffect(null);
+                shopAnchorPane.setEffect(null);
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -1,8 +1,12 @@
 package GamesMarket.control;
 
+import GamesMarket.bean.OrderBean;
 import GamesMarket.bean.ShopPostBean;
+import GamesMarket.model.DAO.OrderDAO;
 import GamesMarket.model.DAO.ShopPostDAO;
+import GamesMarket.model.Order;
 import GamesMarket.model.ShopPost;
+import GamesMarket.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,5 +26,25 @@ public class ShopController {
         }
 
         return beans;
+    }
+
+    public void saveOrder(OrderBean orderBean) {
+        Order order = new Order(orderBean.getVendor(),
+                orderBean.getPlatform(),
+                orderBean.getGame(),
+                orderBean.getPrice(),
+                orderBean.getBuyerName(),
+                orderBean.getBuyerAddress(),
+                orderBean.getBuyerCity(),
+                orderBean.getBuyerTel(),
+                orderBean.getPaymentMethod(),
+                orderBean.getUsername(),
+                orderBean.getBuyerEmail(),
+                orderBean.getStatus()
+        );
+
+        OrderDAO orderDAO = new OrderDAO();
+        orderDAO.saveOrder(order);
+        User.getInstance().getOrders().add(order);
     }
 }

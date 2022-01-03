@@ -209,7 +209,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <TableView fx:id="ordersTable" prefHeight="485.0" prefWidth="488.0">
+                              <TableView fx:id="ordersTable" prefHeight="429.0" prefWidth="448.0">
                                 <columns>
                                   <TableColumn fx:id="usernameCol" prefWidth="87.0" text="username" />
                                   <TableColumn fx:id="gameCol" prefWidth="131.0" text="game" />
@@ -220,6 +220,28 @@
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
                               </TableView>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="106.0" prefWidth="488.0">
+                                 <children>
+                                    <Button fx:id="removeSelectedGame1" disable="true" mnemonicParsing="false" onAction="#removeSelectedGame" stylesheets="@../../java/GamesMarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE" visible="false">
+                                       <HBox.margin>
+                                          <Insets right="30.0" />
+                                       </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#showCompleteTable" prefHeight="25.0" prefWidth="164.0" stylesheets="@../../java/GamesMarket/css/style.css" text="SHOW COMPLETE TABLE" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets right="20.0" />
+                                       </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="mouse-moved" />
+                                          <String fx:value="mouse-pressed" />
+                                       </styleClass>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
