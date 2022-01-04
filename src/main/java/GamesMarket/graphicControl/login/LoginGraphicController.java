@@ -41,6 +41,7 @@ public class LoginGraphicController {
     private Button signUpButton;
 
     private Stage loginStage = new Stage();
+    private LoginController lc = new LoginController();
 
     public void close(ActionEvent event) {
         loginStage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -54,8 +55,6 @@ public class LoginGraphicController {
             if (emailTextField.getText().isBlank() && passwordField.getText().isBlank())
                 loginLabel.setText("Please enter username and password");
             else {
-                LoginController lc = new LoginController();
-
                 LoginCredentialsBean loginCredentialsBean = new LoginCredentialsBean();
                 loginCredentialsBean.setEmailAddress(emailTextField.getText());
                 loginCredentialsBean.setPassword(passwordField.getText());
@@ -72,12 +71,14 @@ public class LoginGraphicController {
         }
     }
 
-    public void loginWithFacebook() {
-        loginLabel.setText("login with Facebook");
+    public void loginWithFacebook(ActionEvent event) {
+        lc.validateFacebookLogin();
+        this.close(event);
     }
 
-    public void loginWithGoogle(){
-        loginLabel.setText("login with Google");
+    public void loginWithGoogle(ActionEvent event){
+        lc.validateGoogleLogin();
+        this.close(event);
     }
 
     public void signUpButtonHandler(ActionEvent event) {

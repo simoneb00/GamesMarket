@@ -96,7 +96,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
 
     private void setCI() {
         List<String> contactInformation = User.getInstance().getContacts();
-        if (!contactInformation.isEmpty()) {
+        if (contactInformation != null && !contactInformation.isEmpty()) {
             email.setText(contactInformation.get(0));
             tel.setText(contactInformation.get(1));
             address.setText(contactInformation.get(2));
@@ -186,16 +186,20 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void retrieveTradelist(){
         List<String> tl = User.getInstance().getTradelist();
 
-        for (int i = 0; i < tl.size(); i++) {
-            tradelist.getItems().add(tl.get(i));
+        if (tl != null) {
+            for (int i = 0; i < tl.size(); i++) {
+                tradelist.getItems().add(tl.get(i));
+            }
         }
     }
 
     public void retrieveWishlist() {
         List<String> wl = User.getInstance().getWishlist();
 
-        for (int i = 0; i < wl.size(); i++) {
-            wishlist.getItems().add(wl.get(i));
+        if (wl != null) {
+            for (int i = 0; i < wl.size(); i++) {
+                wishlist.getItems().add(wl.get(i));
+            }
         }
     }
 

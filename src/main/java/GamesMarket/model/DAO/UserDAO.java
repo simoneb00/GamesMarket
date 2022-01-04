@@ -148,19 +148,27 @@ public class UserDAO {
 
     public static void saveBio(String bio) {
         Connection connection = null;
-        Statement statement = null;
-        String deleteBio = "delete from bio where username = '" + User.getInstance().getUsername() + "';";
-        String saveBio = "insert into bio (username, bio) values ('" + User.getInstance().getUsername() + "', '" + bio + "');";
+        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
+        String deleteBio = "delete from bio where username = ? ;";
+        String saveBio = "insert into bio (username, bio) values (?, ?);";
 
         try {
             connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(deleteBio);
+            preparedStatement.setString(1, User.getInstance().getUsername());
             if (bio != null)
-                statement.execute(deleteBio);
-            statement.execute(saveBio);
+                preparedStatement.execute();
+            preparedStatement1 = connection.prepareStatement(saveBio);
+            preparedStatement1.setString(1, User.getInstance().getUsername());
+            preparedStatement1.setString(2, bio);
+            preparedStatement1.execute();
 
-            if (statement != null)
-                statement.close();
+            if (preparedStatement1 != null)
+                preparedStatement1.close();
+
+            if (preparedStatement != null)
+                preparedStatement.close();
 
         } catch(SQLException e) {
             e.printStackTrace();
