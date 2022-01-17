@@ -26,8 +26,7 @@ public class UserDAO {
 
         while (result.next()) {
             if (result.getInt(1) == 1) {
-                DuplicatedEmailException duplicatedEmailException = new DuplicatedEmailException();
-                throw duplicatedEmailException;
+                throw new DuplicatedEmailException();
             }
         }
 
@@ -35,8 +34,7 @@ public class UserDAO {
 
         while (result.next()) {
             if (result.getInt(1) == 1) {
-                DuplicatedEmailException duplicatedEmailException = new DuplicatedEmailException();
-                throw duplicatedEmailException;
+                throw new DuplicatedEmailException();
             }
         }
 
@@ -44,8 +42,7 @@ public class UserDAO {
 
         while (result.next()) {
             if (result.getInt(1) == 1) {
-                DuplicatedUsernameException duplicatedUsernameException = new DuplicatedUsernameException();
-                throw duplicatedUsernameException;
+                throw new DuplicatedUsernameException();
             }
         }
 
@@ -155,7 +152,7 @@ public class UserDAO {
 
 
     public static String retrieveBio() throws SQLException {
-        String bio = new String();
+        String bio = "";
         Connection connection = null;
         Statement statement = null;
         String retrieveBio = "select bio from bio where username = '" + User.getInstance().getUsername() + "';";
@@ -194,11 +191,9 @@ public class UserDAO {
         preparedStatement1.setString(2, bio);
         preparedStatement1.execute();
 
-        if (preparedStatement1 != null)
-            preparedStatement1.close();
+        preparedStatement1.close();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -325,8 +320,7 @@ public class UserDAO {
         preparedStatement.setString(3, platform);
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -344,8 +338,7 @@ public class UserDAO {
         preparedStatement.setString(3, platform);
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -364,8 +357,7 @@ public class UserDAO {
         preparedStatement.setString(3, platform);
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -384,8 +376,7 @@ public class UserDAO {
         preparedStatement.setString(3, platform);
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }

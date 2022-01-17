@@ -3,12 +3,12 @@ package GamesMarket.graphicControl.mobile.yourShop;
 import GamesMarket.bean.ShopBean;
 import GamesMarket.control.YourShopController;
 import GamesMarket.exceptions.ErrorMessage;
+import GamesMarket.graphicControl.mobile.NavigationButtons;
 import GamesMarket.graphicControl.mobile.ShopOwnerNavigationButtons;
+import GamesMarket.model.Shop;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.sql.SQLException;
 

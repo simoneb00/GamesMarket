@@ -3,6 +3,7 @@ package GamesMarket.graphicControl.yourShop;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.OrderBean;
 import GamesMarket.control.YourShopController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.*;
@@ -24,11 +25,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -92,6 +91,10 @@ public class YourShopGraphicController extends NavigationButtons implements Init
             photoLabel.setText("");
         } catch (RuntimeException e) {
             photoLabel.setText("No photo selected.");
+        } catch (IOException e) {
+            ErrorMessage.displayErrorMessage();
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -166,7 +169,11 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         game.setPlatform(selectedPlatform);
         int index = Shop.getInstance().getGames().indexOf(game);
         System.out.println(index);
-        yourShopController.removeGame(gameBean);
+        try {
+            yourShopController.removeGame(gameBean);
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
 
         removeSelectedGame.setDisable(true);
         removeSelectedGame.setVisible(false);
@@ -203,11 +210,17 @@ public class YourShopGraphicController extends NavigationButtons implements Init
     }
 
     private void retrieveOrdersTable() {
-        List<OrderBean> orderBeans = yourShopController.retrieveOrders();
+        List<OrderBean> orderBeans = null;
+        try {
+            orderBeans = yourShopController.retrieveOrders();
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
         List<Order> orders = new ArrayList<>();
 
         for (int i = 0; i < orderBeans.size(); i++) {
             Order order = new Order(
+                    orderBeans.get(i).getIdOrder(),
                  orderBeans.get(i).getVendor(),
                  orderBeans.get(i).getPlatform(),
                  orderBeans.get(i).getGame(),

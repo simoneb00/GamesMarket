@@ -14,9 +14,7 @@ public class Shop {
     private File imageFile;
     private static Shop instance = null;
 
-    private Shop(String owner) {this.owner = ShopOwner.getInstance().getEmail();}
-
-    private Shop() {return;}
+    private Shop() {this.owner = ShopOwner.getInstance().getEmail();}
 
     public String getAddress() {
         return address;
@@ -76,7 +74,7 @@ public class Shop {
 
     public static Shop getInstance() {
         if (Shop.instance == null)
-            Shop.instance = new Shop(ShopOwner.getInstance().getEmail());
+            Shop.instance = new Shop();
         return instance;
     }
 }

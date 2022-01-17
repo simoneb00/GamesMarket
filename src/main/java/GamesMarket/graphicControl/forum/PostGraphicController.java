@@ -3,7 +3,6 @@ package GamesMarket.graphicControl.forum;
 import GamesMarket.bean.CommentBean;
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
-import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.main.Main;
 import GamesMarket.model.Comment;
 import GamesMarket.model.Post;
@@ -11,33 +10,19 @@ import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 
-public class PostGraphicController{
+public class PostGraphicController {
     @FXML
     private TextArea text;
     @FXML
@@ -61,7 +46,7 @@ public class PostGraphicController{
         text.setText(post.getText());
     }
 
-    public List<Comment> retrievePostComments(PostBean postBean) throws IOException {
+    private List<Comment> retrievePostComments(PostBean postBean) {
         List<Comment> comments = new ArrayList<>();
 
         try {
@@ -83,7 +68,7 @@ public class PostGraphicController{
     }
 
 
-    public void retrieveComments(Post post) throws IOException{
+    public void retrieveComments(Post post) throws IOException {
 
         PostBean postBean = new PostBean(post.getUsername(), post.getText());
         oldComments = this.retrievePostComments(postBean);
@@ -112,6 +97,7 @@ public class PostGraphicController{
         }
     }
 
+    @FXML
     public void commentButtonHandler() {
         String username;
         if (User.getInstance().isLoggedIn())
@@ -142,7 +128,7 @@ public class PostGraphicController{
         }
     }
 
-    public void addCommentToGrid(Comment comment) {
+    private void addCommentToGrid(Comment comment) {
         oldComments.add(comment);
 
         try {

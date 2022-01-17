@@ -3,7 +3,6 @@ package GamesMarket.control;
 
 import GamesMarket.bean.CommentBean;
 import GamesMarket.bean.PostBean;
-import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.model.Comment;
 import GamesMarket.model.DAO.CommentDAO;
 import GamesMarket.model.DAO.PostDAO;
@@ -25,7 +24,7 @@ public class ForumController {
         CommentDAO.delete(post);
     }
 
-    public List<PostBean> retrievePosts() throws SQLException{
+    public List<PostBean> retrievePosts() throws SQLException {
 
         List<PostBean> beans = new ArrayList<>();
 
@@ -44,7 +43,7 @@ public class ForumController {
         return beans;
     }
 
-    public List<PostBean> retrieveUserPosts() throws SQLException{
+    public List<PostBean> retrieveUserPosts() throws SQLException {
         List<Post> posts = PostDAO.retrieveUserPosts();
         List<PostBean> beans = new ArrayList<>();
 
@@ -60,12 +59,12 @@ public class ForumController {
         return beans;
     }
 
-    public void savePost(PostBean postBean) throws SQLException{
+    public void savePost(PostBean postBean) throws SQLException {
         Post post = new Post(postBean.getUsername(), postBean.getText());
         PostDAO.savePost(post);
     }
 
-    public void saveComment(CommentBean commentBean, PostBean postBean) throws SQLException{
+    public void saveComment(CommentBean commentBean, PostBean postBean) throws SQLException {
 
         Comment comment = new Comment();
         comment.setUsername(commentBean.getUsername());
@@ -77,8 +76,7 @@ public class ForumController {
     }
 
 
-
-    public List<CommentBean> retrieveComments(PostBean postBean) throws SQLException{
+    public List<CommentBean> retrieveComments(PostBean postBean) throws SQLException {
 
         Post post = new Post(postBean.getUsername(), postBean.getText());
         List<Comment> comments = CommentDAO.retrieveComments(post);

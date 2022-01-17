@@ -4,8 +4,6 @@ import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.model.Post;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
-
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +53,7 @@ public class PostDAO {
 
         preparedStatement.execute();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
     }
 
     public static List<Post> retrieveUserPosts() throws SQLException{
@@ -88,9 +85,6 @@ public class PostDAO {
 
     public static void delete(Post post) throws SQLException{
 
-        String username = post.getUsername();
-        String text = post.getText();
-
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         String deletePost = "delete from posts where username = ? and text = ?;";
@@ -104,8 +98,7 @@ public class PostDAO {
 
         preparedStatement.execute();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
     }
 }

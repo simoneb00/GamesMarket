@@ -3,7 +3,6 @@ package GamesMarket.bean;
 public class GameBean {
 
     private String name;
-    private String imgSrc;
     private String genre;
     private String description;
     private String platform;
@@ -24,14 +23,6 @@ public class GameBean {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImgSrc() {
-        return imgSrc;
-    }
-
-    public void setImgSrc(String imgSrc) {
-        this.imgSrc = imgSrc;
     }
 
     public String getGenre() {

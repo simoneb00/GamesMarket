@@ -27,8 +27,7 @@ public class ShopDAO {
         preparedStatement.setString(5, country);
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -49,8 +48,7 @@ public class ShopDAO {
             shopName = resultSet.getString("shopName");
         }
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
         resultSet.close();
 
 
@@ -82,8 +80,7 @@ public class ShopDAO {
         }
 
         resultSet.close();
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
         fos.close();
 
 
@@ -129,8 +126,7 @@ public class ShopDAO {
             games.add(game);
         }
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
         resultSet.close();
 
 
@@ -152,8 +148,7 @@ public class ShopDAO {
 
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -173,8 +168,7 @@ public class ShopDAO {
 
         preparedStatement.executeUpdate();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
     }
@@ -202,8 +196,7 @@ public class ShopDAO {
         }
 
         resultSet.close();
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
         return completeAddress;

@@ -146,7 +146,7 @@ public class OrdersTableGraphicController implements Initializable {
         selectedOrder = table.getSelectionModel().getSelectedItem();
         if (selectedOrder != null) {
             if (selectedOrder.getStatus().equals("Pending")) {
-                if (selectedOrder.getPaymentMethod().equals("Pick up in store"))
+                if (selectedOrder.getPaymentMethod().equals("Pickup in Store"))
                     markButton.setText("Mark as Delivered");
                 else
                     markButton.setText("Mark as Shipped");

@@ -16,28 +16,18 @@ import java.sql.SQLException;
 
 public class SignUpGraphicController {
 
-
     @FXML
     private CheckBox checkBox;
-
     @FXML
     private TextField emailTextField;
-
     @FXML
     private TextField firstNameTextField;
-
     @FXML
     private TextField lastNameTextField;
-
-    @FXML
-    private Button loginButton;
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private Label registerLabel;
-
     @FXML
     private TextField usernameTextField;
 
@@ -50,7 +40,7 @@ public class SignUpGraphicController {
     }
 
     @FXML
-    public void registerButtonPressed(ActionEvent event) {
+    public void registerButtonPressed() {
 
         if (emailTextField.getText().isEmpty() || passwordField.getText().isEmpty() || firstNameTextField.getText().isEmpty() || lastNameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty()) {
             registerLabel.setText("Missing information!");
@@ -91,7 +81,7 @@ public class SignUpGraphicController {
     }
 
     @FXML
-    public void shopOwnerChecked(ActionEvent event) {
+    public void shopOwnerChecked() {
 
         if (checkBox.isSelected()) {
             usernameTextField.setEditable(false);

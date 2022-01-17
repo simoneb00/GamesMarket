@@ -3,10 +3,11 @@ package GamesMarket.graphicControl.mobile.yourShop;
 import GamesMarket.bean.GameBean;
 import GamesMarket.control.YourShopController;
 import GamesMarket.exceptions.ErrorMessage;
+import GamesMarket.graphicControl.mobile.NavigationButtons;
 import GamesMarket.graphicControl.mobile.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Game;
-import GamesMarket.model.Order;
+import GamesMarket.model.Shop;
 import GamesMarket.model.ShopOwner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,17 +43,14 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
     private TableView<Game> table;
 
     private Game selectedGame = null;
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
 
     @FXML
     void addNewGame(ActionEvent event) {
 
         try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/add_game_to_shop.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/add_game_to_shop.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
 
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
@@ -68,7 +66,7 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
     }
 
     @FXML
-    void removeSelected(ActionEvent event) {
+    void removeSelected() {
         YourShopController yourShopController = new YourShopController();
         GameBean gameBean = new GameBean();
 
@@ -93,8 +91,6 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
         List<Game> games = ShopOwner.getInstance().getShop().getGames();
         ObservableList<Game> gamesObservableList = FXCollections.observableArrayList();
 
-        String name, platform, string;
-        double price;
 
         for (int i = 0; i < games.size(); i++) {
             gamesObservableList.add(games.get(i));
@@ -107,6 +103,7 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
         table.setItems(gamesObservableList);
     }
 
+    @FXML
     public void mouseClicked() {
         selectedGame = table.getSelectionModel().getSelectedItem();
         if (selectedGame != null) {

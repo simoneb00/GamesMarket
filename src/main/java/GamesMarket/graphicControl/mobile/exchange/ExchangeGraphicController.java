@@ -4,10 +4,9 @@ import GamesMarket.bean.ExchangePostBean;
 import GamesMarket.control.exchange.ExchangeController;
 import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.mobile.NavigationButtons;
+import GamesMarket.graphicControl.mobile.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ExchangePost;
-import GamesMarket.model.ShopOwner;
-import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ExchangeGraphicController extends NavigationButtons implements Initializable {
+public class ExchangeGraphicController extends ShopOwnerNavigationButtons implements Initializable {
 
     @FXML
     private GridPane grid;
@@ -99,6 +98,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
         }
     }
 
+    @FXML
     public void search() {
         String search = searchTF.getText();
         grid.getChildren().clear();

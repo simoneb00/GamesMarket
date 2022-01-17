@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GamesTableController{
+public class GamesTableController {
 
     public List<GameBean> retrieveGames() throws SQLException {
         List<GameBean> beans = new ArrayList<>();
@@ -34,28 +34,26 @@ public class GamesTableController{
         return beans;
     }
 
-    public void addToTradelist(GameBean gameBean) throws DuplicatedGameException, SQLException{
+    public void addToTradelist(GameBean gameBean) throws DuplicatedGameException, SQLException {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         String game = name + " - " + platform;
 
         if (User.getInstance().getTradelist().contains(game)) {
-            DuplicatedGameException e = new DuplicatedGameException();
-            throw e;
+            throw new DuplicatedGameException();
         }
 
         User.getInstance().getTradelist().add(game);
         UserDAO.addToTradelist(name, platform);
     }
 
-    public void addToWishlist(GameBean gameBean) throws DuplicatedGameException, SQLException{
+    public void addToWishlist(GameBean gameBean) throws DuplicatedGameException, SQLException {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         String game = name + " - " + platform;
 
         if (User.getInstance().getWishlist().contains(game)) {
-            DuplicatedGameException e = new DuplicatedGameException();
-            throw e;
+            throw new DuplicatedGameException();
         }
 
         User.getInstance().getWishlist().add(game);
@@ -68,10 +66,9 @@ public class GamesTableController{
         String platform = gameBean.getPlatform();
         double price = gameBean.getPrice();
 
-        for (Game g: Shop.getInstance().getGames()) {
+        for (Game g : Shop.getInstance().getGames()) {
             if (g.getPrice() == price && g.getName().equals(name) && g.getPlatform().equals(platform)) {
-                DuplicatedGameException duplicatedGameInShopException = new DuplicatedGameException();
-                throw duplicatedGameInShopException;
+                throw new DuplicatedGameException();
             }
         }
 

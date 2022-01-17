@@ -48,8 +48,7 @@ public class RegisterCredentialsBean {
             this.email = email;
         }
         else {
-            InvalidEmailException e = new InvalidEmailException();
-            throw e;
+            throw new InvalidEmailException();
         }
     }
 
@@ -73,8 +72,7 @@ public class RegisterCredentialsBean {
 
         Pattern pattern = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) return true;
-        return false;
+        return matcher.matches();
 
     }
 }

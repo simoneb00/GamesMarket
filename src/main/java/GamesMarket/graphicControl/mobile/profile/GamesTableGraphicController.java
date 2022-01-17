@@ -74,6 +74,7 @@ public class GamesTableGraphicController extends NavigationButtons implements In
         table.setItems(gameObservableList);
     }
 
+    @FXML
     public void addToTradelist() {
         try {
             if (selectedGame == null)
@@ -95,6 +96,7 @@ public class GamesTableGraphicController extends NavigationButtons implements In
         }
     }
 
+    @FXML
     public void addToWishlist() {
         try {
             if (selectedGame == null)
@@ -107,7 +109,7 @@ public class GamesTableGraphicController extends NavigationButtons implements In
                 GameBean gameBean = new GameBean();
                 gameBean.setName(selectedGame.getName());
                 gameBean.setPlatform(selectedGame.getPlatform());
-                gamesTableController.addToTradelist(gameBean);
+                gamesTableController.addToWishlist(gameBean);
             }
         } catch (DuplicatedGameException e) {
             ErrorMessage.displayDuplicatedGameInWishlist();
@@ -116,6 +118,7 @@ public class GamesTableGraphicController extends NavigationButtons implements In
         }
     }
 
+    @FXML
     public void mouseClicked() {
         selectedGame = table.getSelectionModel().getSelectedItem();
         tradelistButton.setVisible(true);

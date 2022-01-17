@@ -16,11 +16,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
-import javax.security.auth.callback.NameCallback;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TradelistController extends NavigationButtons implements Initializable {
@@ -30,10 +29,6 @@ public class TradelistController extends NavigationButtons implements Initializa
     @FXML
     private Button removeSelected;
 
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
-    private String tradelistSelected;
     private String selectedGame;
     private String selectedPlatform;
     private UserProfileController userProfileController = new UserProfileController();
@@ -48,9 +43,10 @@ public class TradelistController extends NavigationButtons implements Initializa
         }
     }
 
+    @FXML
     public void mouseClicked() {
-        tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();
-        if (tradelistSelected != "[]") {
+        String tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();
+        if (!Objects.equals(tradelistSelected, "[]")) {
             tradelistSelected = tradelistSelected.replaceAll("\\[|\\]", "");
             String[] strings = tradelistSelected.split(" - ");
             selectedGame = strings[0];
@@ -60,6 +56,7 @@ public class TradelistController extends NavigationButtons implements Initializa
         }
     }
 
+    @FXML
     public void removeSelectedGame() {
         try {
             GameBean gameBean = new GameBean();
@@ -79,11 +76,12 @@ public class TradelistController extends NavigationButtons implements Initializa
         }
     }
 
+    @FXML
     public void addGame(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/games_table.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/games_table.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
 
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");

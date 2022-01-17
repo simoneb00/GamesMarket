@@ -44,16 +44,13 @@ public class SignUpGraphicController {
     private TextField usernameTF;
 
     private boolean isShopOwner = false;
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
 
     @FXML
     public void back(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/login.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/login.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
 
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
@@ -68,7 +65,7 @@ public class SignUpGraphicController {
     }
 
     @FXML
-    public void registerButtonPressed(ActionEvent event) {
+    public void registerButtonPressed() {
 
         try {
 
@@ -116,7 +113,7 @@ public class SignUpGraphicController {
     }
 
     @FXML
-    public void shopOwnerChecked(ActionEvent event) {
+    public void shopOwnerChecked() {
 
         if (checkBox.isSelected()) {
             usernameTF.setEditable(false);

@@ -1,6 +1,5 @@
 package GamesMarket.graphicControl.mobile.shop;
 
-import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.mobile.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopPost;
@@ -30,7 +29,6 @@ public class ItemGraphicController extends NavigationButtons {
     private Label shop;
 
     private String name;
-    private String platform;
     private double prc;
     private String imgPath;
     private String vendor;
@@ -49,6 +47,7 @@ public class ItemGraphicController extends NavigationButtons {
         gameImg.setImage(image);
     }
 
+    @FXML
     public void buy(ActionEvent event) {
         if (User.getInstance().isLoggedIn()) {
 
@@ -58,7 +57,7 @@ public class ItemGraphicController extends NavigationButtons {
 
                 String[] s = name.split(" - ");
                 String gameName = s[0];
-                platform = s[1];
+                String platform = s[1];
 
                 GamesMarket.graphicControl.mobile.shop.CheckoutGraphicController checkoutGraphicController = new CheckoutGraphicController(gameName, platform, imgPath, prc, vendor);
                 fxmlLoader.setController(checkoutGraphicController);

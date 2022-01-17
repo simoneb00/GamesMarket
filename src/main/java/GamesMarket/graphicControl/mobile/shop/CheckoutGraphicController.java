@@ -61,8 +61,9 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
         this.vendor = vendor;
     }
 
+    @FXML
     public void continueButtonPressed(ActionEvent event) {
-        paymentMethod = (String) choiceBox.getValue();
+        paymentMethod = choiceBox.getValue();
         if (paymentMethod == null)
             ErrorMessage.noPaymentMethodSelected();
         else if (paymentMethod.equals("Pickup in Store")) {
@@ -91,10 +92,12 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
         }
     }
 
+    @FXML
     public void backButtonPressed(ActionEvent event) {
         this.shopButton(event);
     }
 
+    @FXML
     public void backToSelectPaymentMethod(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -118,6 +121,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
         }
     }
 
+    @FXML
     public void confirm(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();

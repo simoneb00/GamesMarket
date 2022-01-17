@@ -7,28 +7,21 @@ import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ExchangePost;
 import GamesMarket.model.ShopOwner;
-import GamesMarket.model.ShopPost;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ExchangeGraphicController extends NavigationButtons implements Initializable {
@@ -129,6 +122,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
             }
         }
 
+    @FXML
     public void search() {
         String search = searchBar.getText();
         grid.getChildren().clear();

@@ -31,11 +31,13 @@ public class ContactWindowGraphicController implements Initializable {
         this.username = username;
     }
 
+    @FXML
     public void close(ActionEvent event) {
         Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    @FXML
     public void copyToClipboard() {
         StringSelection stringSelection = new StringSelection(selectedString);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -44,6 +46,7 @@ public class ContactWindowGraphicController implements Initializable {
         clipboardButton.setDisable(true);
     }
 
+    @FXML
     public void showClipboardButton() {
         selectedString = list.getSelectionModel().getSelectedItem();
         clipboardButton.setVisible(true);

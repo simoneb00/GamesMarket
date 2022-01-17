@@ -3,11 +3,8 @@ package GamesMarket.control.profile;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.model.DAO.UserDAO;
-import GamesMarket.model.Game;
 import GamesMarket.model.User;
 import javafx.stage.FileChooser;
-
-import java.awt.*;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ import java.util.List;
 public class UserProfileController {
 
 
-    public void saveBio(UserBean userBean) throws SQLException{
+    public void saveBio(UserBean userBean) throws SQLException {
         String bio = userBean.getBio();
         User.getInstance().setBio(bio);
         UserDAO.saveBio(bio);
@@ -39,7 +36,7 @@ public class UserProfileController {
         UserDAO.updateCI(email, tel, address, country);
     }
 
-    public void updateProfilePhoto() throws SQLException, FileNotFoundException{
+    public void updateProfilePhoto() throws SQLException, FileNotFoundException {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
         String path = selectedFile.getAbsolutePath();
@@ -50,7 +47,7 @@ public class UserProfileController {
     }
 
 
-    public void removeFromWishlist(GameBean gameBean) throws SQLException{
+    public void removeFromWishlist(GameBean gameBean) throws SQLException {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         UserDAO.removeFromWishlist(name, platform);
@@ -60,7 +57,7 @@ public class UserProfileController {
         }
     }
 
-    public void removeFromTradelist(GameBean gameBean) throws SQLException{
+    public void removeFromTradelist(GameBean gameBean) throws SQLException {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         UserDAO.removeFromTradelist(name, platform);

@@ -2,17 +2,10 @@ package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.exceptions.DuplicatedEmailException;
-import GamesMarket.exceptions.DuplicatedUsernameException;
-import GamesMarket.model.Game;
-import GamesMarket.model.Shop;
-import GamesMarket.model.ShopOwner;
-import GamesMarket.model.User;
-
-import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class ShopOwnerDAO {
 
@@ -29,8 +22,7 @@ public class ShopOwnerDAO {
 
         while (result.next()) {
             if (result.getInt(1) == 1) {
-                DuplicatedEmailException duplicatedEmailException = new DuplicatedEmailException();
-                throw duplicatedEmailException;
+                throw new DuplicatedEmailException();
             }
         }
 
@@ -38,8 +30,7 @@ public class ShopOwnerDAO {
 
         while (result.next()) {
             if (result.getInt(1) == 1) {
-                DuplicatedEmailException duplicatedEmailException = new DuplicatedEmailException();
-                throw duplicatedEmailException;
+                throw new DuplicatedEmailException();
             }
         }
 

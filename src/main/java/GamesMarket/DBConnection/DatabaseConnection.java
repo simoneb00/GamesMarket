@@ -17,7 +17,7 @@ public class DatabaseConnection {
 
     public Connection getConnection(){
 
-        if (this.databaseLink == null) {
+        if (databaseLink == null) {
             String databaseUser = System.getenv("USERNAME");
             String databasePassword = System.getenv("PASSWORD");
             String url = System.getenv("URL");

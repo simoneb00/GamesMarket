@@ -1,6 +1,5 @@
 package GamesMarket.control;
 
-import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.bean.LoginCredentialsBean;
 import GamesMarket.exceptions.NotLoggedInException;
 import GamesMarket.model.DAO.ShopDAO;
@@ -19,7 +18,7 @@ public class LoginController {
 
     List<String> attributes = new ArrayList<>();
 
-    public void validateFacebookLogin() throws SQLException, IOException{
+    public void validateFacebookLogin() throws SQLException, IOException {
         User user = User.getInstance();
         user.setLoggedIn();
         user.setUsername("facebook-user");
@@ -31,7 +30,7 @@ public class LoginController {
         user.setWishlist(UserDAO.retrieveWishlist());
     }
 
-    public void validateGoogleLogin() throws SQLException, IOException{
+    public void validateGoogleLogin() throws SQLException, IOException {
         User user = User.getInstance();
         user.setLoggedIn();
         user.setUsername("google-user");
@@ -43,22 +42,17 @@ public class LoginController {
         user.setWishlist(UserDAO.retrieveWishlist());
     }
 
-    public void validateLogin(LoginCredentialsBean loginCredentialsBean) throws NotLoggedInException, SQLException, IOException{
+    public void validateLogin(LoginCredentialsBean loginCredentialsBean) throws NotLoggedInException, SQLException, IOException {
 
         String emailAddress = loginCredentialsBean.getEmailAddress();
         String password = loginCredentialsBean.getPassword();
 
         if (ShopOwnerDAO.validateLogin(emailAddress, password)) {
             this.retrieveShopOwner(emailAddress);
-        }
-
-        else if (UserDAO.validateLogin(emailAddress, password)) {
+        } else if (UserDAO.validateLogin(emailAddress, password)) {
             this.retrieveUser(emailAddress);
-        }
-
-        else {
-            NotLoggedInException e = new NotLoggedInException();
-            throw e;
+        } else {
+            throw new NotLoggedInException();
         }
 
     }
@@ -88,7 +82,7 @@ public class LoginController {
     }
 
 
-    private void retrieveUser(String email) throws SQLException, IOException{
+    private void retrieveUser(String email) throws SQLException, IOException {
         User user = User.getInstance();
         user.setLoggedIn();
         attributes = UserDAO.retrieveUser(email); // retrieves user's information in this order : [username, password, firstName, lastName]

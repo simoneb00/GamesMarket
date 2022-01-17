@@ -57,7 +57,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     private Scene scene;
 
     @FXML
-    void updateBio(ActionEvent event) {
+    void updateBio() {
         try {
             UserBean userBean = new UserBean();
             userBean.setBio(bioTF.getText());
@@ -68,7 +68,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     }
 
     @FXML
-    void updateCI(ActionEvent event) {
+    void updateCI() {
         try {
             UserBean userBean = new UserBean();
             userBean.setEmail(emailTF.getText());
@@ -84,7 +84,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     }
 
     @FXML
-    void updatePhoto(ActionEvent event) {
+    void updatePhoto() {
         try {
             userProfileController.updateProfilePhoto();
             tradelist.getItems().clear();
@@ -92,9 +92,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
             this.initialize(null, null);
         } catch (RuntimeException e) {
             ErrorMessage.displayImageNotFoundMessage();
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (FileNotFoundException e) {
+        } catch (SQLException | FileNotFoundException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
@@ -160,7 +158,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
             String path = User.getInstance().getProfileImagePath();
             if (path != null) {
                 File file = new File(path);
-                InputStream isImage = (InputStream) new FileInputStream(file);
+                InputStream isImage = new FileInputStream(file);
                 profilePhoto.setImage(new Image(isImage));
             }
         } catch (FileNotFoundException e) {

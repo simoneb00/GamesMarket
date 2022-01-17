@@ -15,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -65,9 +64,7 @@ public class LoginGraphicController extends NavigationButtons {
             label.setText("Invalid email address, please try again.");
         } catch (NotLoggedInException e) {
             label.setText("Invalid login, please try again.");
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
@@ -77,9 +74,7 @@ public class LoginGraphicController extends NavigationButtons {
         try {
             loginController.validateGoogleLogin();
             this.homeButton(event);
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
@@ -89,9 +84,7 @@ public class LoginGraphicController extends NavigationButtons {
         try {
             loginController.validateFacebookLogin();
             this.homeButton(event);
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }

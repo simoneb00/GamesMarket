@@ -36,32 +36,16 @@ public class Order {
         return idOrder;
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
-    }
-
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getBuyerEmail() {
         return buyerEmail;
     }
 
-    public void setBuyerEmail(String buyerEmail) {
-        this.buyerEmail = buyerEmail;
-    }
-
     public String getVendor() {
         return vendor;
-    }
-
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
     }
 
     public String getPlatform() {
@@ -92,40 +76,20 @@ public class Order {
         return buyerName;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
-
     public String getBuyerAddress() {
         return buyerAddress;
-    }
-
-    public void setBuyerAddress(String buyerAddress) {
-        this.buyerAddress = buyerAddress;
     }
 
     public String getBuyerCity() {
         return buyerCity;
     }
 
-    public void setBuyerCity(String buyerCity) {
-        this.buyerCity = buyerCity;
-    }
-
     public String getBuyerTel() {
         return buyerTel;
     }
 
-    public void setBuyerTel(String buyerTel) {
-        this.buyerTel = buyerTel;
-    }
-
     public String getPaymentMethod() {
         return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
     }
 
     public String getUsername() {

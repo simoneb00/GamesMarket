@@ -7,7 +7,6 @@ import GamesMarket.model.ShopOwner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
@@ -22,6 +21,7 @@ public class ShopOwnerHomeGraphicController extends NavigationButtons {
     @FXML
     private AnchorPane anchorPane;
 
+    @FXML
     public void yourShopButtonPressed(ActionEvent event) {
         if (ShopOwner.getInstance().isLoggedIn())
             if (ShopOwner.getInstance().getShop() != null)
@@ -53,14 +53,7 @@ public class ShopOwnerHomeGraphicController extends NavigationButtons {
             this.signIn();
     }
 
-    public void profileButtonPressed(ActionEvent event) {
-        if (ShopOwner.getInstance().isLoggedIn())
-            this.profileButtonSO(event);
-        else
-            this.signIn();
-    }
-
-
+    @FXML
     public void signIn() {
         try {
 

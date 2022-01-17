@@ -8,7 +8,6 @@ import GamesMarket.main.Main;
 import GamesMarket.model.Post;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,6 +38,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     private List<Post> userOldPosts = new ArrayList<>();
     private ShopOwnerNavigationButtons shopOwnerNavigationButtons = new ShopOwnerNavigationButtons();
 
+    @FXML
     public void post() {
         try {
             String username;
@@ -112,7 +112,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         }
     }
 
-    public void addPostToGrid(Post post) {
+    private void addPostToGrid(Post post) {
         oldposts.add(post);
 
         try {
@@ -135,7 +135,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         }
     }
 
-    public void addPostToUserGrid(Post post) {
+    private void addPostToUserGrid(Post post) {
 
         if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             try {
@@ -160,7 +160,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     }
 
 
-    public List<Post> retrievePosts() {
+    private List<Post> retrievePosts() {
 
         List<Post> posts = new ArrayList<>();
 
@@ -182,7 +182,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         return posts;
     }
 
-    public List<Post> retrieveUserPosts() {
+    private List<Post> retrieveUserPosts() {
         List<Post> posts = new ArrayList<>();
 
         try {
@@ -203,17 +203,5 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         return posts;
     }
 
-
-    public void shopOwnerHomeButton(ActionEvent event) {
-        shopOwnerNavigationButtons.shopOwnerHomeButton(event);
-    }
-
-    public void yourShopButton(ActionEvent event) {
-        shopOwnerNavigationButtons.yourShopButton(event);
-    }
-
-    public void shopOwnerForumButton(ActionEvent event) {
-        shopOwnerNavigationButtons.shopOwnerForumButton(event);
-    }
 
 }

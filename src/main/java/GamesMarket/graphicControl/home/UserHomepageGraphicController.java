@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
@@ -25,17 +24,12 @@ import java.util.ResourceBundle;
 
 public class UserHomepageGraphicController extends NavigationButtons implements Initializable {
 
-    private Stage stage;
-    private Parent root;
-    private Scene scene;
-
     @FXML
     private AnchorPane homePane;
     @FXML
-    private Label welcomeLabel;
-    @FXML
     private Button signInButton;
 
+    @FXML
     public void signInButtonPressed(ActionEvent event) {
         try {
 
@@ -60,8 +54,8 @@ public class UserHomepageGraphicController extends NavigationButtons implements 
             } else if (ShopOwner.getInstance().isLoggedIn()) {
                 try {
                     root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerHome.fxml"));
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
 
                     scene.getStylesheets().clear();
                     scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
@@ -82,6 +76,7 @@ public class UserHomepageGraphicController extends NavigationButtons implements 
 
     }
 
+    @FXML
     public void profileButtonPressed(ActionEvent event) {
         if (User.getInstance().isLoggedIn()) {
             this.profileButton(event);
@@ -90,6 +85,7 @@ public class UserHomepageGraphicController extends NavigationButtons implements 
         }
     }
 
+    @FXML
     public void exchangeButtonPressed(ActionEvent event) {
         if (User.getInstance().isLoggedIn()) {
             this.exchangeButton(event);

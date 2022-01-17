@@ -21,7 +21,7 @@ public class User {
     private static User instance = null;
 
     private User() {
-        return;
+
     }
 
 
@@ -111,12 +111,6 @@ public class User {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
-    }
-
-    public void updateProfileImage(String imagePath) {
-        this.profileImagePath = imagePath;
-
-        System.out.println(this.profileImagePath);
     }
 
     public boolean isLoggedIn() {

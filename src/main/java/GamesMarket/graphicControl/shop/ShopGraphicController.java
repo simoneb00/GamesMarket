@@ -15,50 +15,34 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ShopGraphicController extends NavigationButtons implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
-
     @FXML
     private GridPane grid;
-
-    @FXML
-    private ScrollPane scroll;
-
     @FXML
     private TextField searchBar;
-
     @FXML
     private Button signInButton;
 
 
-    private User user = User.getInstance();
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
     private ShopController shopController = new ShopController();
     private List<ShopPost> posts = new ArrayList<>();
 
@@ -87,9 +71,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
             }
 
             this.showGrid(posts);
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
@@ -139,9 +121,9 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
         if (ShopOwner.getInstance().isLoggedIn()) {
             try {
-                root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerHome.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
+                Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerHome.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
 
                 scene.getStylesheets().clear();
                 scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");

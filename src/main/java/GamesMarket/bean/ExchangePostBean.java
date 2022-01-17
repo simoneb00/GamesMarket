@@ -48,16 +48,8 @@ public class ExchangePostBean {
         return gameToGive;
     }
 
-    public void setGameToGive(String gameToGive) {
-        this.gameToGive = gameToGive;
-    }
-
     public String getPlatformGameToGive() {
         return platformGameToGive;
-    }
-
-    public void setPlatformGameToGive(String platformGameToGive) {
-        this.platformGameToGive = platformGameToGive;
     }
 
     public File getImageFile() {

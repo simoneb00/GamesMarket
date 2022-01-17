@@ -4,7 +4,6 @@ import GamesMarket.bean.CommentBean;
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
 import GamesMarket.exceptions.ErrorMessage;
-import GamesMarket.graphicControl.forum.ForumGraphicController;
 import GamesMarket.main.Main;
 import GamesMarket.model.Comment;
 import GamesMarket.model.Post;
@@ -12,25 +11,19 @@ import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class PostGraphicController {
 
-    @FXML
-    private AnchorPane anchorPane;
     @FXML
     private TextField commentText;
     @FXML
@@ -56,12 +49,12 @@ public class PostGraphicController {
     }
 
 
-    public void retrieveComments(Post post) throws IOException {
-
-        PostBean postBean = new PostBean(post.getUsername(), post.getText());
-        oldComments = this.retrievePostComments(postBean);
+    public void retrieveComments(Post post) {
 
         try {
+            PostBean postBean = new PostBean(post.getUsername(), post.getText());
+            oldComments = this.retrievePostComments(postBean);
+
             for (int i = 0; i < oldComments.size(); i++) {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -81,11 +74,11 @@ public class PostGraphicController {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
-    public List<Comment> retrievePostComments(PostBean postBean) throws IOException {
+    private List<Comment> retrievePostComments(PostBean postBean) throws IOException {
         List<Comment> comments = new ArrayList<>();
 
         try {
@@ -106,6 +99,7 @@ public class PostGraphicController {
         return comments;
     }
 
+    @FXML
     public void commentButtonHandler() {
         String username;
         if (User.getInstance().isLoggedIn())
@@ -136,7 +130,7 @@ public class PostGraphicController {
         }
     }
 
-    public void addCommentToGrid(Comment comment) {
+    private void addCommentToGrid(Comment comment) {
         oldComments.add(comment);
 
         try {

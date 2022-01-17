@@ -10,7 +10,7 @@ public class ShopOwner {
     private static ShopOwner instance = null;
     private boolean isLoggedIn = false;
 
-    private ShopOwner(){return;}
+    private ShopOwner(){}
 
     public Shop getShop() {
         return shop;
@@ -20,16 +20,8 @@ public class ShopOwner {
         this.shop = shop;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public void setLastName(String lastName) {

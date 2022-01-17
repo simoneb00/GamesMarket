@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ShopOwnerNavigationButtons {
+public class ShopOwnerNavigationButtons extends NavigationButtons{
 
     protected Parent root;
     protected Scene scene;

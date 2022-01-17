@@ -13,8 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,7 +54,6 @@ public class GamesTableGraphicController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        GamesTableController gamesTableController = new GamesTableController();
         List<Game> games = this.retrieveGames();
 
         for (int i = 0; i < games.size(); i++) {
@@ -136,14 +133,11 @@ public class GamesTableGraphicController implements Initializable {
 
             try {
                 prc = Double.parseDouble(price.getText());
-            } catch (NullPointerException e) {
-                label1.setText("Invalid price");
-                prc = -1.0;
-            } catch (NumberFormatException e) {
+            } catch (NullPointerException | NumberFormatException e) {
                 label1.setText("Invalid price");
                 prc = -1.0;
             }
-            if (selectedGame == null)
+        if (selectedGame == null)
                 label1.setText("No game selected");
             else if (price.getText().isEmpty())
                 label1.setText("No price set");

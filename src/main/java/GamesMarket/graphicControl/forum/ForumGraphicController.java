@@ -2,7 +2,6 @@ package GamesMarket.graphicControl.forum;
 
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
-import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Post;
@@ -23,7 +22,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -109,7 +107,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     }
 
-    public List<Post> retrievePosts() {
+    private List<Post> retrievePosts() {
 
         List<Post> posts = new ArrayList<>();
 
@@ -131,7 +129,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         return posts;
     }
 
-    public List<Post> retrieveUserPosts() {
+    private List<Post> retrieveUserPosts() {
         List<Post> posts = new ArrayList<>();
 
         try {
@@ -152,7 +150,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         return posts;
     }
 
-    public void addPostToGrid(Post post) {
+    private void addPostToGrid(Post post) {
         oldposts.add(post);
 
         try {
@@ -175,7 +173,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         }
     }
 
-    public void addPostToUserGrid(Post post) {
+    private void addPostToUserGrid(Post post) {
 
         if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             try {
@@ -200,6 +198,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     }
 
 
+    @FXML
     public void postButton() {
         try {
             String username;
@@ -225,6 +224,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         }
     }
 
+    @FXML
     public void signInButtonPressed() {
         try {
 
@@ -259,6 +259,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     }
 
+    @FXML
     public void exchangeButtonPressed(ActionEvent event) {
         if (User.getInstance().isLoggedIn()) {
             this.exchangeButton(event);
@@ -267,6 +268,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         }
     }
 
+    @FXML
     public void profileButtonPressed(ActionEvent event) {
         if (User.getInstance().isLoggedIn()) {
             this.profileButton(event);

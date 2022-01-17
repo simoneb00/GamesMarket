@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.IOException;
 
 public class ErrorMessage {
@@ -20,7 +18,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/error.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -41,7 +38,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_image.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -61,7 +57,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_dup_game_tradelist.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -81,7 +76,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_dup_game_wishlist.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -101,7 +95,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_no_payment_selected.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -121,7 +114,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_invalid_price.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -141,7 +133,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_empty_price.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -161,7 +152,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_empty_game.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -181,7 +171,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_dup_game_shop.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -201,7 +190,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/generic_error.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -221,7 +209,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/error_invalid_shop_name.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
@@ -241,7 +228,6 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/missing_information_message.fxml"));
             Scene scene = new Scene(root);
 
-            File f = new File("src/main/java/GamesMarket/css/style.css");
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 

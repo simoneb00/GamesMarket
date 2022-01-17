@@ -2,7 +2,6 @@ package GamesMarket.graphicControl.exchange;
 
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.exchange.ContactWindowController;
-import GamesMarket.exceptions.ErrorMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,10 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-
+import GamesMarket.exceptions.ErrorMessage;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class ContactWindowGraphicController implements Initializable {
@@ -35,6 +33,7 @@ public class ContactWindowGraphicController implements Initializable {
         this.username = user;
     }
 
+    @FXML
     public void close(ActionEvent event) {
         Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();

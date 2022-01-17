@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.navigation;
 
 import GamesMarket.main.Main;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,6 +16,7 @@ public class NavigationButtons {
     private Scene scene;
     private Stage stage;
 
+    @FXML
     public void homeButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/home.fxml"));
@@ -33,6 +35,7 @@ public class NavigationButtons {
         }
     }
 
+    @FXML
     public void shopButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shop.fxml"));
@@ -51,6 +54,7 @@ public class NavigationButtons {
         }
     }
 
+    @FXML
     public void forumButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/forum.fxml"));
@@ -69,6 +73,7 @@ public class NavigationButtons {
         }
     }
 
+    @FXML
     public void exchangeButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/exchange.fxml"));
@@ -87,6 +92,7 @@ public class NavigationButtons {
         }
     }
 
+    @FXML
     public void profileButton(ActionEvent event) {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/GamesMarket/profile.fxml"));
@@ -107,6 +113,7 @@ public class NavigationButtons {
         }
 
 
+    @FXML
     public void forumButtonSO(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/forumSO.fxml"));
@@ -124,7 +131,7 @@ public class NavigationButtons {
             e.getCause();
         }
     }
-
+/*
     public void profileButtonSO(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerProfile.fxml"));
@@ -142,7 +149,8 @@ public class NavigationButtons {
             e.getCause();
         }
     }
-
+*/
+    @FXML
     public void yourShopButtonSO(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/yourShop.fxml"));
@@ -161,6 +169,7 @@ public class NavigationButtons {
         }
     }
 
+    @FXML
     public void homeButtonSO(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/GamesMarket/shopOwnerHome.fxml"));

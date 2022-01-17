@@ -2,7 +2,6 @@ package GamesMarket.graphicControl.exchange;
 
 import GamesMarket.main.Main;
 import GamesMarket.model.ExchangePost;
-import GamesMarket.model.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +43,7 @@ public class ExchangeItemGraphicController {
         }
     }
 
+    @FXML
     public void contactButton(ActionEvent event) {
         try {
 
@@ -93,8 +93,7 @@ public class ExchangeItemGraphicController {
         Parent parent11 = parent10.getParent();
         Parent parent12 = parent11.getParent();
         Parent parent13 =  parent12.getParent();
-        AnchorPane anchorPane = (AnchorPane) parent13.getParent();
 
-        return anchorPane;
+        return (AnchorPane) parent13.getParent();
     }
 }

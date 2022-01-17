@@ -35,12 +35,9 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
     private Label label;
 
     private GamesTableController gamesTableController = new GamesTableController();
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
 
     @FXML
-    void add(ActionEvent event) {
+    void add() {
         String game = gameChoiceBox.getValue();
         String priceString = priceTF.getText();
 
@@ -110,11 +107,12 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
         }
     }
 
+    @FXML
     public void back(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/your_goods.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/your_goods.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
 
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");

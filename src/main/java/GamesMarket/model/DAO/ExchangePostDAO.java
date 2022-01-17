@@ -3,21 +3,20 @@ package GamesMarket.model.DAO;
 import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.model.ExchangePost;
+import GamesMarket.model.Game;
 import GamesMarket.model.User;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ExchangePostDAO {
 
     public static List<ExchangePost> retrieveExchange() throws SQLException{
+        List<Game> gamesToGive = new ArrayList<>();
         List<ExchangePost> exchangePosts = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;
@@ -56,15 +55,11 @@ public class ExchangePostDAO {
                 String game = resultSet.getString("game");
                 String platform = resultSet.getString("platform");
 
-                ExchangePost exchangePost = new ExchangePost("", "", "", "", "", null);
-
-                exchangePost.setGame(game);
-                exchangePost.setPlatform(platform);
-                exchangePost.setUsername(username);
-
                 ResultSet resultSet1 = statement1.executeQuery(retrieveGamesToGive);
 
+
                 while (resultSet1.next()) {
+                    ExchangePost exchangePost = new ExchangePost(username, game, platform, "", "", null);
                     String gameToGive = resultSet1.getString("game");
                     String platformToGive = resultSet1.getString("platform");
 
@@ -84,8 +79,9 @@ public class ExchangePostDAO {
                                 }
                             }
 
-                            if (!exchangePosts.contains(exchangePost) && !gameToGive.isEmpty() && !platformToGive.isEmpty())
+                            if (!exchangePosts.contains(exchangePost) && !gameToGive.isEmpty() && !platformToGive.isEmpty()) {
                                 exchangePosts.add(exchangePost);
+                            }
                         }
                     }
                 }
@@ -95,8 +91,7 @@ public class ExchangePostDAO {
 
             resultSet.close();
 
-            if (statement != null)
-                statement.close();
+            statement.close();
             if (statement1 != null)
                 statement1.close();
 

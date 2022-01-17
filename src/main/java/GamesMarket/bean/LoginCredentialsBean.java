@@ -16,8 +16,7 @@ public class LoginCredentialsBean {
             this.emailAddress = email;
         }
         else {
-            InvalidEmailException e = new InvalidEmailException();
-            throw e;
+            throw new InvalidEmailException();
         }
     }
 
@@ -37,8 +36,7 @@ public class LoginCredentialsBean {
 
         Pattern pattern = Pattern.compile("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) return true;
-        return false;
+        return matcher.matches();
 
     }
 }

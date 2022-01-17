@@ -4,6 +4,7 @@ import GamesMarket.graphicControl.mobile.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopOwner;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 
 public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
 
+    @FXML
     public void yourGoodsButton(ActionEvent event) {
         if (ShopOwner.getInstance().getShop() == null)
             this.createNewShop(event);
@@ -33,6 +35,7 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
         }
     }
 
+    @FXML
     public void yourOrdersButton(ActionEvent event) {
         if (ShopOwner.getInstance().getShop() == null)
             this.createNewShop(event);

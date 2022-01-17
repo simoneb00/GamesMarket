@@ -5,9 +5,7 @@ import GamesMarket.control.ShopController;
 import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.mobile.NavigationButtons;
 import GamesMarket.main.Main;
-import GamesMarket.model.ShopOwner;
 import GamesMarket.model.ShopPost;
-import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -53,14 +51,12 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
 
             this.showGrid(posts);
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
 
-    public void showGrid(List<ShopPost> posts) {
+    private void showGrid(List<ShopPost> posts) {
         int column = 0;
         int row = 1;
 
@@ -97,6 +93,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     }
 
 
+    @FXML
     public void search() {
         String search = searchTF.getText();
         grid.getChildren().clear();

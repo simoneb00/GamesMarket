@@ -32,6 +32,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class UserProfileGraphicController extends NavigationButtons implements Initializable  {
@@ -64,14 +65,12 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     private Label photoLabel;
 
     private UserProfileController userProfileController = new UserProfileController();
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
     private String wishlistSelected;
     private String tradelistSelected;
     private String selectedGame, selectedPlatform;
 
 
+    @FXML
     public void updatePhoto() {
         try {
             userProfileController.updateProfilePhoto();
@@ -81,13 +80,12 @@ public class UserProfileGraphicController extends NavigationButtons implements I
             photoLabel.setText("");
         } catch (RuntimeException e) {
             photoLabel.setText("No photo selected.");
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (FileNotFoundException e) {
+        } catch (SQLException | FileNotFoundException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
 
+    @FXML
     public void updateCI() {
         try {
             UserBean userBean = new UserBean();
@@ -121,13 +119,14 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         }
     }
 
+    @FXML
     private void setProfilePhoto() {
 
         try {
             String path = User.getInstance().getProfileImagePath();
             if (path != null) {
                 File file = new File(path);
-                InputStream isImage = (InputStream) new FileInputStream(file);
+                InputStream isImage = new FileInputStream(file);
                 profilePhoto.setImage(new Image(isImage));
             }
         } catch (FileNotFoundException e) {
@@ -136,6 +135,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
 
     }
 
+    @FXML
     public void saveBio() {
         try {
             UserBean userBean = new UserBean();
@@ -146,6 +146,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         }
     }
 
+    @FXML
     public void addToTradelist() {
         try {
 
@@ -171,6 +172,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         }
     }
 
+    @FXML
     public void addToWishlist(){
         try {
 
@@ -197,7 +199,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     }
 
 
-    public void retrieveTradelist(){
+    private void retrieveTradelist(){
         List<String> tl = User.getInstance().getTradelist();
 
         if (tl != null) {
@@ -207,7 +209,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         }
     }
 
-    public void retrieveWishlist() {
+    private void retrieveWishlist() {
         List<String> wl = User.getInstance().getWishlist();
 
         if (wl != null) {
@@ -237,10 +239,10 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         this.retrieveTradelist();
     }
 
-
+    @FXML
     public void wishlistMouseClicked() {
         wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
-        if (wishlistSelected != "[]") {
+        if (!Objects.equals(wishlistSelected, "[]")) {
             wishlistSelected = wishlistSelected.replaceAll("\\[|\\]", "");
             String[] strings = wishlistSelected.split(" - ");
             selectedGame = strings[0];
@@ -250,9 +252,10 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         }
     }
 
+    @FXML
     public void tradelistMouseClicked() {
         tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();
-        if (tradelistSelected != "[]") {
+        if (!Objects.equals(tradelistSelected, "[]")) {
             tradelistSelected = tradelistSelected.replaceAll("\\[|\\]", "");
             String[] strings = tradelistSelected.split(" - ");
             selectedGame = strings[0];

@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class WishlistController extends NavigationButtons implements Initializable {
@@ -29,14 +30,9 @@ public class WishlistController extends NavigationButtons implements Initializab
     @FXML
     private Button removeSelected;
 
-    private String wishlistSelected;
     private String selectedGame;
     private String selectedPlatform;
     private UserProfileController userProfileController = new UserProfileController();
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
-
 
 
     private void retrieveWishlist() {
@@ -49,9 +45,10 @@ public class WishlistController extends NavigationButtons implements Initializab
         }
     }
 
+    @FXML
     public void mouseClicked() {
-        wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
-        if (wishlistSelected != "[]") {
+        String wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
+        if (!Objects.equals(wishlistSelected, "[]")) {
             wishlistSelected = wishlistSelected.replaceAll("\\[|\\]", "");
             String[] strings = wishlistSelected.split(" - ");
             selectedGame = strings[0];
@@ -61,6 +58,7 @@ public class WishlistController extends NavigationButtons implements Initializab
         }
     }
 
+    @FXML
     public void removeSelectedGame() {
         try {
             GameBean gameBean = new GameBean();
@@ -80,11 +78,12 @@ public class WishlistController extends NavigationButtons implements Initializab
         }
     }
 
+    @FXML
     public void addGame(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/games_table.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/games_table.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
 
             scene.getStylesheets().clear();
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");

@@ -16,8 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,12 +80,14 @@ public class CheckoutGraphicController implements Initializable {
         img.setImage(image);
     }
 
+    @FXML
     public void back(ActionEvent event) {
         Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
     }
 
 
+    @FXML
     public void continueButton(ActionEvent event) {
         numCheckBoxesSelected = 0;
         configureCheckBox(cashOnDelivery);
@@ -128,6 +128,7 @@ public class CheckoutGraphicController implements Initializable {
 
     }
 
+    @FXML
     public void confirmButton(ActionEvent event) {
 
         if (!pickUpInStore.isSelected()) {
@@ -144,7 +145,7 @@ public class CheckoutGraphicController implements Initializable {
         else if (card.isSelected())
             paymentMethod = "Credit/Debit card";
         else if (pickUpInStore.isSelected())
-            paymentMethod = "Pick up in store";
+            paymentMethod = "Pickup in store";
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -180,6 +181,7 @@ public class CheckoutGraphicController implements Initializable {
         }
     }
 
+    @FXML
     public void backToSelectPayment(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -210,10 +212,12 @@ public class CheckoutGraphicController implements Initializable {
         }
     }
 
-    public void showConfirmButton(ActionEvent event) {
+    @FXML
+    public void showConfirmButton() {
         continueButton.setText("Confirm");
     }
 
+    @FXML
     public void hideConfirmButton() {
         continueButton.setText("Continue");
     }

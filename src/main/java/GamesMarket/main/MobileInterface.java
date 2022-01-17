@@ -15,7 +15,6 @@ public class MobileInterface extends Application {
         Parent root = FXMLLoader.load(Main.class.getResource("/GamesMarket/mobile/homepage.fxml"));
         Scene scene = new Scene(root);
 
-        File f = new File("src/main/java/GamesMarket/css/style.css");
         scene.getStylesheets().clear();
         scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 

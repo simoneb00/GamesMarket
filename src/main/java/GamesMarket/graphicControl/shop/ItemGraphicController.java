@@ -1,22 +1,16 @@
 package GamesMarket.graphicControl.shop;
 
 import GamesMarket.exceptions.ErrorMessage;
-import GamesMarket.exceptions.NotLoggedInException;
 import GamesMarket.main.Main;
-import GamesMarket.model.Game;
 import GamesMarket.model.ShopPost;
 import GamesMarket.model.User;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
@@ -60,6 +54,7 @@ public class ItemGraphicController {
         img.setImage(image);
     }
 
+    @FXML
     public void buy(ActionEvent event) {
         if (User.getInstance().isLoggedIn()) {
             try {
@@ -87,7 +82,7 @@ public class ItemGraphicController {
                 stage.show();
 
             } catch(IOException e) {
-                ErrorMessage.displayErrorMessage();
+                e.printStackTrace();
             }
         } else {
             HBox hBox = (HBox) ((Button)event.getSource()).getParent();

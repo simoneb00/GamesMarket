@@ -1,6 +1,7 @@
 package GamesMarket.model;
 
 import java.io.File;
+import java.util.List;
 
 public class ExchangePost {
 
@@ -11,7 +12,6 @@ public class ExchangePost {
     private String platformGameToGive;
     private File imageFile;
 
-    public ExchangePost() {}
 
     public ExchangePost(String username, String game, String platform, String gameToGive, String platformGameToGive, File imageFile) {
         this.username = username;

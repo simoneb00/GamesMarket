@@ -2,10 +2,7 @@ package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.model.Game;
-
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -70,8 +67,7 @@ public class GameDAO {
         }
 
         resultSet.close();
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
         fos.close();
 
 

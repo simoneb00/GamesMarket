@@ -3,8 +3,10 @@ package GamesMarket.graphicControl.mobile.yourShop;
 import GamesMarket.bean.OrderBean;
 import GamesMarket.control.YourShopController;
 import GamesMarket.exceptions.ErrorMessage;
+import GamesMarket.graphicControl.mobile.NavigationButtons;
 import GamesMarket.graphicControl.mobile.ShopOwnerNavigationButtons;
 import GamesMarket.model.Order;
+import GamesMarket.model.Shop;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,87 +55,8 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
     private ObservableList<Order> completedOrdersObservableList = FXCollections.observableArrayList();
     private Order selectedOrder = null;
 
+
     private void retrieveOrders() {
-        try {
-            List<OrderBean> orderBeans = yourShopController.retrieveOrders();
-            List<Order> orders = new ArrayList<>();
-
-            for (int i = 0; i < orderBeans.size(); i++) {
-                Order order = new Order(
-                        orderBeans.get(i).getIdOrder(),
-                        orderBeans.get(i).getVendor(),
-                        orderBeans.get(i).getPlatform(),
-                        orderBeans.get(i).getGame(),
-                        orderBeans.get(i).getPrice(),
-                        orderBeans.get(i).getBuyerName(),
-                        orderBeans.get(i).getBuyerAddress(),
-                        orderBeans.get(i).getBuyerCity(),
-                        orderBeans.get(i).getBuyerTel(),
-                        orderBeans.get(i).getPaymentMethod(),
-                        orderBeans.get(i).getUsername(),
-                        orderBeans.get(i).getBuyerEmail(),
-                        orderBeans.get(i).getStatus()
-                );
-
-                orders.add(order);
-            }
-
-
-            for (int i = 0; i < orders.size(); i++) {
-                if (orders.get(i).getStatus().equals("Pending"))
-                    pendingOrders.add(orders.get(i));
-                else
-                    completedOrders.add(orders.get(i));
-            }
-
-            this.showCompletedOrdersTable();
-            this.showPendingOrdersTable();
-
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMobile();
-        }
-    }
-
-    private void retrievePendingOrders() {
-        try {
-            List<OrderBean> orderBeans = yourShopController.retrieveOrders();
-            List<Order> orders = new ArrayList<>();
-
-            for (int i = 0; i < orderBeans.size(); i++) {
-                Order order = new Order(
-                        orderBeans.get(i).getIdOrder(),
-                        orderBeans.get(i).getVendor(),
-                        orderBeans.get(i).getPlatform(),
-                        orderBeans.get(i).getGame(),
-                        orderBeans.get(i).getPrice(),
-                        orderBeans.get(i).getBuyerName(),
-                        orderBeans.get(i).getBuyerAddress(),
-                        orderBeans.get(i).getBuyerCity(),
-                        orderBeans.get(i).getBuyerTel(),
-                        orderBeans.get(i).getPaymentMethod(),
-                        orderBeans.get(i).getUsername(),
-                        orderBeans.get(i).getBuyerEmail(),
-                        orderBeans.get(i).getStatus()
-                );
-
-                orders.add(order);
-            }
-
-
-            for (int i = 0; i < orders.size(); i++) {
-                if (orders.get(i).getStatus().equals("Pending")) {
-                    pendingOrders.add(orders.get(i));
-                }
-            }
-
-            this.showPendingOrdersTable();
-
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMobile();
-        }
-    }
-
-    private void retrieveCompletedOrders() {
         try {
             List<OrderBean> orderBeans = yourShopController.retrieveOrders();
             List<Order> orders = new ArrayList<>();
@@ -162,10 +85,13 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
             for (int i = 0; i < orders.size(); i++) {
                 if (!orders.get(i).getStatus().equals("Pending")) {
                     completedOrders.add(orders.get(i));
+                } else {
+                    pendingOrders.add(orders.get(i));
                 }
             }
 
             this.showCompletedOrdersTable();
+            this.showPendingOrdersTable();
 
         } catch (SQLException e) {
             ErrorMessage.displayErrorMobile();
@@ -202,7 +128,7 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
         selectedOrder = pendingOrdersTable.getSelectionModel().getSelectedItem();
         if (selectedOrder != null) {
             if (selectedOrder.getStatus().equals("Pending")) {
-                if (selectedOrder.getPaymentMethod().equals("Pick up in store"))
+                if (selectedOrder.getPaymentMethod().equals("Pickup in Store"))
                     markButton.setText("Mark as Delivered");
                 else
                     markButton.setText("Mark as Shipped");
@@ -251,7 +177,6 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.retrievePendingOrders();
-        this.retrieveCompletedOrders();
+        this.retrieveOrders();
     }
 }

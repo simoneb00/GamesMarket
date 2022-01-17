@@ -3,35 +3,21 @@ package GamesMarket.control;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.OrderBean;
 import GamesMarket.bean.ShopBean;
-import GamesMarket.bean.ShopOwnerBean;
 import GamesMarket.model.DAO.OrderDAO;
 import GamesMarket.model.DAO.ShopDAO;
-import GamesMarket.model.DAO.ShopOwnerDAO;
-import GamesMarket.model.Game;
 import GamesMarket.model.Order;
 import GamesMarket.model.Shop;
 import GamesMarket.model.ShopOwner;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
-
 import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class YourShopController {
 
-
-/*
-    public ShopBean retrieveImageFile() {
-        ShopBean shopBean = new ShopBean();
-        File file = shopDAO.retrievePhoto(ShopOwner.getInstance().getEmail());
-        shopBean.setImageFile(file);
-        ShopOwner.getInstance().getShop().setImageFile(file);
-        return shopBean;
-    }
-*/
-    public void updatePhoto() {
+    public void updatePhoto() throws SQLException, IOException {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
         String path = selectedFile.getAbsolutePath();
@@ -41,7 +27,7 @@ public class YourShopController {
     }
 
 
-    public void removeGame(GameBean gameBean) {
+    public void removeGame(GameBean gameBean) throws SQLException {
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         double price = gameBean.getPrice();
@@ -54,12 +40,13 @@ public class YourShopController {
         }
     }
 
-    public void createNewShop(ShopBean shopBean) {
+    public void createNewShop(ShopBean shopBean) throws SQLException {
         String name = shopBean.getName();
         String address = shopBean.getAddress();
         String country = shopBean.getCountry();
         String city = shopBean.getCity();
         ShopDAO.createNewShop(name, address, city, country);
+
         Shop.getInstance().setName(name);
         Shop.getInstance().setAddress(address);
         Shop.getInstance().setCity(city);
@@ -67,13 +54,14 @@ public class YourShopController {
         ShopOwner.getInstance().setShop(Shop.getInstance());
     }
 
-    public List<OrderBean> retrieveOrders() {
+    public List<OrderBean> retrieveOrders() throws SQLException {
 
         List<OrderBean> orderBeans = new ArrayList<>();
         List<Order> orders = OrderDAO.retrieveOrders();
 
         for (int i = 0; i < orders.size(); i++) {
             OrderBean orderBean = new OrderBean(
+                    orders.get(i).getIdOrder(),
                     orders.get(i).getVendor(),
                     orders.get(i).getPlatform(),
                     orders.get(i).getGame(),
@@ -92,5 +80,27 @@ public class YourShopController {
         }
 
         return orderBeans;
+    }
+
+    public void updateStatus(OrderBean orderBean) throws SQLException{
+        Order order = new Order(
+                orderBean.getIdOrder(),
+                orderBean.getVendor(),
+                orderBean.getPlatform(),
+                orderBean.getGame(),
+                orderBean.getPrice(),
+                orderBean.getBuyerName(),
+                orderBean.getBuyerAddress(),
+                orderBean.getBuyerCity(),
+                orderBean.getBuyerTel(),
+                orderBean.getPaymentMethod(),
+                orderBean.getUsername(),
+                orderBean.getBuyerEmail(),
+                orderBean.getStatus()
+        );
+
+        String newStatus = orderBean.getNewStatus();
+
+        OrderDAO.updateStatus(order, newStatus);
     }
 }

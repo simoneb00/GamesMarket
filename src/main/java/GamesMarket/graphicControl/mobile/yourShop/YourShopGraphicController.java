@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.mobile.yourShop;
 
 import GamesMarket.control.YourShopController;
 import GamesMarket.exceptions.ErrorMessage;
+import GamesMarket.graphicControl.mobile.NavigationButtons;
 import GamesMarket.graphicControl.mobile.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Shop;
@@ -85,7 +86,7 @@ public class YourShopGraphicController extends ShopOwnerNavigationButtons implem
             File path = ShopOwner.getInstance().getShop().getImageFile();
             if (path != null) {
                 File file = new File(path.getAbsolutePath());
-                InputStream isImage = (InputStream) new FileInputStream(file);
+                InputStream isImage = new FileInputStream(file);
                 img.setImage(new Image(isImage));
             }
         } catch (FileNotFoundException e) {
@@ -93,15 +94,14 @@ public class YourShopGraphicController extends ShopOwnerNavigationButtons implem
         }
     }
 
+    @FXML
     public void updatePhoto() {
         try {
             yourShopController.updatePhoto();
             this.initialize(null, null);
         } catch (RuntimeException e) {
             ErrorMessage.displayImageNotFoundMessage();
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }

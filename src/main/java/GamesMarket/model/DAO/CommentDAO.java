@@ -14,9 +14,6 @@ public class CommentDAO {
 
         List<Comment> comments = new ArrayList<>();
 
-        String username = post.getUsername();
-        String text = post.getText();
-
         PreparedStatement preparedStatement = null;
         Connection connection = null;
         String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
@@ -37,8 +34,7 @@ public class CommentDAO {
         }
 
         resultSet.close();
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
 
 
@@ -66,8 +62,7 @@ public class CommentDAO {
         preparedStatement.setString(4, comm);
         preparedStatement.execute();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
     }
 
@@ -87,8 +82,7 @@ public class CommentDAO {
         preparedStatement.setString(2, text);
         preparedStatement.execute();
 
-        if (preparedStatement != null)
-            preparedStatement.close();
+        preparedStatement.close();
 
     }
 }
