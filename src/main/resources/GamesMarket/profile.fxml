@@ -343,6 +343,14 @@
                                           <Font size="24.0" />
                                        </font>
                                     </Label>
+                                    <Label alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="232.0" text="Insert games you want to give away" textFill="#ababab">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Label>
                                  </children>
                               </HBox>
                               <ListView fx:id="tradelist" onMouseClicked="#tradelistMouseClicked" prefHeight="233.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
@@ -377,6 +385,11 @@
                                     <Label text="WISHLIST" textFill="#88c5cc">
                                        <font>
                                           <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="216.0" text="Insert games you want to receive" textFill="#ababab">
+                                       <font>
+                                          <Font size="14.0" />
                                        </font>
                                     </Label>
                                  </children>

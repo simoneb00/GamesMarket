@@ -1,10 +1,13 @@
 package GamesMarket.model.DAO;
 
 import GamesMarket.DBConnection.DatabaseConnection;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.model.ExchangePost;
 import GamesMarket.model.User;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +17,7 @@ import java.util.List;
 
 public class ExchangePostDAO {
 
-    public static List<ExchangePost> retrieveExchange() {
+    public static List<ExchangePost> retrieveExchange() throws SQLException{
         List<ExchangePost> exchangePosts = new ArrayList<>();
         Connection connection = null;
         Statement statement = null;
@@ -40,7 +43,7 @@ public class ExchangePostDAO {
                 "t_current_user.platform = w_other_user.platform;";
 
 
-        try {
+
 
             connection = DatabaseConnection.getInstance().getConnection();
             statement = connection.createStatement();
@@ -73,9 +76,13 @@ public class ExchangePostDAO {
                             File file = new File(game + ".jpg");
                             if (file.exists())
                                 exchangePost.setImageFile(file);
-                            else
-                                exchangePost.setImageFile(GameDAO.retrieveGamePhoto(game));
-
+                            else {
+                                try {
+                                    exchangePost.setImageFile(GameDAO.retrieveGamePhoto(game));
+                                } catch (IOException e) {
+                                    ErrorMessage.displayErrorMessage();
+                                }
+                            }
 
                             if (!exchangePosts.contains(exchangePost) && !gameToGive.isEmpty() && !platformToGive.isEmpty())
                                 exchangePosts.add(exchangePost);
@@ -93,9 +100,6 @@ public class ExchangePostDAO {
             if (statement1 != null)
                 statement1.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
         return exchangePosts;

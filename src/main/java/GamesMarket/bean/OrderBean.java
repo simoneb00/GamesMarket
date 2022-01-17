@@ -2,6 +2,7 @@ package GamesMarket.bean;
 
 public class OrderBean {
 
+    private int idOrder;
     private String vendor;
     private String platform;
     private String game;
@@ -14,8 +15,10 @@ public class OrderBean {
     private String username;
     private String buyerEmail;
     private String status;
+    private String newStatus;
 
-    public OrderBean(String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
+    public OrderBean(int idOrder, String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
+        this.idOrder = idOrder;
         this.vendor = vendor;
         this.platform = platform;
         this.game = game;
@@ -28,6 +31,22 @@ public class OrderBean {
         this.username = username;
         this.buyerEmail = buyerEmail;
         this.status = status;
+    }
+
+    public int getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
+    }
+
+    public String getNewStatus() {
+        return newStatus;
+    }
+
+    public void setNewStatus(String newStatus) {
+        this.newStatus = newStatus;
     }
 
     public String getStatus() {

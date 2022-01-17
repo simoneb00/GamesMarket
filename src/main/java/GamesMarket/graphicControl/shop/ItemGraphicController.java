@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl.shop;
 
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.exceptions.NotLoggedInException;
 import GamesMarket.main.Main;
 import GamesMarket.model.Game;
@@ -86,7 +87,7 @@ public class ItemGraphicController {
                 stage.show();
 
             } catch(IOException e) {
-                e.printStackTrace();
+                ErrorMessage.displayErrorMessage();
             }
         } else {
             HBox hBox = (HBox) ((Button)event.getSource()).getParent();

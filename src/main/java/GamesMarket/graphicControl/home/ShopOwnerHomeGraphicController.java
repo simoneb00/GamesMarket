@@ -1,12 +1,13 @@
 package GamesMarket.graphicControl.home;
 
+
 import GamesMarket.graphicControl.navigation.NavigationButtons;
-import GamesMarket.graphicControl.navigation.ShopOwnerNavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ShopOwner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
@@ -84,5 +85,6 @@ public class ShopOwnerHomeGraphicController extends NavigationButtons {
         }
 
     }
+
 
 }

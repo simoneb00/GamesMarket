@@ -6,7 +6,7 @@ public class ShopOwner {
     private String lastName;
     private String email;
     private String password;
-    private Shop shop;
+    private Shop shop = null;
     private static ShopOwner instance = null;
     private boolean isLoggedIn = false;
 

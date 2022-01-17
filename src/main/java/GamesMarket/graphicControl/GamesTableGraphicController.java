@@ -3,6 +3,7 @@ package GamesMarket.graphicControl;
 import GamesMarket.bean.GameBean;
 import GamesMarket.control.GamesTableController;
 import GamesMarket.exceptions.DuplicatedGameException;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.model.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -71,18 +74,22 @@ public class GamesTableGraphicController implements Initializable {
     }
 
     public List<Game> retrieveGames() {
-        List<GameBean> beans = gamesTableController.retrieveGames();
         List<Game> games = new ArrayList<>();
+        try {
+            List<GameBean> beans = gamesTableController.retrieveGames();
 
-        for (int i = 0; i < beans.size(); i++) {
-            Game game = new Game();
-            game.setName(beans.get(i).getName());
-            game.setPlatform(beans.get(i).getPlatform());
-            game.setGenre(beans.get(i).getGenre());
-            game.setYear(beans.get(i).getYear());
-            game.setDescription(beans.get(i).getDescription());
+            for (int i = 0; i < beans.size(); i++) {
+                Game game = new Game();
+                game.setName(beans.get(i).getName());
+                game.setPlatform(beans.get(i).getPlatform());
+                game.setGenre(beans.get(i).getGenre());
+                game.setYear(beans.get(i).getYear());
+                game.setDescription(beans.get(i).getDescription());
 
-            games.add(game);
+                games.add(game);
+            }
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
 
         return games;
@@ -101,6 +108,8 @@ public class GamesTableGraphicController implements Initializable {
             }
         } catch (DuplicatedGameException e) {
             label.setText("This game is already present in your tradelist.");
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -117,6 +126,8 @@ public class GamesTableGraphicController implements Initializable {
             }
         } catch (DuplicatedGameException e) {
             label.setText("This game is already present in your wishlist.");
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -149,6 +160,8 @@ public class GamesTableGraphicController implements Initializable {
                     gamesTableController.putForSale(gameBean);
                 } catch (DuplicatedGameException e) {
                     label1.setText("This game is already present in your shop");
+                } catch (SQLException e) {
+                    ErrorMessage.displayErrorMessage();
                 }
             } else {
                 label1.setText("Invalid price");

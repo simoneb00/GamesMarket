@@ -4,11 +4,14 @@ import GamesMarket.bean.RegisterCredentialsBean;
 import GamesMarket.control.SignUpController;
 import GamesMarket.exceptions.DuplicatedEmailException;
 import GamesMarket.exceptions.DuplicatedUsernameException;
+import GamesMarket.exceptions.ErrorMessage;
+import GamesMarket.exceptions.InvalidEmailException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 
 
 public class SignUpGraphicController {
@@ -40,12 +43,19 @@ public class SignUpGraphicController {
 
     private boolean isShopOwner = false;
 
+    @FXML
     public void backButtonPressed(ActionEvent event) {
         Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    @FXML
     public void registerButtonPressed(ActionEvent event) {
+
+        if (emailTextField.getText().isEmpty() || passwordField.getText().isEmpty() || firstNameTextField.getText().isEmpty() || lastNameTextField.getText().isEmpty() || usernameTextField.getText().isEmpty()) {
+            registerLabel.setText("Missing information!");
+            return;
+        }
 
         try {
 
@@ -68,16 +78,19 @@ public class SignUpGraphicController {
 
             registerLabel.setText("Success!");
 
-        } catch (Exception e) {
+        } catch (InvalidEmailException e) {
             registerLabel.setText("Invalid email address. Try again.");
         } catch (DuplicatedEmailException duplicatedEmailException) {
             registerLabel.setText("This email address is already used.");
         } catch (DuplicatedUsernameException duplicatedUsernameException) {
             registerLabel.setText("This username is already used.");
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
 
     }
 
+    @FXML
     public void shopOwnerChecked(ActionEvent event) {
 
         if (checkBox.isSelected()) {

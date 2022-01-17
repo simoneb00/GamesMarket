@@ -2,6 +2,7 @@ package GamesMarket.model;
 
 public class Order {
 
+    private int idOrder;
     private String vendor;
     private String platform;
     private String game;
@@ -15,7 +16,8 @@ public class Order {
     private String buyerEmail;
     private String status;
 
-    public Order(String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
+    public Order(int idOrder, String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
+        this.idOrder = idOrder;
         this.vendor = vendor;
         this.platform = platform;
         this.game = game;
@@ -28,6 +30,14 @@ public class Order {
         this.username = username;
         this.buyerEmail = buyerEmail;
         this.status = status;
+    }
+
+    public int getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public String getStatus() {

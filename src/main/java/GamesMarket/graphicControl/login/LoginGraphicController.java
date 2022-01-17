@@ -1,5 +1,6 @@
 package GamesMarket.graphicControl.login;
 
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.exceptions.InvalidEmailException;
 import GamesMarket.exceptions.NotLoggedInException;
 import GamesMarket.main.Main;
@@ -20,6 +21,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginGraphicController {
 
@@ -44,7 +48,7 @@ public class LoginGraphicController {
     private LoginController lc = new LoginController();
 
     public void close(ActionEvent event) {
-        loginStage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        loginStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         loginStage.close();
     }
 
@@ -68,17 +72,33 @@ public class LoginGraphicController {
             loginLabel.setText("Invalid email address, please try again.");
         } catch (NotLoggedInException e) {
             loginLabel.setText("Invalid login, please try again.");
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        } catch (IOException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 
     public void loginWithFacebook(ActionEvent event) {
-        lc.validateFacebookLogin();
-        this.close(event);
+        try {
+            lc.validateFacebookLogin();
+            this.close(event);
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        } catch (IOException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
-    public void loginWithGoogle(ActionEvent event){
-        lc.validateGoogleLogin();
-        this.close(event);
+    public void loginWithGoogle(ActionEvent event) {
+        try {
+            lc.validateGoogleLogin();
+            this.close(event);
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        } catch (IOException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
     public void signUpButtonHandler(ActionEvent event) {
@@ -92,7 +112,7 @@ public class LoginGraphicController {
             registerStage.initStyle(StageStyle.TRANSPARENT);
             registerStage.setScene(registerScene);
 
-            loginStage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            loginStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
             loginStage.setIconified(true);
             registerStage.showAndWait();

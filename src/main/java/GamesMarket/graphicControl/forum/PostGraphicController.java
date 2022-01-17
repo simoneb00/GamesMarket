@@ -3,6 +3,7 @@ package GamesMarket.graphicControl.forum;
 import GamesMarket.bean.CommentBean;
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.main.Main;
 import GamesMarket.model.Comment;
 import GamesMarket.model.Post;
@@ -20,14 +21,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -57,22 +61,29 @@ public class PostGraphicController{
         text.setText(post.getText());
     }
 
-    public List<Comment> retrievePostComments(PostBean postBean) {
-        List<CommentBean> beans  = forumController.retrieveComments(postBean);
+    public List<Comment> retrievePostComments(PostBean postBean) throws IOException {
         List<Comment> comments = new ArrayList<>();
 
-        for (int i = 0; i < beans.size(); i++) {
-            Comment comment = new Comment();
-            comment.setUsername(beans.get(i).getUsername());
-            comment.setText(beans.get(i).getText());
-            comments.add(comment);
+        try {
+            List<CommentBean> beans = forumController.retrieveComments(postBean);
+
+            for (int i = 0; i < beans.size(); i++) {
+                Comment comment = new Comment();
+                comment.setUsername(beans.get(i).getUsername());
+                comment.setText(beans.get(i).getText());
+                comments.add(comment);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return comments;
     }
 
 
-    public void retrieveComments(Post post) {
+    public void retrieveComments(Post post) throws IOException{
 
         PostBean postBean = new PostBean(post.getUsername(), post.getText());
         oldComments = this.retrievePostComments(postBean);
@@ -124,7 +135,11 @@ public class PostGraphicController{
 
         PostBean postBean = new PostBean(post.getUsername(), post.getText());
 
-        forumController.saveComment(commentBean, postBean);
+        try {
+            forumController.saveComment(commentBean, postBean);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addCommentToGrid(Comment comment) {
@@ -149,5 +164,6 @@ public class PostGraphicController{
             e.printStackTrace();
         }
     }
+
 
 }

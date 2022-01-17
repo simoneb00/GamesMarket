@@ -2,10 +2,12 @@ package GamesMarket.graphicControl.exchange;
 
 import GamesMarket.bean.ExchangePostBean;
 import GamesMarket.control.exchange.ExchangeController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.ExchangePost;
 import GamesMarket.model.ShopOwner;
+import GamesMarket.model.ShopPost;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -22,45 +25,46 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ExchangeGraphicController extends NavigationButtons implements Initializable {
-    @FXML
-    private AnchorPane anchorPane;
 
     @FXML
     private GridPane grid;
-
-    @FXML
-    private ScrollPane scroll;
-
     @FXML
     private Button signInButton;
+    @FXML
+    private TextField searchBar;
 
-    private Parent root;
-    private Scene scene;
-    private Stage stage;
 
     private List<ExchangePost> exchangePosts = new ArrayList<>();
     private ExchangeController exchangeController = new ExchangeController();
 
-    private List<ExchangePost> retrieveExchange() {
-        List<ExchangePostBean> beans = exchangeController.retrieveExchange();
+    private List<ExchangePost> retrieveExchange() throws IOException{
+
         List<ExchangePost> posts = new ArrayList<>();
 
-        for (int i = 0; i < beans.size(); i++) {
-            ExchangePost exchangePost = new ExchangePost(
-                    beans.get(i).getUsername(),
-                    beans.get(i).getGame(),
-                    beans.get(i).getPlatform(),
-                    beans.get(i).getGameToGive(),
-                    beans.get(i).getPlatformGameToGive(),
-                    beans.get(i).getImageFile()
-            );
+        try {
+            List<ExchangePostBean> beans = exchangeController.retrieveExchange();
 
-            posts.add(exchangePost);
+            for (int i = 0; i < beans.size(); i++) {
+                ExchangePost exchangePost = new ExchangePost(
+                        beans.get(i).getUsername(),
+                        beans.get(i).getGame(),
+                        beans.get(i).getPlatform(),
+                        beans.get(i).getGameToGive(),
+                        beans.get(i).getPlatformGameToGive(),
+                        beans.get(i).getImageFile()
+                );
+
+                posts.add(exchangePost);
+            }
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
 
         return posts;
@@ -69,46 +73,74 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        exchangePosts.addAll(this.retrieveExchange());
-        int column = 0;
-        int row = 1;
-
-        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
-            signInButton.setVisible(false);
-            signInButton.isDisabled();
-        }
 
         try {
-            for (int i = 0; i < exchangePosts.size(); i++) {
+            exchangePosts.addAll(this.retrieveExchange());
 
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/exchangeItem.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-
-                ExchangeItemGraphicController itemController = fxmlLoader.getController();
-                itemController.setData(exchangePosts.get(i));
-
-                if (column == 5) {
-                    column = 0;
-                    row++;
-                }
-
-                grid.add(anchorPane, column++, row);
-
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(20));
-
+            if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+                signInButton.setVisible(false);
+                signInButton.isDisabled();
             }
-        } catch(IOException e) {
-            e.printStackTrace();
+
+            this.showGrid(exchangePosts);
+
+        } catch (IOException e) {
+            ErrorMessage.displayErrorMessage();
         }
+
+    }
+
+    private void showGrid(List<ExchangePost> posts) {
+
+            int column = 0;
+            int row = 1;
+
+            for (int i = 0; i < posts.size(); i++) {
+
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/exchangeItem.fxml"));
+                    AnchorPane anchorPane = fxmlLoader.load();
+
+                    ExchangeItemGraphicController itemController = fxmlLoader.getController();
+                    itemController.setData(posts.get(i));
+
+                    if (column == 5) {
+                        column = 0;
+                        row++;
+                    }
+
+                    grid.add(anchorPane, column++, row);
+
+                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                    GridPane.setMargin(anchorPane, new Insets(20));
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    public void search() {
+        String search = searchBar.getText();
+        grid.getChildren().clear();
+        List<ExchangePost> searchedPosts = new ArrayList<>();
+
+        for (int i = 0; i < exchangePosts.size(); i++) {
+            if (exchangePosts.get(i).getGame().toLowerCase().contains(search.toLowerCase())) {
+                searchedPosts.add(exchangePosts.get(i));
+            }
+        }
+
+        this.showGrid(searchedPosts);
     }
 
 }

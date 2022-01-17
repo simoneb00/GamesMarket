@@ -10,14 +10,15 @@ import GamesMarket.model.Shop;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GamesTableController{
 
-    public List<GameBean> retrieveGames() {
-        List<Game> games = GameDAO.retrieveGames();
+    public List<GameBean> retrieveGames() throws SQLException {
         List<GameBean> beans = new ArrayList<>();
+        List<Game> games = GameDAO.retrieveGames();
 
         for (int i = 0; i < games.size(); i++) {
             GameBean bean = new GameBean();
@@ -33,7 +34,7 @@ public class GamesTableController{
         return beans;
     }
 
-    public void addToTradelist(GameBean gameBean) throws DuplicatedGameException{
+    public void addToTradelist(GameBean gameBean) throws DuplicatedGameException, SQLException{
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         String game = name + " - " + platform;
@@ -47,7 +48,7 @@ public class GamesTableController{
         UserDAO.addToTradelist(name, platform);
     }
 
-    public void addToWishlist(GameBean gameBean) throws DuplicatedGameException{
+    public void addToWishlist(GameBean gameBean) throws DuplicatedGameException, SQLException{
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();
         String game = name + " - " + platform;
@@ -61,7 +62,7 @@ public class GamesTableController{
         UserDAO.addToWishlist(name, platform);
     }
 
-    public void putForSale(GameBean gameBean) throws DuplicatedGameException {
+    public void putForSale(GameBean gameBean) throws DuplicatedGameException, SQLException {
 
         String name = gameBean.getName();
         String platform = gameBean.getPlatform();

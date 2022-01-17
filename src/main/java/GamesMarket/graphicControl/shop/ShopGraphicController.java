@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.shop;
 
 import GamesMarket.bean.ShopPostBean;
 import GamesMarket.control.ShopController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.*;
@@ -30,6 +31,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -64,60 +66,32 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<ShopPostBean> postBeans = shopController.retrieveShop();
 
-        for (int i = 0; i < postBeans.size(); i++) {
-            ShopPost shopPost = new ShopPost();
-            shopPost.setShopName(postBeans.get(i).getShopName());
-            shopPost.setGame(postBeans.get(i).getGame());
-            shopPost.setPrice(postBeans.get(i).getPrice());
-            shopPost.setImageFile(postBeans.get(i).getImageFile());
-
-            posts.add(shopPost);
-        }
-
-        //int column = 0;
-        //int row = 1;
-
-        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
-            signInButton.setVisible(false);
-            signInButton.isDisabled();
-        }
-
-        this.showGrid(posts);
-/*
         try {
-            for (int i = 0; i < posts.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(Main.class.getResource("/GamesMarket/shopItem.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemGraphicController itemController = fxmlLoader.getController();
-                itemController.setData(posts.get(i));
+            List<ShopPostBean> postBeans = shopController.retrieveShop();
 
-                if (column == 5) {
-                    column = 0;
-                    row++;
-                }
+            for (int i = 0; i < postBeans.size(); i++) {
+                ShopPost shopPost = new ShopPost();
+                shopPost.setShopName(postBeans.get(i).getShopName());
+                shopPost.setGame(postBeans.get(i).getGame());
+                shopPost.setPrice(postBeans.get(i).getPrice());
+                shopPost.setImageFile(postBeans.get(i).getImageFile());
 
-                grid.add(anchorPane, column++, row);
-
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(20));
-
+                posts.add(shopPost);
             }
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
 
- */
+            if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+                signInButton.setVisible(false);
+                signInButton.isDisabled();
+            }
+
+            this.showGrid(posts);
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        } catch (IOException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
     public void profileButtonPressed(ActionEvent event) {

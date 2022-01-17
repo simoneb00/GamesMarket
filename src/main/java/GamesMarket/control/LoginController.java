@@ -10,6 +10,7 @@ import GamesMarket.model.Shop;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class LoginController {
 
     List<String> attributes = new ArrayList<>();
 
-    public void validateFacebookLogin() {
+    public void validateFacebookLogin() throws SQLException, IOException{
         User user = User.getInstance();
         user.setLoggedIn();
         user.setUsername("facebook-user");
@@ -30,7 +31,7 @@ public class LoginController {
         user.setWishlist(UserDAO.retrieveWishlist());
     }
 
-    public void validateGoogleLogin() {
+    public void validateGoogleLogin() throws SQLException, IOException{
         User user = User.getInstance();
         user.setLoggedIn();
         user.setUsername("google-user");
@@ -42,7 +43,7 @@ public class LoginController {
         user.setWishlist(UserDAO.retrieveWishlist());
     }
 
-    public void validateLogin(LoginCredentialsBean loginCredentialsBean) throws NotLoggedInException{
+    public void validateLogin(LoginCredentialsBean loginCredentialsBean) throws NotLoggedInException, SQLException, IOException{
 
         String emailAddress = loginCredentialsBean.getEmailAddress();
         String password = loginCredentialsBean.getPassword();
@@ -62,7 +63,7 @@ public class LoginController {
 
     }
 
-    private void retrieveShopOwner(String email) {
+    private void retrieveShopOwner(String email) throws SQLException, IOException {
         ShopOwner shopOwner = ShopOwner.getInstance();
         shopOwner.setLoggedIn();
         attributes = ShopOwnerDAO.retrieveShopOwner(email); // retrieves shop owner's information in this order: [password, firstName, lastName]
@@ -87,7 +88,7 @@ public class LoginController {
     }
 
 
-    private void retrieveUser(String email) {
+    private void retrieveUser(String email) throws SQLException, IOException{
         User user = User.getInstance();
         user.setLoggedIn();
         attributes = UserDAO.retrieveUser(email); // retrieves user's information in this order : [username, password, firstName, lastName]

@@ -4,52 +4,49 @@ import GamesMarket.DBConnection.DatabaseConnection;
 import GamesMarket.model.Comment;
 import GamesMarket.model.Post;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDAO {
 
-    public static List<Comment> retrieveComments(Post post) {
+    public static List<Comment> retrieveComments(Post post) throws SQLException{
 
         List<Comment> comments = new ArrayList<>();
 
         String username = post.getUsername();
         String text = post.getText();
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         Connection connection = null;
-        String retrieveComments = "select commUsername, comment from comments where username ='" + username + "' and text = '" + text + "';";
+        String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
 
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(retrieveComments);
 
-            while (resultSet.next()) {
-                Comment comment = new Comment();
-                comment.setUsername(resultSet.getString("commUsername"));
-                comment.setText(resultSet.getString("comment"));
-                comments.add(comment);
-            }
+        connection = DatabaseConnection.getInstance().getConnection();
+        preparedStatement = connection.prepareStatement(retrieveComments);
+        preparedStatement.setString(1, post.getUsername());
+        preparedStatement.setString(2, post.getText());
+        ResultSet resultSet = preparedStatement.executeQuery();
 
-            resultSet.close();
-            if (statement != null)
-                statement.close();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            Comment comment = new Comment();
+            comment.setUsername(resultSet.getString("commUsername"));
+            comment.setText(resultSet.getString("comment"));
+            comments.add(comment);
         }
+
+        resultSet.close();
+        if (preparedStatement != null)
+            preparedStatement.close();
+
+
 
         return comments;
     }
 
 
-    public static void saveComment(Comment comment, Post post) {
+    public static void saveComment(Comment comment, Post post) throws SQLException{
 
         String commUsername = comment.getUsername();
         String comm = comment.getText();
@@ -57,42 +54,41 @@ public class CommentDAO {
         String text = post.getText();
 
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
 
-        String saveComment = "insert into comments (username, text, commUsername, comment) values ('" + username + "', '" + text + "', '" + commUsername + "', '" + comm + "');";
+        String saveComment = "insert into comments (username, text, commUsername, comment) values (?, ?, ?, ?);";
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(saveComment);
+        connection = DatabaseConnection.getInstance().getConnection();
+        preparedStatement = connection.prepareStatement(saveComment);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, text);
+        preparedStatement.setString(3, commUsername);
+        preparedStatement.setString(4, comm);
+        preparedStatement.execute();
 
-            if (statement != null)
-                statement.close();
+        if (preparedStatement != null)
+            preparedStatement.close();
 
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static void delete(Post post) {
+    public static void delete(Post post) throws SQLException{
         String username = post.getUsername();
         String text = post.getText();
 
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
 
-        String delete = "delete from comments where username = '" + username + "' and text = '" + text + "';";
+        String delete = "delete from comments where username = ? and text = ?;";
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(delete);
 
-            if (statement != null)
-                statement.close();
+        connection = DatabaseConnection.getInstance().getConnection();
+        preparedStatement = connection.prepareStatement(delete);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, text);
+        preparedStatement.execute();
 
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
+        if (preparedStatement != null)
+            preparedStatement.close();
+
     }
 }

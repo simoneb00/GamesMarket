@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.exchange;
 
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.exchange.ContactWindowController;
+import GamesMarket.exceptions.ErrorMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -42,16 +44,20 @@ public class ContactWindowGraphicController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ContactWindowController contactWindowController = new ContactWindowController();
-        UserBean userBean = new UserBean();
-        userBean.setUsername(username);
-        UserBean userBean1 = contactWindowController.retrieveCI(userBean);
+        try {
+            ContactWindowController contactWindowController = new ContactWindowController();
+            UserBean userBean = new UserBean();
+            userBean.setUsername(username);
+            UserBean userBean1 = contactWindowController.retrieveCI(userBean);
 
-        contactUsername.setText(username);
-        email.setText(userBean1.getEmail());
-        tel.setText(userBean1.getTel());
-        address.setText(userBean1.getAddress());
-        country.setText(userBean1.getCountry());
+            contactUsername.setText(username);
+            email.setText(userBean1.getEmail());
+            tel.setText(userBean1.getTel());
+            address.setText(userBean1.getAddress());
+            country.setText(userBean1.getCountry());
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
 
     }
 }

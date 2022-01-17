@@ -53,4 +53,25 @@ module login.loginwindow {
     opens GamesMarket.graphicControl.signup to javafx.fxml;
     exports GamesMarket.graphicControl.login;
     opens GamesMarket.graphicControl.login to javafx.fxml;
+
+    opens GamesMarket.graphicControl.mobile to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile;
+    opens GamesMarket.graphicControl.mobile.home to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.home;
+    opens GamesMarket.graphicControl.mobile.login to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.login;
+    opens GamesMarket.graphicControl.mobile.profile to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.profile;
+    opens GamesMarket.exceptions to javafx.fxml;
+    exports GamesMarket.exceptions;
+    opens GamesMarket.graphicControl.mobile.forum to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.forum;
+    opens GamesMarket.graphicControl.mobile.shop to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.shop;
+    opens GamesMarket.graphicControl.mobile.exchange to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.exchange;
+    opens GamesMarket.graphicControl.mobile.yourShop to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.yourShop;
+    opens GamesMarket.graphicControl.mobile.signup to javafx.fxml;
+    exports GamesMarket.graphicControl.mobile.signup;
 }

@@ -5,16 +5,14 @@ import GamesMarket.model.Post;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostDAO {
 
-    public static List<Post> retrievePosts() {
+    public static List<Post> retrievePosts() throws SQLException{
 
         List<Post> posts = new ArrayList<>();
 
@@ -23,50 +21,45 @@ public class PostDAO {
         String retrievePosts = "select * from posts;";
 
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(retrievePosts);
 
-            while (result.next()) {
-                Post post = new Post(
-                        result.getString("username"),
-                        result.getString("text")
-                );
+        connection = DatabaseConnection.getInstance().getConnection();
+        statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(retrievePosts);
 
-                posts.add(post);
-            }
+        while (result.next()) {
+            Post post = new Post(
+                    result.getString("username"),
+                    result.getString("text")
+            );
 
-            result.close();
-            if (statement != null)
-                statement.close();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
+            posts.add(post);
         }
+
+        result.close();
+        if (statement != null)
+            statement.close();
 
         return posts;
     }
 
-    public static void savePost(Post post) {
-        Statement statement = null;
+    public static void savePost(Post post) throws SQLException{
+        PreparedStatement preparedStatement = null;
         Connection connection = null;
-        String savePost = "insert into posts (username, text) values ( '" + post.getUsername() + "' , '" + post.getText() + "');";
+        String savePost = "insert into posts (username, text) values (?, ?);";
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            statement.execute(savePost);
 
-            if (statement != null)
-                statement.close();
+        connection = DatabaseConnection.getInstance().getConnection();
+        preparedStatement = connection.prepareStatement(savePost);
+        preparedStatement.setString(1, post.getUsername());
+        preparedStatement.setString(2, post.getText());
 
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
+        preparedStatement.execute();
+
+        if (preparedStatement != null)
+            preparedStatement.close();
     }
 
-    public static List<Post> retrieveUserPosts() {
+    public static List<Post> retrieveUserPosts() throws SQLException{
 
         List<Post> posts = new ArrayList<>();
         String username = null;
@@ -79,44 +72,40 @@ public class PostDAO {
         Connection connection = null;
         String retrieveUserPosts = "select text from posts where username = '" + username + "';";
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(retrieveUserPosts);
 
-            while (resultSet.next()) {
-                Post post = new Post(username, resultSet.getString("text"));
-                posts.add(post);
-            }
+        connection = DatabaseConnection.getInstance().getConnection();
+        statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(retrieveUserPosts);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        while (resultSet.next()) {
+            Post post = new Post(username, resultSet.getString("text"));
+            posts.add(post);
         }
 
         return posts;
 
     }
 
-    public static void delete(Post post) {
+    public static void delete(Post post) throws SQLException{
 
         String username = post.getUsername();
         String text = post.getText();
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         Connection connection = null;
-        String deletePost = "delete from posts where username = '" + username + "' and text = '" + text + "';";
+        String deletePost = "delete from posts where username = ? and text = ?;";
 
-        try {
-            connection = DatabaseConnection.getInstance().getConnection();
-            statement = connection.createStatement();
 
-            statement.execute(deletePost);
+        connection = DatabaseConnection.getInstance().getConnection();
+        preparedStatement = connection.prepareStatement(deletePost);
 
-            if (statement != null)
-                statement.close();
+        preparedStatement.setString(1, post.getUsername());
+        preparedStatement.setString(2, post.getText());
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        preparedStatement.execute();
+
+        if (preparedStatement != null)
+            preparedStatement.close();
+
     }
 }

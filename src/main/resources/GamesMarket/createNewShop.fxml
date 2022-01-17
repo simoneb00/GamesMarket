@@ -68,7 +68,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="500.0">
                <children>
-                  <Label fx:id="label" text="Warning: these informations cannot be changed in the future" />
+                  <Label fx:id="label" text="Warning: these informations cannot be changed in the future!" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="64.0" prefWidth="500.0">

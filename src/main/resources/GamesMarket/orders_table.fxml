@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -31,18 +32,19 @@
             </HBox>
             <HBox prefHeight="513.0" prefWidth="1000.0">
                <children>
-                  <TableView fx:id="table" prefHeight="479.0" prefWidth="1181.0" style="-fx-background-color: #EFEFEF;">
+                  <TableView fx:id="table" onMouseClicked="#selectOrder" prefHeight="479.0" prefWidth="1258.0" style="-fx-background-color: #EFEFEF;">
                      <columns>
-                        <TableColumn fx:id="gameCol" prefWidth="154.0" text="Game" />
-                        <TableColumn fx:id="platformCol" prefWidth="124.0" text="Platform" />
-                        <TableColumn fx:id="priceCol" prefWidth="49.0" text="Price" />
-                        <TableColumn fx:id="nameCol" prefWidth="136.0" text="Name" />
-                        <TableColumn fx:id="addressCol" minWidth="0.0" prefWidth="141.0" text="Address" />
-                        <TableColumn fx:id="emailCol" minWidth="20.0" prefWidth="144.0" text="Email" />
-                        <TableColumn fx:id="cityCol" prefWidth="98.0" text="City" />
-                        <TableColumn fx:id="telCol" prefWidth="88.0" text="Telephone" />
-                        <TableColumn fx:id="paymentCol" minWidth="20.0" prefWidth="177.0" text="Payment Method" />
-                        <TableColumn fx:id="statusCol" minWidth="20.0" prefWidth="69.0" text="Status" />
+                        <TableColumn fx:id="idCol" minWidth="43.0" prefWidth="43.0" text="ID" />
+                        <TableColumn fx:id="gameCol" minWidth="100.0" prefWidth="145.0" text="Game" />
+                        <TableColumn fx:id="platformCol" minWidth="70.0" prefWidth="101.0" text="Platform" />
+                        <TableColumn fx:id="priceCol" minWidth="50.0" text="Price" />
+                        <TableColumn fx:id="nameCol" minWidth="140.0" prefWidth="174.0" text="Name" />
+                        <TableColumn fx:id="addressCol" minWidth="100.0" prefWidth="171.0" text="Address" />
+                        <TableColumn fx:id="emailCol" minWidth="80.0" prefWidth="131.0" text="Email" />
+                        <TableColumn fx:id="cityCol" minWidth="50.0" prefWidth="95.0" text="City" />
+                        <TableColumn fx:id="telCol" minWidth="40.0" prefWidth="82.0" text="Telephone" />
+                        <TableColumn fx:id="paymentCol" minWidth="40.0" prefWidth="107.0" text="Payment Method" />
+                        <TableColumn fx:id="statusCol" minWidth="50.0" prefWidth="72.0" text="Status" />
                      </columns>
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" />
@@ -62,7 +64,21 @@
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="349.0" />
-                  <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="313.0" />
+                  <VBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="313.0">
+                     <children>
+                        <Button fx:id="markButton" disable="true" mnemonicParsing="false" onAction="#markButtonPressed" prefHeight="34.0" prefWidth="244.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Mark as Shipped" textFill="WHITE" visible="false">
+                           <VBox.margin>
+                              <Insets right="40.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="mouse-moved" />
+                              <String fx:value="mouse-pressed" />
+                           </styleClass>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children></VBox>
                </children>
             </HBox>
          </children>

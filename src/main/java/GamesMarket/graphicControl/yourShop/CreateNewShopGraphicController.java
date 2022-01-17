@@ -2,12 +2,15 @@ package GamesMarket.graphicControl.yourShop;
 
 import GamesMarket.bean.ShopBean;
 import GamesMarket.control.YourShopController;
+import GamesMarket.exceptions.ErrorMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 
 public class CreateNewShopGraphicController {
@@ -30,18 +33,22 @@ public class CreateNewShopGraphicController {
     }
 
     public void createButtonPressed(ActionEvent event) {
-        if (nameTF.getText().isEmpty())
-            label.setText("Invalid name. Try again.");
-        else {
-            ShopBean shopBean = new ShopBean();
-            shopBean.setName(nameTF.getText());
-            shopBean.setAddress(addressTF.getText());
-            shopBean.setCity(cityTF.getText());
-            shopBean.setCountry(countryTF.getText());
-            YourShopController yourShopController = new YourShopController();
-            yourShopController.createNewShop(shopBean);
-            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage.close();
+        try {
+            if (nameTF.getText().isEmpty())
+                label.setText("Invalid name. Try again.");
+            else {
+                ShopBean shopBean = new ShopBean();
+                shopBean.setName(nameTF.getText());
+                shopBean.setAddress(addressTF.getText());
+                shopBean.setCity(cityTF.getText());
+                shopBean.setCountry(countryTF.getText());
+                YourShopController yourShopController = new YourShopController();
+                yourShopController.createNewShop(shopBean);
+                Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                stage.close();
+            }
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 }

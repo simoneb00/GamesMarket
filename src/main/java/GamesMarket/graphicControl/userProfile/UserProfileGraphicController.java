@@ -3,6 +3,7 @@ package GamesMarket.graphicControl.userProfile;
 import GamesMarket.bean.GameBean;
 import GamesMarket.bean.UserBean;
 import GamesMarket.control.profile.UserProfileController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.User;
@@ -29,6 +30,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -79,18 +81,26 @@ public class UserProfileGraphicController extends NavigationButtons implements I
             photoLabel.setText("");
         } catch (RuntimeException e) {
             photoLabel.setText("No photo selected.");
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        } catch (FileNotFoundException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 
     public void updateCI() {
-        UserBean userBean = new UserBean();
-        userBean.setEmail(email.getText());
-        userBean.setTel(tel.getText());
-        userBean.setAddress(address.getText());
-        userBean.setCountry(country.getText());
+        try {
+            UserBean userBean = new UserBean();
+            userBean.setEmail(email.getText());
+            userBean.setTel(tel.getText());
+            userBean.setAddress(address.getText());
+            userBean.setCountry(country.getText());
 
-        userProfileController.updateCI(userBean);
-        this.setCI();
+            userProfileController.updateCI(userBean);
+            this.setCI();
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
 
@@ -127,9 +137,13 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     }
 
     public void saveBio() {
-        UserBean userBean = new UserBean();
-        userBean.setBio(bioTF.getText());
-        userProfileController.saveBio(userBean);
+        try {
+            UserBean userBean = new UserBean();
+            userBean.setBio(bioTF.getText());
+            userProfileController.saveBio(userBean);
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
     public void addToTradelist() {
@@ -249,28 +263,36 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     }
 
     public void removeFromWL() {
-        GameBean gameBean = new GameBean();
-        gameBean.setPlatform(selectedPlatform);
-        gameBean.setName(selectedGame);
+        try {
+            GameBean gameBean = new GameBean();
+            gameBean.setPlatform(selectedPlatform);
+            gameBean.setName(selectedGame);
 
-        userProfileController.removeFromWishlist(gameBean);
+            userProfileController.removeFromWishlist(gameBean);
 
-        removeSelectedWL.setVisible(false);
-        removeSelectedWL.setDisable(true);
+            removeSelectedWL.setVisible(false);
+            removeSelectedWL.setDisable(true);
 
-        refresh();
+            refresh();
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
     public void removeFromTL() {
-        GameBean gameBean = new GameBean();
-        gameBean.setPlatform(selectedPlatform);
-        gameBean.setName(selectedGame);
+        try {
+            GameBean gameBean = new GameBean();
+            gameBean.setPlatform(selectedPlatform);
+            gameBean.setName(selectedGame);
 
-        userProfileController.removeFromTradelist(gameBean);
+            userProfileController.removeFromTradelist(gameBean);
 
-        removeSelectedTL.setDisable(true);
-        removeSelectedTL.setVisible(false);
+            removeSelectedTL.setDisable(true);
+            removeSelectedTL.setVisible(false);
 
-        refresh();
+            refresh();
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 }

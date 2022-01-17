@@ -52,3 +52,16 @@
 .invisible{
     -fx-background-color: #00000000;
 }
+
+.mobile_mouse_pressed:pressed{
+    -fx-background-color: #0C1114;
+}
+
+.choice-box .context-menu {
+    -fx-pref-height: 300;
+    -fx-pref-width: 200;
+}
+
+.payment_choice_box .context-menu {
+    -fx-pref-height: 150;
+}

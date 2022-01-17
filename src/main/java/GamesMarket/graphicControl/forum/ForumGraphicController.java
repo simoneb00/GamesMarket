@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.forum;
 
 import GamesMarket.bean.PostBean;
 import GamesMarket.control.ForumController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.graphicControl.navigation.NavigationButtons;
 import GamesMarket.main.Main;
 import GamesMarket.model.Post;
@@ -25,6 +26,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -62,7 +64,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         }
 
         oldposts = this.retrievePosts();
-        this.retrieveUserPosts();
+        userOldPosts = this.retrieveUserPosts();
 
         try {
             for (int i = 0; i < oldposts.size(); i++) {
@@ -108,35 +110,46 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     }
 
     public List<Post> retrievePosts() {
-        List<PostBean> beans = forumController.retrievePosts();
+
         List<Post> posts = new ArrayList<>();
 
-        for (int i = 0; i < beans.size(); i++) {
-            Post post = new Post(
-                    beans.get(i).getUsername(),
-                    beans.get(i).getText()
-            );
+        try {
+            List<PostBean> beans = forumController.retrievePosts();
 
-            posts.add(post);
+            for (int i = 0; i < beans.size(); i++) {
+                Post post = new Post(
+                        beans.get(i).getUsername(),
+                        beans.get(i).getText()
+                );
+
+                posts.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return posts;
     }
 
-    public void retrieveUserPosts() {
-        List<PostBean> beans = forumController.retrieveUserPosts();
+    public List<Post> retrieveUserPosts() {
         List<Post> posts = new ArrayList<>();
 
-        for (int i = 0; i < beans.size(); i++) {
-            Post post = new Post(
-                    beans.get(i).getUsername(),
-                    beans.get(i).getText()
-            );
+        try {
+            List<PostBean> beans = forumController.retrieveUserPosts();
+            for (int i = 0; i < beans.size(); i++) {
+                Post post = new Post(
+                        beans.get(i).getUsername(),
+                        beans.get(i).getText()
+                );
 
-            posts.add(post);
+                posts.add(post);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        userOldPosts = posts;
+        return posts;
     }
 
     public void addPostToGrid(Post post) {
@@ -188,24 +201,28 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
 
     public void postButton() {
-        String username;
-        String text = postText.getText();
+        try {
+            String username;
+            String text = postText.getText();
 
-        if (User.getInstance().isLoggedIn()) {
-            username = User.getInstance().getUsername();
-        } else if (ShopOwner.getInstance().isLoggedIn()) {
-            username = ShopOwner.getInstance().getEmail();
-        } else
-            username = "unknown";
+            if (User.getInstance().isLoggedIn()) {
+                username = User.getInstance().getUsername();
+            } else if (ShopOwner.getInstance().isLoggedIn()) {
+                username = ShopOwner.getInstance().getEmail();
+            } else
+                username = "unknown";
 
-        Post post = new Post(username, text);
+            Post post = new Post(username, text);
 
-        addPostToGrid(post);
-        addPostToUserGrid(post);
+            addPostToGrid(post);
+            addPostToUserGrid(post);
 
-        PostBean postBean = new PostBean(username, text);
+            PostBean postBean = new PostBean(username, text);
 
-        forumController.savePost(postBean);
+            forumController.savePost(postBean);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void signInButtonPressed() {
@@ -229,13 +246,11 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
                 signInButton.setVisible(false);
                 signInButton.isDisabled();
+
+                postsGrid.getChildren().clear();
+                this.initialize(null, null);
             }
 
-            this.retrieveUserPosts();
-
-            for (int i = 0; i < userOldPosts.size(); i++) {
-                this.addPostToUserGrid(userOldPosts.get(i));
-            }
 
         } catch (Exception e) {
             e.printStackTrace();

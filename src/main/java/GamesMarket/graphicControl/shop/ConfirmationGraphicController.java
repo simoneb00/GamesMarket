@@ -2,6 +2,7 @@ package GamesMarket.graphicControl.shop;
 
 import GamesMarket.bean.OrderBean;
 import GamesMarket.control.ShopController;
+import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ConfirmationGraphicController implements Initializable {
@@ -80,9 +82,13 @@ public class ConfirmationGraphicController implements Initializable {
     }
 
     private void saveOrder() {
-        OrderBean orderBean = new OrderBean(vendor, platform, game, price, buyerName, buyerAddress, buyerCity, buyerTel, paymentMethod, User.getInstance().getUsername(), buyerEmail, "pending");
-        ShopController shopController = new ShopController();
-        shopController.saveOrder(orderBean);
+        try {
+            OrderBean orderBean = new OrderBean(0, vendor, platform, game, price, buyerName, buyerAddress, buyerCity, buyerTel, paymentMethod, User.getInstance().getUsername(), buyerEmail, "pending");
+            ShopController shopController = new ShopController();
+            shopController.saveOrder(orderBean);
+        } catch (SQLException e) {
+            ErrorMessage.displayErrorMessage();
+        }
     }
 
     @Override
