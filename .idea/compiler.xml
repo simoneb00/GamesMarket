@@ -16,7 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="GamesMarket" options="--add-exports java.security.jgss/sun.security.krb5=login.loginwindow" />
+      <module name="GamesMarket" options="" />
     </option>
   </component>
 </project>
