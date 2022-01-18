@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.home.UserHomepageGraphicController">
+   <children>
+      <BorderPane layoutX="531.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="810.0" prefWidth="339.0" style="-fx-background-color: #88c5cc;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="283.0" prefWidth="339.0">
+                     <children>
+                        <ImageView fitHeight="198.0" fitWidth="204.0" layoutX="68.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/GamesMarketLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" style="-fx-background-color: #5A8388;" stylesheets="@../../java/GamesMarket/css/style.css" text="Home" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/home_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onAction="#shopButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Shop" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/shopping_bag_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-pressed" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" onAction="#exchangeButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Exchange" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/synchronize_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" onAction="#forumButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Forum" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/chat_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/GamesMarket/css/style.css" text="Profile" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/customer_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Pane prefHeight="133.0" prefWidth="339.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="welcomeLabel" layoutX="93.0" layoutY="116.0" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonPressed" prefHeight="53.0" prefWidth="150.0" style="-fx-border-color: white; -fx-border-radius: 30;" stylesheets="@../../java/GamesMarket/css/style.css" text="Sign In" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="signin-mouse-moved" />
+                              <String fx:value="signin-mouse-pressed" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox minHeight="-Infinity" prefHeight="450.0" prefWidth="976.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="430.0" prefWidth="336.0" style="-fx-background-color: #263740;" styleClass="shop-card" stylesheets="@../../java/GamesMarket/css/style.css" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="323.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                                 <image>
+                                    <Image url="@../images/Senza titolo1.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER" prefHeight="30.0" prefWidth="334.0">
+                                 <children>
+                                    <Label text="Buy your favorite games" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="79.0" prefWidth="334.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#shopButton" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Shop now" textFill="WHITE">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="30.0" layoutY="30.0" prefHeight="450.0" prefWidth="336.0" style="-fx-background-color: #82345B;" styleClass="shop-card" stylesheets="@../../java/GamesMarket/css/style.css" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="10.0" top="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="304.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/photo-minipc.jpg" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER" prefHeight="43.0" prefWidth="266.0">
+                                 <children>
+                                    <Label prefHeight="36.0" prefWidth="259.0" text="Exchange your old videogames with other users" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="89.0" prefWidth="266.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#exchangeButtonPressed" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Exchange" textFill="WHITE">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" layoutX="366.0" layoutY="10.0" prefHeight="450.0" prefWidth="336.0" style="-fx-background-color: #1A0E10;" styleClass="shop-card" stylesheets="@../../java/GamesMarket/css/style.css" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="10.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="309.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                                 <image>
+                                    <Image url="@../images/photo-1530811761207-8d9d22f0a141.jpg" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER" prefHeight="35.0" prefWidth="290.0">
+                                 <children>
+                                    <Label text="Discuss about videogames" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="73.0" prefWidth="297.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#forumButton" prefHeight="28.0" prefWidth="159.0" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Forum" textFill="WHITE">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="193.0" prefWidth="976.0">
+                     <children>
+                        <HBox prefHeight="146.0" prefWidth="936.0" styleClass="create-shop-card" stylesheets="@../../java/GamesMarket/css/style.css" HBox.hgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="140.0" prefWidth="676.0" stylesheets="@../../java/GamesMarket/css/style.css">
+                                 <children>
+                                    <Label text="Do you have a videogames shop?" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_RIGHT" prefHeight="135.0" prefWidth="538.0">
+                                 <children>
+                                    <Label prefHeight="35.0" prefWidth="262.0" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Create your online Shop" textFill="WHITE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets right="30.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children></HBox>
+                  <HBox prefHeight="151.0" prefWidth="936.0" styleClass="create-shop-card" stylesheets="@../../java/GamesMarket/css/style.css">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="140.0" prefWidth="676.0">
+                           <children>
+                              <Label text="Update your Tradelist to exchange your games" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="135.0" prefWidth="538.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#profileButton" prefHeight="25.0" prefWidth="404.0" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/GamesMarket/css/style.css" text="Go to Profile" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

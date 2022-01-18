@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.mobile.yourShop.YourGoodsGraphicController">
+   <children>
+      <VBox alignment="BOTTOM_CENTER" layoutX="118.0" layoutY="214.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="548.0" prefWidth="335.0">
+               <children>
+                  <VBox prefHeight="548.0" prefWidth="497.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="73.0" prefWidth="335.0">
+                           <children>
+                              <AnchorPane prefHeight="129.0" prefWidth="358.0">
+                                 <children>
+                                    <ImageView fitHeight="73.0" fitWidth="78.0" layoutX="132.0" layoutY="5.0" opacity="0.17" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../images/store1.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="95.0" layoutY="20.0" text="Your Goods">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="472.0" prefWidth="335.0">
+                           <children>
+                              <AnchorPane prefHeight="446.0" prefWidth="400.0">
+                                 <children>
+                                    <TableView fx:id="table" layoutX="2.0" layoutY="36.0" onMouseClicked="#mouseClicked" prefHeight="335.0" prefWidth="275.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+                                      <columns>
+                                        <TableColumn fx:id="gameCol" prefWidth="120.0" text="Game" />
+                                        <TableColumn fx:id="platformCol" prefWidth="100.0" text="Platform" />
+                                          <TableColumn fx:id="priceCol" prefWidth="54.0" text="Price" />
+                                      </columns>
+                                    </TableView>
+                                    <Button layoutX="30.0" layoutY="393.0" mnemonicParsing="false" onAction="#addNewGame" style="-fx-background-color: #24353D;" text="Add new game" textFill="WHITE" />
+                                    <Button fx:id="removeSelectedButton" disable="true" layoutX="199.0" layoutY="393.0" mnemonicParsing="false" onAction="#removeSelected" style="-fx-background-color: #24353D;" text="Remove selected" textFill="WHITE" visible="false" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="52.0" prefWidth="335.0" style="-fx-background-color: #24353D;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#shopOwnerHomeButton" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #24353D;" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/homepage.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#yourShopButton" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #24353D;" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/store.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="154.0" layoutY="10.0" mnemonicParsing="false" onAction="#shopOwnerForumButton" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #24353D;" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/chat-bubble.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

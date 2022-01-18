@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GamesMarket.graphicControl.mobile.profile.GamesTableGraphicController">
+   <children>
+      <VBox alignment="BOTTOM_CENTER" layoutX="68.0" layoutY="140.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="548.0" prefWidth="335.0">
+               <children>
+                  <VBox prefHeight="548.0" prefWidth="431.0">
+                     <children>
+                        <HBox prefHeight="36.0" prefWidth="335.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="36.0" prefWidth="38.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#profileButton" prefHeight="32.0" prefWidth="20.0" style="-fx-background-color: #00000000;">
+                                       <graphic>
+                                          <ImageView fitHeight="23.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/back.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="462.0" prefWidth="335.0">
+                           <children>
+                              <TableView fx:id="table" onMouseClicked="#mouseClicked" prefHeight="462.0" prefWidth="343.0">
+                                <columns>
+                                  <TableColumn fx:id="gameCol" prefWidth="202.0" text="Game" />
+                                  <TableColumn fx:id="platformCol" minWidth="0.0" prefWidth="112.0" text="Platform" />
+                                </columns>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </TableView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="61.0" prefWidth="335.0">
+                           <children>
+                              <Button fx:id="tradelistButton" disable="true" mnemonicParsing="false" onAction="#addToTradelist" style="-fx-background-color: #24353D;" text="Add to Tradelist" textFill="WHITE" visible="false">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="wishlistButton" disable="true" layoutX="238.0" layoutY="27.0" mnemonicParsing="false" onAction="#addToWishlist" style="-fx-background-color: #24353D;" text="Add to Wishlist" textFill="WHITE" visible="false">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="52.0" prefWidth="335.0" style="-fx-background-color: #24353D;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#homeButton" prefHeight="60.0" prefWidth="72.0" style="-fx-background-color: #24353D;">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/homepage.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#shopButton" prefHeight="60.0" prefWidth="72.0" style="-fx-background-color: #24353D;">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/store.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="82.0" layoutY="10.0" mnemonicParsing="false" onAction="#exchangeButton" prefHeight="60.0" prefWidth="72.0" style="-fx-background-color: #24353D;">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/exchange.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="154.0" layoutY="10.0" mnemonicParsing="false" onAction="#forumButton" prefHeight="60.0" prefWidth="72.0" style="-fx-background-color: #24353D;">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/chat-bubble.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="226.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileButton" prefHeight="60.0" prefWidth="72.0" style="-fx-background-color: #24353D;">
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
