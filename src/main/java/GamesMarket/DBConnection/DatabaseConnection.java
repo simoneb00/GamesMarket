@@ -15,7 +15,7 @@ public class DatabaseConnection {
         return instance;
     }
 
-    public Connection getConnection(){
+    public static Connection getConnection(){
 
         if (databaseLink == null) {
             String databaseUser = System.getenv("USERNAME");
