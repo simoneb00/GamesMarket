@@ -1,6 +1,5 @@
 package gamesmarket.bean;
 
-import gamesmarket.model.Comment;
 
 public class CommentBean {
 

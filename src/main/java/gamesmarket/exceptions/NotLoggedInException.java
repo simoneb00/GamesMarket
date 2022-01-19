@@ -1,4 +1,4 @@
 package gamesmarket.exceptions;
 
-public class NotLoggedInException extends Throwable{
+public class NotLoggedInException extends Exception{
 }

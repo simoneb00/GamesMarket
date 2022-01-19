@@ -1,4 +1,4 @@
 package gamesmarket.exceptions;
 
-public class DuplicatedUsernameException extends Throwable{
+public class DuplicatedUsernameException extends Exception{
 }
