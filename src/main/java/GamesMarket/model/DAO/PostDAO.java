@@ -1,6 +1,6 @@
 package GamesMarket.model.DAO;
 
-import GamesMarket.DBConnection.DatabaseConnection;
+import GamesMarket.dbconnection.DatabaseConnection;
 import GamesMarket.model.Post;
 import GamesMarket.model.ShopOwner;
 import GamesMarket.model.User;

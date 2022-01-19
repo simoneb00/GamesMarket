@@ -1,20 +1,12 @@
-package GamesMarket.DBConnection;
+package GamesMarket.dbconnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DatabaseConnection {
     private static Connection databaseLink = null;
-    private static DatabaseConnection instance = null;
-/*
-    public static DatabaseConnection getInstance() {
-        if (DatabaseConnection.instance == null) {
-            DatabaseConnection.instance = new DatabaseConnection();
-        }
 
-        return instance;
-    }
-*/
+    private DatabaseConnection() {}
 
     public static Connection getConnection(){
 

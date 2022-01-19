@@ -1,6 +1,6 @@
 package GamesMarket.model.DAO;
 
-import GamesMarket.DBConnection.DatabaseConnection;
+import GamesMarket.dbconnection.DatabaseConnection;
 import GamesMarket.exceptions.ErrorMessage;
 import GamesMarket.model.ExchangePost;
 import GamesMarket.model.Game;

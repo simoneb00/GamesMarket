@@ -1,6 +1,6 @@
 package GamesMarket.model.DAO;
 
-import GamesMarket.DBConnection.DatabaseConnection;
+import GamesMarket.dbconnection.DatabaseConnection;
 import GamesMarket.model.Comment;
 import GamesMarket.model.Post;
 
