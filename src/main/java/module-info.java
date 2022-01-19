@@ -14,64 +14,64 @@ module login.loginwindow {
     requires javafx.graphics;
     requires java.security.jgss;
 
-    opens GamesMarket.control to javafx.fxml;
-    exports GamesMarket.control;
+    opens gamesmarket.control to javafx.fxml;
+    exports gamesmarket.control;
 
-    opens GamesMarket.bean to javafx.fxml;
-    exports GamesMarket.bean;
+    opens gamesmarket.bean to javafx.fxml;
+    exports gamesmarket.bean;
 
-    opens GamesMarket.graphicControl to javafx.fxml;
-    exports GamesMarket.graphicControl;
+    opens gamesmarket.graphic_control to javafx.fxml;
+    exports gamesmarket.graphic_control;
 
-    opens GamesMarket.graphicControl.shop to javafx.fxml;
-    exports GamesMarket.graphicControl.shop;
+    opens gamesmarket.graphic_control.shop to javafx.fxml;
+    exports gamesmarket.graphic_control.shop;
 
-    exports GamesMarket.main;
-    opens GamesMarket.main to javafx.fxml;
+    exports gamesmarket.main;
+    opens gamesmarket.main to javafx.fxml;
 
-    opens GamesMarket.graphicControl.forum to javafx.fxml;
-    exports GamesMarket.graphicControl.forum;
+    opens gamesmarket.graphic_control.forum to javafx.fxml;
+    exports gamesmarket.graphic_control.forum;
 
-    opens GamesMarket.graphicControl.exchange to javafx.fxml;
-    exports GamesMarket.graphicControl.exchange;
-    exports GamesMarket.graphicControl.userProfile;
-    opens GamesMarket.graphicControl.userProfile to javafx.fxml;
-    exports GamesMarket.control.profile;
-    opens GamesMarket.control.profile to javafx.fxml;
+    opens gamesmarket.graphic_control.exchange to javafx.fxml;
+    exports gamesmarket.graphic_control.exchange;
+    exports gamesmarket.graphic_control.userProfile;
+    opens gamesmarket.graphic_control.userProfile to javafx.fxml;
+    exports gamesmarket.control.profile;
+    opens gamesmarket.control.profile to javafx.fxml;
 
-    opens GamesMarket.model to javafx.base;
-    exports GamesMarket.control.exchange;
-    opens GamesMarket.control.exchange to javafx.fxml;
-    exports GamesMarket.graphicControl.home;
-    opens GamesMarket.graphicControl.home to javafx.fxml;
-    exports GamesMarket.graphicControl.navigation;
-    opens GamesMarket.graphicControl.navigation to javafx.fxml;
+    opens gamesmarket.model to javafx.base;
+    exports gamesmarket.control.exchange;
+    opens gamesmarket.control.exchange to javafx.fxml;
+    exports gamesmarket.graphic_control.home;
+    opens gamesmarket.graphic_control.home to javafx.fxml;
+    exports gamesmarket.graphic_control.navigation;
+    opens gamesmarket.graphic_control.navigation to javafx.fxml;
 
-    exports GamesMarket.graphicControl.yourShop to javafx.fxml;
-    opens GamesMarket.graphicControl.yourShop;
-    exports GamesMarket.graphicControl.signup;
-    opens GamesMarket.graphicControl.signup to javafx.fxml;
-    exports GamesMarket.graphicControl.login;
-    opens GamesMarket.graphicControl.login to javafx.fxml;
+    exports gamesmarket.graphic_control.yourShop to javafx.fxml;
+    opens gamesmarket.graphic_control.yourShop;
+    exports gamesmarket.graphic_control.signup;
+    opens gamesmarket.graphic_control.signup to javafx.fxml;
+    exports gamesmarket.graphic_control.login;
+    opens gamesmarket.graphic_control.login to javafx.fxml;
 
-    opens GamesMarket.graphicControl.mobile to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile;
-    opens GamesMarket.graphicControl.mobile.home to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.home;
-    opens GamesMarket.graphicControl.mobile.login to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.login;
-    opens GamesMarket.graphicControl.mobile.profile to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.profile;
-    opens GamesMarket.exceptions to javafx.fxml;
-    exports GamesMarket.exceptions;
-    opens GamesMarket.graphicControl.mobile.forum to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.forum;
-    opens GamesMarket.graphicControl.mobile.shop to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.shop;
-    opens GamesMarket.graphicControl.mobile.exchange to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.exchange;
-    opens GamesMarket.graphicControl.mobile.yourShop to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.yourShop;
-    opens GamesMarket.graphicControl.mobile.signup to javafx.fxml;
-    exports GamesMarket.graphicControl.mobile.signup;
+    opens gamesmarket.graphic_control.mobile to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile;
+    opens gamesmarket.graphic_control.mobile.home to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.home;
+    opens gamesmarket.graphic_control.mobile.login to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.login;
+    opens gamesmarket.graphic_control.mobile.profile to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.profile;
+    opens gamesmarket.exceptions to javafx.fxml;
+    exports gamesmarket.exceptions;
+    opens gamesmarket.graphic_control.mobile.forum to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.forum;
+    opens gamesmarket.graphic_control.mobile.shop to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.shop;
+    opens gamesmarket.graphic_control.mobile.exchange to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.exchange;
+    opens gamesmarket.graphic_control.mobile.yourShop to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.yourShop;
+    opens gamesmarket.graphic_control.mobile.signup to javafx.fxml;
+    exports gamesmarket.graphic_control.mobile.signup;
 }
