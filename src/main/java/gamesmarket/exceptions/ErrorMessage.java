@@ -13,6 +13,7 @@ import java.io.IOException;
 public class ErrorMessage {
 
     private static String s = "GamesMarket";
+    private static String imgPath = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png";
 
     public static void displayErrorMessage() {
         try {
@@ -20,10 +21,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/error.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -40,10 +38,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_image.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -59,10 +54,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_tradelist.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -78,10 +70,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_wishlist.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -97,10 +86,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_no_payment_selected.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -116,10 +102,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_invalid_price.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -135,10 +118,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_empty_price.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -154,10 +134,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_empty_game.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -173,10 +150,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_shop.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -192,10 +166,8 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/generic_error.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -211,10 +183,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_invalid_shop_name.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
@@ -230,10 +199,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/missing_information_message.fxml"));
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
+            stage.getIcons().add(new Image(imgPath));
             stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
