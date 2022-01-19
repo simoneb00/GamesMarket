@@ -15,6 +15,7 @@ public class DatabaseConnection {
         return instance;
     }
 */
+
     public static Connection getConnection(){
 
         if (databaseLink == null) {
