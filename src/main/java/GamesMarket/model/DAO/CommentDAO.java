@@ -20,7 +20,7 @@ public class CommentDAO {
 
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(retrieveComments);
         preparedStatement.setString(1, post.getUsername());
         preparedStatement.setString(2, post.getText());
@@ -54,7 +54,7 @@ public class CommentDAO {
 
         String saveComment = "insert into comments (username, text, commUsername, comment) values (?, ?, ?, ?);";
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(saveComment);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, text);
@@ -76,7 +76,7 @@ public class CommentDAO {
         String delete = "delete from comments where username = ? and text = ?;";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(delete);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, text);

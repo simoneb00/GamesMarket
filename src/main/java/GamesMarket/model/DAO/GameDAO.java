@@ -20,7 +20,7 @@ public class GameDAO {
         String retrieve = "select name, genre, description, platform, year from games;";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieve);
 
@@ -49,7 +49,7 @@ public class GameDAO {
         String retrieve = "select image from games where name = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();

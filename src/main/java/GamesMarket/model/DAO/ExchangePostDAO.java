@@ -44,7 +44,7 @@ public class ExchangePostDAO {
 
 
 
-            connection = DatabaseConnection.getInstance().getConnection();
+            connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             statement1 = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(retrieveGamesToReceive);

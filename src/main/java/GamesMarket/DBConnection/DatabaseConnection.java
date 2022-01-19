@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
     private static Connection databaseLink = null;
     private static DatabaseConnection instance = null;
-
+/*
     public static DatabaseConnection getInstance() {
         if (DatabaseConnection.instance == null) {
             DatabaseConnection.instance = new DatabaseConnection();
@@ -14,7 +14,7 @@ public class DatabaseConnection {
 
         return instance;
     }
-
+*/
     public static Connection getConnection(){
 
         if (databaseLink == null) {

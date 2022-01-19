@@ -20,7 +20,7 @@ public class PostDAO {
 
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(retrievePosts);
 
@@ -46,7 +46,7 @@ public class PostDAO {
         String savePost = "insert into posts (username, text) values (?, ?);";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(savePost);
         preparedStatement.setString(1, post.getUsername());
         preparedStatement.setString(2, post.getText());
@@ -70,7 +70,7 @@ public class PostDAO {
         String retrieveUserPosts = "select text from posts where username = '" + username + "';";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieveUserPosts);
 
@@ -90,7 +90,7 @@ public class PostDAO {
         String deletePost = "delete from posts where username = ? and text = ?;";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(deletePost);
 
         preparedStatement.setString(1, post.getUsername());

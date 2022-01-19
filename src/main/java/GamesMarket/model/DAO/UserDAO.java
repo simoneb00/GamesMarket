@@ -13,8 +13,7 @@ import java.util.List;
 public class UserDAO {
 
     public static void registerUser(String username, String email, String password, String firstName, String lastName) throws DuplicatedEmailException, DuplicatedUsernameException, SQLException {
-        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
-        Connection connection = databaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
 
         String register = "insert into user (username, password, firstname, lastname, email) values (" + "'" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + email + "')";
         String verifyEmail = "select count(1) from user where email = '" + email + "'";
@@ -58,7 +57,7 @@ public class UserDAO {
         String verifyLogin = "SELECT count(1) FROM user WHERE email = '" + email + "' AND password = '" + password + "'";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(verifyLogin);
 
@@ -83,7 +82,7 @@ public class UserDAO {
         String retrieveUser = "select username, password, firstName, lastName from user where email = '" + email + "'";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(retrieveUser);
 
@@ -111,7 +110,7 @@ public class UserDAO {
         String retrieveCI = "select email, tel, address, country from contactinf where username = '" + username + "';";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieveCI);
 
@@ -138,7 +137,7 @@ public class UserDAO {
         String updateCI = "insert into contactinf (username, email, tel, address, country) values ('" + User.getInstance().getUsername() + "', '" + email + "', '" + tel + "', '" + address + "', '" + country + "');";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
 
         statement.execute(deleteCI);
@@ -157,7 +156,7 @@ public class UserDAO {
         Statement statement = null;
         String retrieveBio = "select bio from bio where username = '" + User.getInstance().getUsername() + "';";
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieveBio);
 
@@ -181,7 +180,7 @@ public class UserDAO {
         String saveBio = "insert into bio (username, bio) values (?, ?);";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(deleteBio);
         preparedStatement.setString(1, User.getInstance().getUsername());
         if (bio != null)
@@ -204,7 +203,7 @@ public class UserDAO {
         FileInputStream inputStream = new FileInputStream(image);
         String delete = "delete from profileimage where username = '" + User.getInstance().getUsername() + "';";
         String updatePhoto = "insert into profileimage (username, image) values (?, ?)";
-        Connection connection = DatabaseConnection.getInstance().getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         Statement statement1 = connection.createStatement();
         PreparedStatement statement = connection.prepareStatement(updatePhoto);
         statement.setString(1, User.getInstance().getUsername());
@@ -227,7 +226,7 @@ public class UserDAO {
         String retrieve = "select * from profileimage where username = '" + User.getInstance().getUsername() + "';";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieve);
         byte b[];
@@ -258,7 +257,7 @@ public class UserDAO {
         String retrieve = "select game, platform from wishlist where username = '" + User.getInstance().getUsername() + "';";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieve);
 
@@ -287,7 +286,7 @@ public class UserDAO {
         String retrieve = "select game, platform from tradelist where username = '" + User.getInstance().getUsername() + "';";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieve);
 
@@ -313,7 +312,7 @@ public class UserDAO {
         String add = "insert into tradelist (username, game, platform) values (?, ?, ?)";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(add);
         preparedStatement.setString(1, User.getInstance().getUsername());
         preparedStatement.setString(2, name);
@@ -331,7 +330,7 @@ public class UserDAO {
         String add = "insert into wishlist (username, game, platform) values (?, ?, ?)";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(add);
         preparedStatement.setString(1, User.getInstance().getUsername());
         preparedStatement.setString(2, name);
@@ -350,7 +349,7 @@ public class UserDAO {
         String remove = "delete from tradelist where username = ? and game = ? and platform = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(remove);
         preparedStatement.setString(1, User.getInstance().getUsername());
         preparedStatement.setString(2, name);
@@ -369,7 +368,7 @@ public class UserDAO {
         String remove = "delete from wishlist where username = ? and game = ? and platform = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(remove);
         preparedStatement.setString(1, User.getInstance().getUsername());
         preparedStatement.setString(2, name);

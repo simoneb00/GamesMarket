@@ -22,7 +22,7 @@ public class ShopPostDAO {
         String retrievePhoto = "select image from games where name = ? and platform = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(retrieve);
 

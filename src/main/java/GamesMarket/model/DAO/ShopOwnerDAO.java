@@ -10,8 +10,7 @@ import java.util.List;
 public class ShopOwnerDAO {
 
     public static void registerShopOwner(String email, String password, String firstName, String lastName) throws DuplicatedEmailException, SQLException {
-        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
-        Connection connection = databaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
 
         String register = "insert into `shop-owner` (email, password, firstname, lastname) values (" + "'" + email + "', '" + password + "', '" + firstName + "', '" + lastName + "')";
         String verifyEmail = "select count(1) from user where email = '" + email + "'";
@@ -44,7 +43,7 @@ public class ShopOwnerDAO {
         String verifyLogin = "SELECT count(1) FROM `shop-owner` WHERE email = '" + email + "' AND password = '" + password + "'";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(verifyLogin);
 
@@ -68,7 +67,7 @@ public class ShopOwnerDAO {
         String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '" + email + "'";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(retrieveUser);
 

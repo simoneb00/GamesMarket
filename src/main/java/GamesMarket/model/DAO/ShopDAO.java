@@ -18,7 +18,7 @@ public class ShopDAO {
         String create = "insert into shops (email, shopName, address, city, country) values (?, ?, ?, ?, ?)";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(create);
         preparedStatement.setString(1, owner);
         preparedStatement.setString(2, name);
@@ -39,7 +39,7 @@ public class ShopDAO {
         String retrieve = "select shopName from shops where email = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -62,7 +62,7 @@ public class ShopDAO {
         String retrieve = "select shopImg from shops where email = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -93,7 +93,7 @@ public class ShopDAO {
         FileInputStream inputStream = new FileInputStream(image);
         String delete = "update shops set shopImg = NULL where email ='" + ShopOwner.getInstance().getEmail() + "';";
         String updatePhoto = "update shops set shopImg = ? where email = '" + ShopOwner.getInstance().getEmail() + "'";
-        Connection connection = DatabaseConnection.getInstance().getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         Statement statement1 = connection.createStatement();
         PreparedStatement statement = connection.prepareStatement(updatePhoto);
         statement.setBinaryStream(1, (InputStream) inputStream, (int) (image.length()));
@@ -113,7 +113,7 @@ public class ShopDAO {
         PreparedStatement preparedStatement = null;
         String retrieve = "select game, platform, price from `games_for_sale` where emailOwner = ?";
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -139,7 +139,7 @@ public class ShopDAO {
         String add = "insert into `games_for_sale` (emailOwner, game, platform, price) values (?, ?, ?, ?)";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(add);
         preparedStatement.setString(1, ShopOwner.getInstance().getEmail());
         preparedStatement.setString(2, name);
@@ -159,7 +159,7 @@ public class ShopDAO {
         String remove = "delete from `games_for_sale` where emailOwner = ? and game = ? and platform = ? and price = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(remove);
         preparedStatement.setString(1, ShopOwner.getInstance().getEmail());
         preparedStatement.setString(2, name);
@@ -180,7 +180,7 @@ public class ShopDAO {
         String retrieve = "select address, city, country from shops where email = ?";
 
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();

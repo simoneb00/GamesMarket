@@ -32,7 +32,7 @@ public class OrderDAO {
 
         System.out.println(order.getBuyerCity());
 
-        connection = DatabaseConnection.getInstance().getConnection();
+        connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(save);
         preparedStatement.setString(1, order.getVendor());
         preparedStatement.setString(2, order.getGame());
@@ -57,7 +57,7 @@ public class OrderDAO {
 
     public static List<Order> retrieveOrders() throws SQLException {
         List<Order> orders = new ArrayList<>();
-        Connection connection = DatabaseConnection.getInstance().getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         PreparedStatement preparedStatement = null;
         String retrieve = "select idorders, shopName, platform, game, price, buyerName, buyerAddress, buyerCity, buyerTel, paymentMethod, username, buyerEmail, status from orders where shopName = ?";
 
@@ -96,7 +96,7 @@ public class OrderDAO {
     public static void updateStatus(Order order, String status) throws SQLException{
         int id = order.getIdOrder();
         PreparedStatement preparedStatement = null;
-        Connection connection = DatabaseConnection.getInstance().getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         String update = "update orders set status = ? where idorders = ?";
 
         preparedStatement = connection.prepareStatement(update);
