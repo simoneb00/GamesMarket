@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class ErrorMessage {
 
+    private static String s = "GamesMarket";
+
     public static void displayErrorMessage() {
         try {
             Stage stage = new Stage();
@@ -22,7 +24,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -42,7 +44,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -61,7 +63,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -80,7 +82,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -99,7 +101,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -118,7 +120,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -137,7 +139,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -156,7 +158,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -175,7 +177,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -194,7 +196,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -213,7 +215,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -232,7 +234,7 @@ public class ErrorMessage {
             scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
 
             stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
-            stage.setTitle("gamesmarket");
+            stage.setTitle(s);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
