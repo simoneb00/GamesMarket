@@ -150,7 +150,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
             selectedGame = strings[0];
             selectedPlatform = strings[1];
             String price = strings[2];
-            price = price.replaceAll("€", "");
+            price = price.replace("€", "");
             selectedPrice = Double.parseDouble(price);
             removeSelectedGame.setVisible(true);
             removeSelectedGame.setDisable(false);

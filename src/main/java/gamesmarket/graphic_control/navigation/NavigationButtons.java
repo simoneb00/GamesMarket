@@ -15,6 +15,7 @@ public class NavigationButtons {
     private Parent root;
     private Scene scene;
     private Stage stage;
+    private String STYLE = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
     @FXML
     public void homeButton(ActionEvent event) {
@@ -24,7 +25,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();
@@ -43,7 +44,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();
@@ -62,7 +63,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();
@@ -81,7 +82,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();
@@ -100,7 +101,7 @@ public class NavigationButtons {
                 scene = new Scene(root);
 
                 scene.getStylesheets().clear();
-                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+                scene.getStylesheets().add(STYLE);
 
                 stage.setScene(scene);
                 stage.show();
@@ -121,7 +122,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();
@@ -158,7 +159,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();
@@ -177,7 +178,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(STYLE);
 
             stage.setScene(scene);
             stage.show();

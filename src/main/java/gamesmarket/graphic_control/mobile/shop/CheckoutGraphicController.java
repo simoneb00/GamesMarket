@@ -52,6 +52,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
     private double gamePrice;
     private String vendor;
     private String paymentMethod = null;
+    private String PICKUP_IN_STORE = "Pickup in Store";
 
     public CheckoutGraphicController(String gameName, String gamePlatform, String gameImgPath, double gamePrice, String vendor) {
         this.gameName = gameName;
@@ -66,7 +67,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
         paymentMethod = choiceBox.getValue();
         if (paymentMethod == null)
             ErrorMessage.noPaymentMethodSelected();
-        else if (paymentMethod.equals("Pickup in Store")) {
+        else if (paymentMethod.equals(PICKUP_IN_STORE)) {
             this.confirm(event);
         } else {
             try {
@@ -130,8 +131,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
             ConfirmationGraphicController confirmationGraphicController = new ConfirmationGraphicController(vendor, gamePlatform, gameName, gamePrice, gameImgPath, paymentMethod, User.getInstance().getEmailAddress());
 
 
-            if (!paymentMethod.equals("Pickup in Store")) {
-                System.out.println("no pickup in store");
+            if (!paymentMethod.equals(PICKUP_IN_STORE)) {
                 confirmationGraphicController.setBuyerName(nameTF.getText());
                 confirmationGraphicController.setBuyerAddress(addressTF.getText());
                 confirmationGraphicController.setBuyerCity(cityTF.getText());
@@ -157,7 +157,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        choiceBox.getItems().add("Pickup in Store");
+        choiceBox.getItems().add(PICKUP_IN_STORE);
         choiceBox.getItems().add("Cash on delivery");
         choiceBox.getItems().add("Paypal");
         choiceBox.getItems().add("Credit / Debit card");

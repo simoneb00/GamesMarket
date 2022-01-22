@@ -12,10 +12,6 @@ import javafx.stage.Stage;
 
 public class ShopOwnerNavigationButtons extends NavigationButtons{
 
-    protected Parent root;
-    protected Scene scene;
-    protected Stage stage;
-
     @FXML
     public void shopOwnerForumButton(ActionEvent event) {
         try {
@@ -24,7 +20,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(CSS);
 
             stage.setScene(scene);
             stage.show();
@@ -46,7 +42,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
                 scene = new Scene(root);
 
                 scene.getStylesheets().clear();
-                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+                scene.getStylesheets().add(CSS);
 
                 stage.setScene(scene);
                 stage.show();
@@ -66,7 +62,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(CSS);
 
             stage.setScene(scene);
             stage.show();
@@ -85,7 +81,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
+            scene.getStylesheets().add(CSS);
 
             stage.setScene(scene);
             stage.show();
