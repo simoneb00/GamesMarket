@@ -20,7 +20,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -42,7 +42,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
                 scene = new Scene(root);
 
                 scene.getStylesheets().clear();
-                scene.getStylesheets().add(CSS);
+                scene.getStylesheets().add(css);
 
                 stage.setScene(scene);
                 stage.show();
@@ -62,7 +62,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -81,7 +81,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();

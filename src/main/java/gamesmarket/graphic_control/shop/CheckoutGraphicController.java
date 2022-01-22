@@ -60,8 +60,8 @@ public class CheckoutGraphicController implements Initializable {
     private String vendor;
     private int numCheckBoxesSelected = 0;
     private String paymentMethod;
-    private String LOGO = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png";
-    private String STYLE = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
+    private String logo = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png";
+    private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
 
     public CheckoutGraphicController(String name, String platform, double price, String imagePath, String vendor) {
@@ -112,11 +112,11 @@ public class CheckoutGraphicController implements Initializable {
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
 
-                    stage.getIcons().add(new Image(LOGO));
+                    stage.getIcons().add(new Image(logo));
                     stage.setTitle("Checkout");
 
                     scene.getStylesheets().clear();
-                    scene.getStylesheets().add(STYLE);
+                    scene.getStylesheets().add(style);
 
                     stage.setScene(scene);
                     stage.show();
@@ -170,11 +170,11 @@ public class CheckoutGraphicController implements Initializable {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
 
-            stage.getIcons().add(new Image(LOGO));
+            stage.getIcons().add(new Image(logo));
             stage.setTitle("Confirmation");
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(STYLE);
+            scene.getStylesheets().add(style);
 
             stage.setScene(scene);
             stage.show();
@@ -194,11 +194,11 @@ public class CheckoutGraphicController implements Initializable {
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
 
-            stage.getIcons().add(new Image(LOGO));
+            stage.getIcons().add(new Image(logo));
             stage.setTitle("Checkout");
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(STYLE);
+            scene.getStylesheets().add(style);
 
             stage.setScene(scene);
             stage.show();

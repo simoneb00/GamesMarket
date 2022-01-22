@@ -52,7 +52,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
     private double gamePrice;
     private String vendor;
     private String paymentMethod = null;
-    private String PICKUP_IN_STORE = "Pickup in Store";
+    private String pickupInStore = "Pickup in Store";
 
     public CheckoutGraphicController(String gameName, String gamePlatform, String gameImgPath, double gamePrice, String vendor) {
         this.gameName = gameName;
@@ -67,7 +67,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
         paymentMethod = choiceBox.getValue();
         if (paymentMethod == null)
             ErrorMessage.noPaymentMethodSelected();
-        else if (paymentMethod.equals(PICKUP_IN_STORE)) {
+        else if (paymentMethod.equals(pickupInStore)) {
             this.confirm(event);
         } else {
             try {
@@ -131,7 +131,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
             ConfirmationGraphicController confirmationGraphicController = new ConfirmationGraphicController(vendor, gamePlatform, gameName, gamePrice, gameImgPath, paymentMethod, User.getInstance().getEmailAddress());
 
 
-            if (!paymentMethod.equals(PICKUP_IN_STORE)) {
+            if (!paymentMethod.equals(pickupInStore)) {
                 confirmationGraphicController.setBuyerName(nameTF.getText());
                 confirmationGraphicController.setBuyerAddress(addressTF.getText());
                 confirmationGraphicController.setBuyerCity(cityTF.getText());
@@ -157,7 +157,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        choiceBox.getItems().add(PICKUP_IN_STORE);
+        choiceBox.getItems().add(pickupInStore);
         choiceBox.getItems().add("Cash on delivery");
         choiceBox.getItems().add("Paypal");
         choiceBox.getItems().add("Credit / Debit card");

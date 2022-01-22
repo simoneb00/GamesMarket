@@ -16,7 +16,7 @@ public class NavigationButtons {
     protected Parent root;
     protected Stage stage;
     protected Scene scene;
-    protected String CSS = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
+    protected String css = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
     @FXML
     public void shopOwnerForumButton(ActionEvent event) {
@@ -26,7 +26,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -48,7 +48,7 @@ public class NavigationButtons {
                 scene = new Scene(root);
 
                 scene.getStylesheets().clear();
-                scene.getStylesheets().add(CSS);
+                scene.getStylesheets().add(css);
 
                 stage.setScene(scene);
                 stage.show();
@@ -68,7 +68,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -87,7 +87,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -107,7 +107,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -128,7 +128,7 @@ public class NavigationButtons {
                 scene = new Scene(root);
 
                 scene.getStylesheets().clear();
-                scene.getStylesheets().add(CSS);
+                scene.getStylesheets().add(css);
 
                 stage.setScene(scene);
                 stage.show();
@@ -152,7 +152,7 @@ public class NavigationButtons {
                 scene = new Scene(root);
 
                 scene.getStylesheets().clear();
-                scene.getStylesheets().add(CSS);
+                scene.getStylesheets().add(css);
 
                 stage.setScene(scene);
                 stage.show();
@@ -176,7 +176,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -196,7 +196,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
@@ -216,7 +216,7 @@ public class NavigationButtons {
             scene = new Scene(root);
 
             scene.getStylesheets().clear();
-            scene.getStylesheets().add(CSS);
+            scene.getStylesheets().add(css);
 
             stage.setScene(scene);
             stage.show();
