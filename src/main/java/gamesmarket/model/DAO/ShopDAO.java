@@ -64,10 +64,9 @@ public class ShopDAO {
         }
 
         resultSet.close();
-        if (statement != null)
-            statement.close();
-        if (preparedStatement != null)
-            preparedStatement.close();
+        statement.close();
+
+        preparedStatement.close();
 
 
         return posts;
@@ -163,10 +162,9 @@ public class ShopDAO {
         statement1.execute(delete);
         statement.executeUpdate();
 
-        if (statement != null)
-            statement.close();
-        if (statement1 != null)
-            statement1.close();
+
+        statement.close();
+        statement1.close();
     }
 
     public static List<Game> retrieveList(String email) throws SQLException {
