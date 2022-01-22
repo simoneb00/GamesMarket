@@ -35,7 +35,6 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     private int column = 0;
     private int row = 1;
     ForumController forumController = new ForumController();
-    private List<Post> userOldPosts = new ArrayList<>();
     private ShopOwnerNavigationButtons shopOwnerNavigationButtons = new ShopOwnerNavigationButtons();
 
     @FXML
@@ -68,13 +67,13 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         oldposts = this.retrievePosts();
-        userOldPosts = this.retrieveUserPosts();
+        List<Post> userOldPosts = this.retrieveUserPosts();
 
         try {
             for (int i = 0; i < oldposts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/forum_post.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane ancPane = fxmlLoader.load();
 
                 gamesmarket.graphic_control.mobile.forum.PostGraphicController postGraphicController = fxmlLoader.getController();
                 postGraphicController.setData(oldposts.get(i));
@@ -85,14 +84,14 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                grid.add(ancPane, column++, row);
+                GridPane.setMargin(ancPane, new Insets(10));
             }
 
             for (int i = 0; i < userOldPosts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/forum_your_post.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane aPane = fxmlLoader.load();
 
                 UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(userOldPosts.get(i));
@@ -103,8 +102,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                yourPostsGrid.add(anchorPane, column++, row);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                yourPostsGrid.add(aPane, column++, row);
+                GridPane.setMargin(aPane, new Insets(10));
             }
 
         } catch (IOException e) {
@@ -118,7 +117,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/forum_post.fxml"));
-            AnchorPane anchorPane = fxmlLoader.load();
+            AnchorPane pane = fxmlLoader.load();
 
             if (column == 1) {
                 column = 0;
@@ -127,8 +126,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
             gamesmarket.graphic_control.mobile.forum.PostGraphicController postGraphicController = fxmlLoader.getController();
             postGraphicController.setData(post);
-            grid.add(anchorPane, column++, row);
-            GridPane.setMargin(anchorPane, new Insets(10));
+            grid.add(pane, column++, row);
+            GridPane.setMargin(pane, new Insets(10));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,7 +140,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/forum_your_post.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane anchPane = fxmlLoader.load();
 
                 if (column == 1) {
                     column = 0;
@@ -150,8 +149,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
                 gamesmarket.graphic_control.mobile.forum.UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(post);
-                yourPostsGrid.add(anchorPane, column++, row);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                yourPostsGrid.add(anchPane, column++, row);
+                GridPane.setMargin(anchPane, new Insets(10));
 
             } catch (IOException e) {
                 e.printStackTrace();
