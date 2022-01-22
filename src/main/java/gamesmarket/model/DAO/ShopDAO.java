@@ -38,7 +38,7 @@ public class ShopDAO {
             shopPost.setGame(game + " - " + platform);
 
             File file = new File(game + ".jpg");
-            byte b[];
+            byte[] b;
             Blob blob;
             FileOutputStream fos = new FileOutputStream(file);
 
@@ -127,7 +127,7 @@ public class ShopDAO {
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
-        byte b[];
+        byte[] b;
         Blob blob;
         FileOutputStream fos = new FileOutputStream(file);
 
