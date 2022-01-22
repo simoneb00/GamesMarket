@@ -44,6 +44,8 @@ public class GamesTableGraphicController implements Initializable {
     private ObservableList<Game> gameObservableList = FXCollections.observableArrayList();
     private Game selectedGame = null;
     private GamesTableController gamesTableController = new GamesTableController();
+    private String NO_GAME_SELECTED = "No game selected";
+    private String INVALID_PRICE = "Invalid price";
 
     @FXML
     private void close(ActionEvent event) {
@@ -95,7 +97,7 @@ public class GamesTableGraphicController implements Initializable {
     public void addToTradelist() {
         try {
             if (selectedGame == null)
-                label.setText("No game selected");
+                label.setText(NO_GAME_SELECTED);
             else {
                 label.setText(selectedGame.getName() + " added to Tradelist");
                 GameBean gameBean = new GameBean();
@@ -113,7 +115,7 @@ public class GamesTableGraphicController implements Initializable {
     public void addToWishlist() {
         try {
             if (selectedGame == null)
-                label.setText("No game selected");
+                label.setText(NO_GAME_SELECTED);
             else {
                 label.setText(selectedGame.getName() + " added to Wishlist");
                 GameBean gameBean = new GameBean();
@@ -134,11 +136,11 @@ public class GamesTableGraphicController implements Initializable {
             try {
                 prc = Double.parseDouble(price.getText());
             } catch (NullPointerException | NumberFormatException e) {
-                label1.setText("Invalid price");
+                label1.setText(INVALID_PRICE);
                 prc = -1.0;
             }
         if (selectedGame == null)
-                label1.setText("No game selected");
+                label1.setText(NO_GAME_SELECTED);
             else if (price.getText().isEmpty())
                 label1.setText("No price set");
             else {
@@ -158,7 +160,7 @@ public class GamesTableGraphicController implements Initializable {
                     ErrorMessage.displayErrorMessage();
                 }
             } else {
-                label1.setText("Invalid price");
+                label1.setText(INVALID_PRICE);
             }
     }
 
