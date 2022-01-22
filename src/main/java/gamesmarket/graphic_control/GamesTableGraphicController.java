@@ -44,8 +44,8 @@ public class GamesTableGraphicController implements Initializable {
     private ObservableList<Game> gameObservableList = FXCollections.observableArrayList();
     private Game selectedGame = null;
     private GamesTableController gamesTableController = new GamesTableController();
-    private String NO_GAME_SELECTED = "No game selected";
-    private String INVALID_PRICE = "Invalid price";
+    private String noGameSelected = "No game selected";
+    private String invalidPrice = "Invalid price";
 
     @FXML
     private void close(ActionEvent event) {
@@ -97,7 +97,7 @@ public class GamesTableGraphicController implements Initializable {
     public void addToTradelist() {
         try {
             if (selectedGame == null)
-                label.setText(NO_GAME_SELECTED);
+                label.setText(noGameSelected);
             else {
                 label.setText(selectedGame.getName() + " added to Tradelist");
                 GameBean gameBean = new GameBean();
@@ -115,7 +115,7 @@ public class GamesTableGraphicController implements Initializable {
     public void addToWishlist() {
         try {
             if (selectedGame == null)
-                label.setText(NO_GAME_SELECTED);
+                label.setText(noGameSelected);
             else {
                 label.setText(selectedGame.getName() + " added to Wishlist");
                 GameBean gameBean = new GameBean();
@@ -136,11 +136,11 @@ public class GamesTableGraphicController implements Initializable {
             try {
                 prc = Double.parseDouble(price.getText());
             } catch (NullPointerException | NumberFormatException e) {
-                label1.setText(INVALID_PRICE);
+                label1.setText(invalidPrice);
                 prc = -1.0;
             }
         if (selectedGame == null)
-                label1.setText(NO_GAME_SELECTED);
+                label1.setText(noGameSelected);
             else if (price.getText().isEmpty())
                 label1.setText("No price set");
             else {
@@ -160,7 +160,7 @@ public class GamesTableGraphicController implements Initializable {
                     ErrorMessage.displayErrorMessage();
                 }
             } else {
-                label1.setText(INVALID_PRICE);
+                label1.setText(invalidPrice);
             }
     }
 
