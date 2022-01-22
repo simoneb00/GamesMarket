@@ -89,10 +89,10 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void updateCI() {
         try {
             UserBean userBean = new UserBean();
-            userBean.setEmail(email.getText());
-            userBean.setTel(tel.getText());
-            userBean.setAddress(address.getText());
-            userBean.setCountry(country.getText());
+            userBean.setUserEmail(email.getText());
+            userBean.setUserTel(tel.getText());
+            userBean.setUserAddress(address.getText());
+            userBean.setUserCountry(country.getText());
 
             userProfileController.updateCI(userBean);
             this.setCI();
@@ -139,7 +139,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void saveBio() {
         try {
             UserBean userBean = new UserBean();
-            userBean.setBio(bioTF.getText());
+            userBean.setUserBio(bioTF.getText());
             userProfileController.saveBio(userBean);
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();
@@ -268,8 +268,8 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void removeFromWL() {
         try {
             GameBean gameBean = new GameBean();
-            gameBean.setPlatform(selectedPlatform);
-            gameBean.setName(selectedGame);
+            gameBean.setGamePlatform(selectedPlatform);
+            gameBean.setGameName(selectedGame);
 
             userProfileController.removeFromWishlist(gameBean);
 
@@ -285,8 +285,8 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void removeFromTL() {
         try {
             GameBean gameBean = new GameBean();
-            gameBean.setPlatform(selectedPlatform);
-            gameBean.setName(selectedGame);
+            gameBean.setGamePlatform(selectedPlatform);
+            gameBean.setGameName(selectedGame);
 
             userProfileController.removeFromTradelist(gameBean);
 

@@ -65,16 +65,8 @@ public class ConfirmationGraphicController implements Initializable {
         this.buyerAddress = buyerAddress;
     }
 
-    public String getBuyerCity() {
-        return buyerCity;
-    }
-
     public void setBuyerCity(String buyerCity) {
         this.buyerCity = buyerCity;
-    }
-
-    public String getBuyerTel() {
-        return buyerTel;
     }
 
     public void setBuyerTel(String buyerTel) {

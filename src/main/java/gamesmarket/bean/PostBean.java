@@ -2,27 +2,27 @@ package gamesmarket.bean;
 
 public class PostBean {
 
-    private String text;
-    private String username;
+    private String postText;
+    private String postUsername;
 
     public PostBean(String username, String text) {
-        this.text = text;
-        this.username = username;
+        this.postText = text;
+        this.postUsername = username;
     }
 
-    public String getText() {
-        return text;
+    public String getPostText() {
+        return postText;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPostText(String postText) {
+        this.postText = postText;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPostUsername() {
+        return postUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPostUsername(String postUsername) {
+        this.postUsername = postUsername;
     }
 }

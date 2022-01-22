@@ -3,11 +3,10 @@ package gamesmarket.control;
 import gamesmarket.bean.OrderBean;
 import gamesmarket.bean.ShopPostBean;
 import gamesmarket.model.DAO.OrderDAO;
-import gamesmarket.model.DAO.ShopPostDAO;
+import gamesmarket.model.DAO.ShopDAO;
 import gamesmarket.model.Order;
 import gamesmarket.model.ShopPost;
 import gamesmarket.model.User;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class ShopController {
 
 
     public List<ShopPostBean> retrieveShop() throws SQLException, IOException {
-        List<ShopPost> posts = ShopPostDAO.retrieveShop();
+        List<ShopPost> posts = ShopDAO.retrieveShop();
         List<ShopPostBean> beans = new ArrayList<>();
 
         for (int i = 0; i < posts.size(); i++) {
@@ -33,15 +32,15 @@ public class ShopController {
         Order order = new Order(
                 orderBean.getIdOrder(),
                 orderBean.getVendor(),
-                orderBean.getPlatform(),
-                orderBean.getGame(),
-                orderBean.getPrice(),
+                orderBean.getOrderPlatform(),
+                orderBean.getOrderGame(),
+                orderBean.getOrderPrice(),
                 orderBean.getBuyerName(),
                 orderBean.getBuyerAddress(),
                 orderBean.getBuyerCity(),
                 orderBean.getBuyerTel(),
                 orderBean.getPaymentMethod(),
-                orderBean.getUsername(),
+                orderBean.getBuyerUsername(),
                 orderBean.getBuyerEmail(),
                 orderBean.getStatus()
         );

@@ -68,9 +68,9 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
         YourShopController yourShopController = new YourShopController();
         GameBean gameBean = new GameBean();
 
-        gameBean.setName(selectedGame.getName());
-        gameBean.setPlatform(selectedGame.getPlatform());
-        gameBean.setPrice(selectedGame.getPrice());
+        gameBean.setGameName(selectedGame.getName());
+        gameBean.setGamePlatform(selectedGame.getPlatform());
+        gameBean.setGamePrice(selectedGame.getPrice());
 
         try {
             yourShopController.removeGame(gameBean);

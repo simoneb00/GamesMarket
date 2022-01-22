@@ -60,9 +60,9 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
             System.out.println(platform);
 
             GameBean gameBean = new GameBean();
-            gameBean.setName(name);
-            gameBean.setPlatform(platform);
-            gameBean.setPrice(price);
+            gameBean.setGameName(name);
+            gameBean.setGamePlatform(platform);
+            gameBean.setGamePrice(price);
 
             gamesTableController.putForSale(gameBean);
 
@@ -84,11 +84,11 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
 
             for (int i = 0; i < beans.size(); i++) {
                 Game game = new Game();
-                game.setName(beans.get(i).getName());
-                game.setPlatform(beans.get(i).getPlatform());
-                game.setGenre(beans.get(i).getGenre());
-                game.setYear(beans.get(i).getYear());
-                game.setDescription(beans.get(i).getDescription());
+                game.setName(beans.get(i).getGameName());
+                game.setPlatform(beans.get(i).getGamePlatform());
+                game.setGenre(beans.get(i).getGameGenre());
+                game.setYear(beans.get(i).getGameYear());
+                game.setDescription(beans.get(i).getGameDescription());
 
                 games.add(game);
             }

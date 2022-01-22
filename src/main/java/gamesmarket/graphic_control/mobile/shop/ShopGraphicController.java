@@ -41,10 +41,10 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
             for (int i = 0; i < postBeans.size(); i++) {
                 ShopPost shopPost = new ShopPost();
-                shopPost.setShopName(postBeans.get(i).getShopName());
-                shopPost.setGame(postBeans.get(i).getGame());
-                shopPost.setPrice(postBeans.get(i).getPrice());
-                shopPost.setImageFile(postBeans.get(i).getImageFile());
+                shopPost.setShopName(postBeans.get(i).getPostShopName());
+                shopPost.setGame(postBeans.get(i).getShopPostGame());
+                shopPost.setPrice(postBeans.get(i).getShopPostPrice());
+                shopPost.setImageFile(postBeans.get(i).getShopPostImageFile());
 
                 posts.add(shopPost);
             }

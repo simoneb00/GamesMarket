@@ -22,11 +22,11 @@ public class GamesTableController {
 
         for (int i = 0; i < games.size(); i++) {
             GameBean bean = new GameBean();
-            bean.setName(games.get(i).getName());
-            bean.setPlatform(games.get(i).getPlatform());
-            bean.setGenre(games.get(i).getGenre());
-            bean.setDescription(games.get(i).getDescription());
-            bean.setYear(games.get(i).getYear());
+            bean.setGameName(games.get(i).getName());
+            bean.setGamePlatform(games.get(i).getPlatform());
+            bean.setGameGenre(games.get(i).getGenre());
+            bean.setGameDescription(games.get(i).getDescription());
+            bean.setGameYear(games.get(i).getYear());
 
             beans.add(bean);
         }
@@ -35,8 +35,8 @@ public class GamesTableController {
     }
 
     public void addToTradelist(GameBean gameBean) throws DuplicatedGameException, SQLException {
-        String name = gameBean.getName();
-        String platform = gameBean.getPlatform();
+        String name = gameBean.getGameName();
+        String platform = gameBean.getGamePlatform();
         String game = name + " - " + platform;
 
         if (User.getInstance().getTradelist().contains(game)) {
@@ -48,8 +48,8 @@ public class GamesTableController {
     }
 
     public void addToWishlist(GameBean gameBean) throws DuplicatedGameException, SQLException {
-        String name = gameBean.getName();
-        String platform = gameBean.getPlatform();
+        String name = gameBean.getGameName();
+        String platform = gameBean.getGamePlatform();
         String game = name + " - " + platform;
 
         if (User.getInstance().getWishlist().contains(game)) {
@@ -62,9 +62,9 @@ public class GamesTableController {
 
     public void putForSale(GameBean gameBean) throws DuplicatedGameException, SQLException {
 
-        String name = gameBean.getName();
-        String platform = gameBean.getPlatform();
-        double price = gameBean.getPrice();
+        String name = gameBean.getGameName();
+        String platform = gameBean.getGamePlatform();
+        double price = gameBean.getGamePrice();
 
         for (Game g : Shop.getInstance().getGames()) {
             if (g.getPrice() == price && g.getName().equals(name) && g.getPlatform().equals(platform)) {

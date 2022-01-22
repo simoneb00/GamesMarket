@@ -15,9 +15,9 @@ public class SignUpController {
 
         String firstName = registerCredentialsBean.getFirstName();
         String lastName = registerCredentialsBean.getLastName();
-        String username = registerCredentialsBean.getUsername();
-        String password = registerCredentialsBean.getPassword();
-        String email = registerCredentialsBean.getEmail();
+        String username = registerCredentialsBean.getRegisterUsername();
+        String password = registerCredentialsBean.getRegisterPassword();
+        String email = registerCredentialsBean.getRegisterEmail();
         String typeOfUser = registerCredentialsBean.getTypeOfUser();
 
         if (typeOfUser.equals("User")) {

@@ -60,8 +60,8 @@ public class TradelistController extends NavigationButtons implements Initializa
     public void removeSelectedGame() {
         try {
             GameBean gameBean = new GameBean();
-            gameBean.setPlatform(selectedPlatform);
-            gameBean.setName(selectedGame);
+            gameBean.setGamePlatform(selectedPlatform);
+            gameBean.setGameName(selectedGame);
 
             userProfileController.removeFromTradelist(gameBean);
 

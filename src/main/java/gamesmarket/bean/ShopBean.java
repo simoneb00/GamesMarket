@@ -8,19 +8,19 @@ import java.util.List;
 
 public class ShopBean {
     private String owner;
-    private String name;
-    private String address;
+    private String shopName;
+    private String shopAddress;
     private String city;
     private String country;
     private File imageFile;
     private List<Game> games = new ArrayList<>();
 
-    public String getAddress() {
-        return address;
+    public String getShopAddress() {
+        return shopAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
     }
 
     public String getCity() {
@@ -55,12 +55,12 @@ public class ShopBean {
         this.owner = owner;
     }
 
-    public String getName() {
-        return name;
+    public String getShopName() {
+        return shopName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 
     public List<Game> getGames() {

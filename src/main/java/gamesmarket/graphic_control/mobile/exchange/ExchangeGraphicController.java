@@ -41,12 +41,12 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
 
             for (int i = 0; i < beans.size(); i++) {
                 ExchangePost exchangePost = new ExchangePost(
-                        beans.get(i).getUsername(),
-                        beans.get(i).getGame(),
-                        beans.get(i).getPlatform(),
+                        beans.get(i).getPostUsername(),
+                        beans.get(i).getPostGame(),
+                        beans.get(i).getPostPlatform(),
                         beans.get(i).getGameToGive(),
                         beans.get(i).getPlatformGameToGive(),
-                        beans.get(i).getImageFile()
+                        beans.get(i).getPostImageFile()
                 );
 
                 posts.add(exchangePost);

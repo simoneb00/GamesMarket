@@ -51,11 +51,11 @@ public class SignUpGraphicController {
 
             RegisterCredentialsBean registerCredentialsBean = new RegisterCredentialsBean();
 
-            registerCredentialsBean.setEmail(emailTextField.getText());
+            registerCredentialsBean.setRegisterEmail(emailTextField.getText());
             registerCredentialsBean.setFirstName(firstNameTextField.getText());
             registerCredentialsBean.setLastName(lastNameTextField.getText());
-            registerCredentialsBean.setUsername(usernameTextField.getText());
-            registerCredentialsBean.setPassword(passwordField.getText());
+            registerCredentialsBean.setRegisterUsername(usernameTextField.getText());
+            registerCredentialsBean.setRegisterPassword(passwordField.getText());
 
             if (isShopOwner) {
                 registerCredentialsBean.setTypeOfUser("ShopOwner");

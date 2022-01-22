@@ -45,11 +45,11 @@ public class GamesTableGraphicController extends NavigationButtons implements In
 
             for (int i = 0; i < beans.size(); i++) {
                 Game game = new Game();
-                game.setName(beans.get(i).getName());
-                game.setPlatform(beans.get(i).getPlatform());
-                game.setGenre(beans.get(i).getGenre());
-                game.setYear(beans.get(i).getYear());
-                game.setDescription(beans.get(i).getDescription());
+                game.setName(beans.get(i).getGameName());
+                game.setPlatform(beans.get(i).getGamePlatform());
+                game.setGenre(beans.get(i).getGameGenre());
+                game.setYear(beans.get(i).getGameYear());
+                game.setDescription(beans.get(i).getGameDescription());
 
                 games.add(game);
             }
@@ -85,8 +85,8 @@ public class GamesTableGraphicController extends NavigationButtons implements In
                 wishlistButton.setDisable(true);
                 wishlistButton.setVisible(false);
                 GameBean gameBean = new GameBean();
-                gameBean.setName(selectedGame.getName());
-                gameBean.setPlatform(selectedGame.getPlatform());
+                gameBean.setGameName(selectedGame.getName());
+                gameBean.setGamePlatform(selectedGame.getPlatform());
                 gamesTableController.addToTradelist(gameBean);
             }
         } catch (DuplicatedGameException e) {
@@ -107,8 +107,8 @@ public class GamesTableGraphicController extends NavigationButtons implements In
                 tradelistButton.setVisible(false);
                 tradelistButton.setDisable(true);
                 GameBean gameBean = new GameBean();
-                gameBean.setName(selectedGame.getName());
-                gameBean.setPlatform(selectedGame.getPlatform());
+                gameBean.setGameName(selectedGame.getName());
+                gameBean.setGamePlatform(selectedGame.getPlatform());
                 gamesTableController.addToWishlist(gameBean);
             }
         } catch (DuplicatedGameException e) {

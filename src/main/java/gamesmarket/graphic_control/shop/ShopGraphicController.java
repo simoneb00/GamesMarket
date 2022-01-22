@@ -50,17 +50,16 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         try {
 
             List<ShopPostBean> postBeans = shopController.retrieveShop();
 
             for (int i = 0; i < postBeans.size(); i++) {
                 ShopPost shopPost = new ShopPost();
-                shopPost.setShopName(postBeans.get(i).getShopName());
-                shopPost.setGame(postBeans.get(i).getGame());
-                shopPost.setPrice(postBeans.get(i).getPrice());
-                shopPost.setImageFile(postBeans.get(i).getImageFile());
+                shopPost.setShopName(postBeans.get(i).getPostShopName());
+                shopPost.setGame(postBeans.get(i).getShopPostGame());
+                shopPost.setPrice(postBeans.get(i).getShopPostPrice());
+                shopPost.setImageFile(postBeans.get(i).getShopPostImageFile());
 
                 posts.add(shopPost);
             }
@@ -139,7 +138,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     }
 
-    public void showGrid(List<ShopPost> posts) {
+    private void showGrid(List<ShopPost> posts) {
         int column = 0;
         int row = 1;
 
@@ -149,7 +148,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/shopItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                ItemGraphicController itemController = fxmlLoader.getController();
+                ShopPostGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(posts.get(i));
 
                 if (column == 5) {

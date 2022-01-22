@@ -28,9 +28,9 @@ public class YourShopController {
 
 
     public void removeGame(GameBean gameBean) throws SQLException {
-        String name = gameBean.getName();
-        String platform = gameBean.getPlatform();
-        double price = gameBean.getPrice();
+        String name = gameBean.getGameName();
+        String platform = gameBean.getGamePlatform();
+        double price = gameBean.getGamePrice();
 
         ShopDAO.removeGameFromSale(name, platform, price);
 
@@ -41,8 +41,8 @@ public class YourShopController {
     }
 
     public void createNewShop(ShopBean shopBean) throws SQLException {
-        String name = shopBean.getName();
-        String address = shopBean.getAddress();
+        String name = shopBean.getShopName();
+        String address = shopBean.getShopAddress();
         String country = shopBean.getCountry();
         String city = shopBean.getCity();
         ShopDAO.createNewShop(name, address, city, country);
@@ -86,15 +86,15 @@ public class YourShopController {
         Order order = new Order(
                 orderBean.getIdOrder(),
                 orderBean.getVendor(),
-                orderBean.getPlatform(),
-                orderBean.getGame(),
-                orderBean.getPrice(),
+                orderBean.getOrderPlatform(),
+                orderBean.getOrderGame(),
+                orderBean.getOrderPrice(),
                 orderBean.getBuyerName(),
                 orderBean.getBuyerAddress(),
                 orderBean.getBuyerCity(),
                 orderBean.getBuyerTel(),
                 orderBean.getPaymentMethod(),
-                orderBean.getUsername(),
+                orderBean.getBuyerUsername(),
                 orderBean.getBuyerEmail(),
                 orderBean.getStatus()
         );

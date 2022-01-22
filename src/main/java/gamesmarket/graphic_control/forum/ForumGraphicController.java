@@ -116,8 +116,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
             for (int i = 0; i < beans.size(); i++) {
                 Post post = new Post(
-                        beans.get(i).getUsername(),
-                        beans.get(i).getText()
+                        beans.get(i).getPostUsername(),
+                        beans.get(i).getPostText()
                 );
 
                 posts.add(post);
@@ -136,8 +136,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             List<PostBean> beans = forumController.retrieveUserPosts();
             for (int i = 0; i < beans.size(); i++) {
                 Post post = new Post(
-                        beans.get(i).getUsername(),
-                        beans.get(i).getText()
+                        beans.get(i).getPostUsername(),
+                        beans.get(i).getPostText()
                 );
 
                 posts.add(post);

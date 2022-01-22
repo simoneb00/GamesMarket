@@ -3,47 +3,47 @@ package gamesmarket.bean;
 import java.io.File;
 
 public class ShopPostBean {
-    private String shopName;
-    private String game;
-    private double price;
-    private File imageFile;
+    private String postShopName;
+    private String shopPostGame;
+    private double shopPostPrice;
+    private File shopPostImageFile;
 
-    public ShopPostBean(String shopName, String game, double price, File imageFile) {
-        this.shopName = shopName;
-        this.game = game;
-        this.price = price;
-        this.imageFile = imageFile;
+    public ShopPostBean(String postShopName, String shopPostGame, double shopPostPrice, File shopPostImageFile) {
+        this.postShopName = postShopName;
+        this.shopPostGame = shopPostGame;
+        this.shopPostPrice = shopPostPrice;
+        this.shopPostImageFile = shopPostImageFile;
     }
 
-    public String getShopName() {
-        return shopName;
+    public String getPostShopName() {
+        return postShopName;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
+    public void setPostShopName(String postShopName) {
+        this.postShopName = postShopName;
     }
 
-    public String getGame() {
-        return game;
+    public String getShopPostGame() {
+        return shopPostGame;
     }
 
-    public void setGame(String game) {
-        this.game = game;
+    public void setShopPostGame(String shopPostGame) {
+        this.shopPostGame = shopPostGame;
     }
 
-    public double getPrice() {
-        return price;
+    public double getShopPostPrice() {
+        return shopPostPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setShopPostPrice(double shopPostPrice) {
+        this.shopPostPrice = shopPostPrice;
     }
 
-    public File getImageFile() {
-        return imageFile;
+    public File getShopPostImageFile() {
+        return shopPostImageFile;
     }
 
-    public void setImageFile(File imageFile) {
-        this.imageFile = imageFile;
+    public void setShopPostImageFile(File shopPostImageFile) {
+        this.shopPostImageFile = shopPostImageFile;
     }
 }

@@ -2,58 +2,58 @@ package gamesmarket.bean;
 
 public class GameBean {
 
-    private String name;
-    private String genre;
-    private String description;
-    private String platform;
-    private String year;
-    private double price;
+    private String gameName;
+    private String gameGenre;
+    private String gameDescription;
+    private String gamePlatform;
+    private String gameYear;
+    private double gamePrice;
 
-    public double getPrice() {
-        return price;
+    public String getGameName() {
+        return gameName;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
-    public String getName() {
-        return name;
+    public String getGameGenre() {
+        return gameGenre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGameGenre(String gameGenre) {
+        this.gameGenre = gameGenre;
     }
 
-    public String getGenre() {
-        return genre;
+    public String getGameDescription() {
+        return gameDescription;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGameDescription(String gameDescription) {
+        this.gameDescription = gameDescription;
     }
 
-    public String getDescription() {
-        return description;
+    public String getGamePlatform() {
+        return gamePlatform;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setGamePlatform(String gamePlatform) {
+        this.gamePlatform = gamePlatform;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getGameYear() {
+        return gameYear;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setGameYear(String gameYear) {
+        this.gameYear = gameYear;
     }
 
-    public String getYear() {
-        return year;
+    public double getGamePrice() {
+        return gamePrice;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setGamePrice(double gamePrice) {
+        this.gamePrice = gamePrice;
     }
 }

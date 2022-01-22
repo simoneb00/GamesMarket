@@ -15,8 +15,8 @@ import java.util.List;
 public class ForumController {
 
     public void delete(PostBean postBean) throws SQLException {
-        String username = postBean.getUsername();
-        String text = postBean.getText();
+        String username = postBean.getPostUsername();
+        String text = postBean.getPostText();
 
         Post post = new Post(username, text);
 
@@ -60,7 +60,7 @@ public class ForumController {
     }
 
     public void savePost(PostBean postBean) throws SQLException {
-        Post post = new Post(postBean.getUsername(), postBean.getText());
+        Post post = new Post(postBean.getPostUsername(), postBean.getPostText());
         PostDAO.savePost(post);
     }
 
@@ -70,7 +70,7 @@ public class ForumController {
         comment.setUsername(commentBean.getCommentUsername());
         comment.setText(commentBean.getCommentText());
 
-        Post post = new Post(postBean.getUsername(), postBean.getText());
+        Post post = new Post(postBean.getPostUsername(), postBean.getPostText());
 
         CommentDAO.saveComment(comment, post);
     }
@@ -78,7 +78,7 @@ public class ForumController {
 
     public List<CommentBean> retrieveComments(PostBean postBean) throws SQLException {
 
-        Post post = new Post(postBean.getUsername(), postBean.getText());
+        Post post = new Post(postBean.getPostUsername(), postBean.getPostText());
         List<Comment> comments = CommentDAO.retrieveComments(post);
         List<CommentBean> beans = new ArrayList<>();
 

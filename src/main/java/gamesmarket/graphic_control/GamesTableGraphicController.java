@@ -77,11 +77,11 @@ public class GamesTableGraphicController implements Initializable {
 
             for (int i = 0; i < beans.size(); i++) {
                 Game game = new Game();
-                game.setName(beans.get(i).getName());
-                game.setPlatform(beans.get(i).getPlatform());
-                game.setGenre(beans.get(i).getGenre());
-                game.setYear(beans.get(i).getYear());
-                game.setDescription(beans.get(i).getDescription());
+                game.setName(beans.get(i).getGameName());
+                game.setPlatform(beans.get(i).getGamePlatform());
+                game.setGenre(beans.get(i).getGameGenre());
+                game.setYear(beans.get(i).getGameYear());
+                game.setDescription(beans.get(i).getGameDescription());
 
                 games.add(game);
             }
@@ -99,8 +99,8 @@ public class GamesTableGraphicController implements Initializable {
             else {
                 label.setText(selectedGame.getName() + " added to Tradelist");
                 GameBean gameBean = new GameBean();
-                gameBean.setName(selectedGame.getName());
-                gameBean.setPlatform(selectedGame.getPlatform());
+                gameBean.setGameName(selectedGame.getName());
+                gameBean.setGamePlatform(selectedGame.getPlatform());
                 gamesTableController.addToTradelist(gameBean);
             }
         } catch (DuplicatedGameException e) {
@@ -117,8 +117,8 @@ public class GamesTableGraphicController implements Initializable {
             else {
                 label.setText(selectedGame.getName() + " added to Wishlist");
                 GameBean gameBean = new GameBean();
-                gameBean.setName(selectedGame.getName());
-                gameBean.setPlatform(selectedGame.getPlatform());
+                gameBean.setGameName(selectedGame.getName());
+                gameBean.setGamePlatform(selectedGame.getPlatform());
                 gamesTableController.addToWishlist(gameBean);
             }
         } catch (DuplicatedGameException e) {
@@ -148,9 +148,9 @@ public class GamesTableGraphicController implements Initializable {
             if (prc >= 0) {
                 try {
                     GameBean gameBean = new GameBean();
-                    gameBean.setName(selectedGame.getName());
-                    gameBean.setPlatform(selectedGame.getPlatform());
-                    gameBean.setPrice(prc);
+                    gameBean.setGameName(selectedGame.getName());
+                    gameBean.setGamePlatform(selectedGame.getPlatform());
+                    gameBean.setGamePrice(prc);
                     gamesTableController.putForSale(gameBean);
                 } catch (DuplicatedGameException e) {
                     label1.setText("This game is already present in your shop");

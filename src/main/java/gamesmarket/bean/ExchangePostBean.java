@@ -4,59 +4,67 @@ import java.io.File;
 
 public class ExchangePostBean {
 
-    private String username;
-    private String game;
-    private String platform;
+    private String postUsername;
+    private String postGame;
+    private String postPlatform;
     private String gameToGive;
     private String platformGameToGive;
-    private File imageFile;
+    private File postImageFile;
 
-    public ExchangePostBean(String username, String game, String platform, String gameToGive, String platformGameToGive, File imageFile) {
-        this.username = username;
-        this.game = game;
-        this.platform = platform;
+    public ExchangePostBean(String postUsername, String postGame, String postPlatform, String gameToGive, String platformGameToGive, File postImageFile) {
+        this.postUsername = postUsername;
+        this.postGame = postGame;
+        this.postPlatform = postPlatform;
         this.gameToGive = gameToGive;
         this.platformGameToGive = platformGameToGive;
-        this.imageFile = imageFile;
+        this.postImageFile = postImageFile;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPostUsername() {
+        return postUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPostUsername(String postUsername) {
+        this.postUsername = postUsername;
     }
 
-    public String getGame() {
-        return game;
+    public String getPostGame() {
+        return postGame;
     }
 
-    public void setGame(String game) {
-        this.game = game;
+    public void setPostGame(String postGame) {
+        this.postGame = postGame;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getPostPlatform() {
+        return postPlatform;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPostPlatform(String postPlatform) {
+        this.postPlatform = postPlatform;
     }
 
     public String getGameToGive() {
         return gameToGive;
     }
 
+    public void setGameToGive(String gameToGive) {
+        this.gameToGive = gameToGive;
+    }
+
     public String getPlatformGameToGive() {
         return platformGameToGive;
     }
 
-    public File getImageFile() {
-        return imageFile;
+    public void setPlatformGameToGive(String platformGameToGive) {
+        this.platformGameToGive = platformGameToGive;
     }
 
-    public void setImageFile(File imageFile) {
-        this.imageFile = imageFile;
+    public File getPostImageFile() {
+        return postImageFile;
+    }
+
+    public void setPostImageFile(File postImageFile) {
+        this.postImageFile = postImageFile;
     }
 }

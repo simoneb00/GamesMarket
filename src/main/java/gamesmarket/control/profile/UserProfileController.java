@@ -14,17 +14,17 @@ public class UserProfileController {
 
 
     public void saveBio(UserBean userBean) throws SQLException {
-        String bio = userBean.getBio();
+        String bio = userBean.getUserBio();
         User.getInstance().setBio(bio);
         UserDAO.saveBio(bio);
     }
 
 
     public void updateCI(UserBean userBean) throws SQLException {
-        String email = userBean.getEmail();
-        String tel = userBean.getTel();
-        String address = userBean.getAddress();
-        String country = userBean.getCountry();
+        String email = userBean.getUserEmail();
+        String tel = userBean.getUserTel();
+        String address = userBean.getUserAddress();
+        String country = userBean.getUserCountry();
 
         List<String> contacts = new ArrayList<>();
         contacts.add(email);
@@ -48,8 +48,8 @@ public class UserProfileController {
 
 
     public void removeFromWishlist(GameBean gameBean) throws SQLException {
-        String name = gameBean.getName();
-        String platform = gameBean.getPlatform();
+        String name = gameBean.getGameName();
+        String platform = gameBean.getGamePlatform();
         UserDAO.removeFromWishlist(name, platform);
         for (int i = 0; i < User.getInstance().getWishlist().size(); i++) {
             if (User.getInstance().getWishlist().get(i).equals(name + " - " + platform))
@@ -58,8 +58,8 @@ public class UserProfileController {
     }
 
     public void removeFromTradelist(GameBean gameBean) throws SQLException {
-        String name = gameBean.getName();
-        String platform = gameBean.getPlatform();
+        String name = gameBean.getGameName();
+        String platform = gameBean.getGamePlatform();
         UserDAO.removeFromTradelist(name, platform);
         for (int i = 0; i < User.getInstance().getTradelist().size(); i++) {
             if (User.getInstance().getTradelist().get(i).equals(name + " - " + platform))

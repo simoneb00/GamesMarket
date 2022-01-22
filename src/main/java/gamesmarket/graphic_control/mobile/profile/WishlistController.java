@@ -62,8 +62,8 @@ public class WishlistController extends NavigationButtons implements Initializab
     public void removeSelectedGame() {
         try {
             GameBean gameBean = new GameBean();
-            gameBean.setPlatform(selectedPlatform);
-            gameBean.setName(selectedGame);
+            gameBean.setGamePlatform(selectedPlatform);
+            gameBean.setGameName(selectedGame);
 
             userProfileController.removeFromWishlist(gameBean);
 

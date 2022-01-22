@@ -159,9 +159,9 @@ public class YourShopGraphicController extends NavigationButtons implements Init
 
     public void removeSelectedGame() {
         GameBean gameBean = new GameBean();
-        gameBean.setName(selectedGame);
-        gameBean.setPlatform(selectedPlatform);
-        gameBean.setPrice(selectedPrice);
+        gameBean.setGameName(selectedGame);
+        gameBean.setGamePlatform(selectedPlatform);
+        gameBean.setGamePrice(selectedPrice);
 
         Game game = new Game();
         game.setName(selectedGame);
@@ -222,15 +222,15 @@ public class YourShopGraphicController extends NavigationButtons implements Init
             Order order = new Order(
                     orderBeans.get(i).getIdOrder(),
                  orderBeans.get(i).getVendor(),
-                 orderBeans.get(i).getPlatform(),
-                 orderBeans.get(i).getGame(),
-                 orderBeans.get(i).getPrice(),
+                 orderBeans.get(i).getOrderPlatform(),
+                 orderBeans.get(i).getOrderGame(),
+                 orderBeans.get(i).getOrderPrice(),
                  orderBeans.get(i).getBuyerName(),
                  orderBeans.get(i).getBuyerAddress(),
                  orderBeans.get(i).getBuyerCity(),
                  orderBeans.get(i).getBuyerTel(),
                  orderBeans.get(i).getPaymentMethod(),
-                 orderBeans.get(i).getUsername(),
+                 orderBeans.get(i).getBuyerUsername(),
                  orderBeans.get(i).getBuyerEmail(),
                  orderBeans.get(i).getStatus()
             );

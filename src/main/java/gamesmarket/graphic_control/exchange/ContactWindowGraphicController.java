@@ -50,10 +50,10 @@ public class ContactWindowGraphicController implements Initializable {
             UserBean userBean1 = contactWindowController.retrieveCI(userBean);
 
             contactUsername.setText(username);
-            email.setText(userBean1.getEmail());
-            tel.setText(userBean1.getTel());
-            address.setText(userBean1.getAddress());
-            country.setText(userBean1.getCountry());
+            email.setText(userBean1.getUserEmail());
+            tel.setText(userBean1.getUserTel());
+            address.setText(userBean1.getUserAddress());
+            country.setText(userBean1.getUserCountry());
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();
         }

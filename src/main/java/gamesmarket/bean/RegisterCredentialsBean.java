@@ -9,17 +9,19 @@ public class RegisterCredentialsBean {
 
     private String firstName;
     private String lastName;
-    private String email;
-    private String password;
-    private String username;
+    private String registerEmail;
+    private String registerPassword;
+    private String registerUsername;
     private String typeOfUser;
 
-    public String getTypeOfUser() {
-        return typeOfUser;
-    }
+    public void setRegisterEmail(String registerEmail) throws InvalidEmailException {
 
-    public void setTypeOfUser(String typeOfUser) {
-        this.typeOfUser = typeOfUser;
+        if (checkEmailAddress(registerEmail)) {
+            this.registerEmail = registerEmail;
+        }
+        else {
+            throw new InvalidEmailException();
+        }
     }
 
     public String getFirstName() {
@@ -38,34 +40,32 @@ public class RegisterCredentialsBean {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getRegisterEmail() {
+        return registerEmail;
     }
 
-    public void setEmail(String email) throws InvalidEmailException {
-
-        if (checkEmailAddress(email)) {
-            this.email = email;
-        }
-        else {
-            throw new InvalidEmailException();
-        }
+    public String getRegisterPassword() {
+        return registerPassword;
     }
 
-    public String getPassword() {
-        return password;
+    public void setRegisterPassword(String registerPassword) {
+        this.registerPassword = registerPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getRegisterUsername() {
+        return registerUsername;
     }
 
-    public String getUsername() {
-        return username;
+    public void setRegisterUsername(String registerUsername) {
+        this.registerUsername = registerUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getTypeOfUser() {
+        return typeOfUser;
+    }
+
+    public void setTypeOfUser(String typeOfUser) {
+        this.typeOfUser = typeOfUser;
     }
 
     private boolean checkEmailAddress(String email) {

@@ -60,7 +60,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     void updateBio() {
         try {
             UserBean userBean = new UserBean();
-            userBean.setBio(bioTF.getText());
+            userBean.setUserBio(bioTF.getText());
             userProfileController.saveBio(userBean);
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();
@@ -71,10 +71,10 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     void updateCI() {
         try {
             UserBean userBean = new UserBean();
-            userBean.setEmail(emailTF.getText());
-            userBean.setTel(telTF.getText());
-            userBean.setAddress(addressTF.getText());
-            userBean.setCountry(countryTF.getText());
+            userBean.setUserEmail(emailTF.getText());
+            userBean.setUserTel(telTF.getText());
+            userBean.setUserAddress(addressTF.getText());
+            userBean.setUserCountry(countryTF.getText());
 
             userProfileController.updateCI(userBean);
             this.setCI();

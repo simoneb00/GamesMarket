@@ -39,8 +39,8 @@ public class CreateNewShopGraphicController extends ShopOwnerNavigationButtons {
                 ErrorMessage.missingInformationMessage();
             else {
                 ShopBean shopBean = new ShopBean();
-                shopBean.setName(nameTF.getText());
-                shopBean.setAddress(addressTF.getText());
+                shopBean.setShopName(nameTF.getText());
+                shopBean.setShopAddress(addressTF.getText());
                 shopBean.setCity(cityTF.getText());
                 shopBean.setCountry(countryTF.getText());
                 YourShopController yourShopController = new YourShopController();

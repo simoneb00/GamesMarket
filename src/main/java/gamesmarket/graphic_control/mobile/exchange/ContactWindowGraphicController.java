@@ -63,10 +63,10 @@ public class ContactWindowGraphicController implements Initializable {
             userBean.setUsername(username);
             UserBean userBean1 = contactWindowController.retrieveCI(userBean);
 
-            String email = userBean1.getEmail();
-            String tel = userBean1.getTel();
-            String address = userBean1.getAddress();
-            String country = userBean1.getCountry();
+            String email = userBean1.getUserEmail();
+            String tel = userBean1.getUserTel();
+            String address = userBean1.getUserAddress();
+            String country = userBean1.getUserCountry();
 
             list.getItems().add(email);
             list.getItems().add(tel);

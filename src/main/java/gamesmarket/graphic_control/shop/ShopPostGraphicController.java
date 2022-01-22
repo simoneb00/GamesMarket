@@ -21,7 +21,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class ItemGraphicController {
+public class ShopPostGraphicController {
 
     @FXML
     private Label gameLabel;

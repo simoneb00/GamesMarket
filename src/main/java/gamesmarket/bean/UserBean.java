@@ -3,20 +3,12 @@ package gamesmarket.bean;
 public class UserBean {
 
     private String username;
-    private String password;
-    private String email;
-    private String tel;
-    private String address;
-    private String country;
-    private String bio;
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
+    private String userPassword;
+    private String userEmail;
+    private String userTel;
+    private String userAddress;
+    private String userCountry;
+    private String userBio;
 
     public String getUsername() {
         return username;
@@ -26,43 +18,51 @@ public class UserBean {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getTel() {
-        return tel;
+    public String getUserTel() {
+        return userTel;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUserAddress() {
+        return userAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
-    public String getCountry() {
-        return country;
+    public String getUserCountry() {
+        return userCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setUserCountry(String userCountry) {
+        this.userCountry = userCountry;
+    }
+
+    public String getUserBio() {
+        return userBio;
+    }
+
+    public void setUserBio(String userBio) {
+        this.userBio = userBio;
     }
 }
