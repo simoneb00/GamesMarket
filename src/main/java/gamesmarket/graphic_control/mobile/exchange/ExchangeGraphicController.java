@@ -33,7 +33,8 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
 
     private void showGrid(List<ExchangePost> posts) {
 
-        int c = 0;
+        int c = 1;
+        int r = 1;
 
         for (int i = 0; i < posts.size(); i++) {
 
@@ -45,10 +46,8 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
                 ExchangeItemGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(posts.get(i));
 
-                if (c == 1) {
-                    c = 0;
-                }
-
+                grid.add(ap, c, r);
+                r++;
                 GridPane.setMargin(ap, new Insets(10));
 
 
