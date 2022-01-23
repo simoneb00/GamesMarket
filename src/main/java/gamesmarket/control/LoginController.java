@@ -63,8 +63,6 @@ public class LoginController {
         attributes = ShopOwnerDAO.retrieveShopOwner(email); // retrieves shop owner's information in this order: [password, firstName, lastName]
         shopOwner.setEmail(email);
         shopOwner.setPassword(attributes.get(0));
-        shopOwner.setFirstName(attributes.get(1));
-        shopOwner.setLastName(attributes.get(2));
 
         Shop shop = Shop.getInstance();
         String name = ShopDAO.retrieveShopName(email);

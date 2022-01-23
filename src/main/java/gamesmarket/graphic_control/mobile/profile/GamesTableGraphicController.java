@@ -38,31 +38,10 @@ public class GamesTableGraphicController extends NavigationButtons implements In
     private Game selectedGame = null;
 
 
-    private List<Game> retrieveGames() {
-        List<Game> games = new ArrayList<>();
-        try {
-            List<GameBean> beans = gamesTableController.retrieveGames();
-
-            for (int i = 0; i < beans.size(); i++) {
-                Game game = new Game();
-                game.setName(beans.get(i).getGameName());
-                game.setPlatform(beans.get(i).getGamePlatform());
-                game.setGenre(beans.get(i).getGameGenre());
-                game.setYear(beans.get(i).getGameYear());
-                game.setDescription(beans.get(i).getGameDescription());
-
-                games.add(game);
-            }
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        }
-
-        return games;
-    }
-
 
     private void retrieveTable() {
-        List<Game> games = this.retrieveGames();
+        gamesmarket.graphic_control.GamesTableGraphicController gamesTableGraphicController = new gamesmarket.graphic_control.GamesTableGraphicController();
+        List<Game> games = gamesTableGraphicController.retrieveGames();
 
         for (int i = 0; i < games.size(); i++) {
             gameObservableList.add(games.get(i));

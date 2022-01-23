@@ -167,8 +167,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         game.setName(selectedGame);
         game.setPrice(selectedPrice);
         game.setPlatform(selectedPlatform);
-        int index = Shop.getInstance().getGames().indexOf(game);
-        System.out.println(index);
+
         try {
             yourShopController.removeGame(gameBean);
         } catch (SQLException e) {

@@ -35,7 +35,6 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     private int column = 0;
     private int row = 1;
     ForumController forumController = new ForumController();
-    private ShopOwnerNavigationButtons shopOwnerNavigationButtons = new ShopOwnerNavigationButtons();
 
     @FXML
     public void post() {

@@ -124,8 +124,7 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
 
     public void selectOrder() {
         selectedOrder = pendingOrdersTable.getSelectionModel().getSelectedItem();
-        if (selectedOrder != null) {
-            if (selectedOrder.getStatus().equals("Pending")) {
+        if (selectedOrder != null && selectedOrder.getStatus().equals("Pending")) {
                 if (selectedOrder.getPaymentMethod().equals("Pickup in Store"))
                     markButton.setText("Mark as Delivered");
                 else
@@ -133,7 +132,6 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
 
                 markButton.setVisible(true);
                 markButton.setDisable(false);
-            }
         }
     }
 

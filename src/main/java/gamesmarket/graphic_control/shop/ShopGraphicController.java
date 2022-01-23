@@ -146,7 +146,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
             for (int i = 0; i < posts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/shopItem.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane anchorPane1 = fxmlLoader.load();
 
                 ShopPostGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(posts.get(i));
@@ -156,7 +156,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row);
+                grid.add(anchorPane1, column++, row);
 
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -166,7 +166,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-                GridPane.setMargin(anchorPane, new Insets(20));
+                GridPane.setMargin(anchorPane1, new Insets(20));
 
             }
         } catch(IOException e) {

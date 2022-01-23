@@ -10,6 +10,8 @@ import java.util.List;
 
 public class PostDAO {
 
+    private PostDAO() {}
+
     public static List<Post> retrievePosts() throws SQLException{
 
         List<Post> posts = new ArrayList<>();
@@ -34,8 +36,7 @@ public class PostDAO {
         }
 
         result.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
         return posts;
     }

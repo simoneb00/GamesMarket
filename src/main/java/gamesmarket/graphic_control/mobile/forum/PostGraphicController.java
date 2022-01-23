@@ -36,7 +36,6 @@ public class PostGraphicController {
     private Post post = new Post("", "");
     private ForumController forumController = new ForumController();
     private List<Comment> oldComments = new ArrayList<>();
-    private List<Comment> userOldComments = new ArrayList<>();
     private int row = 1;
     private int column = 0;
 
@@ -109,17 +108,17 @@ public class PostGraphicController {
         else
             username = "unknown";
 
-        String text = commentText.getText();
+        String txt = commentText.getText();
 
         Comment comment = new Comment();
-        comment.setText(text);
+        comment.setText(txt);
         comment.setUsername(username);
 
         this.addCommentToGrid(comment);
 
         CommentBean commentBean = new CommentBean();
         commentBean.setCommentUsername(username);
-        commentBean.setCommentText(text);
+        commentBean.setCommentText(txt);
 
         PostBean postBean = new PostBean(post.getUsername(), post.getText());
 

@@ -133,13 +133,6 @@ public class CheckoutGraphicController implements Initializable {
     @FXML
     public void confirmButton(ActionEvent event) {
 
-        if (!pickUpInStore.isSelected()) {
-            String buyerName = nameTF.toString();
-            String buyerAddress = addressTF.toString();
-            String buyerCity = cityTF.toString();
-            String buyerTel = telTF.toString();
-        }
-
         if (cashOnDelivery.isSelected())
             paymentMethod = "Cash on delivery";
         else if (paypal.isSelected())

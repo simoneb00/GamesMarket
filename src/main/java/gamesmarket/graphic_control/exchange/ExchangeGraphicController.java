@@ -37,7 +37,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
     private List<ExchangePost> exchangePosts = new ArrayList<>();
     private ExchangeController exchangeController = new ExchangeController();
 
-    private List<ExchangePost> retrieveExchange() throws IOException{
+    public List<ExchangePost> retrieveExchange() throws IOException{
 
         List<ExchangePost> posts = new ArrayList<>();
 

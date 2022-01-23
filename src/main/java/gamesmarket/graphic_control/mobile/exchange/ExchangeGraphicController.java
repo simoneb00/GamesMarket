@@ -32,67 +32,31 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
     private ExchangeController exchangeController = new ExchangeController();
     private List<ExchangePost> exchangePosts = new ArrayList<>();
 
-    private List<ExchangePost> retrieveExchange() throws IOException {
-
-        List<ExchangePost> posts = new ArrayList<>();
-
-        try {
-            List<ExchangePostBean> beans = exchangeController.retrieveExchange();
-
-            for (int i = 0; i < beans.size(); i++) {
-                ExchangePost exchangePost = new ExchangePost(
-                        beans.get(i).getPostUsername(),
-                        beans.get(i).getPostGame(),
-                        beans.get(i).getPostPlatform(),
-                        beans.get(i).getGameToGive(),
-                        beans.get(i).getPlatformGameToGive(),
-                        beans.get(i).getPostImageFile()
-                );
-
-                posts.add(exchangePost);
-            }
-        } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
-        }
-
-        return posts;
-    }
-
     private void showGrid(List<ExchangePost> posts) {
 
-        int column = 0;
-        int row = 1;
+        int c = 0;
+        int r = 1;
 
         for (int i = 0; i < posts.size(); i++) {
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/exchange_post.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane ap = fxmlLoader.load();
 
                 ExchangeItemGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(posts.get(i));
 
-                if (column == 1) {
-                    column = 0;
-                    row++;
+                if (c == 1) {
+                    c = 0;
+                    r++;
                 }
 
-                grid.add(anchorPane, column++, row);
-
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(10));
+                GridPane.setMargin(ap, new Insets(10));
 
 
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }
@@ -114,8 +78,9 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        gamesmarket.graphic_control.exchange.ExchangeGraphicController exchangeGraphicController = new gamesmarket.graphic_control.exchange.ExchangeGraphicController();
         try {
-            exchangePosts.addAll(this.retrieveExchange());
+            exchangePosts.addAll(exchangeGraphicController.retrieveExchange());
             this.showGrid(exchangePosts);
         } catch (IOException e) {
             ErrorMessage.displayErrorMessage();

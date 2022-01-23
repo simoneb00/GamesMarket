@@ -12,6 +12,8 @@ import java.util.List;
 
 public class UserDAO {
 
+    private UserDAO() {}
+
     public static void registerUser(String username, String email, String password, String firstName, String lastName) throws DuplicatedEmailException, DuplicatedUsernameException, SQLException {
         Connection connection = DatabaseConnection.getConnection();
 
@@ -67,8 +69,7 @@ public class UserDAO {
             }
         }
         result.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
         return returnValue;
@@ -94,8 +95,7 @@ public class UserDAO {
         }
 
         result.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
         return list;
@@ -122,8 +122,7 @@ public class UserDAO {
         }
 
         resultSet.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
         return ci;
@@ -143,8 +142,7 @@ public class UserDAO {
         statement.execute(deleteCI);
         statement.execute(updateCI);
 
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
     }
@@ -165,8 +163,7 @@ public class UserDAO {
         }
 
         resultSet.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
         return bio;
@@ -212,8 +209,7 @@ public class UserDAO {
         statement1.execute(delete);
         statement.executeUpdate();
 
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
     }
@@ -240,8 +236,7 @@ public class UserDAO {
         }
 
         resultSet.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
         fos.close();
 
 
@@ -268,8 +263,7 @@ public class UserDAO {
             list.add(add);
         }
 
-        if (statement != null)
-            statement.close();
+        statement.close();
 
         resultSet.close();
 
@@ -297,8 +291,7 @@ public class UserDAO {
             list.add(add);
         }
 
-        if (statement != null)
-            statement.close();
+        statement.close();
 
         resultSet.close();
 

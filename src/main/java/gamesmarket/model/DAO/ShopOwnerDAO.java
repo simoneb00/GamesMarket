@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ShopOwnerDAO {
 
+    private ShopOwnerDAO() {}
+
     public static void registerShopOwner(String email, String password, String firstName, String lastName) throws DuplicatedEmailException, SQLException {
         Connection connection = DatabaseConnection.getConnection();
 
@@ -53,8 +55,7 @@ public class ShopOwnerDAO {
             }
         }
         result.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
         return returnValue;
@@ -78,8 +79,7 @@ public class ShopOwnerDAO {
         }
 
         result.close();
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
         return list;

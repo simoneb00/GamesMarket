@@ -12,11 +12,9 @@ public class CommentGraphicController {
     @FXML
     private Label username;
 
-    private Comment comment;
 
     public void setData(Comment comment) {
         text.setEditable(false);
-        this.comment = comment;
         username.setText(comment.getUsername());
         text.setText(comment.getText());
     }

@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ShopDAO {
 
+    private ShopDAO() {}
+
     public static List<ShopPost> retrieveShop() throws SQLException, IOException {
         List<ShopPost> posts = new ArrayList<>();
         Connection connection = null;

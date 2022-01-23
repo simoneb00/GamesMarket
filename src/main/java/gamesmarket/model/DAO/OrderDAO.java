@@ -10,6 +10,8 @@ import java.util.List;
 
 public class OrderDAO {
 
+    private OrderDAO() {}
+
     public static void saveOrder(Order order) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -29,8 +31,6 @@ public class OrderDAO {
                 "VALUES\n" +
                 "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-
-        System.out.println(order.getBuyerCity());
 
         connection = DatabaseConnection.getConnection();
         preparedStatement = connection.prepareStatement(save);

@@ -2,8 +2,6 @@ package gamesmarket.model;
 
 public class ShopOwner {
 
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     private Shop shop = null;
@@ -18,14 +16,6 @@ public class ShopOwner {
 
     public void setShop(Shop shop) {
         this.shop = shop;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

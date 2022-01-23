@@ -23,10 +23,10 @@ public class ShopOwnerHomeGraphicController extends NavigationButtons {
 
     @FXML
     public void yourShopButtonPressed(ActionEvent event) {
-        if (ShopOwner.getInstance().isLoggedIn())
-            if (ShopOwner.getInstance().getShop() != null)
+        if (ShopOwner.getInstance().isLoggedIn()) {
+            if (ShopOwner.getInstance().getShop() != null) {
                 this.yourShopButtonSO(event);
-            else {
+            } else {
                 try {
                     Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/createNewShop.fxml"));
                     Stage stage = new Stage();
@@ -49,7 +49,7 @@ public class ShopOwnerHomeGraphicController extends NavigationButtons {
                 }
             }
 
-        else
+        } else
             this.signIn();
     }
 

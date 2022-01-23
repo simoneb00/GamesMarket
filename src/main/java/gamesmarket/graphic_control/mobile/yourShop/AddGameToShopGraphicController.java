@@ -56,8 +56,6 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
             String name = result[0];
             String platform = result[1];
 
-            System.out.println(name);
-            System.out.println(platform);
 
             GameBean gameBean = new GameBean();
             gameBean.setGameName(name);

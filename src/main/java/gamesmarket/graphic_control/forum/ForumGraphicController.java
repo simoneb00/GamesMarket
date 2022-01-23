@@ -68,7 +68,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             for (int i = 0; i < oldposts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/post.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane anchorPane1 = fxmlLoader.load();
 
                 PostGraphicController postGraphicController = fxmlLoader.getController();
                 postGraphicController.setData(oldposts.get(i));
@@ -79,14 +79,14 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                postsGrid.add(anchorPane, column++, row);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                postsGrid.add(anchorPane1, column++, row);
+                GridPane.setMargin(anchorPane1, new Insets(10));
             }
 
             for (int i = 0; i < userOldPosts.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/userPost.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane anchorPane2 = fxmlLoader.load();
 
                 UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(userOldPosts.get(i));
@@ -97,8 +97,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                userGrid.add(anchorPane, column++, row);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                userGrid.add(anchorPane2, column++, row);
+                GridPane.setMargin(anchorPane2, new Insets(10));
             }
 
         } catch (IOException e) {
@@ -156,7 +156,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/post.fxml"));
-            AnchorPane anchorPane = fxmlLoader.load();
+            AnchorPane anchorPane3 = fxmlLoader.load();
 
             if (column == 1) {
                 column = 0;
@@ -165,8 +165,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
             PostGraphicController postGraphicController = fxmlLoader.getController();
             postGraphicController.setData(post);
-            postsGrid.add(anchorPane, column++, row);
-            GridPane.setMargin(anchorPane, new Insets(10));
+            postsGrid.add(anchorPane3, column++, row);
+            GridPane.setMargin(anchorPane3, new Insets(10));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -179,7 +179,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/userPost.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane anchorPane4 = fxmlLoader.load();
 
                 if (column == 1) {
                     column = 0;
@@ -188,8 +188,8 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
                 UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(post);
-                userGrid.add(anchorPane, column++, row);
-                GridPane.setMargin(anchorPane, new Insets(10));
+                userGrid.add(anchorPane4, column++, row);
+                GridPane.setMargin(anchorPane4, new Insets(10));
 
             } catch (IOException e) {
                 e.printStackTrace();

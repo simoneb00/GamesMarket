@@ -11,6 +11,8 @@ import java.util.*;
 
 public class ExchangePostDAO {
 
+    private ExchangePostDAO() {}
+
     public static List<ExchangePost> retrieveExchange() throws SQLException {
 
         List<ExchangePost> exchangePosts = new ArrayList<>();

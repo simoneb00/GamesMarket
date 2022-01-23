@@ -142,8 +142,7 @@ public class OrdersTableGraphicController implements Initializable {
 
     public void selectOrder() {
         selectedOrder = table.getSelectionModel().getSelectedItem();
-        if (selectedOrder != null) {
-            if (selectedOrder.getStatus().equals("Pending")) {
+        if (selectedOrder != null && selectedOrder.getStatus().equals("Pending")) {
                 if (selectedOrder.getPaymentMethod().equals("Pickup in Store"))
                     markButton.setText("Mark as Delivered");
                 else
@@ -151,7 +150,6 @@ public class OrdersTableGraphicController implements Initializable {
 
                 markButton.setVisible(true);
                 markButton.setDisable(false);
-            }
         }
     }
 

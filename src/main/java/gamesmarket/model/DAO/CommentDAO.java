@@ -10,6 +10,8 @@ import java.util.List;
 
 public class CommentDAO {
 
+    private CommentDAO() {}
+
     public static List<Comment> retrieveComments(Post post) throws SQLException{
 
         List<Comment> comments = new ArrayList<>();

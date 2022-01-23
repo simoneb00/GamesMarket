@@ -12,6 +12,7 @@ import java.util.List;
 
 public class GameDAO {
 
+    private GameDAO() {}
 
     public static List<Game> retrieveGames() throws SQLException{
         List<Game> games = new ArrayList<>();
@@ -34,8 +35,7 @@ public class GameDAO {
             games.add(game);
         }
 
-        if (statement != null)
-            statement.close();
+        statement.close();
 
 
 
