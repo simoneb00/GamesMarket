@@ -132,12 +132,12 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
 
 
             if (!paymentMethod.equals(pickupInStore)) {
-                confirmationGraphicController.setBuyerName(nameTF.getText());
-                confirmationGraphicController.setBuyerAddress(addressTF.getText());
-                confirmationGraphicController.setBuyerCity(cityTF.getText());
-                confirmationGraphicController.setBuyerTel(telTF.getText());
+                confirmationGraphicController.setCustName(nameTF.getText());
+                confirmationGraphicController.setCustAddress(addressTF.getText());
+                confirmationGraphicController.setCustCity(cityTF.getText());
+                confirmationGraphicController.setCustTel(telTF.getText());
             } else {
-                confirmationGraphicController.setBuyerName(User.getInstance().getFirstName() + " " + User.getInstance().getLastName());
+                confirmationGraphicController.setCustName(User.getInstance().getFirstName() + " " + User.getInstance().getLastName());
             }
 
             fxmlLoader.setController(confirmationGraphicController);

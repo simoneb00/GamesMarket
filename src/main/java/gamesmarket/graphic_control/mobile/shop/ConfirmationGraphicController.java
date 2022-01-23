@@ -26,63 +26,77 @@ public class ConfirmationGraphicController extends NavigationButtons implements 
     @FXML
     private ImageView img;
 
-    private String vendor;
-    private String platform;
-    private String game;
-    private double price;
-    private String imagePath;
-    private String buyerName;
-    private String buyerAddress;
-    private String buyerCity;
-    private String buyerTel;
-    private String buyerEmail;
-    private String paymentMethod;
+    private String vendorName;
+    private String gamePlt;
+    private String gameName;
+    private double gamePrc;
+    private String photoPath;
+    private String custName;
+    private String custAddress;
+    private String custCity;
+    private String custTel;
+    private String custEmail;
+    private String paymentMethodChosen;
 
-    public ConfirmationGraphicController(String vendor, String platform, String game, double price, String imagePath, String paymentMethod, String buyerEmail) {
-        this.vendor = vendor;
-        this.platform = platform;
-        this.game = game;
-        this.price = price;
-        this.imagePath = imagePath;
-        this.paymentMethod = paymentMethod;
-        this.buyerEmail = buyerEmail;
+    public ConfirmationGraphicController(String vendor, String platform, String game, double price, String imagePath, String paymentMethod, String custEmail) {
+        this.vendorName = vendor;
+        this.gamePlt = platform;
+        this.gameName = game;
+        this.gamePrc = price;
+        this.photoPath = imagePath;
+        this.paymentMethodChosen = paymentMethod;
+        this.custEmail = custEmail;
     }
 
-    public String getBuyerName() {
-        return buyerName;
+    public String getCustName() {
+        return custName;
     }
 
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
 
-    public String getBuyerAddress() {
-        return buyerAddress;
+    public String getCustAddress() {
+        return custAddress;
     }
 
-    public void setBuyerAddress(String buyerAddress) {
-        this.buyerAddress = buyerAddress;
+    public void setCustAddress(String custAddress) {
+        this.custAddress = custAddress;
     }
 
-    public String getBuyerCity() {
-        return buyerCity;
+    public String getCustCity() {
+        return custCity;
     }
 
-    public void setBuyerCity(String buyerCity) {
-        this.buyerCity = buyerCity;
+    public void setCustCity(String custCity) {
+        this.custCity = custCity;
     }
 
-    public String getBuyerTel() {
-        return buyerTel;
+    public String getCustTel() {
+        return custTel;
     }
 
-    public void setBuyerTel(String buyerTel) {
-        this.buyerTel = buyerTel;
+    public void setCustTel(String custTel) {
+        this.custTel = custTel;
     }
 
     private void saveOrder() {
         try {
-            OrderBean orderBean = new OrderBean(0, vendor, platform, game, price, buyerName, buyerAddress, buyerCity, buyerTel, paymentMethod, User.getInstance().getUsername(), buyerEmail, "pending");
+            OrderBean orderBean = new OrderBean();
+            orderBean.setIdOrder(0);
+            orderBean.setVendor(vendorName);
+            orderBean.setOrderPlatform(gamePlt);
+            orderBean.setOrderGame(gameName);
+            orderBean.setOrderPrice(gamePrc);
+            orderBean.setBuyerName(custName);
+            orderBean.setBuyerAddress(custAddress);
+            orderBean.setBuyerCity(custCity);
+            orderBean.setBuyerTel(custTel);
+            orderBean.setPaymentMethod(paymentMethodChosen);
+            orderBean.setBuyerUsername(User.getInstance().getUsername());
+            orderBean.setBuyerEmail(custEmail);
+            orderBean.setStatus("Pending");
+
             ShopController shopController = new ShopController();
             shopController.saveOrder(orderBean);
         } catch (SQLException e) {
@@ -92,11 +106,11 @@ public class ConfirmationGraphicController extends NavigationButtons implements 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        platformLabel.setText(platform);
-        priceLabel.setText("€ " + price);
-        gameLabel.setText(game);
+        platformLabel.setText(gamePlt);
+        priceLabel.setText("€ " + gamePrc);
+        gameLabel.setText(gameName);
 
-        Image image = new Image(imagePath);
+        Image image = new Image(photoPath);
         img.setImage(image);
 
         this.saveOrder();

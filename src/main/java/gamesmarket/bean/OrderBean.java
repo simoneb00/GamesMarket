@@ -17,22 +17,6 @@ public class OrderBean {
     private String status;
     private String newStatus;
 
-    public OrderBean(int idOrder, String vendor, String orderPlatform, String orderGame, double orderPrice, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String buyerUsername, String buyerEmail, String status) {
-        this.idOrder = idOrder;
-        this.vendor = vendor;
-        this.orderPlatform = orderPlatform;
-        this.orderGame = orderGame;
-        this.orderPrice = orderPrice;
-        this.buyerName = buyerName;
-        this.buyerAddress = buyerAddress;
-        this.buyerCity = buyerCity;
-        this.buyerTel = buyerTel;
-        this.paymentMethod = paymentMethod;
-        this.buyerUsername = buyerUsername;
-        this.buyerEmail = buyerEmail;
-        this.status = status;
-    }
-
     public int getIdOrder() {
         return idOrder;
     }

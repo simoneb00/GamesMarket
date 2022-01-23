@@ -141,22 +141,21 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
         try {
             String[] s = markButton.getText().split(" ");
             String newStatus = s[2];
-            OrderBean orderBean = new OrderBean(
-                    selectedOrder.getIdOrder(),
-                    selectedOrder.getVendor(),
-                    selectedOrder.getPlatform(),
-                    selectedOrder.getGame(),
-                    selectedOrder.getPrice(),
-                    selectedOrder.getBuyerName(),
-                    selectedOrder.getBuyerAddress(),
-                    selectedOrder.getBuyerCity(),
-                    selectedOrder.getBuyerTel(),
-                    selectedOrder.getPaymentMethod(),
-                    selectedOrder.getUsername(),
-                    selectedOrder.getBuyerEmail(),
-                    selectedOrder.getStatus()
-            );
+            OrderBean orderBean = new OrderBean();
 
+            orderBean.setIdOrder(selectedOrder.getIdOrder());
+            orderBean.setVendor(selectedOrder.getVendor());
+            orderBean.setOrderPlatform(selectedOrder.getPlatform());
+            orderBean.setOrderGame(selectedOrder.getGame());
+            orderBean.setOrderPrice(selectedOrder.getPrice());
+            orderBean.setBuyerName(selectedOrder.getBuyerName());
+            orderBean.setBuyerAddress(selectedOrder.getBuyerAddress());
+            orderBean.setBuyerCity(selectedOrder.getBuyerCity());
+            orderBean.setBuyerTel(selectedOrder.getBuyerTel());
+            orderBean.setPaymentMethod(selectedOrder.getPaymentMethod());
+            orderBean.setBuyerUsername(selectedOrder.getUsername());
+            orderBean.setBuyerEmail(selectedOrder.getBuyerEmail());
+            orderBean.setStatus(selectedOrder.getStatus());
             orderBean.setNewStatus(newStatus);
 
             yourShopController.updateStatus(orderBean);

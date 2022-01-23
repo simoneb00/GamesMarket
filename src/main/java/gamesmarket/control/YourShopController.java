@@ -60,21 +60,21 @@ public class YourShopController {
         List<Order> orders = OrderDAO.retrieveOrders();
 
         for (int i = 0; i < orders.size(); i++) {
-            OrderBean orderBean = new OrderBean(
-                    orders.get(i).getIdOrder(),
-                    orders.get(i).getVendor(),
-                    orders.get(i).getPlatform(),
-                    orders.get(i).getGame(),
-                    orders.get(i).getPrice(),
-                    orders.get(i).getBuyerName(),
-                    orders.get(i).getBuyerAddress(),
-                    orders.get(i).getBuyerCity(),
-                    orders.get(i).getBuyerTel(),
-                    orders.get(i).getPaymentMethod(),
-                    orders.get(i).getUsername(),
-                    orders.get(i).getBuyerEmail(),
-                    orders.get(i).getStatus()
-            );
+            OrderBean orderBean = new OrderBean();
+
+            orderBean.setIdOrder(orders.get(i).getIdOrder());
+            orderBean.setVendor(orders.get(i).getVendor());
+            orderBean.setOrderPlatform(orders.get(i).getPlatform());
+            orderBean.setOrderGame(orders.get(i).getGame());
+            orderBean.setOrderPrice(orders.get(i).getPrice());
+            orderBean.setBuyerName(orders.get(i).getBuyerName());
+            orderBean.setBuyerAddress(orders.get(i).getBuyerAddress());
+            orderBean.setBuyerCity(orders.get(i).getBuyerCity());
+            orderBean.setBuyerTel(orders.get(i).getBuyerTel());
+            orderBean.setPaymentMethod(orders.get(i).getPaymentMethod());
+            orderBean.setBuyerUsername(orders.get(i).getUsername());
+            orderBean.setBuyerEmail(orders.get(i).getBuyerEmail());
+            orderBean.setStatus(orders.get(i).getStatus());
 
             orderBeans.add(orderBean);
         }

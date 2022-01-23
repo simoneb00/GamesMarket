@@ -75,7 +75,21 @@ public class ConfirmationGraphicController implements Initializable {
 
     private void saveOrder() {
         try {
-            OrderBean orderBean = new OrderBean(0, vendor, platform, game, price, buyerName, buyerAddress, buyerCity, buyerTel, paymentMethod, User.getInstance().getUsername(), buyerEmail, "pending");
+            OrderBean orderBean = new OrderBean();
+            orderBean.setIdOrder(0);
+            orderBean.setVendor(vendor);
+            orderBean.setOrderPlatform(platform);
+            orderBean.setOrderGame(game);
+            orderBean.setOrderPrice(price);
+            orderBean.setBuyerName(buyerName);
+            orderBean.setBuyerAddress(buyerAddress);
+            orderBean.setBuyerCity(buyerCity);
+            orderBean.setBuyerTel(buyerTel);
+            orderBean.setPaymentMethod(paymentMethod);
+            orderBean.setBuyerUsername(User.getInstance().getUsername());
+            orderBean.setBuyerEmail(buyerEmail);
+            orderBean.setStatus("Pending");
+
             ShopController shopController = new ShopController();
             shopController.saveOrder(orderBean);
         } catch (SQLException e) {
