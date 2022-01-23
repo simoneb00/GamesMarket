@@ -23,9 +23,7 @@ public class ExchangePostDAO {
                 "                w_current_user.username <> t_other_user.username and\n" +
                 "                w_current_user.game = t_other_user.game and\n" +
                 "                w_current_user.platform = t_other_user.platform) as GTG\n" +
-                "                \n" +
                 "                join\n" +
-                "                \n" +
                 "\t\t\t\t(select w_other_user.username as u, t_current_user.game as gameToGive, t_current_user.platform as platformToGive\n" +
                 "                from wishlist as w_other_user join tradelist as t_current_user\n" +
                 "\t\t\t\twhere t_current_user.username = '" + User.getInstance().getUsername() + "' and\n" +
