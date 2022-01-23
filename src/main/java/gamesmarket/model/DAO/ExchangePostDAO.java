@@ -92,8 +92,7 @@ public class ExchangePostDAO {
             resultSet.close();
 
             statement.close();
-            if (statement1 != null)
-                statement1.close();
+            statement1.close();
 
 
 
