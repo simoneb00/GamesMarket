@@ -222,7 +222,7 @@ public class UserDAO {
     public static File retrieveProfilePhoto() throws IOException, SQLException {
         Connection connection = null;
         Statement statement = null;
-        File file = new File("image.jpg");
+        File file = new File("image" + User.getInstance().getUsername() + ".jpg");
         String retrieve = "select * from profileimage where username = '" + User.getInstance().getUsername() + "';";
 
 

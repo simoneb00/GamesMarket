@@ -1,99 +1,74 @@
 package gamesmarket.model.DAO;
 
 import gamesmarket.dbconnection.DatabaseConnection;
-import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.model.ExchangePost;
-import gamesmarket.model.Game;
 import gamesmarket.model.User;
+
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class ExchangePostDAO {
 
-    public static List<ExchangePost> retrieveExchange() throws SQLException{
-        List<Game> gamesToGive = new ArrayList<>();
+    public static List<ExchangePost> retrieveExchange() throws SQLException {
+
         List<ExchangePost> exchangePosts = new ArrayList<>();
-        Connection connection = null;
-        Statement statement = null;
-        Statement statement1 = null;
 
 
-        // this query retrieve the games the current user wants to receive
-        String retrieveGamesToReceive = "-- find games current user wants to receive\n" +
-                "select t_other_user.username, t_other_user.game, t_other_user.platform\n" +
-                "from wishlist as w_current_user join tradelist as t_other_user\n" +
-                "where w_current_user.username = '" + User.getInstance().getUsername() + "' and \n" +
-                "w_current_user.username <> t_other_user.username and\n" +
-                "w_current_user.game = t_other_user.game and \n" +
-                "w_current_user.platform = t_other_user.platform;";
-
-        // this query retrieves the games (if they exists) other users want to receive in exchange for the previous game
-        String retrieveGamesToGive = "-- find games other user wants to receive for that (those) game (games)\n" +
-                "select w_other_user.username, t_current_user.game, t_current_user.platform\n" +
-                "from wishlist as w_other_user join tradelist as t_current_user\n" +
-                "where t_current_user.username = '" + User.getInstance().getUsername() + "' and\n" +
-                "w_other_user.username <> t_current_user.username and\n" +
-                "t_current_user.game = w_other_user.game and\n" +
-                "t_current_user.platform = w_other_user.platform;";
-
-
-
-
-            connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
-            statement1 = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(retrieveGamesToReceive);
-
-            while(resultSet.next()) {
-
-                String username = resultSet.getString("username");
-                String game = resultSet.getString("game");
-                String platform = resultSet.getString("platform");
-
-                ResultSet resultSet1 = statement1.executeQuery(retrieveGamesToGive);
+        String query = "select distinct * from \n" +
+                "\t\t\t\t(select t_other_user.username, t_other_user.game, t_other_user.platform\n" +
+                "                from wishlist as w_current_user join tradelist as t_other_user\n" +
+                "                where w_current_user.username = '" + User.getInstance().getUsername() + "' and\n" +
+                "                w_current_user.username <> t_other_user.username and\n" +
+                "                w_current_user.game = t_other_user.game and\n" +
+                "                w_current_user.platform = t_other_user.platform) as GTG\n" +
+                "                \n" +
+                "                join\n" +
+                "                \n" +
+                "\t\t\t\t(select w_other_user.username as u, t_current_user.game as gameToGive, t_current_user.platform as platformToGive\n" +
+                "                from wishlist as w_other_user join tradelist as t_current_user\n" +
+                "\t\t\t\twhere t_current_user.username = '" + User.getInstance().getUsername() + "' and\n" +
+                "                w_other_user.username <> t_current_user.username and\n" +
+                "                t_current_user.game = w_other_user.game and\n" +
+                "                t_current_user.platform = w_other_user.platform) as GTR\n" +
+                "                \n" +
+                "                on username = u\n" +
+                "                order by username, game;";
 
 
-                while (resultSet1.next()) {
-                    ExchangePost exchangePost = new ExchangePost(username, game, platform, "", "", null);
-                    String gameToGive = resultSet1.getString("game");
-                    String platformToGive = resultSet1.getString("platform");
+        Connection connection = DatabaseConnection.getConnection();
+        Statement statement = connection.createStatement();
 
-                    if (!gameToGive.isEmpty() && !platformToGive.isEmpty()) {
-                        exchangePost.setGameToGive(gameToGive);
-                        exchangePost.setPlatformGameToGive(platformToGive);
+        ResultSet resultSet = statement.executeQuery(query);
 
-                        if (!exchangePosts.contains(exchangePost)) {
-                            File file = new File(game + ".jpg");
-                            if (file.exists())
-                                exchangePost.setImageFile(file);
-                            else {
-                                try {
-                                    exchangePost.setImageFile(GameDAO.retrieveGamePhoto(game));
-                                } catch (IOException e) {
-                                    ErrorMessage.displayErrorMessage();
-                                }
-                            }
+        while (resultSet.next()) {
+            ExchangePost exchangePost = new ExchangePost(
+                    resultSet.getString("username"),
+                    resultSet.getString("game"),
+                    resultSet.getString("platform"),
+                    resultSet.getString("gameToGive"),
+                    resultSet.getString("platformToGive"),
+                    null
+            );
 
-                            if (!exchangePosts.contains(exchangePost) && !gameToGive.isEmpty() && !platformToGive.isEmpty()) {
-                                exchangePosts.add(exchangePost);
-                            }
-                        }
-                    }
+            File file = new File(resultSet.getString("game") + ".jpg");
+            if (file.exists())
+                exchangePost.setImageFile(file);
+            else {
+                try {
+                    exchangePost.setImageFile(GameDAO.retrieveGamePhoto(resultSet.getString("game")));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-                resultSet1.close();
             }
 
-            resultSet.close();
+            exchangePosts.add(exchangePost);
 
-            statement.close();
-            statement1.close();
+        }
 
+        resultSet.close();
+        statement.close();
 
 
         return exchangePosts;
