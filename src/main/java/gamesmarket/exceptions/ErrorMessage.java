@@ -14,15 +14,20 @@ public class ErrorMessage {
 
     private static final String TITLE = "GamesMarket";
 
+
+    private static void displayMessage(Parent root) {
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setTitle(TITLE);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     public static void displayErrorMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/error.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -32,13 +37,8 @@ public class ErrorMessage {
 
     public static void displayImageNotFoundMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_image.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -47,13 +47,8 @@ public class ErrorMessage {
 
     public static void displayDuplicatedGameInTradelist() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_tradelist.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -62,13 +57,8 @@ public class ErrorMessage {
 
     public static void displayDuplicatedGameInWishlist() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_wishlist.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -77,13 +67,8 @@ public class ErrorMessage {
 
     public static void noPaymentMethodSelected() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_no_payment_selected.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -92,13 +77,8 @@ public class ErrorMessage {
 
     public static void displayInvalidPriceMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_invalid_price.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -107,13 +87,8 @@ public class ErrorMessage {
 
     public static void displayEmptyPriceMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_empty_price.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -122,13 +97,8 @@ public class ErrorMessage {
 
     public static void displayEmptyGameNameMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_empty_game.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -137,13 +107,8 @@ public class ErrorMessage {
 
     public static void displayDuplicatedGameInShopError() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_shop.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -152,14 +117,8 @@ public class ErrorMessage {
 
     public static void displayErrorMobile() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/generic_error.fxml"));
-            Scene scene = new Scene(root);
-
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -168,13 +127,8 @@ public class ErrorMessage {
 
     public static void displayInvalidNameMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_invalid_shop_name.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
@@ -183,13 +137,8 @@ public class ErrorMessage {
 
     public static void missingInformationMessage() {
         try {
-            Stage stage = new Stage();
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/missing_information_message.fxml"));
-            Scene scene = new Scene(root);
-
-            stage.setTitle(TITLE);
-            stage.setScene(scene);
-            stage.show();
+            displayMessage(root);
         } catch (IOException e) {
             e.getCause();
             e.printStackTrace();
