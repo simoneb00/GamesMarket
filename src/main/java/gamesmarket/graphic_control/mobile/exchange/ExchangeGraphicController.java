@@ -29,13 +29,11 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
     @FXML
     private TextField searchTF;
 
-    private ExchangeController exchangeController = new ExchangeController();
     private List<ExchangePost> exchangePosts = new ArrayList<>();
 
     private void showGrid(List<ExchangePost> posts) {
 
         int c = 0;
-        int r = 1;
 
         for (int i = 0; i < posts.size(); i++) {
 
@@ -49,7 +47,6 @@ public class ExchangeGraphicController extends ShopOwnerNavigationButtons implem
 
                 if (c == 1) {
                     c = 0;
-                    r++;
                 }
 
                 GridPane.setMargin(ap, new Insets(10));
