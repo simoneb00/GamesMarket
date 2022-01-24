@@ -1,5 +1,6 @@
 package gamesmarket.graphic_control.mobile.home;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphic_control.mobile.ShopOwnerNavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopOwner;
@@ -19,18 +20,10 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
         else {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_goods.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-                stage.setScene(scene);
-                stage.show();
+                this.show(root, event);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }
@@ -42,18 +35,10 @@ public class ShopOwnerHomeGraphicController extends ShopOwnerNavigationButtons {
         else {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_orders.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-                stage.setScene(scene);
-                stage.show();
+                this.show(root, event);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }

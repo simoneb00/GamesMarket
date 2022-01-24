@@ -83,17 +83,18 @@ public class SignUpGraphicController {
 
             RegisterCredentialsBean registerCredentialsBean = new RegisterCredentialsBean();
 
+            if (isShopOwner) {
+                registerCredentialsBean.setTypeOfUser("ShopOwner");
+            } else {
+                registerCredentialsBean.setTypeOfUser("User");
+            }
+
             registerCredentialsBean.setRegisterEmail(emailTF.getText());
             registerCredentialsBean.setFirstName(firstNameTF.getText());
             registerCredentialsBean.setLastName(lastNameTF.getText());
             registerCredentialsBean.setRegisterUsername(usernameTF.getText());
             registerCredentialsBean.setRegisterPassword(passwordField.getText());
 
-            if (isShopOwner) {
-                registerCredentialsBean.setTypeOfUser("ShopOwner");
-            } else {
-                registerCredentialsBean.setTypeOfUser("User");
-            }
 
             SignUpController signUpController = new SignUpController();
             signUpController.signUp(registerCredentialsBean);
@@ -116,8 +117,8 @@ public class SignUpGraphicController {
     public void shopOwnerChecked() {
 
         if (checkBox.isSelected()) {
-            usernameTF.setEditable(false);
             usernameTF.setVisible(false);
+            usernameTF.setEditable(false);
             usernameTF.setText(null);
             isShopOwner = true;
         } else {

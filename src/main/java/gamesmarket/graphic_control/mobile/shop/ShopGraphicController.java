@@ -34,26 +34,9 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        try {
-
-            List<ShopPostBean> postBeans = shopController.retrieveShop();
-
-            for (int i = 0; i < postBeans.size(); i++) {
-                ShopPost shopPost = new ShopPost();
-                shopPost.setShopName(postBeans.get(i).getPostShopName());
-                shopPost.setGame(postBeans.get(i).getShopPostGame());
-                shopPost.setPrice(postBeans.get(i).getShopPostPrice());
-                shopPost.setImageFile(postBeans.get(i).getShopPostImageFile());
-
-                posts.add(shopPost);
-            }
-
-
-            this.showGrid(posts);
-        } catch (SQLException | IOException e) {
-            ErrorMessage.displayErrorMessage();
-        }
+        gamesmarket.graphic_control.shop.ShopGraphicController shopGraphicController = new gamesmarket.graphic_control.shop.ShopGraphicController();
+        this.posts = shopGraphicController.retrievePosts();
+        this.showGrid(posts);
     }
 
     private void showGrid(List<ShopPost> posts) {
@@ -86,15 +69,15 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     @FXML
     public void search() {
-        String search = searchTF.getText();
-        grid.getChildren().clear();
+        String searched = searchTF.getText();
         List<ShopPost> searchedPosts = new ArrayList<>();
 
         for (int i = 0; i < posts.size(); i++) {
-            if (posts.get(i).getGame().toLowerCase().contains(search.toLowerCase()))
+            if (posts.get(i).getGame().toLowerCase().contains(searched.toLowerCase()))
                 searchedPosts.add(posts.get(i));
         }
 
+        grid.getChildren().clear();
         this.showGrid(searchedPosts);
     }
 }

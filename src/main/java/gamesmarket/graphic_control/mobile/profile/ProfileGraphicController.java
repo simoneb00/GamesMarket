@@ -101,18 +101,10 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     void updateTradelist(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/tradelist.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -120,18 +112,10 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     void updateWishlist(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/wishlist.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -178,11 +162,11 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     }
 
     public void retrieveWishlist() {
-        List<String> wl = User.getInstance().getWishlist();
+        List<String> strings = User.getInstance().getWishlist();
 
-        if (wl != null) {
-            for (int i = 0; i < wl.size(); i++) {
-                wishlist.getItems().add(wl.get(i));
+        if (strings != null) {
+            for (int i = 0; i < strings.size(); i++) {
+                wishlist.getItems().add(strings.get(i));
             }
         }
     }
@@ -191,10 +175,10 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.usernameLabel.setText(User.getInstance().getUsername());
 
-        setCI();
-        setBio();
-        setProfilePhoto();
-        retrieveTradelist();
-        retrieveWishlist();
+        this.setCI();
+        this.setBio();
+        this.setProfilePhoto();
+        this.retrieveTradelist();
+        this.retrieveWishlist();
     }
 }

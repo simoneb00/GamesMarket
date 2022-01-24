@@ -6,6 +6,7 @@ import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.exceptions.InvalidEmailException;
 import gamesmarket.exceptions.NotLoggedInException;
 import gamesmarket.graphic_control.mobile.NavigationButtons;
+import gamesmarket.graphic_control.mobile.ShopOwnerNavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopOwner;
 import gamesmarket.model.User;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginGraphicController extends NavigationButtons {
+public class LoginGraphicController extends ShopOwnerNavigationButtons {
 
     @FXML
     private TextField emailTF;
@@ -57,7 +58,7 @@ public class LoginGraphicController extends NavigationButtons {
                 if (User.getInstance().isLoggedIn())
                     this.homeButton(event);
                 else if (ShopOwner.getInstance().isLoggedIn())
-                    this.shopOwnerHomepage(event);
+                    this.shopOwnerHomeButton(event);
 
             }
         } catch (InvalidEmailException e) {
@@ -65,7 +66,7 @@ public class LoginGraphicController extends NavigationButtons {
         } catch (NotLoggedInException e) {
             label.setText("Invalid login, please try again.");
         } catch (SQLException | IOException e) {
-            ErrorMessage.displayErrorMessage();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -75,7 +76,7 @@ public class LoginGraphicController extends NavigationButtons {
             loginController.validateGoogleLogin();
             this.homeButton(event);
         } catch (SQLException | IOException e) {
-            ErrorMessage.displayErrorMessage();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -85,45 +86,19 @@ public class LoginGraphicController extends NavigationButtons {
             loginController.validateFacebookLogin();
             this.homeButton(event);
         } catch (SQLException | IOException e) {
-            ErrorMessage.displayErrorMessage();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
-    private void shopOwnerHomepage(ActionEvent event) {
-
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_homepage.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
 
     @FXML
     public void signUp(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/register.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 }

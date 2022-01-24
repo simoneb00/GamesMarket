@@ -31,52 +31,6 @@ public class NavigationButtons {
     }
 
     @FXML
-    public void shopOwnerForumButton(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_forum.fxml"));
-            this.show(root, event);
-        } catch (Exception e) {
-            ErrorMessage.displayErrorMobile();
-        }
-    }
-
-    @FXML
-    public void yourShopButton(ActionEvent event) {
-        if (ShopOwner.getInstance().getShop() == null)
-            this.createNewShop(event);
-        else {
-            try {
-                root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_shop.fxml"));
-                this.show(root, event);
-            } catch (Exception e) {
-                ErrorMessage.displayErrorMobile();
-            }
-        }
-    }
-
-    @FXML
-    public void shopOwnerHomeButton(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_homepage.fxml"));
-            this.show(root, event);
-
-        } catch (Exception e) {
-            ErrorMessage.displayErrorMobile();
-        }
-    }
-
-    @FXML
-    public void createNewShop(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/create_new_shop.fxml"));
-            this.show(root, event);
-
-        } catch (Exception e) {
-            ErrorMessage.displayErrorMobile();
-        }
-    }
-
-    @FXML
     public void homeButton(ActionEvent event) {
 
         try {

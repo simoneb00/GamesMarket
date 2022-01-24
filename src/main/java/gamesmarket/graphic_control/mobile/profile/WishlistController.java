@@ -49,7 +49,7 @@ public class WishlistController extends NavigationButtons implements Initializab
     public void mouseClicked() {
         String wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
         if (!Objects.equals(wishlistSelected, "[]")) {
-            wishlistSelected = wishlistSelected.replaceAll("\\[|\\]", "");
+            wishlistSelected = wishlistSelected.replaceAll("[\\[\\]]", "");
             String[] strings = wishlistSelected.split(" - ");
             selectedGame = strings[0];
             selectedPlatform = strings[1];

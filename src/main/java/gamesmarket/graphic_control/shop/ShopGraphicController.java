@@ -49,30 +49,32 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+            this.showGrid(this.retrievePosts());
+    }
+
+    public List<ShopPost> retrievePosts() {
+        List<ShopPost> shopPosts = new ArrayList<>();
 
         try {
 
-            List<ShopPostBean> postBeans = shopController.retrieveShop();
+            List<ShopPostBean> beans = shopController.retrieveShop();
 
-            for (int i = 0; i < postBeans.size(); i++) {
+            for (int i = 0; i < beans.size(); i++) {
                 ShopPost shopPost = new ShopPost();
-                shopPost.setShopName(postBeans.get(i).getPostShopName());
-                shopPost.setGame(postBeans.get(i).getShopPostGame());
-                shopPost.setPrice(postBeans.get(i).getShopPostPrice());
-                shopPost.setImageFile(postBeans.get(i).getShopPostImageFile());
+                shopPost.setShopName(beans.get(i).getPostShopName());
+                shopPost.setGame(beans.get(i).getShopPostGame());
+                shopPost.setPrice(beans.get(i).getShopPostPrice());
+                shopPost.setImageFile(beans.get(i).getShopPostImageFile());
 
-                posts.add(shopPost);
+                shopPosts.add(shopPost);
             }
 
-            if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
-                signInButton.setVisible(false);
-                signInButton.isDisabled();
-            }
-
-            this.showGrid(posts);
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
+
+        posts = shopPosts;
+        return shopPosts;
     }
 
     public void profileButtonPressed(ActionEvent event) {
