@@ -42,18 +42,10 @@ public class YourShopGraphicController extends ShopOwnerNavigationButtons implem
 
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_goods.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }
@@ -63,18 +55,10 @@ public class YourShopGraphicController extends ShopOwnerNavigationButtons implem
 
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_orders.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }

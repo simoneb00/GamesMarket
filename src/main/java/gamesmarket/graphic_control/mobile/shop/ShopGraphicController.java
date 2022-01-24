@@ -1,8 +1,5 @@
 package gamesmarket.graphic_control.mobile.shop;
 
-import gamesmarket.bean.ShopPostBean;
-import gamesmarket.control.ShopController;
-import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphic_control.mobile.NavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopPost;
@@ -13,11 +10,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,7 +23,6 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     @FXML
     private TextField searchTF;
 
-    private ShopController shopController = new ShopController();
     private List<ShopPost> posts = new ArrayList<>();
 
     @Override

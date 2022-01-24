@@ -51,10 +51,6 @@ public class SignUpGraphicController {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/login.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
             stage.setScene(scene);
             stage.show();
 
@@ -101,10 +97,10 @@ public class SignUpGraphicController {
 
             registerLabel.setText("Success!");
 
-        } catch (InvalidEmailException e) {
-            registerLabel.setText("Invalid email address. Try again.");
         } catch (DuplicatedEmailException duplicatedEmailException) {
             registerLabel.setText("This email address is already used.");
+        } catch (InvalidEmailException invalidEmailException) {
+            registerLabel.setText("Invalid email address. Please try again.");
         } catch (DuplicatedUsernameException duplicatedUsernameException) {
             registerLabel.setText("This username is already used.");
         } catch (SQLException e) {

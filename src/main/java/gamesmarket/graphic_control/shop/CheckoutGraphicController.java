@@ -48,9 +48,9 @@ public class CheckoutGraphicController implements Initializable {
     @FXML
     private TextField cityTF;
     @FXML
-    private TextField nameTF;
-    @FXML
     private TextField telTF;
+    @FXML
+    private TextField nameTF;
 
 
     private String gameName;
@@ -112,8 +112,8 @@ public class CheckoutGraphicController implements Initializable {
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
 
-                    stage.getIcons().add(new Image(logo));
                     stage.setTitle("Checkout");
+                    stage.getIcons().add(new Image(logo));
 
                     scene.getStylesheets().clear();
                     scene.getStylesheets().add(style);

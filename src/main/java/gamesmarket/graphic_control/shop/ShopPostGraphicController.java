@@ -99,19 +99,20 @@ public class ShopPostGraphicController {
             try {
 
                 Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/login.fxml"));
+                Scene loginScene = new Scene(root);
                 Stage loginStage = new Stage();
-                Scene loginScene = new Scene(root, 600, 400);
-                loginScene.setFill(Color.TRANSPARENT);
                 loginStage.initStyle(StageStyle.TRANSPARENT);
+                loginScene.setFill(Color.TRANSPARENT);
                 loginStage.setScene(loginScene);
 
-                GaussianBlur blur = new GaussianBlur(55);
+                GaussianBlur gaussianBlur = new GaussianBlur(45);
                 ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-                adj.setInput(blur);
+                adj.setInput(gaussianBlur);
                 shopAnchorPane.setEffect(adj);
 
                 loginStage.showAndWait();
                 shopAnchorPane.setEffect(null);
+
 
             } catch (Exception e) {
                 e.printStackTrace();

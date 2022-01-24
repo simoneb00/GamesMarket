@@ -68,12 +68,12 @@ public class SignUpGraphicController {
 
             registerLabel.setText("Success!");
 
-        } catch (InvalidEmailException e) {
-            registerLabel.setText("Invalid email address. Try again.");
         } catch (DuplicatedEmailException duplicatedEmailException) {
             registerLabel.setText("This email address is already used.");
         } catch (DuplicatedUsernameException duplicatedUsernameException) {
             registerLabel.setText("This username is already used.");
+        } catch (InvalidEmailException e) {
+            registerLabel.setText("Invalid email address. Try again.");
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();
         }

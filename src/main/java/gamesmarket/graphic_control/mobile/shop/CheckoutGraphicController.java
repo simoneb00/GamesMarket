@@ -36,9 +36,9 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
     @FXML
     private Button continueButton;
     @FXML
-    private TextField addressTF;
-    @FXML
     private TextField cityTF;
+    @FXML
+    private TextField addressTF;
     @FXML
     private TextField nameTF;
     @FXML
