@@ -1,5 +1,6 @@
 package gamesmarket.graphic_control.mobile;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopOwner;
 import javafx.event.ActionEvent;
@@ -12,22 +13,25 @@ import javafx.stage.Stage;
 
 public class ShopOwnerNavigationButtons extends NavigationButtons{
 
+    protected void show(Parent root, ActionEvent event) {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(css);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     public void shopOwnerForumButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_forum.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -38,18 +42,10 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
         else {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_shop.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add(css);
-
-                stage.setScene(scene);
-                stage.show();
+                this.show(root, event);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }
@@ -58,18 +54,11 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
     public void shopOwnerHomeButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_homepage.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
+            this.show(root, event);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -77,18 +66,10 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
     public void createNewShop(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/create_new_shop.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

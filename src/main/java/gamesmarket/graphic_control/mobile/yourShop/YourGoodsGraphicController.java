@@ -50,9 +50,6 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
 
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
             stage.setScene(scene);
             stage.show();
 

@@ -47,7 +47,7 @@
                                 <String fx:value="mouse-pressed" />
                             </styleClass>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onAction="#yourShopButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/gamesmarket/css/style.css" text="Your Shop" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onAction="#yourShopButtonSO" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/gamesmarket/css/style.css" text="Your Shop" textFill="WHITE">
                             <padding>
                                 <Insets left="50.0" />
                             </padding>

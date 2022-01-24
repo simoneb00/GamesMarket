@@ -1,5 +1,6 @@
 package gamesmarket.graphic_control.mobile;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopOwner;
 import gamesmarket.model.User;
@@ -18,22 +19,24 @@ public class NavigationButtons {
     protected Scene scene;
     protected String css = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
+    protected void show(Parent root, ActionEvent event) {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(css);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     public void shopOwnerForumButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_forum.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
-
+            this.show(root, event);
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -44,18 +47,9 @@ public class NavigationButtons {
         else {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_shop.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add(css);
-
-                stage.setScene(scene);
-                stage.show();
-
+                this.show(root, event);
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }
@@ -64,18 +58,10 @@ public class NavigationButtons {
     public void shopOwnerHomeButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_homepage.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -83,18 +69,10 @@ public class NavigationButtons {
     public void createNewShop(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/create_new_shop.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -103,18 +81,10 @@ public class NavigationButtons {
 
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/homepage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }
@@ -124,18 +94,10 @@ public class NavigationButtons {
         if (User.getInstance().isLoggedIn()) {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/profile.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add(css);
-
-                stage.setScene(scene);
-                stage.show();
+                this.show(root, event);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         } else {
             this.loginButton(event);
@@ -148,18 +110,10 @@ public class NavigationButtons {
         if (User.getInstance().isLoggedIn()) {
             try {
                 root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/exchange.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add(css);
-
-                stage.setScene(scene);
-                stage.show();
+                this.show(root, event);
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         } else {
             this.loginButton(event);
@@ -172,38 +126,23 @@ public class NavigationButtons {
     public void forumButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/forum.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }
 
     @FXML
     public void shopButton(ActionEvent event) {
+
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }
@@ -212,18 +151,10 @@ public class NavigationButtons {
     protected void loginButton(ActionEvent event) {
         try {
             root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/login.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(css);
-
-            stage.setScene(scene);
-            stage.show();
+            this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }

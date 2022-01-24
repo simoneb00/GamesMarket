@@ -3,6 +3,7 @@ package gamesmarket.graphic_control.forum;
 import gamesmarket.bean.CommentBean;
 import gamesmarket.bean.PostBean;
 import gamesmarket.control.ForumController;
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.Comment;
 import gamesmarket.model.Post;
@@ -123,7 +124,7 @@ public class PostGraphicController {
         try {
             forumController.saveComment(commentBean, postBean);
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 

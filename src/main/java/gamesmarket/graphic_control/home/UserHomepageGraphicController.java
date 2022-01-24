@@ -32,27 +32,13 @@ public class UserHomepageGraphicController extends NavigationButtons implements 
     @FXML
     public void signInButtonPressed(ActionEvent event) {
         Parent root;
-        this.signIn();
+        this.signIn(homePane);
 
         if (User.getInstance().isLoggedIn()) {
             signInButton.setVisible(false);
             signInButton.isDisabled();
         } else if (ShopOwner.getInstance().isLoggedIn()) {
-            try {
-                root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shopOwnerHome.fxml"));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css");
-
-                stage.setScene(scene);
-                stage.show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
+            this.homeButtonSO(event);
         }
     }
 

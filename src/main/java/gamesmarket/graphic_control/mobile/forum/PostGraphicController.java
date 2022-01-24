@@ -37,7 +37,7 @@ public class PostGraphicController {
     private ForumController forumController = new ForumController();
     private List<Comment> oldComments = new ArrayList<>();
     private int row = 1;
-    private int column = 0;
+    private int col = 0;
 
 
     public void setData(Post post) {
@@ -63,12 +63,12 @@ public class PostGraphicController {
                 gamesmarket.graphic_control.mobile.forum.CommentGraphicController commentGraphicController = fxmlLoader.getController();
                 commentGraphicController.setData(oldComments.get(i));
 
-                if (column == 1) {
-                    column = 0;
+                if (col == 1) {
+                    col = 0;
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row);
+                grid.add(anchorPane, col++, row);
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
 
@@ -77,22 +77,21 @@ public class PostGraphicController {
         }
     }
 
-    private List<Comment> retrievePostComments(PostBean postBean) throws IOException {
+    private List<Comment> retrievePostComments(PostBean postBean) {
         List<Comment> comments = new ArrayList<>();
 
         try {
-            List<CommentBean> beans = forumController.retrieveComments(postBean);
+            List<CommentBean> commentBeans = forumController.retrieveComments(postBean);
 
-            for (int i = 0; i < beans.size(); i++) {
+            for (int i = 0; i < commentBeans.size(); i++) {
                 Comment comment = new Comment();
-                comment.setUsername(beans.get(i).getCommentUsername());
-                comment.setText(beans.get(i).getCommentText());
+                comment.setUsername(commentBeans.get(i).getCommentUsername());
+                comment.setText(commentBeans.get(i).getCommentText());
                 comments.add(comment);
             }
 
-
         } catch (SQLException e) {
-            ErrorMessage.displayErrorMessage();
+            ErrorMessage.displayErrorMobile();
         }
 
         return comments;
@@ -100,36 +99,33 @@ public class PostGraphicController {
 
     @FXML
     public void commentButtonHandler() {
-        String username;
+        String username = "unknown";
         if (User.getInstance().isLoggedIn())
             username = User.getInstance().getUsername();
         else if (ShopOwner.getInstance().isLoggedIn())
             username = ShopOwner.getInstance().getEmail();
-        else
-            username = "unknown";
 
         String txt = commentText.getText();
 
-        Comment comment = new Comment();
-        comment.setText(txt);
-        comment.setUsername(username);
+        Comment c = new Comment();
+        c.setText(txt);
+        c.setUsername(username);
 
-        this.addCommentToGrid(comment);
+        this.showComment(c);
 
+        PostBean postBean = new PostBean(post.getUsername(), post.getText());
         CommentBean commentBean = new CommentBean();
         commentBean.setCommentUsername(username);
         commentBean.setCommentText(txt);
 
-        PostBean postBean = new PostBean(post.getUsername(), post.getText());
-
         try {
             forumController.saveComment(commentBean, postBean);
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
-    private void addCommentToGrid(Comment comment) {
+    private void showComment(Comment comment) {
         oldComments.add(comment);
 
         try {
@@ -137,14 +133,14 @@ public class PostGraphicController {
             fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/comment.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
 
-            if (column == 1) {
-                column = 0;
+            if (col == 1) {
+                col = 0;
                 row++;
             }
 
             CommentGraphicController commentGraphicController = fxmlLoader.getController();
             commentGraphicController.setData(comment);
-            grid.add(anchorPane, column++, row);
+            grid.add(anchorPane, col++, row);
             GridPane.setMargin(anchorPane, new Insets(10));
 
         } catch (IOException e) {

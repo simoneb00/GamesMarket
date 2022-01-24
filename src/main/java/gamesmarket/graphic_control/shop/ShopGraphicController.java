@@ -93,7 +93,12 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     public void signInButtonPressed(ActionEvent event) {
 
-        this.signIn();
+        this.signIn(anchorPane);
+
+        if (User.getInstance().isLoggedIn()) {
+            signInButton.setVisible(false);
+            signInButton.setDisable(true);
+        }
 
         if (ShopOwner.getInstance().isLoggedIn()) {
             try {

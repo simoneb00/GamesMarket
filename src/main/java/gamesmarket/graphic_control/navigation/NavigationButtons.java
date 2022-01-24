@@ -22,8 +22,6 @@ public class NavigationButtons {
     private Stage stage;
     private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
-    @FXML
-    protected AnchorPane anchorPane;
 
     @FXML
     public void homeButton(ActionEvent event) {
@@ -180,7 +178,7 @@ public class NavigationButtons {
     }
 
     @FXML
-    public void signIn() {
+    public void signIn(AnchorPane anchorPane) {
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/login.fxml"));

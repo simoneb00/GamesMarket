@@ -52,11 +52,13 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
 
     private List<Post> oldposts = new ArrayList<>();
-    private List<Post> userOldPosts = new ArrayList<>();
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        List<Post> userOldPosts = new ArrayList<>();
 
         if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             signInButton.setVisible(false);
@@ -230,7 +232,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     @FXML
     public void signInButtonPressed() {
 
-        this.signIn();
+        this.signIn(anchorPane);
 
         if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             signInButton.setVisible(false);
