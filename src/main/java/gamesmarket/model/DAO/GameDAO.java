@@ -53,9 +53,9 @@ public class GameDAO {
         preparedStatement = connection.prepareStatement(retrieve);
         preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();
+        FileOutputStream fos = new FileOutputStream(file);
         byte b[];
         Blob blob;
-        FileOutputStream fos = new FileOutputStream(file);
 
         while(resultSet.next()) {
             blob = resultSet.getBlob("image");
@@ -66,8 +66,8 @@ public class GameDAO {
             fos.write(b);
         }
 
-        resultSet.close();
         preparedStatement.close();
+        resultSet.close();
         fos.close();
 
 

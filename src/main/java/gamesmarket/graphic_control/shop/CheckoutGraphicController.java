@@ -164,7 +164,6 @@ public class CheckoutGraphicController implements Initializable {
             Scene scene = new Scene(root);
 
             stage.getIcons().add(new Image(logo));
-            stage.setTitle("Confirmation");
 
             scene.getStylesheets().clear();
             scene.getStylesheets().add(style);

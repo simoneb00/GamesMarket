@@ -24,28 +24,28 @@ public class Shop {
         this.address = address;
     }
 
-    public String getCity() {
-        return city;
-    }
-
     public void setCity(String city) {
         this.city = city;
     }
 
-    public String getCountry() {
-        return country;
+    public String getCity() {
+        return city;
     }
 
     public void setCountry(String country) {
         this.country = country;
     }
 
-    public File getImageFile() {
-        return imageFile;
+    public String getCountry() {
+        return country;
     }
 
     public void setImageFile(File imageFile) {
         this.imageFile = imageFile;
+    }
+
+    public File getImageFile() {
+        return imageFile;
     }
 
     public String getOwner() {

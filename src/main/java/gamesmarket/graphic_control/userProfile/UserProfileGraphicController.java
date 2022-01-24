@@ -146,29 +146,32 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         }
     }
 
+    private void showList(Parent root) {
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+
+        GaussianBlur blur = new GaussianBlur(55);
+        ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+        adj.setInput(blur);
+        pane.setEffect(adj);
+
+        stage.showAndWait();
+        refresh();
+        pane.setEffect(null);
+    }
+
     @FXML
     public void addToTradelist() {
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/gamesTable.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-
-            GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-            adj.setInput(blur);
-            pane.setEffect(adj);
-
-            stage.showAndWait();
-            refresh();
-            pane.setEffect(null);
+            this.showList(root);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -177,24 +180,10 @@ public class UserProfileGraphicController extends NavigationButtons implements I
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/gamesTable.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-
-            GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-            adj.setInput(blur);
-            pane.setEffect(adj);
-
-            stage.showAndWait();
-            refresh();
-            pane.setEffect(null);
+            this.showList(root);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -243,7 +232,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void wishlistMouseClicked() {
         wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
         if (!Objects.equals(wishlistSelected, "[]")) {
-            wishlistSelected = wishlistSelected.replaceAll("\\[|\\]", "");
+            wishlistSelected = wishlistSelected.replaceAll("[\\[\\]]", "");
             String[] strings = wishlistSelected.split(" - ");
             selectedGame = strings[0];
             selectedPlatform = strings[1];
@@ -256,7 +245,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void tradelistMouseClicked() {
         tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();
         if (!Objects.equals(tradelistSelected, "[]")) {
-            tradelistSelected = tradelistSelected.replaceAll("\\[|\\]", "");
+            tradelistSelected = tradelistSelected.replaceAll("[\\[\\]]", "");
             String[] strings = tradelistSelected.split(" - ");
             selectedGame = strings[0];
             selectedPlatform = strings[1];

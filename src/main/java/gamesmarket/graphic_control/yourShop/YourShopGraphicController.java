@@ -113,27 +113,30 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         }
     }
 
+    private void show(Parent root) {
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+
+        GaussianBlur blur = new GaussianBlur(55);
+        ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+        adj.setInput(blur);
+        anchorPane.setEffect(adj);
+
+        stage.showAndWait();
+        anchorPane.setEffect(null);
+    }
+
     public void add() {
         try {
 
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/gamesTableSO.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-
-            GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-            adj.setInput(blur);
-            anchorPane.setEffect(adj);
-
-            stage.showAndWait();
-            anchorPane.setEffect(null);
+            this.show(root);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMessage();
         }
 
         gamesList.getItems().clear();
@@ -142,10 +145,21 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         this.retrieveOrdersTable();
     }
 
+    public void showCompleteTable() {
+        try {
+
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/orders_table.fxml"));
+            this.show(root);
+
+        } catch (Exception e) {
+            ErrorMessage.displayErrorMessage();
+        }
+    }
+
     public void listMouseClicked() {
         selected = gamesList.getSelectionModel().getSelectedItems().toString();
         if (selected != "[]") {
-            selected = selected.replaceAll("\\[|\\]", "");
+            selected = selected.replaceAll("[\\[\\]]", "");
             String[] strings = selected.split(" - ");
             selectedGame = strings[0];
             selectedPlatform = strings[1];
@@ -181,31 +195,6 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         this.retrieveList();
         ordersTable.getItems().clear();
         this.retrieveOrdersTable();
-    }
-
-    public void showCompleteTable() {
-        try {
-
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/orders_table.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setScene(scene);
-
-            GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-            adj.setInput(blur);
-            anchorPane.setEffect(adj);
-
-            stage.showAndWait();
-            refresh();
-            anchorPane.setEffect(null);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
     }
 
     private void retrieveOrdersTable() {

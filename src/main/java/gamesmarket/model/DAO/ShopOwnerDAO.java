@@ -40,13 +40,10 @@ public class ShopOwnerDAO {
 
     public static boolean validateLogin(String email, String password) throws SQLException {
         boolean returnValue = false;
-        Statement statement = null;
-        Connection connection = null;
+        Connection connection = DatabaseConnection.getConnection();
+        Statement statement = connection.createStatement();
         String verifyLogin = "SELECT count(1) FROM `shop-owner` WHERE email = '" + email + "' AND password = '" + password + "'";
 
-
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
         ResultSet result = statement.executeQuery(verifyLogin);
 
         while (result.next()) {
@@ -63,13 +60,10 @@ public class ShopOwnerDAO {
 
     public static List<String> retrieveShopOwner(String email) throws SQLException {
         List<String> list = new ArrayList<>();
-        Statement statement = null;
-        Connection connection = null;
+        Connection connection = DatabaseConnection.getConnection();
+        Statement statement = connection.createStatement();
         String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '" + email + "'";
 
-
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
         ResultSet result = statement.executeQuery(retrieveUser);
 
         while (result.next()) {

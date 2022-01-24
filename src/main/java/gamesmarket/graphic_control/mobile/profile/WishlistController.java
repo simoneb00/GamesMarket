@@ -4,18 +4,13 @@ import gamesmarket.bean.GameBean;
 import gamesmarket.control.profile.UserProfileController;
 import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphic_control.mobile.NavigationButtons;
-import gamesmarket.main.Main;
 import gamesmarket.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
+
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,13 +75,8 @@ public class WishlistController extends NavigationButtons implements Initializab
 
     @FXML
     public void addGame(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/games_table.fxml"));
-            this.show(root, event);
-
-        } catch (Exception e) {
-            ErrorMessage.displayErrorMobile();
-        }
+        WishlistController wishlistController = new WishlistController();
+        wishlistController.addGame(event);
     }
 
     @Override
