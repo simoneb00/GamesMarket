@@ -1,4 +1,4 @@
-package gamesmarket.graphiccontrol.mobile.yourShop;
+package gamesmarket.graphiccontrol.mobile.yourshop;
 
 import gamesmarket.bean.OrderBean;
 import gamesmarket.control.YourShopController;

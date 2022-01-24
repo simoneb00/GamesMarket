@@ -70,8 +70,8 @@ module login.loginwindow {
     exports gamesmarket.graphiccontrol.mobile.shop;
     opens gamesmarket.graphiccontrol.mobile.exchange to javafx.fxml;
     exports gamesmarket.graphiccontrol.mobile.exchange;
-    opens gamesmarket.graphiccontrol.mobile.yourShop to javafx.fxml;
-    exports gamesmarket.graphiccontrol.mobile.yourShop;
+    opens gamesmarket.graphiccontrol.mobile.yourshop to javafx.fxml;
+    exports gamesmarket.graphiccontrol.mobile.yourshop;
     opens gamesmarket.graphiccontrol.mobile.signup to javafx.fxml;
     exports gamesmarket.graphiccontrol.mobile.signup;
 }
