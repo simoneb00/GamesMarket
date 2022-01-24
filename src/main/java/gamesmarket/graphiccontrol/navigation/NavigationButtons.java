@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.navigation;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,7 @@ public class NavigationButtons {
     private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
     private void show(Parent root, ActionEvent event) {
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
 
         scene.getStylesheets().clear();
@@ -37,8 +38,7 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -49,8 +49,7 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -61,8 +60,7 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -73,23 +71,21 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
     @FXML
     public void profileButton(ActionEvent event) {
-            try {
-                Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/profile.fxml"));
-                this.show(root, event);
+        try {
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/profile.fxml"));
+            this.show(root, event);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-
+        } catch (Exception e) {
+            ErrorMessage.displayErrorMobile();
         }
+
+    }
 
 
     @FXML
@@ -99,8 +95,7 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -111,8 +106,7 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -123,8 +117,7 @@ public class NavigationButtons {
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -148,13 +141,12 @@ public class NavigationButtons {
             anchorPane.setEffect(null);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }
 
-    }
+}
 
 
 
