@@ -17,13 +17,11 @@ import javafx.stage.StageStyle;
 
 public class NavigationButtons {
 
-    private Scene scene;
-    private Stage stage;
     private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
     private void show(Parent root, ActionEvent event) {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
 
         scene.getStylesheets().clear();
         scene.getStylesheets().add(style);
