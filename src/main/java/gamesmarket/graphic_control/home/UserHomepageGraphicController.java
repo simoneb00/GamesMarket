@@ -31,7 +31,6 @@ public class UserHomepageGraphicController extends NavigationButtons implements 
 
     @FXML
     public void signInButtonPressed(ActionEvent event) {
-        Parent root;
         this.signIn(homePane);
 
         if (User.getInstance().isLoggedIn()) {

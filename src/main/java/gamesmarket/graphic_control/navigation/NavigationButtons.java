@@ -17,24 +17,26 @@ import javafx.stage.StageStyle;
 
 public class NavigationButtons {
 
-    private Parent root;
     private Scene scene;
     private Stage stage;
     private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
+    private void show(Parent root, ActionEvent event) {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(style);
+
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     public void homeButton(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/home.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/home.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,15 +47,8 @@ public class NavigationButtons {
     @FXML
     public void shopButton(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shop.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shop.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,15 +59,8 @@ public class NavigationButtons {
     @FXML
     public void forumButton(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/forum.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/forum.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,15 +71,8 @@ public class NavigationButtons {
     @FXML
     public void exchangeButton(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/exchange.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/exchange.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,15 +83,8 @@ public class NavigationButtons {
     @FXML
     public void profileButton(ActionEvent event) {
             try {
-                root = FXMLLoader.load(Main.class.getResource("/gamesmarket/profile.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-
-                scene.getStylesheets().clear();
-                scene.getStylesheets().add(style);
-
-                stage.setScene(scene);
-                stage.show();
+                Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/profile.fxml"));
+                this.show(root, event);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -123,15 +97,8 @@ public class NavigationButtons {
     @FXML
     public void forumButtonSO(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/forumSO.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/forumSO.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,15 +109,8 @@ public class NavigationButtons {
     @FXML
     public void yourShopButtonSO(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/yourShop.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/yourShop.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -161,15 +121,8 @@ public class NavigationButtons {
     @FXML
     public void homeButtonSO(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shopOwnerHome.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-
-            scene.getStylesheets().clear();
-            scene.getStylesheets().add(style);
-
-            stage.setScene(scene);
-            stage.show();
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shopOwnerHome.fxml"));
+            this.show(root, event);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -13,16 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,15 +52,13 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<Post> userOldPosts = new ArrayList<>();
-
         if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
             signInButton.setVisible(false);
             signInButton.isDisabled();
         }
 
         oldposts = this.retrievePosts();
-        userOldPosts = this.retrieveUserPosts();
+        List<Post> userOldPosts = this.retrieveUserPosts();
 
         try {
             for (int i = 0; i < oldposts.size(); i++) {
