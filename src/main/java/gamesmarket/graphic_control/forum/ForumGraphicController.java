@@ -2,6 +2,7 @@ package gamesmarket.graphic_control.forum;
 
 import gamesmarket.bean.PostBean;
 import gamesmarket.control.ForumController;
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphic_control.navigation.NavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.Post;
@@ -22,6 +23,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -102,12 +104,12 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
 
     }
 
-    private List<Post> retrievePosts() {
+    public List<Post> retrievePosts() {
 
         List<Post> posts = new ArrayList<>();
 
@@ -129,7 +131,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         return posts;
     }
 
-    private List<Post> retrieveUserPosts() {
+    public List<Post> retrieveUserPosts() {
         List<Post> posts = new ArrayList<>();
 
         try {
@@ -202,7 +204,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     public void postButton() {
         try {
             String username;
-            String text = postText.getText();
+            String txt = postText.getText();
 
             if (User.getInstance().isLoggedIn()) {
                 username = User.getInstance().getUsername();
@@ -211,14 +213,15 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             } else
                 username = "unknown";
 
-            Post post = new Post(username, text);
+            Post post = new Post(username, txt);
 
-            addPostToGrid(post);
-            addPostToUserGrid(post);
+            this.addPostToGrid(post);
+            this.addPostToUserGrid(post);
 
-            PostBean postBean = new PostBean(username, text);
+            PostBean postBean = new PostBean(username, txt);
 
             forumController.savePost(postBean);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -226,36 +229,17 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     @FXML
     public void signInButtonPressed() {
-        try {
 
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/login.fxml"));
-            Stage loginStage = new Stage();
-            Scene loginScene = new Scene(root, 600, 400);
-            loginScene.setFill(Color.TRANSPARENT);
-            loginStage.initStyle(StageStyle.TRANSPARENT);
-            loginStage.setScene(loginScene);
+        this.signIn();
 
-            GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-            adj.setInput(blur);
-            anchorPane.setEffect(adj);
+        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+            signInButton.setVisible(false);
+            signInButton.isDisabled();
 
-            loginStage.showAndWait();
-            anchorPane.setEffect(null);
-
-            if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
-                signInButton.setVisible(false);
-                signInButton.isDisabled();
-
-                postsGrid.getChildren().clear();
-                this.initialize(null, null);
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            postsGrid.getChildren().clear();
+            this.initialize(null, null);
         }
+
 
     }
 

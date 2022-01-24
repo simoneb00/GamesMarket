@@ -57,7 +57,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     }
 
     private void showGrid(List<ShopPost> posts) {
-        int column = 0;
+        int col = 0;
         int row = 1;
 
         try {
@@ -69,21 +69,12 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
                 ItemGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(posts.get(i));
 
-                if (column == 1) {
-                    column = 0;
+                if (col == 1) {
+                    col = 0;
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row);
-
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
+                grid.add(anchorPane, col++, row);
                 GridPane.setMargin(anchorPane, new Insets(10));
 
             }

@@ -7,7 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class NavigationButtons {
@@ -16,6 +21,9 @@ public class NavigationButtons {
     private Scene scene;
     private Stage stage;
     private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
+
+    @FXML
+    protected AnchorPane anchorPane;
 
     @FXML
     public void homeButton(ActionEvent event) {
@@ -171,7 +179,31 @@ public class NavigationButtons {
         }
     }
 
+    @FXML
+    public void signIn() {
+        try {
 
+            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/login.fxml"));
+            Stage loginStage = new Stage();
+            Scene loginScene = new Scene(root, 600, 400);
+            loginScene.setFill(Color.TRANSPARENT);
+            loginStage.initStyle(StageStyle.TRANSPARENT);
+            loginStage.setScene(loginScene);
+
+            GaussianBlur blur = new GaussianBlur(55);
+            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
+            adj.setInput(blur);
+            anchorPane.setEffect(adj);
+
+            loginStage.showAndWait();
+            anchorPane.setEffect(null);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
 
     }
 

@@ -2,6 +2,7 @@ package gamesmarket.graphic_control.mobile.forum;
 
 import gamesmarket.bean.PostBean;
 import gamesmarket.control.ForumController;
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphic_control.mobile.NavigationButtons;
 import gamesmarket.graphic_control.mobile.ShopOwnerNavigationButtons;
 import gamesmarket.main.Main;
@@ -32,7 +33,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     private GridPane yourPostsGrid;
 
     private List<Post> oldposts = new ArrayList<>();
-    private int column = 0;
+    private int col = 0;
     private int row = 1;
     ForumController forumController = new ForumController();
 
@@ -65,8 +66,9 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        oldposts = this.retrievePosts();
-        List<Post> userOldPosts = this.retrieveUserPosts();
+        gamesmarket.graphic_control.forum.ForumGraphicController forumGraphicController = new gamesmarket.graphic_control.forum.ForumGraphicController();
+        oldposts = forumGraphicController.retrievePosts();
+        List<Post> userOldPosts = forumGraphicController.retrieveUserPosts();
 
         try {
             for (int i = 0; i < oldposts.size(); i++) {
@@ -78,12 +80,12 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                 postGraphicController.setData(oldposts.get(i));
                 postGraphicController.retrieveComments(oldposts.get(i));
 
-                if (column == 1) {
-                    column = 0;
+                if (col == 1) {
+                    col = 0;
                     row++;
                 }
 
-                grid.add(ancPane, column++, row);
+                grid.add(ancPane, col++, row);
                 GridPane.setMargin(ancPane, new Insets(10));
             }
 
@@ -96,12 +98,12 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                 userPostGraphicController.setData(userOldPosts.get(i));
                 userPostGraphicController.retrieveComments(userOldPosts.get(i));
 
-                if (column == 1) {
-                    column = 0;
+                if (col == 1) {
+                    col = 0;
                     row++;
                 }
 
-                yourPostsGrid.add(aPane, column++, row);
+                yourPostsGrid.add(aPane, col++, row);
                 GridPane.setMargin(aPane, new Insets(10));
             }
 
@@ -116,17 +118,17 @@ public class ForumGraphicController extends NavigationButtons implements Initial
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/forum_post.fxml"));
-            AnchorPane pane = fxmlLoader.load();
+            AnchorPane anchorPane3 = fxmlLoader.load();
 
-            if (column == 1) {
-                column = 0;
+            if (col == 1) {
+                col = 0;
                 row++;
             }
 
             gamesmarket.graphic_control.mobile.forum.PostGraphicController postGraphicController = fxmlLoader.getController();
             postGraphicController.setData(post);
-            grid.add(pane, column++, row);
-            GridPane.setMargin(pane, new Insets(10));
+            grid.add(anchorPane3, col++, row);
+            GridPane.setMargin(anchorPane3, new Insets(10));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,66 +141,22 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/mobile/forum_your_post.fxml"));
-                AnchorPane anchPane = fxmlLoader.load();
+                AnchorPane anchorPane4 = fxmlLoader.load();
 
-                if (column == 1) {
-                    column = 0;
+                if (col == 1) {
+                    col = 0;
                     row++;
                 }
 
-                gamesmarket.graphic_control.mobile.forum.UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
+                gamesmarket.graphic_control.forum.UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(post);
-                yourPostsGrid.add(anchPane, column++, row);
-                GridPane.setMargin(anchPane, new Insets(10));
+                yourPostsGrid.add(anchorPane4, col++, row);
+                GridPane.setMargin(anchorPane4, new Insets(10));
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-
-    private List<Post> retrievePosts() {
-
-        List<Post> posts = new ArrayList<>();
-
-        try {
-            List<PostBean> beans = forumController.retrievePosts();
-
-            for (int i = 0; i < beans.size(); i++) {
-                Post post = new Post(
-                        beans.get(i).getPostUsername(),
-                        beans.get(i).getPostText()
-                );
-
-                posts.add(post);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return posts;
-    }
-
-    private List<Post> retrieveUserPosts() {
-        List<Post> posts = new ArrayList<>();
-
-        try {
-            List<PostBean> beans = forumController.retrieveUserPosts();
-            for (int i = 0; i < beans.size(); i++) {
-                Post post = new Post(
-                        beans.get(i).getPostUsername(),
-                        beans.get(i).getPostText()
-                );
-
-                posts.add(post);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return posts;
     }
 
 

@@ -92,31 +92,8 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     }
 
     public void signInButtonPressed(ActionEvent event) {
-        try {
 
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/login.fxml"));
-            Stage loginStage = new Stage();
-            Scene loginScene = new Scene(root, 600, 400);
-            loginScene.setFill(Color.TRANSPARENT);
-            loginStage.initStyle(StageStyle.TRANSPARENT);
-            loginStage.setScene(loginScene);
-
-            GaussianBlur blur = new GaussianBlur(55);
-            ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
-            adj.setInput(blur);
-            anchorPane.setEffect(adj);
-
-            loginStage.showAndWait();
-            if (User.getInstance().isLoggedIn()) {
-                signInButton.setVisible(false);
-                signInButton.setDisable(true);
-            }
-            anchorPane.setEffect(null);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
+        this.signIn();
 
         if (ShopOwner.getInstance().isLoggedIn()) {
             try {
