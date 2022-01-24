@@ -1,7 +1,7 @@
 package gamesmarket.control.exchange;
 
 import gamesmarket.bean.ExchangePostBean;
-import gamesmarket.model.DAO.ExchangePostDAO;
+import gamesmarket.model.dao.ExchangePostDAO;
 import gamesmarket.model.ExchangePost;
 import java.sql.SQLException;
 import java.util.ArrayList;

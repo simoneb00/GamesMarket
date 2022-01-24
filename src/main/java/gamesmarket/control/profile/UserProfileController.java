@@ -2,7 +2,7 @@ package gamesmarket.control.profile;
 
 import gamesmarket.bean.GameBean;
 import gamesmarket.bean.UserBean;
-import gamesmarket.model.DAO.UserDAO;
+import gamesmarket.model.dao.UserDAO;
 import gamesmarket.model.User;
 import javafx.stage.FileChooser;
 import java.io.*;

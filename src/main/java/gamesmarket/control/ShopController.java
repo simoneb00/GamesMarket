@@ -2,8 +2,8 @@ package gamesmarket.control;
 
 import gamesmarket.bean.OrderBean;
 import gamesmarket.bean.ShopPostBean;
-import gamesmarket.model.DAO.OrderDAO;
-import gamesmarket.model.DAO.ShopDAO;
+import gamesmarket.model.dao.OrderDAO;
+import gamesmarket.model.dao.ShopDAO;
 import gamesmarket.model.Order;
 import gamesmarket.model.ShopPost;
 import gamesmarket.model.User;

@@ -2,9 +2,9 @@ package gamesmarket.control;
 
 import gamesmarket.bean.LoginCredentialsBean;
 import gamesmarket.exceptions.NotLoggedInException;
-import gamesmarket.model.DAO.ShopDAO;
-import gamesmarket.model.DAO.ShopOwnerDAO;
-import gamesmarket.model.DAO.UserDAO;
+import gamesmarket.model.dao.ShopDAO;
+import gamesmarket.model.dao.ShopOwnerDAO;
+import gamesmarket.model.dao.UserDAO;
 import gamesmarket.model.Shop;
 import gamesmarket.model.ShopOwner;
 import gamesmarket.model.User;

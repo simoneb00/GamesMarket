@@ -3,8 +3,8 @@ package gamesmarket.control;
 import gamesmarket.bean.RegisterCredentialsBean;
 import gamesmarket.exceptions.DuplicatedEmailException;
 import gamesmarket.exceptions.DuplicatedUsernameException;
-import gamesmarket.model.DAO.ShopOwnerDAO;
-import gamesmarket.model.DAO.UserDAO;
+import gamesmarket.model.dao.ShopOwnerDAO;
+import gamesmarket.model.dao.UserDAO;
 import java.sql.SQLException;
 
 

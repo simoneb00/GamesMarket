@@ -1,7 +1,7 @@
 package gamesmarket.control.exchange;
 
 import gamesmarket.bean.UserBean;
-import gamesmarket.model.DAO.UserDAO;
+import gamesmarket.model.dao.UserDAO;
 
 import java.sql.SQLException;
 import java.util.List;

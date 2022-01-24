@@ -2,9 +2,9 @@ package gamesmarket.control;
 
 import gamesmarket.bean.GameBean;
 import gamesmarket.exceptions.DuplicatedGameException;
-import gamesmarket.model.DAO.GameDAO;
-import gamesmarket.model.DAO.ShopDAO;
-import gamesmarket.model.DAO.UserDAO;
+import gamesmarket.model.dao.GameDAO;
+import gamesmarket.model.dao.ShopDAO;
+import gamesmarket.model.dao.UserDAO;
 import gamesmarket.model.Game;
 import gamesmarket.model.Shop;
 import gamesmarket.model.ShopOwner;

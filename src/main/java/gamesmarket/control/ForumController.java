@@ -4,8 +4,8 @@ package gamesmarket.control;
 import gamesmarket.bean.CommentBean;
 import gamesmarket.bean.PostBean;
 import gamesmarket.model.Comment;
-import gamesmarket.model.DAO.CommentDAO;
-import gamesmarket.model.DAO.PostDAO;
+import gamesmarket.model.dao.CommentDAO;
+import gamesmarket.model.dao.PostDAO;
 import gamesmarket.model.Post;
 
 import java.sql.SQLException;
