@@ -10,9 +10,10 @@ import java.util.List;
 
 public class CommentDAO {
 
-    private CommentDAO() {}
+    private CommentDAO() {
+    }
 
-    public static List<Comment> retrieveComments(Post post) throws SQLException{
+    public static List<Comment> retrieveComments(Post post) throws SQLException {
 
         List<Comment> comments = new ArrayList<>();
 
@@ -20,37 +21,30 @@ public class CommentDAO {
         Connection connection = null;
         ResultSet resultSet = null;
 
-        try {
-            String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
+        String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
 
 
-            connection = DatabaseConnection.getConnection();
-            preparedStatement = connection.prepareStatement(retrieveComments);
-            preparedStatement.setString(1, post.getUsername());
-            preparedStatement.setString(2, post.getText());
-            resultSet = preparedStatement.executeQuery();
+        connection = DatabaseConnection.getConnection();
+        preparedStatement = connection.prepareStatement(retrieveComments);
+        preparedStatement.setString(1, post.getUsername());
+        preparedStatement.setString(2, post.getText());
+        resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                Comment comment = new Comment();
-                comment.setUsername(resultSet.getString("commUsername"));
-                comment.setText(resultSet.getString("comment"));
-                comments.add(comment);
-            }
-
-            return comments;
-
-        } catch (SQLException e) {
-            throw e;
-        } finally {
-            resultSet.close();
-            preparedStatement.close();
+        while (resultSet.next()) {
+            Comment comment = new Comment();
+            comment.setUsername(resultSet.getString("commUsername"));
+            comment.setText(resultSet.getString("comment"));
+            comments.add(comment);
         }
 
+        resultSet.close();
+        preparedStatement.close();
 
+        return comments;
     }
 
 
-    public static void saveComment(Comment comment, Post post) throws SQLException{
+    public static void saveComment(Comment comment, Post post) throws SQLException {
 
         String commUsername = comment.getUsername();
         String comm = comment.getText();
@@ -74,7 +68,7 @@ public class CommentDAO {
 
     }
 
-    public static void delete(Post post) throws SQLException{
+    public static void delete(Post post) throws SQLException {
         String username = post.getUsername();
         String text = post.getText();
 
