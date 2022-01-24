@@ -277,7 +277,7 @@ public class UserDAO {
         return retrieveList(retrieve);
     }
 
-    private static void addToList(String query, String name, String platform) throws SQLException {
+    private static void updateList(String query, String name, String platform) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -294,20 +294,19 @@ public class UserDAO {
 
     public static void addToTradelist(String name, String platform) throws SQLException {
         String add = "insert into tradelist (username, game, platform) values (?, ?, ?)";
-        addToList(add, name, platform);
+        updateList(add, name, platform);
     }
 
     public static void addToWishlist(String name, String platform) throws SQLException {
         String add = "insert into wishlist (username, game, platform) values (?, ?, ?)";
-        addToList(add, name, platform);
+        updateList(add, name, platform);
     }
 
     private static void removeFromList(String query, String name, String platform) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(query);
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
         preparedStatement.setString(1, User.getInstance().getUsername());
         preparedStatement.setString(2, name);
         preparedStatement.setString(3, platform);
