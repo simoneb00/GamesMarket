@@ -16,20 +16,40 @@ public class Order {
     private String buyerEmail;
     private String status;
 
-    public Order(int idOrder, String vendor, String platform, String game, double price, String buyerName, String buyerAddress, String buyerCity, String buyerTel, String paymentMethod, String username, String buyerEmail, String status) {
-        this.idOrder = idOrder;
-        this.vendor = vendor;
-        this.platform = platform;
-        this.game = game;
-        this.price = price;
-        this.buyerName = buyerName;
-        this.buyerAddress = buyerAddress;
-        this.buyerCity = buyerCity;
-        this.buyerTel = buyerTel;
+    public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
-        this.username = username;
+    }
+
+    public void setBuyerEmail(String buyerEmail) {
         this.buyerEmail = buyerEmail;
+    }
+
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
+
+    public void setBuyerAddress(String buyerAddress) {
+        this.buyerAddress = buyerAddress;
+    }
+
+    public void setBuyerCity(String buyerCity) {
+        this.buyerCity = buyerCity;
+    }
+
+    public void setBuyerTel(String buyerTel) {
+        this.buyerTel = buyerTel;
     }
 
     public int getIdOrder() {

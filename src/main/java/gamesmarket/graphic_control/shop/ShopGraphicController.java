@@ -49,7 +49,13 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            this.showGrid(this.retrievePosts());
+
+        if (User.getInstance().isLoggedIn()) {
+            signInButton.setDisable(true);
+            signInButton.setVisible(false);
+        }
+
+        this.showGrid(this.retrievePosts());
     }
 
     public List<ShopPost> retrievePosts() {

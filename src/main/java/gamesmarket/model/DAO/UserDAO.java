@@ -243,18 +243,14 @@ public class UserDAO {
         return file;
     }
 
-    public static List<String> retrieveWishlist() throws SQLException {
+    private static List<String> retrieveList(String query) throws SQLException {
         List<String> list = new ArrayList<>();
         String game, platform, add = null;
 
-        Connection connection = null;
-        Statement statement = null;
-        String retrieve = "select game, platform from wishlist where username = '" + User.getInstance().getUsername() + "';";
+        Connection connection = DatabaseConnection.getConnection();
+        Statement statement = connection.createStatement();
 
-
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieve);
+        ResultSet resultSet = statement.executeQuery(query);
 
         while (resultSet.next()) {
             game = resultSet.getString("game");
@@ -269,108 +265,65 @@ public class UserDAO {
 
 
         return list;
+    }
+
+    public static List<String> retrieveWishlist() throws SQLException {
+        String retrieve = "select game, platform from wishlist where username = '" + User.getInstance().getUsername() + "';";
+        return retrieveList(retrieve);
     }
 
     public static List<String> retrieveTradelist() throws SQLException {
-        List<String> list = new ArrayList<>();
-        String game, platform, add = null;
+        String retrieve = "select game, platform from tradelist where username = '" + User.getInstance().getUsername() + "';";
+        return retrieveList(retrieve);
+    }
+
+    private static void addToList(String query, String name, String platform) throws SQLException {
 
         Connection connection = null;
-        Statement statement = null;
-        String retrieve = "select game, platform from tradelist where username = '" + User.getInstance().getUsername() + "';";
-
+        PreparedStatement preparedStatement = null;
 
         connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieve);
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, User.getInstance().getUsername());
+        preparedStatement.setString(2, name);
+        preparedStatement.setString(3, platform);
+        preparedStatement.executeUpdate();
 
-        while (resultSet.next()) {
-            game = resultSet.getString("game");
-            platform = resultSet.getString("platform");
-            add = game + " - " + platform;
-            list.add(add);
-        }
-
-        statement.close();
-
-        resultSet.close();
-
-
-        return list;
+        preparedStatement.close();
     }
 
     public static void addToTradelist(String name, String platform) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
         String add = "insert into tradelist (username, game, platform) values (?, ?, ?)";
-
-
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(add);
-        preparedStatement.setString(1, User.getInstance().getUsername());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
-
-
+        addToList(add, name, platform);
     }
 
     public static void addToWishlist(String name, String platform) throws SQLException {
+        String add = "insert into wishlist (username, game, platform) values (?, ?, ?)";
+        addToList(add, name, platform);
+    }
+
+    private static void removeFromList(String query, String name, String platform) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        String add = "insert into wishlist (username, game, platform) values (?, ?, ?)";
-
 
         connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(add);
+        preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, User.getInstance().getUsername());
         preparedStatement.setString(2, name);
         preparedStatement.setString(3, platform);
         preparedStatement.executeUpdate();
 
         preparedStatement.close();
-
-
     }
 
     public static void removeFromTradelist(String name, String platform) throws SQLException {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
         String remove = "delete from tradelist where username = ? and game = ? and platform = ?";
-
-
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(remove);
-        preparedStatement.setString(1, User.getInstance().getUsername());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
-
-
+        removeFromList(remove, name, platform);
     }
 
     public static void removeFromWishlist(String name, String platform) throws SQLException {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
         String remove = "delete from wishlist where username = ? and game = ? and platform = ?";
-
-
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(remove);
-        preparedStatement.setString(1, User.getInstance().getUsername());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
-
-
+        removeFromList(remove, name, platform);
     }
 
 }

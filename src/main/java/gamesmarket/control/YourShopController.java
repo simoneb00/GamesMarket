@@ -83,21 +83,21 @@ public class YourShopController {
     }
 
     public void updateStatus(OrderBean orderBean) throws SQLException{
-        Order order = new Order(
-                orderBean.getIdOrder(),
-                orderBean.getVendor(),
-                orderBean.getOrderPlatform(),
-                orderBean.getOrderGame(),
-                orderBean.getOrderPrice(),
-                orderBean.getBuyerName(),
-                orderBean.getBuyerAddress(),
-                orderBean.getBuyerCity(),
-                orderBean.getBuyerTel(),
-                orderBean.getPaymentMethod(),
-                orderBean.getBuyerUsername(),
-                orderBean.getBuyerEmail(),
-                orderBean.getStatus()
-        );
+        Order order = new Order();
+
+        order.setIdOrder(orderBean.getIdOrder());
+        order.setVendor(orderBean.getVendor());
+        order.setGame(orderBean.getOrderGame());
+        order.setPlatform(orderBean.getOrderPlatform());
+        order.setPrice(orderBean.getOrderPrice());
+        order.setBuyerName(orderBean.getBuyerName());
+        order.setBuyerAddress(orderBean.getBuyerAddress());
+        order.setBuyerCity(orderBean.getBuyerCity());
+        order.setBuyerTel(orderBean.getBuyerTel());
+        order.setPaymentMethod(orderBean.getPaymentMethod());
+        order.setUsername(orderBean.getBuyerUsername());
+        order.setBuyerEmail(orderBean.getBuyerEmail());
+        order.setStatus(orderBean.getStatus());
 
         String newStatus = orderBean.getNewStatus();
 

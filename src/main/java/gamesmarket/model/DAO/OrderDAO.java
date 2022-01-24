@@ -67,21 +67,21 @@ public class OrderDAO {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            Order order = new Order(
-                    resultSet.getInt("idorders"),
-                    resultSet.getString("shopName"),
-                    resultSet.getString("platform"),
-                    resultSet.getString("game"),
-                    resultSet.getDouble("price"),
-                    resultSet.getString("buyerName"),
-                    resultSet.getString("buyerAddress"),
-                    resultSet.getString("buyerCity"),
-                    resultSet.getString("buyerTel"),
-                    resultSet.getString("paymentMethod"),
-                    resultSet.getString("username"),
-                    resultSet.getString("buyerEmail"),
-                    resultSet.getString("status")
-            );
+            Order order = new Order();
+
+            order.setIdOrder(resultSet.getInt("idorders"));
+            order.setVendor(resultSet.getString("shopName"));
+            order.setGame(resultSet.getString("game"));
+            order.setPlatform(resultSet.getString("platform"));
+            order.setPrice(resultSet.getDouble("price"));
+            order.setBuyerName(resultSet.getString("buyerName"));
+            order.setBuyerAddress(resultSet.getString("buyerAddress"));
+            order.setBuyerCity(resultSet.getString("buyerCity"));
+            order.setBuyerTel(resultSet.getString("buyerTel"));
+            order.setPaymentMethod(resultSet.getString("paymentMethod"));
+            order.setUsername(resultSet.getString("username"));
+            order.setBuyerEmail(resultSet.getString("buyerEmail"));
+            order.setStatus(resultSet.getString("status"));
 
             orders.add(order);
         }

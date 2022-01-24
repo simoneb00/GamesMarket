@@ -60,21 +60,21 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
             List<Order> orders = new ArrayList<>();
 
             for (int i = 0; i < orderBeans.size(); i++) {
-                Order order = new Order(
-                        orderBeans.get(i).getIdOrder(),
-                        orderBeans.get(i).getVendor(),
-                        orderBeans.get(i).getOrderPlatform(),
-                        orderBeans.get(i).getOrderGame(),
-                        orderBeans.get(i).getOrderPrice(),
-                        orderBeans.get(i).getBuyerName(),
-                        orderBeans.get(i).getBuyerAddress(),
-                        orderBeans.get(i).getBuyerCity(),
-                        orderBeans.get(i).getBuyerTel(),
-                        orderBeans.get(i).getPaymentMethod(),
-                        orderBeans.get(i).getBuyerUsername(),
-                        orderBeans.get(i).getBuyerEmail(),
-                        orderBeans.get(i).getStatus()
-                );
+                Order order = new Order();
+
+                order.setIdOrder(orderBeans.get(i).getIdOrder());
+                order.setVendor(orderBeans.get(i).getVendor());
+                order.setGame(orderBeans.get(i).getOrderGame());
+                order.setPlatform(orderBeans.get(i).getOrderPlatform());
+                order.setPrice(orderBeans.get(i).getOrderPrice());
+                order.setBuyerName(orderBeans.get(i).getBuyerName());
+                order.setBuyerAddress(orderBeans.get(i).getBuyerAddress());
+                order.setBuyerCity(orderBeans.get(i).getBuyerCity());
+                order.setBuyerTel(orderBeans.get(i).getBuyerTel());
+                order.setPaymentMethod(orderBeans.get(i).getPaymentMethod());
+                order.setUsername(orderBeans.get(i).getBuyerUsername());
+                order.setBuyerEmail(orderBeans.get(i).getBuyerEmail());
+                order.setStatus(orderBeans.get(i).getStatus());
 
                 orders.add(order);
             }
