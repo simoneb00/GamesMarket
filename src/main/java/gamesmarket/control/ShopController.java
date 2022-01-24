@@ -36,8 +36,8 @@ public class ShopController {
         order.setGame(orderBean.getOrderGame());
         order.setPlatform(orderBean.getOrderPlatform());
         order.setPrice(orderBean.getOrderPrice());
-        order.setBuyerName(orderBean.getBuyerName());
         order.setBuyerAddress(orderBean.getBuyerAddress());
+        order.setBuyerName(orderBean.getBuyerName());
         order.setBuyerCity(orderBean.getBuyerCity());
         order.setBuyerTel(orderBean.getBuyerTel());
         order.setPaymentMethod(orderBean.getPaymentMethod());

@@ -66,11 +66,11 @@ public class YourOrdersGraphicController extends ShopOwnerNavigationButtons impl
                 order.setVendor(orderBeans.get(i).getVendor());
                 order.setGame(orderBeans.get(i).getOrderGame());
                 order.setPlatform(orderBeans.get(i).getOrderPlatform());
-                order.setPrice(orderBeans.get(i).getOrderPrice());
                 order.setBuyerName(orderBeans.get(i).getBuyerName());
+                order.setPrice(orderBeans.get(i).getOrderPrice());
                 order.setBuyerAddress(orderBeans.get(i).getBuyerAddress());
-                order.setBuyerCity(orderBeans.get(i).getBuyerCity());
                 order.setBuyerTel(orderBeans.get(i).getBuyerTel());
+                order.setBuyerCity(orderBeans.get(i).getBuyerCity());
                 order.setPaymentMethod(orderBeans.get(i).getPaymentMethod());
                 order.setUsername(orderBeans.get(i).getBuyerUsername());
                 order.setBuyerEmail(orderBeans.get(i).getBuyerEmail());
