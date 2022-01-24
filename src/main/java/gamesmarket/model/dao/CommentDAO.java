@@ -18,29 +18,35 @@ public class CommentDAO {
 
         PreparedStatement preparedStatement = null;
         Connection connection = null;
-        String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
+        ResultSet resultSet = null;
+
+        try {
+            String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
 
 
+            connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieveComments);
+            preparedStatement.setString(1, post.getUsername());
+            preparedStatement.setString(2, post.getText());
+            resultSet = preparedStatement.executeQuery();
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieveComments);
-        preparedStatement.setString(1, post.getUsername());
-        preparedStatement.setString(2, post.getText());
-        ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Comment comment = new Comment();
+                comment.setUsername(resultSet.getString("commUsername"));
+                comment.setText(resultSet.getString("comment"));
+                comments.add(comment);
+            }
 
-        while (resultSet.next()) {
-            Comment comment = new Comment();
-            comment.setUsername(resultSet.getString("commUsername"));
-            comment.setText(resultSet.getString("comment"));
-            comments.add(comment);
+            return comments;
+
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            resultSet.close();
+            preparedStatement.close();
         }
 
-        resultSet.close();
-        preparedStatement.close();
 
-
-
-        return comments;
     }
 
 
