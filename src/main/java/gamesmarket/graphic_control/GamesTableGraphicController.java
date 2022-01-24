@@ -78,14 +78,14 @@ public class GamesTableGraphicController implements Initializable {
             List<GameBean> beans = gamesTableController.retrieveGames();
 
             for (int i = 0; i < beans.size(); i++) {
-                Game game = new Game();
-                game.setName(beans.get(i).getGameName());
-                game.setPlatform(beans.get(i).getGamePlatform());
-                game.setGenre(beans.get(i).getGameGenre());
-                game.setYear(beans.get(i).getGameYear());
-                game.setDescription(beans.get(i).getGameDescription());
+                Game g = new Game();
+                g.setName(beans.get(i).getGameName());
+                g.setPlatform(beans.get(i).getGamePlatform());
+                g.setGenre(beans.get(i).getGameGenre());
+                g.setYear(beans.get(i).getGameYear());
+                g.setDescription(beans.get(i).getGameDescription());
 
-                games.add(game);
+                games.add(g);
             }
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();
