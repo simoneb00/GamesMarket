@@ -117,7 +117,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
 
 
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorMessage.displayErrorMessage();
                 }
             }
         }

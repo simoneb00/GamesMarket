@@ -61,7 +61,7 @@ public class PostGraphicController {
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
 
         return comments;
@@ -93,7 +93,7 @@ public class PostGraphicController {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -147,7 +147,7 @@ public class PostGraphicController {
             GridPane.setMargin(anchorPane, new Insets(10));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 

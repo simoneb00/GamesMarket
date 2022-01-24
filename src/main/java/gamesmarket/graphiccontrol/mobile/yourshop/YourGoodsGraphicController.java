@@ -47,8 +47,7 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
 
     }

@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.shop;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopPost;
 import gamesmarket.model.User;
@@ -81,7 +82,7 @@ public class ShopPostGraphicController {
                 stage.show();
 
             } catch(IOException e) {
-                e.printStackTrace();
+                ErrorMessage.displayErrorMobile();
             }
         } else {
             HBox hBox = (HBox) ((Button)event.getSource()).getParent();
@@ -115,8 +116,7 @@ public class ShopPostGraphicController {
 
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }

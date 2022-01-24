@@ -2,6 +2,7 @@ package gamesmarket.graphiccontrol.mobile.forum;
 
 import gamesmarket.bean.PostBean;
 import gamesmarket.control.ForumController;
+import gamesmarket.exceptions.ErrorMessage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -24,7 +25,7 @@ public class UserPostGraphicController extends PostGraphicController{
         try {
             forumController.delete(postBean);
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

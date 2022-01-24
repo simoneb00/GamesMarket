@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.shop;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.User;
 import javafx.event.ActionEvent;
@@ -121,7 +122,7 @@ public class CheckoutGraphicController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorMessage.displayErrorMobile();
                 }
             } else {
                 this.confirmButton(event);
@@ -171,7 +172,7 @@ public class CheckoutGraphicController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -195,7 +196,7 @@ public class CheckoutGraphicController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

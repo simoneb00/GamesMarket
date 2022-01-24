@@ -2,6 +2,7 @@ package gamesmarket.graphiccontrol.mobile.forum;
 
 import gamesmarket.bean.PostBean;
 import gamesmarket.control.ForumController;
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphiccontrol.mobile.NavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.Post;
@@ -57,7 +58,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
             forumController.savePost(postBean);
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -106,7 +107,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -129,7 +130,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             GridPane.setMargin(anchorPane3, new Insets(10));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -152,7 +153,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                 GridPane.setMargin(anchorPane4, new Insets(10));
 
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorMessage.displayErrorMobile();
             }
         }
     }

@@ -76,7 +76,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
                 shopImg.setImage(new Image(isImage));
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

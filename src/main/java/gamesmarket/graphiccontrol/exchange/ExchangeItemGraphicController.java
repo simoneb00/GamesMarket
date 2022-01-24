@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.exchange;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.ExchangePost;
 import javafx.event.ActionEvent;
@@ -73,8 +74,7 @@ public class ExchangeItemGraphicController {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMessage();
         }
     }
 

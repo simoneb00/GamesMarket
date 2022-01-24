@@ -119,7 +119,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                 posts.add(post);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
 
         return posts;
@@ -140,7 +140,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
 
         return posts;
@@ -165,7 +165,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             GridPane.setMargin(anchorPane3, new Insets(10));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -188,7 +188,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                 GridPane.setMargin(anchorPane4, new Insets(10));
 
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorMessage.displayErrorMessage();
             }
         }
     }
@@ -217,7 +217,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
             forumController.savePost(postBean);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 

@@ -118,8 +118,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
                 stage.show();
 
             } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+                ErrorMessage.displayErrorMobile();
             }
         }
 
@@ -157,7 +156,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
             }
         } catch(IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

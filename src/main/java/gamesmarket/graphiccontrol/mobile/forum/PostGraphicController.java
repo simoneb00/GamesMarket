@@ -144,7 +144,7 @@ public class PostGraphicController {
             GridPane.setMargin(anchorPane, new Insets(10));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

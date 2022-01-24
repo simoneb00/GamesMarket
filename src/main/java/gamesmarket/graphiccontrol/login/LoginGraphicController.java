@@ -106,8 +106,7 @@ public class LoginGraphicController {
             loginStage.setIconified(false);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMessage();
         }
     }
 }

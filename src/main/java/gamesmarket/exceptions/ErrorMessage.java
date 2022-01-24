@@ -40,8 +40,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_image.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -50,8 +49,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_tradelist.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -60,8 +58,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_wishlist.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -70,8 +67,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_no_payment_selected.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -80,8 +76,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_invalid_price.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -90,8 +85,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_empty_price.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -100,8 +94,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_empty_game.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -110,8 +103,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_dup_game_shop.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -120,8 +112,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/generic_error.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -130,8 +121,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/error_invalid_shop_name.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 
@@ -140,8 +130,7 @@ public class ErrorMessage {
             Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/missing_information_message.fxml"));
             displayMessage(root);
         } catch (IOException e) {
-            e.getCause();
-            e.printStackTrace();
+            ErrorMessage.displayErrorMessage();
         }
     }
 

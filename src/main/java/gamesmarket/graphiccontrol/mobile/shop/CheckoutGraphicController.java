@@ -98,7 +98,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
             this.show(root, event);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 
@@ -126,7 +126,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
             this.show(root, event);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

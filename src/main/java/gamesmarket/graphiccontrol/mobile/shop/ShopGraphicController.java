@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.mobile.shop;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphiccontrol.mobile.NavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopPost;
@@ -55,7 +56,7 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
 
             }
         } catch(IOException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

@@ -72,7 +72,7 @@ public class YourShopGraphicController extends ShopOwnerNavigationButtons implem
                 img.setImage(new Image(isImage));
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

@@ -145,7 +145,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
                 profilePhoto.setImage(new Image(isImage));
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ErrorMessage.displayErrorMobile();
         }
 
     }

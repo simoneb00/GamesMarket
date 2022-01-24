@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.mobile.exchange;
 
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.ExchangePost;
 import javafx.fxml.FXML;
@@ -54,8 +55,7 @@ public class ExchangeItemGraphicController {
             stage.showAndWait();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 }

@@ -55,8 +55,7 @@ public class SignUpGraphicController {
             stage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            ErrorMessage.displayErrorMobile();
         }
     }
 

@@ -1,6 +1,7 @@
 package gamesmarket.model.dao;
 
 import gamesmarket.dbconnection.DatabaseConnection;
+import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.model.ExchangePost;
 import gamesmarket.model.User;
 
@@ -59,7 +60,7 @@ public class ExchangePostDAO {
                 try {
                     exchangePost.setImageFile(GameDAO.retrieveGamePhoto(resultSet.getString("game")));
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorMessage.displayErrorMobile();
                 }
             }
 
