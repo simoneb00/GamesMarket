@@ -1,4 +1,4 @@
-package gamesmarket.graphiccontrol.userProfile;
+package gamesmarket.graphiccontrol.userprofile;
 
 import gamesmarket.bean.GameBean;
 import gamesmarket.bean.UserBean;

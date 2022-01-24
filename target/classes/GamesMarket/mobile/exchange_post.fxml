@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="276.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphic_control.mobile.exchange.ExchangeItemGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="276.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.mobile.exchange.ExchangeItemGraphicController">
    <children>
       <ImageView fx:id="gameImg" fitHeight="157.0" fitWidth="133.0" layoutX="5.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="gameToGive" alignment="CENTER" contentDisplay="TOP" layoutX="148.0" layoutY="46.0" prefHeight="48.0" prefWidth="125.0" textAlignment="CENTER" wrapText="true" />
