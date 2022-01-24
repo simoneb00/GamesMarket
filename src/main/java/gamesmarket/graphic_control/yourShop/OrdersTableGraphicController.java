@@ -69,16 +69,16 @@ public class OrdersTableGraphicController implements Initializable {
 
                 order.setIdOrder(orderBeans.get(i).getIdOrder());
                 order.setVendor(orderBeans.get(i).getVendor());
-                order.setGame(orderBeans.get(i).getOrderGame());
                 order.setPlatform(orderBeans.get(i).getOrderPlatform());
+                order.setGame(orderBeans.get(i).getOrderGame());
                 order.setPrice(orderBeans.get(i).getOrderPrice());
                 order.setBuyerName(orderBeans.get(i).getBuyerName());
                 order.setBuyerAddress(orderBeans.get(i).getBuyerAddress());
                 order.setBuyerCity(orderBeans.get(i).getBuyerCity());
                 order.setBuyerTel(orderBeans.get(i).getBuyerTel());
+                order.setBuyerEmail(orderBeans.get(i).getBuyerEmail());
                 order.setPaymentMethod(orderBeans.get(i).getPaymentMethod());
                 order.setUsername(orderBeans.get(i).getBuyerUsername());
-                order.setBuyerEmail(orderBeans.get(i).getBuyerEmail());
                 order.setStatus(orderBeans.get(i).getStatus());
 
                 orders.add(order);
