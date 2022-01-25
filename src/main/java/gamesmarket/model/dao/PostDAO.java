@@ -17,44 +17,47 @@ public class PostDAO {
         List<Post> posts = new ArrayList<>();
 
         Statement statement = null;
-        Connection connection = null;
         String retrievePosts = "select * from posts;";
 
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(retrievePosts);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(retrievePosts);
+            while (result.next()) {
+                Post post = new Post(
+                        result.getString("username"),
+                        result.getString("text")
+                );
 
-        while (result.next()) {
-            Post post = new Post(
-                    result.getString("username"),
-                    result.getString("text")
-            );
+                posts.add(post);
+            }
 
-            posts.add(post);
+            result.close();
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        result.close();
-        statement.close();
 
         return posts;
     }
 
     public static void savePost(Post post) throws SQLException{
         PreparedStatement preparedStatement = null;
-        Connection connection = null;
         String savePost = "insert into posts (username, text) values (?, ?);";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(savePost);
+            preparedStatement.setString(1, post.getUsername());
+            preparedStatement.setString(2, post.getText());
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(savePost);
-        preparedStatement.setString(1, post.getUsername());
-        preparedStatement.setString(2, post.getText());
-
-        preparedStatement.execute();
-
-        preparedStatement.close();
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 
     public static List<Post> retrieveUserPosts() throws SQLException{
@@ -67,39 +70,43 @@ public class PostDAO {
             username = ShopOwner.getInstance().getEmail();
 
         Statement statement = null;
-        Connection connection = null;
         String retrieveUserPosts = "select text from posts where username = '" + username + "';";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieveUserPosts);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieveUserPosts);
+            while (resultSet.next()) {
+                Post post = new Post(username, resultSet.getString("text"));
+                posts.add(post);
+            }
 
-        while (resultSet.next()) {
-            Post post = new Post(username, resultSet.getString("text"));
-            posts.add(post);
+        } finally {
+            if (statement != null)
+                statement.close();
         }
 
         return posts;
-
     }
 
     public static void delete(Post post) throws SQLException{
 
         PreparedStatement preparedStatement = null;
-        Connection connection = null;
         String deletePost = "delete from posts where username = ? and text = ?;";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(deletePost);
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(deletePost);
+            preparedStatement.setString(1, post.getUsername());
+            preparedStatement.setString(2, post.getText());
 
-        preparedStatement.setString(1, post.getUsername());
-        preparedStatement.setString(2, post.getText());
+            preparedStatement.execute();
 
-        preparedStatement.execute();
-
-        preparedStatement.close();
-
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 }

@@ -17,7 +17,7 @@ public class ExchangePostDAO {
     public static List<ExchangePost> retrieveExchange() throws SQLException {
 
         List<ExchangePost> exchangePosts = new ArrayList<>();
-
+        Statement statement = null;
 
         String query = "select distinct * from \n" +
                 "\t\t\t\t(select t_other_user.username, t_other_user.game, t_other_user.platform\n" +
@@ -37,40 +37,42 @@ public class ExchangePostDAO {
                 "                on username = u\n" +
                 "                order by username, game;";
 
+        try {
 
-        Connection connection = DatabaseConnection.getConnection();
-        Statement statement = connection.createStatement();
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
 
-        ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = statement.executeQuery(query);
 
-        while (resultSet.next()) {
-            ExchangePost exchangePost = new ExchangePost(
-                    resultSet.getString("username"),
-                    resultSet.getString("game"),
-                    resultSet.getString("platform"),
-                    resultSet.getString("gameToGive"),
-                    resultSet.getString("platformToGive"),
-                    null
-            );
+            while (resultSet.next()) {
+                ExchangePost exchangePost = new ExchangePost(
+                        resultSet.getString("username"),
+                        resultSet.getString("game"),
+                        resultSet.getString("platform"),
+                        resultSet.getString("gameToGive"),
+                        resultSet.getString("platformToGive"),
+                        null
+                );
 
-            File file = new File(resultSet.getString("game") + ".jpg");
-            if (file.exists())
-                exchangePost.setImageFile(file);
-            else {
-                try {
-                    exchangePost.setImageFile(GameDAO.retrieveGamePhoto(resultSet.getString("game")));
-                } catch (IOException e) {
-                    ErrorMessage.displayErrorMobile();
+                File file = new File(resultSet.getString("game") + ".jpg");
+                if (file.exists())
+                    exchangePost.setImageFile(file);
+                else {
+                    try {
+                        exchangePost.setImageFile(GameDAO.retrieveGamePhoto(resultSet.getString("game")));
+                    } catch (IOException e) {
+                        ErrorMessage.displayErrorMobile();
+                    }
                 }
+
+                exchangePosts.add(exchangePost);
+                resultSet.close();
+
             }
-
-            exchangePosts.add(exchangePost);
-
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        resultSet.close();
-        statement.close();
-
 
         return exchangePosts;
     }

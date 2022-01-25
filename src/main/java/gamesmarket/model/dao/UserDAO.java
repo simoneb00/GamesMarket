@@ -15,62 +15,70 @@ public class UserDAO {
     private UserDAO() {}
 
     public static void registerUser(String username, String email, String password, String firstName, String lastName) throws DuplicatedEmailException, DuplicatedUsernameException, SQLException {
-        Connection connection = DatabaseConnection.getConnection();
-
+        Statement statement = null;
         String register = "insert into user (username, password, firstname, lastname, email) values (" + "'" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + email + "')";
         String verifyEmail = "select count(1) from user where email = '" + email + "'";
         String verifyEmail1 = "select count(1) from `shop-owner` where email = '" + email + "'";
         String verifyUsername = "select count(1) from user where username = '" + username + "'";
 
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(verifyEmail);
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(verifyEmail);
 
-        while (result.next()) {
-            if (result.getInt(1) == 1) {
-                throw new DuplicatedEmailException();
+            while (result.next()) {
+                if (result.getInt(1) == 1) {
+                    throw new DuplicatedEmailException();
+                }
             }
-        }
 
-        result = statement.executeQuery(verifyEmail1);
+            result.close();
+            result = statement.executeQuery(verifyEmail1);
 
-        while (result.next()) {
-            if (result.getInt(1) == 1) {
-                throw new DuplicatedEmailException();
+            while (result.next()) {
+                if (result.getInt(1) == 1) {
+                    throw new DuplicatedEmailException();
+                }
             }
-        }
 
-        result = statement.executeQuery(verifyUsername);
+            result.close();
+            result = statement.executeQuery(verifyUsername);
 
-        while (result.next()) {
-            if (result.getInt(1) == 1) {
-                throw new DuplicatedUsernameException();
+            while (result.next()) {
+                if (result.getInt(1) == 1) {
+                    throw new DuplicatedUsernameException();
+                }
             }
+
+            statement.execute(register);
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        statement.execute(register);
-
-
     }
 
     public static boolean validateLogin(String email, String password) throws SQLException {
         boolean returnValue = false;
         Statement statement = null;
-        Connection connection = null;
         String verifyLogin = "SELECT count(1) FROM user WHERE email = '" + email + "' AND password = '" + password + "'";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(verifyLogin);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(verifyLogin);
-
-        while (result.next()) {
-            if (result.getInt(1) == 1) {
-                returnValue = true;
+            while (result.next()) {
+                if (result.getInt(1) == 1) {
+                    returnValue = true;
+                }
             }
-        }
-        result.close();
-        statement.close();
+            result.close();
 
+        } finally {
+            if (statement != null)
+                statement.close();
+        }
 
         return returnValue;
     }
@@ -79,24 +87,26 @@ public class UserDAO {
 
         List<String> list = new ArrayList<>();
         Statement statement = null;
-        Connection connection = null;
         String retrieveUser = "select username, password, firstName, lastName from user where email = '" + email + "'";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(retrieveUser);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(retrieveUser);
+            while (result.next()) {
+                list.add(result.getString("username"));
+                list.add(result.getString("password"));
+                list.add(result.getString("firstName"));
+                list.add(result.getString("lastName"));
+            }
 
-        while (result.next()) {
-            list.add(result.getString("username"));
-            list.add(result.getString("password"));
-            list.add(result.getString("firstName"));
-            list.add(result.getString("lastName"));
+            result.close();
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        result.close();
-        statement.close();
-
 
         return list;
     }
@@ -104,141 +114,153 @@ public class UserDAO {
 
     public static List<String> retrieveContactInf(String username) throws SQLException {
         List<String> ci = new ArrayList<>();
-
-        Connection connection = null;
         Statement statement = null;
         String retrieveCI = "select email, tel, address, country from contactinf where username = '" + username + "';";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieveCI);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieveCI);
+            while (resultSet.next()) {
+                ci.add(resultSet.getString("email"));
+                ci.add(resultSet.getString("tel"));
+                ci.add(resultSet.getString("address"));
+                ci.add(resultSet.getString("country"));
+            }
 
-        while (resultSet.next()) {
-            ci.add(resultSet.getString("email"));
-            ci.add(resultSet.getString("tel"));
-            ci.add(resultSet.getString("address"));
-            ci.add(resultSet.getString("country"));
+            resultSet.close();
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        resultSet.close();
-        statement.close();
-
 
         return ci;
     }
 
     public static void updateCI(String email, String tel, String address, String country) throws SQLException {
 
-        Connection connection = null;
         Statement statement = null;
         String deleteCI = "delete from contactinf where username = '" + User.getInstance().getUsername() + "';";
         String updateCI = "insert into contactinf (username, email, tel, address, country) values ('" + User.getInstance().getUsername() + "', '" + email + "', '" + tel + "', '" + address + "', '" + country + "');";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
+            statement.execute(deleteCI);
+            statement.execute(updateCI);
 
-        statement.execute(deleteCI);
-        statement.execute(updateCI);
-
-        statement.close();
-
-
+        } finally {
+            if (statement != null)
+                statement.close();
+        }
     }
 
 
     public static String retrieveBio() throws SQLException {
         String bio = "";
-        Connection connection = null;
         Statement statement = null;
         String retrieveBio = "select bio from bio where username = '" + User.getInstance().getUsername() + "';";
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieveBio);
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieveBio);
 
-        while (resultSet.next()) {
-            bio = resultSet.getString("bio");
+            while (resultSet.next()) {
+                bio = resultSet.getString("bio");
+            }
+
+            resultSet.close();
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        resultSet.close();
-        statement.close();
-
 
         return bio;
     }
 
     public static void saveBio(String bio) throws SQLException {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatement1 = null;
         String deleteBio = "delete from bio where username = ? ;";
         String saveBio = "insert into bio (username, bio) values (?, ?);";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(deleteBio);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            if (bio != null)
+                preparedStatement.execute();
+            preparedStatement1 = connection.prepareStatement(saveBio);
+            preparedStatement1.setString(1, User.getInstance().getUsername());
+            preparedStatement1.setString(2, bio);
+            preparedStatement1.execute();
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(deleteBio);
-        preparedStatement.setString(1, User.getInstance().getUsername());
-        if (bio != null)
-            preparedStatement.execute();
-        preparedStatement1 = connection.prepareStatement(saveBio);
-        preparedStatement1.setString(1, User.getInstance().getUsername());
-        preparedStatement1.setString(2, bio);
-        preparedStatement1.execute();
-
-        preparedStatement1.close();
-
-        preparedStatement.close();
-
-
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+            if (preparedStatement1 != null)
+                preparedStatement1.close();
+        }
     }
 
     public static void updateProfilePhoto(String path) throws FileNotFoundException, SQLException {
-
+        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         File image = new File(path);
         FileInputStream inputStream = new FileInputStream(image);
         String delete = "delete from profileimage where username = '" + User.getInstance().getUsername() + "';";
         String updatePhoto = "insert into profileimage (username, image) values (?, ?)";
-        Connection connection = DatabaseConnection.getConnection();
-        Statement statement1 = connection.createStatement();
-        PreparedStatement statement = connection.prepareStatement(updatePhoto);
-        statement.setString(1, User.getInstance().getUsername());
-        statement.setBinaryStream(2, inputStream, (int) (image.length()));
 
-        statement1.execute(delete);
-        statement.executeUpdate();
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(updatePhoto);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setBinaryStream(2, inputStream, (int) (image.length()));
 
-        statement.close();
+            statement.execute(delete);
+            preparedStatement.executeUpdate();
 
-
+        } finally {
+            if (statement != null)
+                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 
 
     public static File retrieveProfilePhoto() throws IOException, SQLException {
-        Connection connection = null;
         Statement statement = null;
         File file = new File("image" + User.getInstance().getUsername() + ".jpg");
         String retrieve = "select * from profileimage where username = '" + User.getInstance().getUsername() + "';";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieve);
+            byte[] b;
+            Blob blob;
+            FileOutputStream fos = new FileOutputStream(file);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieve);
-        byte[] b;
-        Blob blob;
-        FileOutputStream fos = new FileOutputStream(file);
+            while (resultSet.next()) {
+                blob = resultSet.getBlob("image");
+                b = blob.getBytes(1, (int) blob.length());
+                fos.write(b);
+            }
 
-        while (resultSet.next()) {
-            blob = resultSet.getBlob("image");
-            b = blob.getBytes(1, (int) blob.length());
-            fos.write(b);
+            resultSet.close();
+            fos.close();
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        resultSet.close();
-        statement.close();
-        fos.close();
-
 
         return file;
     }
@@ -248,23 +270,26 @@ public class UserDAO {
         String game;
         String platform;
         String add;
+        Statement statement = null;
 
-        Connection connection = DatabaseConnection.getConnection();
-        Statement statement = connection.createStatement();
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
 
-        ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                game = resultSet.getString("game");
+                platform = resultSet.getString("platform");
+                add = game + " - " + platform;
+                list.add(add);
+            }
 
-        while (resultSet.next()) {
-            game = resultSet.getString("game");
-            platform = resultSet.getString("platform");
-            add = game + " - " + platform;
-            list.add(add);
+            resultSet.close();
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        statement.close();
-
-        resultSet.close();
-
 
         return list;
     }
@@ -281,17 +306,20 @@ public class UserDAO {
 
     private static void updateList(String query, String name, String platform) throws SQLException {
 
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, User.getInstance().getUsername());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.executeUpdate();
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.executeUpdate();
 
-        preparedStatement.close();
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 
     public static void addToTradelist(String name, String platform) throws SQLException {
@@ -305,16 +333,21 @@ public class UserDAO {
     }
 
     private static void removeFromList(String query, String name, String platform) throws SQLException {
+        PreparedStatement preparedStatement = null;
 
-        Connection connection = DatabaseConnection.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(query);
 
-        preparedStatement.setString(1, User.getInstance().getUsername());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.executeUpdate();
+            preparedStatement.setString(1, User.getInstance().getUsername());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.executeUpdate();
 
-        preparedStatement.close();
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 
     public static void removeFromTradelist(String name, String platform) throws SQLException {

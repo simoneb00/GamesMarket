@@ -16,61 +16,64 @@ public class GameDAO {
 
     public static List<Game> retrieveGames() throws SQLException{
         List<Game> games = new ArrayList<>();
-        Connection connection = null;
+
         Statement statement = null;
         String retrieve = "select name, genre, description, platform, year from games;";
 
+        try {
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieve);
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieve);
 
-        while (resultSet.next()) {
-            Game game = new Game();
-            game.setName(resultSet.getString("name"));
-            game.setGenre(resultSet.getString("genre"));
-            game.setDescription(resultSet.getString("description"));
-            game.setPlatform(resultSet.getString("platform"));
-            game.setYear(resultSet.getString("year"));
-            games.add(game);
+            while (resultSet.next()) {
+                Game game = new Game();
+                game.setName(resultSet.getString("name"));
+                game.setGenre(resultSet.getString("genre"));
+                game.setDescription(resultSet.getString("description"));
+                game.setPlatform(resultSet.getString("platform"));
+                game.setYear(resultSet.getString("year"));
+                games.add(game);
+            }
+
+        } finally {
+            if (statement != null)
+                statement.close();
         }
-
-        statement.close();
-
-
 
         return games;
     }
 
     public static File retrieveGamePhoto(String name) throws SQLException, IOException {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         File file = new File(name + ".jpg");
         String retrieve = "select image from games where name = ?";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieve);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            FileOutputStream fos = new FileOutputStream(file);
+            byte[] b;
+            Blob blob;
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieve);
-        preparedStatement.setString(1, name);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        FileOutputStream fos = new FileOutputStream(file);
-        byte[] b;
-        Blob blob;
-
-        while(resultSet.next()) {
-            blob = resultSet.getBlob("image");
-            if (blob == null) {
-                break;
+            while (resultSet.next()) {
+                blob = resultSet.getBlob("image");
+                if (blob == null) {
+                    break;
+                }
+                b = blob.getBytes(1, (int) blob.length());
+                fos.write(b);
             }
-            b = blob.getBytes(1, (int)blob.length());
-            fos.write(b);
+
+            resultSet.close();
+            fos.close();
+
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
-
-        preparedStatement.close();
-        resultSet.close();
-        fos.close();
-
-
 
         return file;
     }

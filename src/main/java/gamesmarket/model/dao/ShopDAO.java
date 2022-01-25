@@ -16,42 +16,128 @@ public class ShopDAO {
 
     public static List<ShopPost> retrieveShop() throws SQLException, IOException {
         List<ShopPost> posts = new ArrayList<>();
-        Connection connection = null;
         Statement statement = null;
         PreparedStatement preparedStatement = null;
 
         String retrieve = "select shopName, game, platform, price from `games_for_sale` join shops where emailOwner = email";
         String retrievePhoto = "select image from games where name = ? and platform = ?";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(retrieve);
 
-        connection = DatabaseConnection.getConnection();
-        statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(retrieve);
+            while (resultSet.next()) {
+                String name = resultSet.getString("shopName");
+                String game = resultSet.getString("game");
+                String platform = resultSet.getString("platform");
+                double price = resultSet.getDouble("price");
 
-        while (resultSet.next()) {
-            String name = resultSet.getString("shopName");
-            String game = resultSet.getString("game");
-            String platform = resultSet.getString("platform");
-            double price = resultSet.getDouble("price");
+                ShopPost shopPost = new ShopPost();
+                shopPost.setShopName(name);
+                shopPost.setPrice(price);
+                shopPost.setGame(game + " - " + platform);
 
-            ShopPost shopPost = new ShopPost();
-            shopPost.setShopName(name);
-            shopPost.setPrice(price);
-            shopPost.setGame(game + " - " + platform);
+                File file = new File(game + ".jpg");
+                byte[] b;
+                Blob blob;
+                FileOutputStream fos = new FileOutputStream(file);
 
-            File file = new File(game + ".jpg");
+                preparedStatement = connection.prepareStatement(retrievePhoto);
+                preparedStatement.setString(1, game);
+                preparedStatement.setString(2, platform);
+
+                ResultSet resultSet1 = preparedStatement.executeQuery();
+
+                while (resultSet1.next()) {
+                    blob = resultSet1.getBlob("image");
+                    if (blob == null) {
+                        break;
+                    }
+                    b = blob.getBytes(1, (int) blob.length());
+                    fos.write(b);
+                }
+
+                shopPost.setImageFile(file);
+                posts.add(shopPost);
+
+                resultSet1.close();
+            }
+
+            resultSet.close();
+
+        } finally {
+            if (statement != null)
+                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
+
+        return posts;
+    }
+
+    public static void createNewShop(String name, String address, String city, String country) throws SQLException {
+        String owner = ShopOwner.getInstance().getEmail();
+        PreparedStatement preparedStatement = null;
+        String create = "insert into shops (email, shopName, address, city, country) values (?, ?, ?, ?, ?)";
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(create);
+            preparedStatement.setString(1, owner);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, city);
+            preparedStatement.setString(5, country);
+            preparedStatement.executeUpdate();
+
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
+    }
+
+    public static String retrieveShopName(String email) throws SQLException {
+        String shopName = null;
+        PreparedStatement preparedStatement = null;
+        String retrieve = "select shopName from shops where email = ?";
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieve);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                shopName = resultSet.getString("shopName");
+            }
+
+            resultSet.close();
+
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
+
+        return shopName;
+    }
+
+    public static File retrievePhoto(String email) throws SQLException, IOException {
+        PreparedStatement preparedStatement = null;
+        File file = new File(email + "-shop.jpg");
+        String retrieve = "select shopImg from shops where email = ?";
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieve);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
             byte[] b;
             Blob blob;
             FileOutputStream fos = new FileOutputStream(file);
 
-            preparedStatement = connection.prepareStatement(retrievePhoto);
-            preparedStatement.setString(1, game);
-            preparedStatement.setString(2, platform);
-
-            ResultSet resultSet1 = preparedStatement.executeQuery();
-
-            while (resultSet1.next()) {
-                blob = resultSet1.getBlob("image");
+            while (resultSet.next()) {
+                blob = resultSet.getBlob("shopImg");
                 if (blob == null) {
                     break;
                 }
@@ -59,93 +145,13 @@ public class ShopDAO {
                 fos.write(b);
             }
 
-            shopPost.setImageFile(file);
-            posts.add(shopPost);
+            resultSet.close();
+            fos.close();
 
-            resultSet1.close();
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
-
-        resultSet.close();
-        statement.close();
-
-        preparedStatement.close();
-
-
-        return posts;
-    }
-
-    public static void createNewShop(String name, String address, String city, String country) throws SQLException {
-        String owner = ShopOwner.getInstance().getEmail();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        String create = "insert into shops (email, shopName, address, city, country) values (?, ?, ?, ?, ?)";
-
-
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(create);
-        preparedStatement.setString(1, owner);
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, address);
-        preparedStatement.setString(4, city);
-        preparedStatement.setString(5, country);
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
-
-
-    }
-
-    public static String retrieveShopName(String email) throws SQLException {
-        String shopName = null;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        String retrieve = "select shopName from shops where email = ?";
-
-
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieve);
-        preparedStatement.setString(1, email);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        while (resultSet.next()) {
-            shopName = resultSet.getString("shopName");
-        }
-
-        preparedStatement.close();
-        resultSet.close();
-
-
-        return shopName;
-    }
-
-    public static File retrievePhoto(String email) throws SQLException, IOException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        File file = new File(email + "-shop.jpg");
-        String retrieve = "select shopImg from shops where email = ?";
-
-
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieve);
-        preparedStatement.setString(1, email);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        byte[] b;
-        Blob blob;
-        FileOutputStream fos = new FileOutputStream(file);
-
-        while (resultSet.next()) {
-            blob = resultSet.getBlob("shopImg");
-            if (blob == null) {
-                break;
-            }
-            b = blob.getBytes(1, (int) blob.length());
-            fos.write(b);
-        }
-
-        resultSet.close();
-        preparedStatement.close();
-        fos.close();
-
 
         return file;
     }
@@ -156,110 +162,123 @@ public class ShopDAO {
         FileInputStream inputStream = new FileInputStream(image);
         String delete = "update shops set shopImg = NULL where email ='" + ShopOwner.getInstance().getEmail() + "';";
         String updatePhoto = "update shops set shopImg = ? where email = '" + ShopOwner.getInstance().getEmail() + "'";
-        Connection connection = DatabaseConnection.getConnection();
-        Statement statement1 = connection.createStatement();
-        PreparedStatement statement = connection.prepareStatement(updatePhoto);
-        statement.setBinaryStream(1, inputStream, (int) (image.length()));
+        PreparedStatement preparedStatement = null;
+        Statement statement = null;
 
-        statement1.execute(delete);
-        statement.executeUpdate();
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            preparedStatement = connection.prepareStatement(updatePhoto);
+            preparedStatement.setBinaryStream(1, inputStream, (int) (image.length()));
 
+            statement.execute(delete);
+            preparedStatement.executeUpdate();
 
-        statement.close();
-        statement1.close();
+        } finally {
+            if (statement != null)
+                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 
     public static List<Game> retrieveList(String email) throws SQLException {
         List<Game> games = new ArrayList<>();
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         String retrieve = "select game, platform, price from `games_for_sale` where emailOwner = ?";
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieve);
-        preparedStatement.setString(1, email);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieve);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            Game game = new Game();
-            game.setName(resultSet.getString("game"));
-            game.setPlatform(resultSet.getString("platform"));
-            game.setPrice(resultSet.getDouble("price"));
-            games.add(game);
+            while (resultSet.next()) {
+                Game game = new Game();
+                game.setName(resultSet.getString("game"));
+                game.setPlatform(resultSet.getString("platform"));
+                game.setPrice(resultSet.getDouble("price"));
+                games.add(game);
+            }
+
+            resultSet.close();
+
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
-
-        preparedStatement.close();
-        resultSet.close();
-
 
         return games;
     }
 
     public static void putForSale(String name, String platform, double price) throws SQLException {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         String add = "insert into `games_for_sale` (emailOwner, game, platform, price) values (?, ?, ?, ?)";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(add);
+            preparedStatement.setString(1, ShopOwner.getInstance().getEmail());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.setDouble(4, price);
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(add);
-        preparedStatement.setString(1, ShopOwner.getInstance().getEmail());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.setDouble(4, price);
+            preparedStatement.executeUpdate();
 
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
-
-
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
     }
 
     public static void removeGameFromSale(String name, String platform, double price) throws SQLException {
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         String remove = "delete from `games_for_sale` where emailOwner = ? and game = ? and platform = ? and price = ?";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(remove);
+            preparedStatement.setString(1, ShopOwner.getInstance().getEmail());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, platform);
+            preparedStatement.setDouble(4, price);
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(remove);
-        preparedStatement.setString(1, ShopOwner.getInstance().getEmail());
-        preparedStatement.setString(2, name);
-        preparedStatement.setString(3, platform);
-        preparedStatement.setDouble(4, price);
-
-        preparedStatement.executeUpdate();
-
-        preparedStatement.close();
+            preparedStatement.executeUpdate();
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
+        }
 
 
     }
 
     public static List<String> retrieveAddress(String email) throws SQLException {
         List<String> completeAddress = new ArrayList<>();
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
         String retrieve = "select address, city, country from shops where email = ?";
 
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieve);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieve);
-        preparedStatement.setString(1, email);
-        ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String address = resultSet.getString("address");
+                String city = resultSet.getString("city");
+                String country = resultSet.getString("country");
 
-        while (resultSet.next()) {
-            String address = resultSet.getString("address");
-            String city = resultSet.getString("city");
-            String country = resultSet.getString("country");
+                completeAddress.add(address);
+                completeAddress.add(city);
+                completeAddress.add(country);
+            }
 
-            completeAddress.add(address);
-            completeAddress.add(city);
-            completeAddress.add(country);
+            resultSet.close();
+
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
-
-        resultSet.close();
-        preparedStatement.close();
-
 
         return completeAddress;
     }
