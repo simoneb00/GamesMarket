@@ -35,13 +35,14 @@ public class ShopOwnerDAO {
 
     public static List<String> retrieveShopOwner(String email) throws SQLException {
         List<String> list = new ArrayList<>();
-        String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '" + email + "'";
-        Statement statement = null;
-        Connection connection = DatabaseConnection.getConnection();
+        String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = ?";
+        PreparedStatement preparedStatement = null;
 
         try {
-            statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(retrieveUser);
+            Connection connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieveUser);
+            preparedStatement.setString(1, email);
+            ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()) {
                 list.add(result.getString("password"));
@@ -52,8 +53,8 @@ public class ShopOwnerDAO {
             result.close();
 
         } finally {
-            if (statement != null)
-                statement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
 
         return list;
