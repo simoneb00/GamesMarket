@@ -35,13 +35,11 @@ public class ShopOwnerDAO {
 
     public static List<String> retrieveShopOwner(String email) throws SQLException {
         List<String> list = new ArrayList<>();
+        String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '" + email + "'";
         Statement statement = null;
-        String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '"
-                + email +
-                "'";
+        Connection connection = DatabaseConnection.getConnection();
 
         try {
-            Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             ResultSet result = statement.executeQuery(retrieveUser);
 
