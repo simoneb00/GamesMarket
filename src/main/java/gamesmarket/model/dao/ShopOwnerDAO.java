@@ -36,7 +36,9 @@ public class ShopOwnerDAO {
     public static List<String> retrieveShopOwner(String email) throws SQLException {
         List<String> list = new ArrayList<>();
         Statement statement = null;
-        String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '" + email + "'";
+        String retrieveUser = "select password, firstName, lastName from `shop-owner` where email = '"
+                + email +
+                "'";
 
         try {
             Connection connection = DatabaseConnection.getConnection();
