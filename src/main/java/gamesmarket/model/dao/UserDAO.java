@@ -17,9 +17,25 @@ public class UserDAO {
     public static void registerUser(String username, String email, String password, String firstName, String lastName) throws DuplicatedEmailException, DuplicatedUsernameException, SQLException {
         Statement statement = null;
         String register = "insert into user (username, password, firstname, lastname, email) values (" + "'" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + email + "')";
+
+        try {
+            checkEmail(email);
+            checkUsername(username);
+
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            statement.execute(register);
+
+        } finally {
+            if (statement != null)
+                statement.close();
+        }
+    }
+
+    public static void checkEmail(String email) throws DuplicatedEmailException, SQLException {
+        Statement statement = null;
         String verifyEmail = "select count(1) from user where email = '" + email + "'";
         String verifyEmail1 = "select count(1) from `shop-owner` where email = '" + email + "'";
-        String verifyUsername = "select count(1) from user where username = '" + username + "'";
 
         try {
             Connection connection = DatabaseConnection.getConnection();
@@ -42,15 +58,27 @@ public class UserDAO {
             }
 
             result.close();
-            result = statement.executeQuery(verifyUsername);
+
+        } finally {
+            if (statement != null)
+                statement.close();
+        }
+    }
+
+    public static void checkUsername(String username) throws DuplicatedUsernameException, SQLException{
+        Statement statement = null;
+        String verifyUsername = "select count(1) from user where username = '" + username + "'";
+
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(verifyUsername);
 
             while (result.next()) {
                 if (result.getInt(1) == 1) {
                     throw new DuplicatedUsernameException();
                 }
             }
-
-            statement.execute(register);
 
         } finally {
             if (statement != null)

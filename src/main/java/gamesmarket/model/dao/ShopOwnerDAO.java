@@ -14,29 +14,9 @@ public class ShopOwnerDAO {
     public static void registerShopOwner(String email, String password, String firstName, String lastName) throws DuplicatedEmailException, SQLException {
         Statement statement = null;
         String register = "insert into `shop-owner` (email, password, firstname, lastname) values (" + "'" + email + "', '" + password + "', '" + firstName + "', '" + lastName + "')";
-        String verifyEmail = "select count(1) from user where email = '" + email + "'";
-        String verifyEmail1 = "select count(1) from `shop-owner` where email = '" + email + "'";
 
         try {
-            Connection connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(verifyEmail);
-
-            while (result.next()) {
-                if (result.getInt(1) == 1) {
-                    throw new DuplicatedEmailException();
-                }
-            }
-
-            result.close();
-            result = statement.executeQuery(verifyEmail1);
-
-            while (result.next()) {
-                if (result.getInt(1) == 1) {
-                    throw new DuplicatedEmailException();
-                }
-            }
-
+            UserDAO.checkEmail(email);
             statement.execute(register);
 
         } finally {

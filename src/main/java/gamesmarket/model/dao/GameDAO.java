@@ -48,13 +48,14 @@ public class GameDAO {
         PreparedStatement preparedStatement = null;
         File file = new File(name + ".jpg");
         String retrieve = "select image from games where name = ?";
+        FileOutputStream fos = null;
 
         try {
             Connection connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(retrieve);
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
-            FileOutputStream fos = new FileOutputStream(file);
+            fos = new FileOutputStream(file);
             byte[] b;
             Blob blob;
 
@@ -68,11 +69,12 @@ public class GameDAO {
             }
 
             resultSet.close();
-            fos.close();
 
         } finally {
             if (preparedStatement != null)
                 preparedStatement.close();
+            if (fos != null)
+                fos.close();
         }
 
         return file;
