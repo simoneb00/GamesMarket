@@ -18,27 +18,29 @@ public class CommentDAO {
         List<Comment> comments = new ArrayList<>();
 
         PreparedStatement preparedStatement = null;
-        Connection connection = null;
+        Connection connection;
         ResultSet resultSet = null;
 
         String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
 
+        try {
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(retrieveComments);
-        preparedStatement.setString(1, post.getUsername());
-        preparedStatement.setString(2, post.getText());
-        resultSet = preparedStatement.executeQuery();
+            connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(retrieveComments);
+            preparedStatement.setString(1, post.getUsername());
+            preparedStatement.setString(2, post.getText());
+            resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            Comment comment = new Comment();
-            comment.setUsername(resultSet.getString("commUsername"));
-            comment.setText(resultSet.getString("comment"));
-            comments.add(comment);
+            while (resultSet.next()) {
+                Comment comment = new Comment();
+                comment.setUsername(resultSet.getString("commUsername"));
+                comment.setText(resultSet.getString("comment"));
+                comments.add(comment);
+            }
+        } finally {
+            resultSet.close();
+            preparedStatement.close();
         }
-
-        resultSet.close();
-        preparedStatement.close();
 
         return comments;
     }
@@ -56,16 +58,17 @@ public class CommentDAO {
 
         String saveComment = "insert into comments (username, text, commUsername, comment) values (?, ?, ?, ?);";
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(saveComment);
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, text);
-        preparedStatement.setString(3, commUsername);
-        preparedStatement.setString(4, comm);
-        preparedStatement.execute();
-
-        preparedStatement.close();
-
+        try {
+            connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(saveComment);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, text);
+            preparedStatement.setString(3, commUsername);
+            preparedStatement.setString(4, comm);
+            preparedStatement.execute();
+        } finally {
+            preparedStatement.close();
+        }
     }
 
     public static void delete(Post post) throws SQLException {
@@ -77,14 +80,15 @@ public class CommentDAO {
 
         String delete = "delete from comments where username = ? and text = ?;";
 
+        try {
+            connection = DatabaseConnection.getConnection();
+            preparedStatement = connection.prepareStatement(delete);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, text);
+            preparedStatement.execute();
 
-        connection = DatabaseConnection.getConnection();
-        preparedStatement = connection.prepareStatement(delete);
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, text);
-        preparedStatement.execute();
-
-        preparedStatement.close();
-
+        } finally {
+            preparedStatement.close();
+        }
     }
 }
