@@ -29,28 +29,8 @@ public class ShopOwnerDAO {
     }
 
     public static boolean validateLogin(String email, String password) throws SQLException {
-        boolean returnValue = false;
-        Statement statement = null;
         String verifyLogin = "SELECT count(1) FROM `shop-owner` WHERE email = '" + email + "' AND password = '" + password + "'";
-
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(verifyLogin);
-
-            while (result.next()) {
-                if (result.getInt(1) == 1) {
-                    returnValue = true;
-                }
-            }
-            result.close();
-
-        } finally {
-            if (statement != null)
-                statement.close();
-        }
-
-        return returnValue;
+        return UserDAO.checkLogin(verifyLogin);
     }
 
     public static List<String> retrieveShopOwner(String email) throws SQLException {

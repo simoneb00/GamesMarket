@@ -87,14 +87,18 @@ public class UserDAO {
     }
 
     public static boolean validateLogin(String email, String password) throws SQLException {
+        String verifyLogin = "SELECT count(1) FROM user WHERE email = '" + email + "' AND password = '" + password + "'";
+        return checkLogin(verifyLogin);
+    }
+
+    public static boolean checkLogin(String query) throws SQLException{
         boolean returnValue = false;
         Statement statement = null;
-        String verifyLogin = "SELECT count(1) FROM user WHERE email = '" + email + "' AND password = '" + password + "'";
 
         try {
             Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(verifyLogin);
+            ResultSet result = statement.executeQuery(query);
 
             while (result.next()) {
                 if (result.getInt(1) == 1) {
@@ -360,32 +364,14 @@ public class UserDAO {
         updateList(add, name, platform);
     }
 
-    private static void removeFromList(String query, String name, String platform) throws SQLException {
-        PreparedStatement preparedStatement = null;
-
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            preparedStatement = connection.prepareStatement(query);
-
-            preparedStatement.setString(1, User.getInstance().getUsername());
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, platform);
-            preparedStatement.executeUpdate();
-
-        } finally {
-            if (preparedStatement != null)
-                preparedStatement.close();
-        }
-    }
-
     public static void removeFromTradelist(String name, String platform) throws SQLException {
         String remove = "delete from tradelist where username = ? and game = ? and platform = ?";
-        removeFromList(remove, name, platform);
+        updateList(remove, name, platform);
     }
 
     public static void removeFromWishlist(String name, String platform) throws SQLException {
         String remove = "delete from wishlist where username = ? and game = ? and platform = ?";
-        removeFromList(remove, name, platform);
+        updateList(remove, name, platform);
     }
 
 }
