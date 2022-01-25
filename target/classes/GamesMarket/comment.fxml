@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.forum.CommentGraphicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.forum.CommentGraphicController">
    <children>
       <VBox layoutX="86.0" layoutY="-42.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,7 +22,7 @@
             </HBox>
             <HBox prefHeight="79.0" prefWidth="300.0">
                <children>
-                  <TextArea fx:id="text" prefHeight="68.0" prefWidth="412.0">
+                  <TextArea fx:id="text" prefHeight="63.0" prefWidth="564.0">
                      <HBox.margin>
                         <Insets bottom="5.0" left="10.0" right="10.0" />
                      </HBox.margin>

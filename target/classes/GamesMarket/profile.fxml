@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.userProfile.UserProfileGraphicController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.userprofile.UserProfileGraphicController">
    <children>
       <BorderPane layoutX="404.0" layoutY="199.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -169,26 +169,26 @@
                            </styleClass></Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="976.0">
+                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="1581.0">
                      <children>
                         <Label fx:id="photoLabel" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="285.0" prefWidth="976.0" VBox.vgrow="ALWAYS">
+                  <HBox prefHeight="333.0" prefWidth="1581.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <VBox prefHeight="257.0" prefWidth="976.0" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="299.0" prefWidth="1581.0" HBox.hgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" prefHeight="207.0" prefWidth="976.0">
                                  <children>
-                                    <TextField fx:id="bioTF" alignment="TOP_LEFT" prefHeight="207.0" prefWidth="467.0" promptText="Bio">
+                                    <TextField fx:id="bioTF" alignment="TOP_LEFT" prefHeight="207.0" prefWidth="467.0" promptText="Bio" HBox.hgrow="ALWAYS">
                                        <HBox.margin>
                                           <Insets left="20.0" />
                                        </HBox.margin>
                                     </TextField>
-                                    <VBox alignment="CENTER" prefHeight="207.0" prefWidth="459.0" style="-fx-border-color: #CFCFCF;">
+                                    <VBox alignment="CENTER" prefHeight="207.0" prefWidth="459.0" style="-fx-border-color: #CFCFCF;" HBox.hgrow="ALWAYS">
                                        <children>
                                           <HBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="567.0">
                                              <children>
@@ -201,7 +201,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="567.0">
                                              <children>
-                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="179.0" text="Email Address:">
+                                                <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="127.0" text="Email Address:">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -224,7 +224,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="51.0" layoutY="115.0" prefHeight="37.0" prefWidth="567.0">
                                              <children>
-                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="235.0" text="Telephone Number:">
+                                                <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="127.0" text="Telephone Number:">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -247,7 +247,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="134.0" prefHeight="37.0" prefWidth="567.0">
                                              <children>
-                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="101.0" text="Address:">
+                                                <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="127.0" text="Address:">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -270,7 +270,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="152.0" prefHeight="37.0" prefWidth="567.0">
                                              <children>
-                                                <Label alignment="CENTER" prefHeight="20.0" prefWidth="98.0" text="Country:">
+                                                <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="127.0" text="Country:">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -298,9 +298,9 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="44.0" prefWidth="976.0">
+                              <HBox alignment="CENTER" prefHeight="44.0" prefWidth="976.0" VBox.vgrow="NEVER">
                                  <children>
-                                    <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="502.0" HBox.hgrow="NEVER">
+                                    <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="976.0" HBox.hgrow="NEVER">
                                        <children>
                                           <Button mnemonicParsing="false" onAction="#saveBio" prefHeight="25.0" prefWidth="80.0" stylesheets="@../../java/gamesmarket/css/style.css" text="SAVE" textFill="WHITE">
                                              <VBox.margin>
@@ -313,16 +313,16 @@
                                           </Button>
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="486.0" HBox.hgrow="NEVER">
+                                    <VBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="964.0" HBox.hgrow="NEVER">
                                        <children>
                                           <Button mnemonicParsing="false" onAction="#updateCI" prefWidth="80.0" stylesheets="@../../java/gamesmarket/css/style.css" text="UPDATE" textFill="WHITE">
-                                             <VBox.margin>
-                                                <Insets right="20.0" />
-                                             </VBox.margin>
                                              <styleClass>
                                                 <String fx:value="mouse-moved" />
                                                 <String fx:value="mouse-pressed" />
                                              </styleClass>
+                                             <VBox.margin>
+                                                <Insets right="20.0" />
+                                             </VBox.margin>
                                           </Button>
                                        </children>
                                     </VBox>
@@ -332,7 +332,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="331.0" prefWidth="976.0">
+                  <HBox prefHeight="439.0" prefWidth="1581.0">
                      <children>
                         <VBox prefHeight="330.0" prefWidth="487.0" HBox.hgrow="ALWAYS">
                            <children>
@@ -353,7 +353,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <ListView fx:id="tradelist" onMouseClicked="#tradelistMouseClicked" prefHeight="233.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="tradelist" onMouseClicked="#tradelistMouseClicked" prefHeight="316.0" prefWidth="770.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="20.0" left="20.0" />
                                  </VBox.margin>
@@ -380,7 +380,7 @@
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" prefHeight="330.0" prefWidth="487.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="64.0" prefWidth="488.0">
+                              <HBox alignment="CENTER" prefHeight="64.0" prefWidth="790.0">
                                  <children>
                                     <Label text="WISHLIST" textFill="#88c5cc">
                                        <font>
@@ -394,12 +394,12 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <ListView fx:id="wishlist" onMouseClicked="#wishlistMouseClicked" prefHeight="279.0" prefWidth="468.0" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="wishlist" onMouseClicked="#wishlistMouseClicked" prefHeight="316.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets bottom="20.0" left="10.0" right="20.0" />
                                  </VBox.margin>
                               </ListView>
-                              <HBox alignment="TOP_RIGHT" prefHeight="146.0" prefWidth="488.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="488.0">
                                  <children>
                                     <Button fx:id="removeSelectedWL" disable="true" mnemonicParsing="false" onAction="#removeFromWL" prefHeight="25.0" prefWidth="134.0" stylesheets="@../../java/gamesmarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE" visible="false">
                                        <HBox.margin>

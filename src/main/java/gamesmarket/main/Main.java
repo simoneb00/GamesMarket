@@ -22,6 +22,7 @@ public class Main extends Application {
         stage.getIcons().add(new Image("file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/resources/images/GamesMarketLogo.png"));
         stage.setTitle("gamesmarket");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 

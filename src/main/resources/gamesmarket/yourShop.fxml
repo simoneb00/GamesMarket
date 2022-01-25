@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="810.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.yourshop.YourShopGraphicController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.yourshop.YourShopGraphicController">
     <children>
         <BorderPane layoutX="531.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -156,20 +156,23 @@
                         <Label fx:id="photoLabel" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="468.0" prefWidth="976.0">
+                  <HBox prefHeight="720.0" prefWidth="1581.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="120.0" prefWidth="488.0">
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="120.0" prefWidth="488.0">
                                  <children>
                                     <Label prefHeight="36.0" prefWidth="246.0" text="GAMES IN YOUR SHOP" textFill="#88c5cc">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </HBox.margin>
                                     </Label>
                                  </children>
                               </HBox>
-                              <ListView fx:id="gamesList" onMouseClicked="#listMouseClicked" prefHeight="432.0" prefWidth="448.0">
+                              <ListView fx:id="gamesList" onMouseClicked="#listMouseClicked" prefHeight="492.0" prefWidth="750.0">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -187,7 +190,7 @@
                                     </Button>
                                     <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="84.0" stylesheets="@../../java/gamesmarket/css/style.css" text="ADD" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets right="20.0" />
+                                          <Insets bottom="40.0" right="20.0" />
                                        </HBox.margin>
                                        <styleClass>
                                           <String fx:value="mouse-moved" />
@@ -200,21 +203,24 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="120.0" prefWidth="488.0">
+                              <HBox alignment="BOTTOM_CENTER" prefHeight="120.0" prefWidth="488.0">
                                  <children>
                                     <Label prefHeight="36.0" prefWidth="90.0" text="ORDERS" textFill="#88c5cc">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" />
+                                       </HBox.margin>
                                     </Label>
                                  </children>
                               </HBox>
-                              <TableView fx:id="ordersTable" prefHeight="429.0" prefWidth="448.0">
+                              <TableView fx:id="ordersTable" prefHeight="492.0" prefWidth="448.0">
                                 <columns>
-                                  <TableColumn fx:id="usernameCol" prefWidth="87.0" text="username" />
-                                  <TableColumn fx:id="gameCol" prefWidth="131.0" text="game" />
-                                    <TableColumn fx:id="platformCol" prefWidth="68.0" text="platform" />
-                                    <TableColumn fx:id="paymentCol" prefWidth="161.0" text="payment method" />
+                                  <TableColumn fx:id="usernameCol" prefWidth="173.0" text="username" />
+                                  <TableColumn fx:id="gameCol" prefWidth="185.0" text="game" />
+                                    <TableColumn fx:id="platformCol" minWidth="0.0" prefWidth="118.3333740234375" text="platform" />
+                                    <TableColumn fx:id="paymentCol" prefWidth="273.3333740234375" text="payment method" />
                                 </columns>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
@@ -233,7 +239,7 @@
                                     </Button>
                                     <Button mnemonicParsing="false" onAction="#showCompleteTable" prefHeight="25.0" prefWidth="164.0" stylesheets="@../../java/gamesmarket/css/style.css" text="SHOW COMPLETE TABLE" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets right="20.0" />
+                                          <Insets bottom="40.0" right="20.0" />
                                        </HBox.margin>
                                        <styleClass>
                                           <String fx:value="mouse-moved" />
