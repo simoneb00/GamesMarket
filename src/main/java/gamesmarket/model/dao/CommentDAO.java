@@ -18,18 +18,16 @@ public class CommentDAO {
         List<Comment> comments = new ArrayList<>();
 
         PreparedStatement preparedStatement = null;
-        Connection connection;
-        ResultSet resultSet = null;
 
         String retrieveComments = "select commUsername, comment from comments where username = ? and text = ?;";
 
         try {
 
-            connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(retrieveComments);
             preparedStatement.setString(1, post.getUsername());
             preparedStatement.setString(2, post.getText());
-            resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 Comment comment = new Comment();
@@ -37,9 +35,12 @@ public class CommentDAO {
                 comment.setText(resultSet.getString("comment"));
                 comments.add(comment);
             }
-        } finally {
+
             resultSet.close();
-            preparedStatement.close();
+
+        } finally {
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
 
         return comments;
@@ -53,21 +54,22 @@ public class CommentDAO {
         String username = post.getUsername();
         String text = post.getText();
 
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         String saveComment = "insert into comments (username, text, commUsername, comment) values (?, ?, ?, ?);";
 
         try {
-            connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(saveComment);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, text);
             preparedStatement.setString(3, commUsername);
             preparedStatement.setString(4, comm);
             preparedStatement.execute();
+
         } finally {
-            preparedStatement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
     }
 
@@ -75,20 +77,20 @@ public class CommentDAO {
         String username = post.getUsername();
         String text = post.getText();
 
-        Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         String delete = "delete from comments where username = ? and text = ?;";
 
         try {
-            connection = DatabaseConnection.getConnection();
+            Connection connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(delete);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, text);
             preparedStatement.execute();
 
         } finally {
-            preparedStatement.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
         }
     }
 }
