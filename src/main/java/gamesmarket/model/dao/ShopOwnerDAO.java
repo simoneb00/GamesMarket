@@ -17,6 +17,9 @@ public class ShopOwnerDAO {
 
         try {
             UserDAO.checkEmail(email);
+
+            Connection connection = DatabaseConnection.getConnection();
+            statement = connection.createStatement();
             statement.execute(register);
 
         } finally {
