@@ -161,10 +161,10 @@ public class ShopDAO {
     public static void updatePhoto(String path) throws IOException, SQLException {
         String delete = "update shops set shopImg = NULL where email ='" + ShopOwner.getInstance().getEmail() + "';";
         String updatePhoto = "update shops set shopImg = ? where email = '" + ShopOwner.getInstance().getEmail() + "'";
-        PreparedStatement preparedStatement = null;
-        Statement statement = null;
         File image = new File(path);
         FileInputStream inputStream = new FileInputStream(image);
+        PreparedStatement preparedStatement = null;
+        Statement statement = null;
 
         try {
             Connection connection = DatabaseConnection.getConnection();
@@ -176,11 +176,11 @@ public class ShopDAO {
             preparedStatement.executeUpdate();
 
         } finally {
+            inputStream.close();
             if (statement != null)
                 statement.close();
             if (preparedStatement != null)
                 preparedStatement.close();
-            inputStream.close();
         }
     }
 

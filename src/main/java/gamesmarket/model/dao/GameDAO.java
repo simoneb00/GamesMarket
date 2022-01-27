@@ -56,8 +56,8 @@ public class GameDAO {
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            byte[] b;
             Blob blob;
+            byte[] b;
 
             while (resultSet.next()) {
                 blob = resultSet.getBlob("image");
