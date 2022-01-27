@@ -71,10 +71,10 @@ public class GameDAO {
             resultSet.close();
 
         } finally {
-            fos.close();
             if (preparedStatement != null) {
                 preparedStatement.close();
             }
+            fos.close();
         }
 
         return file;
