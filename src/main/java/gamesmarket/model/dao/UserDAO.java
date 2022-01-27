@@ -240,7 +240,7 @@ public class UserDAO {
         }
     }
 
-    public static void updateProfilePhoto(String path) throws FileNotFoundException, SQLException {
+    public static void updateProfilePhoto(String path) throws IOException, SQLException {
         Statement statement = null;
         PreparedStatement preparedStatement = null;
         File image = new File(path);
@@ -259,6 +259,7 @@ public class UserDAO {
             preparedStatement.executeUpdate();
 
         } finally {
+            inputStream.close();
             if (statement != null)
                 statement.close();
             if (preparedStatement != null)

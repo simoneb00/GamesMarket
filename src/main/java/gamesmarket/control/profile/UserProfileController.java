@@ -36,7 +36,7 @@ public class UserProfileController {
         UserDAO.updateCI(email, tel, address, country);
     }
 
-    public void updateProfilePhoto() throws SQLException, FileNotFoundException {
+    public void updateProfilePhoto() throws SQLException, IOException {
         FileChooser fileChooser = new FileChooser();
         File selectedFile = fileChooser.showOpenDialog(null);
         String path = selectedFile.getAbsolutePath();

@@ -20,10 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -91,7 +88,7 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
             this.initialize(null, null);
         } catch (RuntimeException e) {
             ErrorMessage.displayImageNotFoundMessage();
-        } catch (SQLException | FileNotFoundException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }

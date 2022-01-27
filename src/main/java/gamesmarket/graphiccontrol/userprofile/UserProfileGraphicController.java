@@ -25,10 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -79,7 +76,7 @@ public class UserProfileGraphicController extends NavigationButtons implements I
             photoLabel.setText("");
         } catch (RuntimeException e) {
             photoLabel.setText("No photo selected.");
-        } catch (SQLException | FileNotFoundException e) {
+        } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
     }
