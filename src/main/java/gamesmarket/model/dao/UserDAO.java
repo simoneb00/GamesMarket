@@ -270,6 +270,7 @@ public class UserDAO {
     public static File retrieveProfilePhoto() throws IOException, SQLException {
         Statement statement = null;
         File file = new File("image" + User.getInstance().getUsername() + ".jpg");
+        FileOutputStream fos = new FileOutputStream(file);
         String retrieve = "select * from profileimage where username = '" + User.getInstance().getUsername() + "';";
 
         try {
@@ -278,7 +279,6 @@ public class UserDAO {
             ResultSet resultSet = statement.executeQuery(retrieve);
             byte[] b;
             Blob blob;
-            FileOutputStream fos = new FileOutputStream(file);
 
             while (resultSet.next()) {
                 blob = resultSet.getBlob("image");
@@ -287,11 +287,11 @@ public class UserDAO {
             }
 
             resultSet.close();
-            fos.close();
 
         } finally {
             if (statement != null)
                 statement.close();
+            fos.close();
         }
 
         return file;

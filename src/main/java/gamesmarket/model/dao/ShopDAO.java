@@ -18,7 +18,8 @@ public class ShopDAO {
         List<ShopPost> posts = new ArrayList<>();
         Statement statement = null;
         PreparedStatement preparedStatement = null;
-        FileOutputStream fos = null;
+        File file = new File("image.jpg");
+        FileOutputStream fos = new FileOutputStream(file);
 
         String retrieve = "select shopName, game, platform, price from `games_for_sale` join shops where emailOwner = email";
         String retrievePhoto = "select image from games where name = ? and platform = ?";
@@ -39,10 +40,9 @@ public class ShopDAO {
                 shopPost.setPrice(price);
                 shopPost.setGame(game + " - " + platform);
 
-                File file = new File(game + ".jpg");
+                file = new File(game + ".jpg");
                 byte[] b;
                 Blob blob;
-                fos = new FileOutputStream(file);
 
                 preparedStatement = connection.prepareStatement(retrievePhoto);
                 preparedStatement.setString(1, game);
@@ -72,8 +72,7 @@ public class ShopDAO {
                 statement.close();
             if (preparedStatement != null)
                 preparedStatement.close();
-            if (fos != null)
-                fos.close();
+            fos.close();
         }
 
         return posts;
@@ -127,8 +126,8 @@ public class ShopDAO {
 
     public static File retrievePhoto(String email) throws SQLException, IOException {
         PreparedStatement preparedStatement = null;
-        FileOutputStream fos = null;
         File file = new File(email + "-shop.jpg");
+        FileOutputStream fos = new FileOutputStream(file);
         String retrieve = "select shopImg from shops where email = ?";
 
         try {
@@ -138,7 +137,6 @@ public class ShopDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             byte[] b;
             Blob blob;
-            fos = new FileOutputStream(file);
 
             while (resultSet.next()) {
                 blob = resultSet.getBlob("shopImg");
@@ -154,26 +152,24 @@ public class ShopDAO {
         } finally {
             if (preparedStatement != null)
                 preparedStatement.close();
-            if (fos != null)
-                fos.close();
+            fos.close();
         }
 
         return file;
     }
 
     public static void updatePhoto(String path) throws IOException, SQLException {
-        FileInputStream inputStream = null;
         String delete = "update shops set shopImg = NULL where email ='" + ShopOwner.getInstance().getEmail() + "';";
         String updatePhoto = "update shops set shopImg = ? where email = '" + ShopOwner.getInstance().getEmail() + "'";
         PreparedStatement preparedStatement = null;
         Statement statement = null;
+        File image = new File(path);
+        FileInputStream inputStream = new FileInputStream(image);
 
         try {
             Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             preparedStatement = connection.prepareStatement(updatePhoto);
-            File image = new File(path);
-            inputStream = new FileInputStream(image);
             preparedStatement.setBinaryStream(1, inputStream, (int) (image.length()));
 
             statement.execute(delete);
@@ -184,9 +180,7 @@ public class ShopDAO {
                 statement.close();
             if (preparedStatement != null)
                 preparedStatement.close();
-            if (inputStream != null) {
-                inputStream.close();
-            }
+            inputStream.close();
         }
     }
 
