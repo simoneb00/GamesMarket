@@ -285,6 +285,7 @@ public class UserDAO {
                 blob = resultSet.getBlob("image");
                 b = blob.getBytes(1, (int) blob.length());
                 fos.write(b);
+                fos.close();
             }
 
             resultSet.close();
