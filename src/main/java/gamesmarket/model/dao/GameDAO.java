@@ -47,15 +47,15 @@ public class GameDAO {
     public static File retrieveGamePhoto(String name) throws SQLException, IOException {
         PreparedStatement preparedStatement = null;
         File file = new File(name + ".jpg");
+        FileOutputStream fos = new FileOutputStream(file);
         String retrieve = "select image from games where name = ?";
-        FileOutputStream fos = null;
 
         try {
             Connection connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(retrieve);
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
-            fos = new FileOutputStream(file);
+
             byte[] b;
             Blob blob;
 
@@ -71,8 +71,7 @@ public class GameDAO {
             resultSet.close();
 
         } finally {
-            if (fos != null)
-                fos.close();
+            fos.close();
             if (preparedStatement != null) {
                 preparedStatement.close();
             }
