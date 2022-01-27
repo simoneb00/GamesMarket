@@ -216,54 +216,36 @@ public class UserDAO {
     }
 
     public static void saveBio(String bio) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        PreparedStatement preparedStatement1 = null;
         String deleteBio = "delete from bio where username = ? ;";
         String saveBio = "insert into bio (username, bio) values (?, ?);";
+        Connection connection = DatabaseConnection.getConnection();
 
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            preparedStatement = connection.prepareStatement(deleteBio);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(deleteBio); PreparedStatement preparedStatement1 = connection.prepareStatement(saveBio)){
+
+
             preparedStatement.setString(1, User.getInstance().getUsername());
             if (bio != null)
                 preparedStatement.execute();
-            preparedStatement1 = connection.prepareStatement(saveBio);
+
             preparedStatement1.setString(1, User.getInstance().getUsername());
             preparedStatement1.setString(2, bio);
             preparedStatement1.execute();
 
-        } finally {
-            if (preparedStatement != null)
-                preparedStatement.close();
-            if (preparedStatement1 != null)
-                preparedStatement1.close();
         }
     }
 
     public static void updateProfilePhoto(String path) throws IOException, SQLException {
-        Statement statement = null;
-        PreparedStatement preparedStatement = null;
         File image = new File(path);
-        FileInputStream inputStream = new FileInputStream(image);
+        Connection connection = DatabaseConnection.getConnection();
         String delete = "delete from profileimage where username = '" + User.getInstance().getUsername() + "';";
         String updatePhoto = "insert into profileimage (username, image) values (?, ?)";
 
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            statement = connection.createStatement();
-            preparedStatement = connection.prepareStatement(updatePhoto);
+        try (FileInputStream inputStream = new FileInputStream(image); Statement statement = connection.createStatement(); PreparedStatement preparedStatement = connection.prepareStatement(updatePhoto)) {
             preparedStatement.setString(1, User.getInstance().getUsername());
             preparedStatement.setBinaryStream(2, inputStream, (int) (image.length()));
-
             statement.execute(delete);
             preparedStatement.executeUpdate();
 
-        } finally {
-            inputStream.close();
-            if (statement != null)
-                statement.close();
-            if (preparedStatement != null)
-                preparedStatement.close();
         }
     }
 

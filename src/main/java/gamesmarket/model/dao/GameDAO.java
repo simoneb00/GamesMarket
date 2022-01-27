@@ -2,9 +2,8 @@ package gamesmarket.model.dao;
 
 import gamesmarket.dbconnection.DatabaseConnection;
 import gamesmarket.model.Game;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,14 +44,11 @@ public class GameDAO {
     }
 
     public static File retrieveGamePhoto(String name) throws SQLException, IOException {
-        PreparedStatement preparedStatement = null;
         File file = new File(name + ".jpg");
-        FileOutputStream fos = new FileOutputStream(file);
         String retrieve = "select image from games where name = ?";
+        Connection connection = DatabaseConnection.getConnection();
 
-        try {
-            Connection connection = DatabaseConnection.getConnection();
-            preparedStatement = connection.prepareStatement(retrieve);
+        try (FileOutputStream fos = new FileOutputStream(file); PreparedStatement preparedStatement = connection.prepareStatement(retrieve)) {
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -70,11 +66,6 @@ public class GameDAO {
 
             resultSet.close();
 
-        } finally {
-            fos.close();
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
         }
 
         return file;
