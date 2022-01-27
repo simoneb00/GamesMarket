@@ -142,13 +142,13 @@ public class GamesTableGraphicController implements Initializable {
         }
         if (selectedGame == null)
             label1.setText(noGameSelected);
-        else if (price.getText().isEmpty())
+         else if (price.getText().isEmpty())
             label1.setText("No price set");
         else {
             label1.setText(selectedGame.getName() + " added");
         }
 
-        if (prc >= 0) {
+        if (prc >= 0 && selectedGame != null) {
             try {
                 GameBean gameBean = new GameBean();
                 gameBean.setGameName(selectedGame.getName());
