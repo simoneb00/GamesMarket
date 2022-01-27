@@ -271,10 +271,11 @@ public class UserDAO {
     public static File retrieveProfilePhoto() throws IOException, SQLException {
         Statement statement = null;
         File file = new File("image" + User.getInstance().getUsername() + ".jpg");
-        FileOutputStream fos = new FileOutputStream(file);
+        FileOutputStream fos = null;
         String retrieve = "select * from profileimage where username = '" + User.getInstance().getUsername() + "';";
 
         try {
+            fos = new FileOutputStream(file);
             Connection connection = DatabaseConnection.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(retrieve);
@@ -292,7 +293,8 @@ public class UserDAO {
         } finally {
             if (statement != null)
                 statement.close();
-            fos.close();
+            if (fos != null)
+                fos.close();
         }
 
         return file;
