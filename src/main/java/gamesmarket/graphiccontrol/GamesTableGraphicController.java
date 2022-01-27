@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class GamesTableGraphicController implements Initializable {
 
     @FXML
     private void close(ActionEvent event) {
-        Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
@@ -133,35 +134,35 @@ public class GamesTableGraphicController implements Initializable {
     public void addToShop() {
         double prc;
 
-            try {
-                prc = Double.parseDouble(price.getText());
-            } catch (NullPointerException | NumberFormatException e) {
-                label1.setText(invalidPrice);
-                prc = -1.0;
-            }
+        try {
+            prc = Double.parseDouble(price.getText());
+        } catch (NullPointerException | NumberFormatException e) {
+            label1.setText(invalidPrice);
+            prc = -1.0;
+        }
         if (selectedGame == null)
-                label1.setText(noGameSelected);
-            else if (price.getText().isEmpty())
-                label1.setText("No price set");
-            else {
-                label1.setText(selectedGame.getName() + " added");
-            }
+            label1.setText(noGameSelected);
+        else if (price.getText().isEmpty())
+            label1.setText("No price set");
+        else {
+            label1.setText(selectedGame.getName() + " added");
+        }
 
-            if (prc >= 0) {
-                try {
-                    GameBean gameBean = new GameBean();
-                    gameBean.setGameName(selectedGame.getName());
-                    gameBean.setGamePlatform(selectedGame.getPlatform());
-                    gameBean.setGamePrice(prc);
-                    gamesTableController.putForSale(gameBean);
-                } catch (DuplicatedGameException e) {
-                    label1.setText("This game is already present in your shop");
-                } catch (SQLException e) {
-                    ErrorMessage.displayErrorMessage();
-                }
-            } else {
-                label1.setText(invalidPrice);
+        if (prc >= 0) {
+            try {
+                GameBean gameBean = new GameBean();
+                gameBean.setGameName(selectedGame.getName());
+                gameBean.setGamePlatform(selectedGame.getPlatform());
+                gameBean.setGamePrice(prc);
+                gamesTableController.putForSale(gameBean);
+            } catch (DuplicatedGameException e) {
+                label1.setText("This game is already present in your shop");
+            } catch (SQLException e) {
+                ErrorMessage.displayErrorMessage();
             }
+        } else {
+            label1.setText(invalidPrice);
+        }
     }
 
     public void mouseClicked() {

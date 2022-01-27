@@ -159,7 +159,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
         String selected;
 
         selected = gamesList.getSelectionModel().getSelectedItems().toString();
-        if (selected != "[]") {
+        if (!selected.equals("[]")) {
             selected = selected.replaceAll("[\\[\\]]", "");
             String[] strings = selected.split(" - ");
             selectedGame = strings[0];
@@ -199,7 +199,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
     }
 
     private void retrieveOrdersTable() {
-        List<OrderBean> orderBeans = null;
+        List<OrderBean> orderBeans = new ArrayList<>();
         try {
             orderBeans = yourShopController.retrieveOrders();
         } catch (SQLException e) {
