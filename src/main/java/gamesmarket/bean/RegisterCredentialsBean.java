@@ -70,7 +70,7 @@ public class RegisterCredentialsBean {
 
     private boolean checkEmailAddress(String email) {
 
-        Pattern pattern = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        Pattern pattern = Pattern.compile("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
 

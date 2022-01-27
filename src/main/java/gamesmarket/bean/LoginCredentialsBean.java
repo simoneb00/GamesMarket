@@ -34,9 +34,10 @@ public class LoginCredentialsBean {
 
     private boolean checkEmailAddress(String email) {
 
-        Pattern pattern = Pattern.compile("^[\\w-_.+]*@([\\w]+\\.)+[\\w]+[\\w]$");
+        Pattern pattern = Pattern.compile("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
 
 }
