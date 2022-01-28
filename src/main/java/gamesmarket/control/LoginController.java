@@ -42,17 +42,19 @@ public class LoginController {
         user.setWishlist(UserDAO.retrieveWishlist());
     }
 
-    public void validateLogin(LoginCredentialsBean loginCredentialsBean) throws NotLoggedInException, SQLException, IOException {
+    public boolean validateLogin(LoginCredentialsBean loginCredentialsBean) throws SQLException, IOException {
 
         String emailAddress = loginCredentialsBean.getEmailAddress();
         String password = loginCredentialsBean.getPassword();
 
         if (ShopOwnerDAO.validateLogin(emailAddress, password)) {
             this.retrieveShopOwner(emailAddress);
+            return true;
         } else if (UserDAO.validateLogin(emailAddress, password)) {
             this.retrieveUser(emailAddress);
+            return true;
         } else {
-            throw new NotLoggedInException();
+            return false;
         }
 
     }

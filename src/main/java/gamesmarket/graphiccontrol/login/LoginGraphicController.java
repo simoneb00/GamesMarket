@@ -1,11 +1,10 @@
 package gamesmarket.graphiccontrol.login;
 
-import gamesmarket.exceptions.ErrorMessage;
-import gamesmarket.exceptions.InvalidEmailException;
-import gamesmarket.exceptions.NotLoggedInException;
-import gamesmarket.main.Main;
 import gamesmarket.bean.LoginCredentialsBean;
 import gamesmarket.control.LoginController;
+import gamesmarket.exceptions.ErrorMessage;
+import gamesmarket.exceptions.InvalidEmailException;
+import gamesmarket.main.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +20,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class LoginGraphicController {
 
@@ -33,7 +33,7 @@ public class LoginGraphicController {
 
 
     private Stage loginStage = new Stage();
-    private LoginController lc = new LoginController();
+    private final LoginController lc = new LoginController();
 
     @FXML
     public void close(ActionEvent event) {
@@ -53,15 +53,14 @@ public class LoginGraphicController {
                 loginCredentialsBean.setEmailAddress(emailTextField.getText());
                 loginCredentialsBean.setPassword(passwordField.getText());
 
-                lc.validateLogin(loginCredentialsBean);
-
-                this.close(event);
+                if (!lc.validateLogin(loginCredentialsBean))
+                    loginLabel.setText("Invalid login, please try again.");
+                else
+                    this.close(event);
 
             }
         } catch (InvalidEmailException e) {
             loginLabel.setText("Invalid email address, please try again.");
-        } catch (NotLoggedInException e) {
-            loginLabel.setText("Invalid login, please try again.");
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
         }
@@ -92,7 +91,7 @@ public class LoginGraphicController {
 
         try {
 
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/register.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/register.fxml")));
             Stage registerStage = new Stage();
             Scene registerScene = new Scene(root, 429, 601);
             registerScene.setFill(Color.TRANSPARENT);

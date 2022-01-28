@@ -74,4 +74,6 @@ module login.loginwindow {
     exports gamesmarket.graphiccontrol.mobile.yourshop;
     opens gamesmarket.graphiccontrol.mobile.signup to javafx.fxml;
     exports gamesmarket.graphiccontrol.mobile.signup;
+    exports  gamesmarket.model;
+    exports gamesmarket.model.dao;
 }

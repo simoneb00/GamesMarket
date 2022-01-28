@@ -61,11 +61,13 @@ public class OrderDAO {
         PreparedStatement preparedStatement = null;
         String retrieve = "select idorders, shopName, platform, game, price, buyerName, buyerAddress, buyerCity, buyerTel, paymentMethod, username, buyerEmail, status from orders where shopName = ?";
 
+
         try {
 
             Connection connection = DatabaseConnection.getConnection();
             preparedStatement = connection.prepareStatement(retrieve);
             preparedStatement.setString(1, Shop.getInstance().getName());
+            System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

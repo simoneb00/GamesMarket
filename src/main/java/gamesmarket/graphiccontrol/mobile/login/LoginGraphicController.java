@@ -4,7 +4,6 @@ import gamesmarket.bean.LoginCredentialsBean;
 import gamesmarket.control.LoginController;
 import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.exceptions.InvalidEmailException;
-import gamesmarket.exceptions.NotLoggedInException;
 import gamesmarket.graphiccontrol.mobile.ShopOwnerNavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.ShopOwner;
@@ -18,6 +17,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class LoginGraphicController extends ShopOwnerNavigationButtons {
 
@@ -28,7 +28,7 @@ public class LoginGraphicController extends ShopOwnerNavigationButtons {
     @FXML
     private Label label;
 
-    private LoginController loginController = new LoginController();
+    private final LoginController loginController = new LoginController();
 
     @FXML
     private void backToHome(ActionEvent event) {
@@ -51,12 +51,12 @@ public class LoginGraphicController extends ShopOwnerNavigationButtons {
                     this.homeButton(event);
                 else if (ShopOwner.getInstance().isLoggedIn())
                     this.shopOwnerHomeButton(event);
+                else
+                    label.setText("Invalid login. Please try again.");
 
             }
         } catch (InvalidEmailException e) {
             label.setText("Invalid email address, please try again.");
-        } catch (NotLoggedInException e) {
-            label.setText("Invalid login, please try again.");
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMobile();
         }
@@ -86,7 +86,7 @@ public class LoginGraphicController extends ShopOwnerNavigationButtons {
     @FXML
     public void signUp(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/register.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/mobile/register.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
