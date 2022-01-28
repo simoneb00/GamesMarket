@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class ShopOwnerNavigationButtons extends NavigationButtons{
 
     protected void show(Parent root, ActionEvent event) {
@@ -27,11 +29,10 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
     @FXML
     public void shopOwnerForumButton(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_forum.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/mobile/shop_owner_forum.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
-            e.printStackTrace();
             ErrorMessage.displayErrorMobile();
         }
     }
@@ -42,7 +43,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             this.createNewShop(event);
         else {
             try {
-                root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/your_shop.fxml"));
+                root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/mobile/your_shop.fxml")));
                 this.show(root, event);
 
             } catch (Exception e) {
@@ -54,7 +55,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
     @FXML
     public void shopOwnerHomeButton(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/shop_owner_homepage.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/mobile/shop_owner_homepage.fxml")));
             this.show(root, event);
 
 
@@ -66,7 +67,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
     @FXML
     public void createNewShop(ActionEvent event) {
         try {
-            root = FXMLLoader.load(Main.class.getResource("/gamesmarket/mobile/create_new_shop.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/mobile/create_new_shop.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
