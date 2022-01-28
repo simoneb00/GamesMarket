@@ -31,10 +31,10 @@ public class ForumController {
 
         List<Post> posts = PostDAO.retrievePosts();
 
-        for (int i = 0; i < posts.size(); i++) {
+        for (Post post : posts) {
             PostBean bean = new PostBean(
-                    posts.get(i).getUsername(),
-                    posts.get(i).getText()
+                    post.getUsername(),
+                    post.getText()
             );
 
             beans.add(bean);
@@ -47,10 +47,10 @@ public class ForumController {
         List<Post> posts = PostDAO.retrieveUserPosts();
         List<PostBean> beans = new ArrayList<>();
 
-        for (int i = 0; i < posts.size(); i++) {
+        for (Post post : posts) {
             PostBean bean = new PostBean(
-                    posts.get(i).getUsername(),
-                    posts.get(i).getText()
+                    post.getUsername(),
+                    post.getText()
             );
 
             beans.add(bean);
@@ -67,6 +67,7 @@ public class ForumController {
     public void saveComment(CommentBean commentBean, PostBean postBean) throws SQLException {
 
         Comment comment = new Comment();
+
         comment.setUsername(commentBean.getCommentUsername());
         comment.setText(commentBean.getCommentText());
 
@@ -82,10 +83,10 @@ public class ForumController {
         List<Comment> comments = CommentDAO.retrieveComments(post);
         List<CommentBean> beans = new ArrayList<>();
 
-        for (int i = 0; i < comments.size(); i++) {
+        for (Comment comment : comments) {
             CommentBean bean = new CommentBean();
-            bean.setCommentUsername(comments.get(i).getUsername());
-            bean.setCommentText(comments.get(i).getText());
+            bean.setCommentUsername(comment.getUsername());
+            bean.setCommentText(comment.getText());
             beans.add(bean);
         }
 

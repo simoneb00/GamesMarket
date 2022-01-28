@@ -4,6 +4,7 @@ import gamesmarket.bean.PostBean;
 import gamesmarket.control.ForumController;
 import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.graphiccontrol.mobile.NavigationButtons;
+import gamesmarket.graphiccontrol.mobile.ShopOwnerNavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.Post;
 import gamesmarket.model.ShopOwner;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ForumGraphicController extends NavigationButtons implements Initializable {
+public class ForumGraphicController extends ShopOwnerNavigationButtons implements Initializable {
 
     @FXML
     private GridPane grid;
@@ -147,7 +148,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                gamesmarket.graphiccontrol.forum.UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
+                UserPostGraphicController userPostGraphicController = fxmlLoader.getController();
                 userPostGraphicController.setData(post);
                 yourPostsGrid.add(anchorPane4, col++, row);
                 GridPane.setMargin(anchorPane4, new Insets(10));

@@ -66,9 +66,10 @@ public class ExchangePostDAO {
                 }
 
                 exchangePosts.add(exchangePost);
-                resultSet.close();
-
             }
+
+            resultSet.close();
+
         } finally {
             if (statement != null)
                 statement.close();

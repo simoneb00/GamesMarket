@@ -31,6 +31,7 @@ public class ShopOwnerNavigationButtons extends NavigationButtons{
             this.show(root, event);
 
         } catch (Exception e) {
+            e.printStackTrace();
             ErrorMessage.displayErrorMobile();
         }
     }

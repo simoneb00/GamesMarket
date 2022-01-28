@@ -116,7 +116,7 @@ public class PostGraphicController {
         this.addCommentToGrid(comment);
 
         CommentBean commentBean = new CommentBean();
-        commentBean.setCommentText(username);
+        commentBean.setCommentUsername(username);
         commentBean.setCommentText(txt);
 
         PostBean postBean = new PostBean(post.getUsername(), post.getText());

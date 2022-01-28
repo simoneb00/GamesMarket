@@ -57,6 +57,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
                 posts.add(exchangePost);
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             ErrorMessage.displayErrorMessage();
         }
 
@@ -78,6 +79,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
             this.showGrid(exchangePosts);
 
         } catch (IOException e) {
+            e.printStackTrace();
             ErrorMessage.displayErrorMessage();
         }
 
@@ -117,6 +119,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
 
 
                 } catch (IOException e) {
+                    e.printStackTrace();
                     ErrorMessage.displayErrorMessage();
                 }
             }
