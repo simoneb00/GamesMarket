@@ -34,8 +34,8 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
     private TextField searchBar;
 
 
-    private List<ExchangePost> exchangePosts = new ArrayList<>();
-    private ExchangeController exchangeController = new ExchangeController();
+    private final List<ExchangePost> exchangePosts = new ArrayList<>();
+    private final ExchangeController exchangeController = new ExchangeController();
 
     public List<ExchangePost> retrieveExchange() throws IOException{
 
@@ -44,20 +44,19 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
         try {
             List<ExchangePostBean> beans = exchangeController.retrieveExchange();
 
-            for (int i = 0; i < beans.size(); i++) {
+            for (ExchangePostBean bean : beans) {
                 ExchangePost exchangePost = new ExchangePost(
-                        beans.get(i).getPostUsername(),
-                        beans.get(i).getPostGame(),
-                        beans.get(i).getPostPlatform(),
-                        beans.get(i).getGameToGive(),
-                        beans.get(i).getPlatformGameToGive(),
-                        beans.get(i).getPostImageFile()
+                        bean.getPostUsername(),
+                        bean.getPostGame(),
+                        bean.getPostPlatform(),
+                        bean.getGameToGive(),
+                        bean.getPlatformGameToGive(),
+                        bean.getPostImageFile()
                 );
 
                 posts.add(exchangePost);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             ErrorMessage.displayErrorMessage();
         }
 
@@ -79,7 +78,6 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
             this.showGrid(exchangePosts);
 
         } catch (IOException e) {
-            e.printStackTrace();
             ErrorMessage.displayErrorMessage();
         }
 
@@ -90,39 +88,38 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
             int column = 0;
             int row = 1;
 
-            for (int i = 0; i < posts.size(); i++) {
+        for (ExchangePost post : posts) {
 
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/exchangeItem.fxml"));
-                    AnchorPane anchorPane = fxmlLoader.load();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/exchangeItem.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
 
-                    ExchangeItemGraphicController itemController = fxmlLoader.getController();
-                    itemController.setData(posts.get(i));
+                ExchangeItemGraphicController itemController = fxmlLoader.getController();
+                itemController.setData(post);
 
-                    if (column == 5) {
-                        column = 0;
-                        row++;
-                    }
-
-                    grid.add(anchorPane, column++, row);
-
-                    grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                    grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                    grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                    GridPane.setMargin(anchorPane, new Insets(20));
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    ErrorMessage.displayErrorMessage();
+                if (column == 5) {
+                    column = 0;
+                    row++;
                 }
+
+                grid.add(anchorPane, column++, row);
+
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(20));
+
+
+            } catch (IOException e) {
+                ErrorMessage.displayErrorMessage();
             }
+        }
         }
 
     @FXML
@@ -131,9 +128,9 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
         grid.getChildren().clear();
         List<ExchangePost> searchedPosts = new ArrayList<>();
 
-        for (int i = 0; i < exchangePosts.size(); i++) {
-            if (exchangePosts.get(i).getGame().toLowerCase().contains(search.toLowerCase())) {
-                searchedPosts.add(exchangePosts.get(i));
+        for (ExchangePost exchangePost : exchangePosts) {
+            if (exchangePost.getGame().toLowerCase().contains(search.toLowerCase())) {
+                searchedPosts.add(exchangePost);
             }
         }
 

@@ -181,7 +181,7 @@
                                  <children>
                                     <Button fx:id="removeSelectedGame" disable="true" mnemonicParsing="false" onAction="#removeSelectedGame" stylesheets="@../../java/gamesmarket/css/style.css" text="REMOVE SELECTED" textFill="WHITE" visible="false">
                                        <HBox.margin>
-                                          <Insets right="30.0" />
+                                          <Insets bottom="40.0" right="30.0" />
                                        </HBox.margin>
                                        <styleClass>
                                           <String fx:value="mouse-moved" />
