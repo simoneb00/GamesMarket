@@ -15,16 +15,17 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.util.Objects;
+
 
 public class NavigationButtons {
-
-    private String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
 
     private void show(Parent root, ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
 
         scene.getStylesheets().clear();
+        String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
         scene.getStylesheets().add(style);
 
         stage.setScene(scene);
@@ -34,7 +35,7 @@ public class NavigationButtons {
     @FXML
     public void homeButton(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/home.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/homepage.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -45,7 +46,7 @@ public class NavigationButtons {
     @FXML
     public void shopButton(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shop.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/shop.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -56,7 +57,7 @@ public class NavigationButtons {
     @FXML
     public void forumButton(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/forum.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/forum.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -67,7 +68,7 @@ public class NavigationButtons {
     @FXML
     public void exchangeButton(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/exchange.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/exchange.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -78,7 +79,7 @@ public class NavigationButtons {
     @FXML
     public void profileButton(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/profile.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/profile.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -91,7 +92,7 @@ public class NavigationButtons {
     @FXML
     public void forumButtonSO(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/forumSO.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/forumSO.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -102,7 +103,7 @@ public class NavigationButtons {
     @FXML
     public void yourShopButtonSO(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/yourShop.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/yourShop.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -113,7 +114,7 @@ public class NavigationButtons {
     @FXML
     public void homeButtonSO(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/shopOwnerHome.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/shop_owner_homepage.fxml")));
             this.show(root, event);
 
         } catch (Exception e) {
@@ -125,7 +126,7 @@ public class NavigationButtons {
     public void signIn(AnchorPane anchorPane) {
         try {
 
-            Parent root = FXMLLoader.load(Main.class.getResource("/gamesmarket/login.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/gamesmarket/login.fxml")));
             Stage loginStage = new Stage();
             Scene loginScene = new Scene(root);
             loginStage.initStyle(StageStyle.TRANSPARENT);
