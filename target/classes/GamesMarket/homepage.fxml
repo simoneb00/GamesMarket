@@ -1,27 +1,469 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.home.UserHomepageGraphicController">
+<AnchorPane fx:id="homePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gamesmarket.graphiccontrol.home.UserHomepageGraphicController">
    <children>
-      <ImageView fitHeight="711.0" fitWidth="1000.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../images/Home.jpg" />
-         </image>
-      </ImageView>
-      <Button layoutX="43.0" layoutY="616.0" mnemonicParsing="false" onAction="#signInButtonHandler" opacity="0.0" prefHeight="51.0" prefWidth="189.0" />
-      <Button layoutX="964.0" layoutY="8.0" mnemonicParsing="false" onAction="#closeButtonHandler" opacity="0.0" prefHeight="31.0" prefWidth="31.0" />
-      <TextField layoutX="318.0" layoutY="51.0" prefHeight="25.0" prefWidth="233.0" promptText="Search game" />
-      <Label fx:id="homeLabel" layoutX="388.0" layoutY="98.0" />
-      <Button layoutX="659.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="50.0" />
-      <Button layoutX="731.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="86.0" />
-      <Button layoutX="836.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="64.0" />
-      <Button layoutX="918.0" layoutY="48.0" mnemonicParsing="false" onAction="#profileButtonHandler" opacity="0.0" prefHeight="31.0" prefWidth="40.0" />
-      <Button layoutX="287.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="31.0" />
+      <BorderPane layoutX="531.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="810.0" prefWidth="339.0" style="-fx-background-color: #88c5cc;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="283.0" prefWidth="339.0">
+                     <children>
+                        <ImageView fitHeight="198.0" fitWidth="204.0" layoutX="68.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/GamesMarketLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="339.0" style="-fx-background-color: #5A8388;" stylesheets="@../../java/gamesmarket/css/style.css" text="Home" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/home_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="768.0" mnemonicParsing="false" onAction="#shopButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/gamesmarket/css/style.css" text="Shop" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/shopping_bag_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-pressed" />
+                        <String fx:value="mouse-moved" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="773.0" mnemonicParsing="false" onAction="#exchangeButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/gamesmarket/css/style.css" text="Exchange" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/synchronize_64px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="778.0" mnemonicParsing="false" onAction="#forumButton" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/gamesmarket/css/style.css" text="Forum" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/chat_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="349.0" mnemonicParsing="false" onAction="#profileButtonPressed" prefHeight="56.0" prefWidth="339.0" stylesheets="@../../java/gamesmarket/css/style.css" text="Profile" textFill="WHITE">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/customer_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="mouse-moved" />
+                        <String fx:value="mouse-pressed" />
+                     </styleClass>
+                  </Button>
+                  <Pane prefHeight="133.0" prefWidth="339.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="welcomeLabel" layoutX="93.0" layoutY="116.0" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="signInButton" mnemonicParsing="false" onAction="#signInButtonPressed" prefHeight="53.0" prefWidth="150.0" style="-fx-border-color: white; -fx-border-radius: 30;" stylesheets="@../../java/gamesmarket/css/style.css" text="Sign In" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="signin-mouse-moved" />
+                              <String fx:value="signin-mouse-pressed" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="84.0" prefWidth="1581.0">
+                     <children>
+                        <Label text="Trending games">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="345.0" prefWidth="1581.0">
+                     <children>
+                        <ScrollPane prefHeight="314.0" prefWidth="1561.0">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                           <content>
+                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="2460.0">
+                                 <children>
+                                    <VBox layoutX="42.0" layoutY="25.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/battlefield 2042.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 50">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="278.0" layoutY="25.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/gioco-steam-dirt-5-cover.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 29.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="513.0" layoutY="26.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/NBA 2K22.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 69.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="753.0" layoutY="26.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/psychonauts-2_yvh3.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 59.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="986.0" layoutY="26.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/monster-hunter-rise-deluxe-edition-deluxe-edition-pc-gioco-steam-cover.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 49.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="1235.0" layoutY="25.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/ratchet-clank-rift-apart-v9-45015-320x450.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 59.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="1474.0" layoutY="26.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/FIFA 22.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 69.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="1744.0" layoutY="25.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/gioco-epic-games-hitman-3-cover.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 49.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="1994.0" layoutY="25.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="234.0" prefWidth="183.0">
+                                             <children>
+                                                <ImageView fitHeight="241.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/marvel-s-spider-man-miles-morales-v12-45014-320x450.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="€ 39.99">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="2238.0" layoutY="26.0" prefHeight="290.0" prefWidth="153.0" style="-fx-border-color: #000000;">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="156.0" prefWidth="151.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../images/store.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="51.0" prefWidth="151.0">
+                                             <children>
+                                                <Label prefHeight="37.0" prefWidth="110.0" text="Buy your favorite games" textAlignment="CENTER" wrapText="true" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#shopButton" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/gamesmarket/css/style.css" text="Shop now">
+                                                   <font>
+                                                      <Font size="23.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="312.0" prefWidth="1581.0">
+                     <children>
+                        <AnchorPane prefHeight="283.0" prefWidth="1633.0">
+                           <children>
+                              <Circle fill="#95cbf5" layoutX="273.0" layoutY="205.0" radius="88.0" stroke="#95cbf5" strokeType="INSIDE" />
+                              <Pane layoutX="326.0" layoutY="146.0" prefHeight="115.0" prefWidth="1046.0" style="-fx-background-color: #95CBF5; -fx-background-radius: 30;">
+                                 <children>
+                                    <Label layoutX="240.0" layoutY="19.0" text="Trade your old videogames with other users" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="346.0" layoutY="59.0" mnemonicParsing="false" onAction="#exchangeButtonPressed" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/gamesmarket/css/style.css" text="Go to Exchange" textFill="WHITE">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <ImageView fitHeight="203.0" fitWidth="210.0" layoutX="168.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/exchange.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="439.0" prefHeight="211.0" prefWidth="1581.0">
+                     <children>
+                        <AnchorPane prefHeight="283.0" prefWidth="1633.0">
+                           <children>
+                              <Pane layoutX="188.0" layoutY="49.0" prefHeight="115.0" prefWidth="1081.0" style="-fx-background-color: #F78179; -fx-background-radius: 30;">
+                                 <children>
+                                    <Label layoutX="387.0" layoutY="18.0" text="Discuss with other users about videogames" textFill="WHITE">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="492.0" layoutY="55.0" mnemonicParsing="false" onAction="#forumButton" style="-fx-background-color: #00000000;" styleClass="text-underline" stylesheets="@../../java/gamesmarket/css/style.css" text="Go to Forum" textFill="WHITE">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </Pane>
+                              <Circle fill="#f78179" layoutX="1294.0" layoutY="99.0" radius="88.0" stroke="#f78179" strokeType="INSIDE" />
+                              <ImageView fitHeight="203.0" fitWidth="210.0" layoutX="1189.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/chat-bubble.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
