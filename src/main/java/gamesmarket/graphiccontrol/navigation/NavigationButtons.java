@@ -28,6 +28,7 @@ public class NavigationButtons {
         String style = "file:///C:/Users/Simone%20Bauco/IdeaProjects/GamesMarket/src/main/java/GamesMarket/css/style.css";
         scene.getStylesheets().add(style);
 
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
     }

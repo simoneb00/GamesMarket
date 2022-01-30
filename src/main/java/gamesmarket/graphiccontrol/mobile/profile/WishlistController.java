@@ -75,8 +75,8 @@ public class WishlistController extends NavigationButtons implements Initializab
 
     @FXML
     public void addGame(ActionEvent event) {
-        WishlistController wishlistController = new WishlistController();
-        wishlistController.addGame(event);
+        TradelistController tradelistController = new TradelistController();
+        tradelistController.addGame(event);
     }
 
     @Override
