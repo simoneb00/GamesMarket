@@ -31,14 +31,14 @@ public class UserProfileController {
         contacts.add(tel);
         contacts.add(address);
         contacts.add(country);
-        User.getInstance().setContacts(contacts);
+        User.getInstance().setContacts(contacts);   // uploading user instance's contact information
 
         UserDAO.updateCI(email, tel, address, country);
     }
 
     public void updateProfilePhoto() throws SQLException, IOException {
         FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
+        File selectedFile = fileChooser.showOpenDialog(null);   // opens a file chooser to make the user choose a new profile photo
         String path = selectedFile.getAbsolutePath();
 
         UserDAO.updateProfilePhoto(path);
@@ -53,7 +53,7 @@ public class UserProfileController {
         UserDAO.removeFromWishlist(name, platform);
         for (int i = 0; i < User.getInstance().getWishlist().size(); i++) {
             if (User.getInstance().getWishlist().get(i).equals(name + " - " + platform))
-                User.getInstance().getWishlist().remove(i);
+                User.getInstance().getWishlist().remove(i);         // remove the game from the user instance's wishlist
         }
     }
 
@@ -63,7 +63,7 @@ public class UserProfileController {
         UserDAO.removeFromTradelist(name, platform);
         for (int i = 0; i < User.getInstance().getTradelist().size(); i++) {
             if (User.getInstance().getTradelist().get(i).equals(name + " - " + platform))
-                User.getInstance().getTradelist().remove(i);
+                User.getInstance().getTradelist().remove(i);    // remove the game from the user instance's tradelist
         }
     }
 }

@@ -42,7 +42,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
         List<ExchangePost> posts = new ArrayList<>();
 
         try {
-            List<ExchangePostBean> beans = exchangeController.retrieveExchange();
+            List<ExchangePostBean> beans = exchangeController.retrieveExchange();   // retrieve all posts for the logged user
 
             for (ExchangePostBean bean : beans) {
                 ExchangePost exchangePost = new ExchangePost(
@@ -93,7 +93,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/exchangeItem.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+                AnchorPane anchorPane = fxmlLoader.load();  // loads the post
 
                 ExchangeItemGraphicController itemController = fxmlLoader.getController();
                 itemController.setData(post);
@@ -103,7 +103,7 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
                     row++;
                 }
 
-                grid.add(anchorPane, column++, row);
+                grid.add(anchorPane, column++, row);    // adds the post to the visible grid
 
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -125,16 +125,16 @@ public class ExchangeGraphicController extends NavigationButtons implements Init
     @FXML
     public void search() {
         String search = searchBar.getText();
-        grid.getChildren().clear();
+        grid.getChildren().clear();                             // makes the grid empty
         List<ExchangePost> searchedPosts = new ArrayList<>();
 
         for (ExchangePost exchangePost : exchangePosts) {
             if (exchangePost.getGame().toLowerCase().contains(search.toLowerCase())) {
-                searchedPosts.add(exchangePost);
+                searchedPosts.add(exchangePost);        // a post is added to the grid only if it contains the searched characters
             }
         }
 
-        this.showGrid(searchedPosts);
+        this.showGrid(searchedPosts);       // shows only searched games
     }
 
 }

@@ -47,10 +47,10 @@ public class LoginController {
         String password = loginCredentialsBean.getPassword();
 
         if (ShopOwnerDAO.validateLogin(emailAddress, password)) {
-            this.retrieveShopOwner(emailAddress);
+            this.retrieveShopOwner(emailAddress);       // retrieves all shop owner's information
             return true;
         } else if (UserDAO.validateLogin(emailAddress, password)) {
-            this.retrieveUser(emailAddress);
+            this.retrieveUser(emailAddress);            // retrieves all user's information
             return true;
         } else {
             return false;
@@ -72,7 +72,7 @@ public class LoginController {
             shop.setOwner(email);
             shop.setGames(ShopDAO.retrieveList(email));
             shop.setImageFile(ShopDAO.retrievePhoto(email));
-            List<String> completeAddress = ShopDAO.retrieveAddress(email);  // retrieve complete address in this order [address, city, country]
+            List<String> completeAddress = ShopDAO.retrieveAddress(email);  // retrieves complete address in this order [address, city, country]
             shop.setAddress(completeAddress.get(0));
             shop.setCity(completeAddress.get(1));
             shop.setCountry(completeAddress.get(2));

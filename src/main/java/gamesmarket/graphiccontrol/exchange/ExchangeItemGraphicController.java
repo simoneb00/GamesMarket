@@ -66,11 +66,11 @@ public class ExchangeItemGraphicController {
             GaussianBlur blur = new GaussianBlur(55);
             ColorAdjust adj = new ColorAdjust(-0.1, -0.1, -0.1, -0.1);
             adj.setInput(blur);
-            ap.setEffect(adj);
+            ap.setEffect(adj);          // sets the blur effect
 
-            stage.showAndWait();
+            stage.showAndWait();        // shows other user's contact information
 
-            ap.setEffect(null);
+            ap.setEffect(null);         // removes the blur effect
 
 
         } catch (Exception e) {
@@ -94,6 +94,6 @@ public class ExchangeItemGraphicController {
         Parent parent12 = parent11.getParent();
         Parent parent13 =  parent12.getParent();
 
-        return (AnchorPane) parent13.getParent();
+        return (AnchorPane) parent13.getParent();       // returns the exchange anchor pane
     }
 }

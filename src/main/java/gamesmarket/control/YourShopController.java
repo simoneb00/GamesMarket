@@ -19,7 +19,7 @@ public class YourShopController {
 
     public void updatePhoto() throws SQLException, IOException {
         FileChooser fileChooser = new FileChooser();
-        File selectedFile = fileChooser.showOpenDialog(null);
+        File selectedFile = fileChooser.showOpenDialog(null);   // opens a file chooser to let user choose a new photo
         String path = selectedFile.getAbsolutePath();
 
         ShopDAO.updatePhoto(path);
@@ -36,7 +36,7 @@ public class YourShopController {
 
         for (int i = 0; i < Shop.getInstance().getGames().size(); i++) {
             if (Shop.getInstance().getGames().get(i).getName().equals(name) && Shop.getInstance().getGames().get(i).getPlatform().equals(platform) && Shop.getInstance().getGames().get(i).getPrice() == price)
-                Shop.getInstance().getGames().remove(i);
+                Shop.getInstance().getGames().remove(i);    // removes game from the shop instance
         }
     }
 

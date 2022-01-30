@@ -13,10 +13,9 @@ public class ExchangeController {
 
         List<ExchangePostBean> exchangePostBeans = new ArrayList<>();
 
+        List<ExchangePost> exchangePosts = ExchangePostDAO.retrieveExchange();  // retrieve exchange posts for the user
 
-        List<ExchangePost> exchangePosts = ExchangePostDAO.retrieveExchange();
-
-        for (ExchangePost exchangePost : exchangePosts) {
+        for (ExchangePost exchangePost : exchangePosts) {               // upload exchange posts in beans
             ExchangePostBean exchangePostBean = new ExchangePostBean(
                     exchangePost.getUsername(),
                     exchangePost.getGame(),

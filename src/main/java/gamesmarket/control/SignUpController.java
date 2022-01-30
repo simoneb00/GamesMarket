@@ -18,7 +18,7 @@ public class SignUpController {
         String username = registerCredentialsBean.getRegisterUsername();
         String password = registerCredentialsBean.getRegisterPassword();
         String email = registerCredentialsBean.getRegisterEmail();
-        String typeOfUser = registerCredentialsBean.getTypeOfUser();
+        String typeOfUser = registerCredentialsBean.getTypeOfUser();    // it may be either User or Shop Owner
 
         if (typeOfUser.equals("User")) {
             UserDAO.registerUser(username, email, password, firstName, lastName);

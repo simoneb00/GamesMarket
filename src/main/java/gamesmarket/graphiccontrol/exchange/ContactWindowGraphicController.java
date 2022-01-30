@@ -36,7 +36,7 @@ public class ContactWindowGraphicController implements Initializable {
     @FXML
     public void close(ActionEvent event) {
         Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        stage.close();
+        stage.close();      // closing the current stage
     }
 
 
@@ -49,11 +49,13 @@ public class ContactWindowGraphicController implements Initializable {
             userBean.setUsername(username);
             UserBean userBean1 = contactWindowController.retrieveCI(userBean);
 
+            // setting the contact information into not editable text areas
             contactUsername.setText(username);
             email.setText(userBean1.getUserEmail());
             tel.setText(userBean1.getUserTel());
             address.setText(userBean1.getUserAddress());
             country.setText(userBean1.getUserCountry());
+
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();
         }

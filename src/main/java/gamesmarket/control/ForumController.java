@@ -21,7 +21,7 @@ public class ForumController {
         Post post = new Post(username, text);
 
         PostDAO.delete(post);
-        CommentDAO.delete(post);
+        CommentDAO.delete(post);    // deleting all the comments related to the post
     }
 
     public List<PostBean> retrievePosts() throws SQLException {
@@ -29,7 +29,7 @@ public class ForumController {
         List<PostBean> beans = new ArrayList<>();
 
 
-        List<Post> posts = PostDAO.retrievePosts();
+        List<Post> posts = PostDAO.retrievePosts();     // retrieving all posts in the forum
 
         for (Post post : posts) {
             PostBean bean = new PostBean(
@@ -44,7 +44,7 @@ public class ForumController {
     }
 
     public List<PostBean> retrieveUserPosts() throws SQLException {
-        List<Post> posts = PostDAO.retrieveUserPosts();
+        List<Post> posts = PostDAO.retrieveUserPosts();     // retrieving all posts made by the currenti user
         List<PostBean> beans = new ArrayList<>();
 
         for (Post post : posts) {

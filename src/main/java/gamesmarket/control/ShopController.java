@@ -16,7 +16,7 @@ public class ShopController {
 
 
     public List<ShopPostBean> retrieveShop() throws SQLException, IOException {
-        List<ShopPost> posts = ShopDAO.retrieveShop();
+        List<ShopPost> posts = ShopDAO.retrieveShop();      // retrieves all games put for sale
         List<ShopPostBean> beans = new ArrayList<>();
 
         for (int i = 0; i < posts.size(); i++) {
