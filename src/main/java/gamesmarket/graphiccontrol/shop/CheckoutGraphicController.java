@@ -2,6 +2,8 @@ package gamesmarket.graphiccontrol.shop;
 
 import gamesmarket.boundaries.PaypalPaymentBoundary;
 import gamesmarket.exceptions.ErrorMessage;
+import gamesmarket.exceptions.InvalidEmailException;
+import gamesmarket.exceptions.InvalidPaymentException;
 import gamesmarket.main.Main;
 import gamesmarket.model.User;
 import javafx.event.ActionEvent;
@@ -144,7 +146,7 @@ public class CheckoutGraphicController implements Initializable {
                 if (paypalPaymentBoundary.validatePayment())
                     paymentMethod = "PayPal";
                 else
-                    throw new Exception();
+                    throw new InvalidPaymentException();
             } else if (card.isSelected())
                 paymentMethod = "Credit/Debit card";
             else if (pickUpInStore.isSelected())
@@ -178,8 +180,8 @@ public class CheckoutGraphicController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
-            ErrorMessage.displayErrorMobile();
+        } catch (InvalidPaymentException | IOException e) {
+            ErrorMessage.displayErrorMessage();
         }
     }
 

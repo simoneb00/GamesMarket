@@ -2,6 +2,8 @@ package gamesmarket.graphiccontrol.mobile.shop;
 
 import gamesmarket.boundaries.PaypalPaymentBoundary;
 import gamesmarket.exceptions.ErrorMessage;
+import gamesmarket.exceptions.InvalidEmailException;
+import gamesmarket.exceptions.InvalidPaymentException;
 import gamesmarket.graphiccontrol.mobile.NavigationButtons;
 import gamesmarket.main.Main;
 import gamesmarket.model.User;
@@ -115,7 +117,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
             if (paymentMethod.equals("PayPal")) {
                 PaypalPaymentBoundary paypalPaymentBoundary = new PaypalPaymentBoundary();
                 if (!paypalPaymentBoundary.validatePayment())
-                    throw new Exception();
+                    throw new InvalidPaymentException();
             }
 
             // if the payment method chosen is not pick up in store, the shipping information need to be stored
@@ -133,7 +135,7 @@ public class CheckoutGraphicController extends NavigationButtons implements Init
             Parent root = fxmlLoader.load();
             this.show(root, event);
 
-        } catch (Exception e) {
+        } catch (InvalidPaymentException | IOException e) {
             ErrorMessage.displayErrorMobile();
         }
     }
