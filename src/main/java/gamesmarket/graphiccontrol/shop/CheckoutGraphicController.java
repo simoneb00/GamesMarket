@@ -1,5 +1,6 @@
 package gamesmarket.graphiccontrol.shop;
 
+import gamesmarket.boundaries.PaypalPaymentBoundary;
 import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.main.Main;
 import gamesmarket.model.User;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -85,7 +87,7 @@ public class CheckoutGraphicController implements Initializable {
 
     @FXML
     public void back(ActionEvent event) {
-        Stage stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
@@ -125,7 +127,7 @@ public class CheckoutGraphicController implements Initializable {
                     ErrorMessage.displayErrorMobile();
                 }
             } else {
-                this.confirmButton(event);
+                this.confirmButton(event);  // if user select pick up in store payment method, he does not need to enter shipping infos
             }
         }
 
@@ -134,22 +136,27 @@ public class CheckoutGraphicController implements Initializable {
     @FXML
     public void confirmButton(ActionEvent event) {
 
-        if (cashOnDelivery.isSelected())
-            paymentMethod = "Cash on delivery";
-        else if (paypal.isSelected())
-            paymentMethod = "PayPal";
-        else if (card.isSelected())
-            paymentMethod = "Credit/Debit card";
-        else if (pickUpInStore.isSelected())
-            paymentMethod = "Pickup in store";
-
         try {
+            if (cashOnDelivery.isSelected())
+                paymentMethod = "Cash on delivery";
+            else if (paypal.isSelected()) {
+                PaypalPaymentBoundary paypalPaymentBoundary = new PaypalPaymentBoundary();
+                if (paypalPaymentBoundary.validatePayment())
+                    paymentMethod = "PayPal";
+                else
+                    throw new Exception();
+            } else if (card.isSelected())
+                paymentMethod = "Credit/Debit card";
+            else if (pickUpInStore.isSelected())
+                paymentMethod = "Pickup in store";
+
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/gamesmarket/checkout_confirmation.fxml"));
 
             ConfirmationGraphicController confirmationGraphicController = new ConfirmationGraphicController(vendor, gamePlatform, gameName, gamePrice, gameImgPath, paymentMethod, User.getInstance().getEmailAddress());
 
-            if (!pickUpInStore.isSelected()) {
+            if (!pickUpInStore.isSelected()) {      // links to confirmation gc shipping information, if present
                 confirmationGraphicController.setBuyerName(nameTF.getText());
                 confirmationGraphicController.setBuyerAddress(addressTF.getText());
                 confirmationGraphicController.setBuyerCity(cityTF.getText());
@@ -171,7 +178,7 @@ public class CheckoutGraphicController implements Initializable {
 
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             ErrorMessage.displayErrorMobile();
         }
     }
@@ -184,7 +191,7 @@ public class CheckoutGraphicController implements Initializable {
             fxmlLoader.setController(this);
 
             Parent root = fxmlLoader.load();
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
 
             stage.getIcons().add(new Image(logo));

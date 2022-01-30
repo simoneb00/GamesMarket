@@ -1,6 +1,8 @@
 package gamesmarket.graphiccontrol.mobile.login;
 
 import gamesmarket.bean.LoginCredentialsBean;
+import gamesmarket.boundaries.LoginFacebookBoundary;
+import gamesmarket.boundaries.LoginGoogleBoundary;
 import gamesmarket.control.LoginController;
 import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.exceptions.InvalidEmailException;
@@ -64,8 +66,11 @@ public class LoginGraphicController extends ShopOwnerNavigationButtons {
 
     @FXML
     public void signInWithGoogle(ActionEvent event) {
+
+        LoginGoogleBoundary loginGoogleBoundary = new LoginGoogleBoundary();
+
         try {
-            loginController.validateGoogleLogin();
+            loginGoogleBoundary.validateGoogleLogin();
             this.homeButton(event);
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMobile();
@@ -74,8 +79,11 @@ public class LoginGraphicController extends ShopOwnerNavigationButtons {
 
     @FXML
     public void signInWithFacebook(ActionEvent event) {
+
+        LoginFacebookBoundary loginFacebookBoundary = new LoginFacebookBoundary();
+
         try {
-            loginController.validateFacebookLogin();
+            loginFacebookBoundary.validateFacebookLogin();
             this.homeButton(event);
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMobile();

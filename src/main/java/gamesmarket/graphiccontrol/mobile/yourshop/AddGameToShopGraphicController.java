@@ -36,8 +36,8 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
 
     @FXML
     void add() {
-        String game = gameChoiceBox.getValue();
-        String priceString = priceTF.getText();
+        String game = gameChoiceBox.getValue();     // gets game
+        String priceString = priceTF.getText();     // gets price
 
         try {
             if (game.isEmpty())
@@ -99,7 +99,7 @@ public class AddGameToShopGraphicController extends ShopOwnerNavigationButtons i
         List<Game> games = this.retrieveGames();
 
         for (int i = 0; i < games.size(); i++) {
-            gameChoiceBox.getItems().add(games.get(i).getName() + " - " + games.get(i).getPlatform());
+            gameChoiceBox.getItems().add(games.get(i).getName() + " - " + games.get(i).getPlatform());      // configure choice box
         }
     }
 

@@ -158,7 +158,7 @@ public class YourShopGraphicController extends NavigationButtons implements Init
     public void listMouseClicked() {
         String selected;
 
-        selected = gamesList.getSelectionModel().getSelectedItems().toString();
+        selected = gamesList.getSelectionModel().getSelectedItems().toString();     // get selected game from the listview
         if (!selected.equals("[]")) {
             selected = selected.replaceAll("[\\[\\]]", "");
             String[] strings = selected.split(" - ");
@@ -189,9 +189,10 @@ public class YourShopGraphicController extends NavigationButtons implements Init
             ErrorMessage.displayErrorMessage();
         }
 
-        removeSelectedGame.setDisable(true);
+        removeSelectedGame.setDisable(true);        // hide and disable remove selected button
         removeSelectedGame.setVisible(false);
 
+        // refresh page
         gamesList.getItems().clear();
         this.retrieveList();
         ordersTable.getItems().clear();
@@ -231,12 +232,13 @@ public class YourShopGraphicController extends NavigationButtons implements Init
             ordersObservableList.add(orders.get(i));
         }
 
+        // set table data
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         gameCol.setCellValueFactory(new PropertyValueFactory<>("game"));
         platformCol.setCellValueFactory(new PropertyValueFactory<>("platform"));
         paymentCol.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
 
-        ordersTable.setItems(ordersObservableList);
+        ordersTable.setItems(ordersObservableList); // show table
     }
 
 

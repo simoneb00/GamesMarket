@@ -92,7 +92,7 @@ public class YourGoodsGraphicController extends ShopOwnerNavigationButtons imple
 
     @FXML
     public void mouseClicked() {
-        selectedGame = table.getSelectionModel().getSelectedItem();
+        selectedGame = table.getSelectionModel().getSelectedItem();     // gets selected game
         if (selectedGame != null) {
             removeSelectedButton.setDisable(false);
             removeSelectedButton.setVisible(true);

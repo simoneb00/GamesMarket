@@ -86,7 +86,7 @@ public class OrdersTableGraphicController implements Initializable {
 
             }
 
-
+            // set table data
             idCol.setCellValueFactory(new PropertyValueFactory<>("idOrder"));
             gameCol.setCellValueFactory(new PropertyValueFactory<>("game"));
             platformCol.setCellValueFactory(new PropertyValueFactory<>("platform"));
@@ -99,7 +99,8 @@ public class OrdersTableGraphicController implements Initializable {
             paymentCol.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
             statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-            table.setItems(ordersObservableList);
+
+            table.setItems(ordersObservableList);   // show table
 
         } catch (SQLException e) {
             ErrorMessage.displayErrorMessage();

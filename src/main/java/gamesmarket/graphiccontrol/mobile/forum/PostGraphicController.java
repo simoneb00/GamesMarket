@@ -119,14 +119,14 @@ public class PostGraphicController {
         commentBean.setCommentText(txt);
 
         try {
-            forumController.saveComment(commentBean, postBean);
+            forumController.saveComment(commentBean, postBean);     // save comment in the db
         } catch (SQLException e) {
             ErrorMessage.displayErrorMobile();
         }
     }
 
     private void showComment(Comment comment) {
-        oldComments.add(comment);
+        oldComments.add(comment);       // adds comment to post's comments list
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();

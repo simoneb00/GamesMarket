@@ -71,7 +71,7 @@ public class PostGraphicController {
     public void retrieveComments(Post post) throws IOException {
 
         PostBean postBean = new PostBean(post.getUsername(), post.getText());
-        oldComments = this.retrievePostComments(postBean);
+        oldComments = this.retrievePostComments(postBean);      // retrieve comments relative to the post
 
         try {
             for (int i = 0; i < oldComments.size(); i++) {

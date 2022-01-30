@@ -78,6 +78,7 @@ public class SignUpGraphicController {
 
             RegisterCredentialsBean registerCredentialsBean = new RegisterCredentialsBean();
 
+            // setting type of user
             if (isShopOwner) {
                 registerCredentialsBean.setTypeOfUser("ShopOwner");
             } else {
@@ -111,6 +112,7 @@ public class SignUpGraphicController {
     @FXML
     public void shopOwnerChecked() {
 
+        // if checkbox is selected, the user is a shop owner, so he does not need to enter a username
         if (checkBox.isSelected()) {
             usernameTF.setVisible(false);
             usernameTF.setEditable(false);

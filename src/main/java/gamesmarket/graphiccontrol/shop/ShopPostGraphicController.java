@@ -66,7 +66,7 @@ public class ShopPostGraphicController {
                 platform = s[1];
 
                 CheckoutGraphicController checkoutGraphicController = new CheckoutGraphicController(gameName, platform, price, imgPath, vendor);
-                fxmlLoader.setController(checkoutGraphicController);
+                fxmlLoader.setController(checkoutGraphicController);        // creating a new instance of checkout gc, initialized with proper data
 
                 Parent root = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -95,7 +95,7 @@ public class ShopPostGraphicController {
             Parent vBox1 = hBox1.getParent();
             Parent borderPane = vBox1.getParent();
             Parent anchorPane1 = borderPane.getParent();
-            Parent shopAnchorPane = anchorPane1.getParent();
+            Parent shopAnchorPane = anchorPane1.getParent();        // retrieves the anchor pane of the shop, to apply blur effect
 
             try {
 

@@ -70,10 +70,13 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void updatePhoto() {
         try {
             userProfileController.updateProfilePhoto();
+
+            // refresh page
             tradelist.getItems().clear();
             wishlist.getItems().clear();
             this.initialize(null, null);
             photoLabel.setText("");
+
         } catch (RuntimeException e) {
             photoLabel.setText("No photo selected.");
         } catch (SQLException | IOException e) {
@@ -209,9 +212,9 @@ public class UserProfileGraphicController extends NavigationButtons implements I
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.usernameLabel.setText(User.getInstance().getUsername());
 
-        setCI();
-        setBio();
-        setProfilePhoto();
+        setCI();                // retrieve contact information
+        setBio();               // retrieve bio
+        setProfilePhoto();      // retrieve profile photo
         retrieveTradelist();
         retrieveWishlist();
     }

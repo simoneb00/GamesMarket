@@ -23,10 +23,10 @@ public class UserHomepageGraphicController extends NavigationButtons implements 
     public void signInButtonPressed(ActionEvent event) {
         this.signIn(homePane);
 
-        if (User.getInstance().isLoggedIn()) {
+        if (User.getInstance().isLoggedIn()) {      // hides and disables the sign in button if user is logged in
             signInButton.setVisible(false);
             signInButton.isDisabled();
-        } else if (ShopOwner.getInstance().isLoggedIn()) {
+        } else if (ShopOwner.getInstance().isLoggedIn()) {      // if a shop owner logged in, he's redirected to shop owners' homepage
             this.homeButtonSO(event);
         }
     }

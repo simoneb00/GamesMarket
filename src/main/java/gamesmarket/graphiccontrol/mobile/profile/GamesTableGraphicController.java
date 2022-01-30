@@ -94,7 +94,9 @@ public class GamesTableGraphicController extends NavigationButtons implements In
 
     @FXML
     public void mouseClicked() {
-        selectedGame = table.getSelectionModel().getSelectedItem();
+        selectedGame = table.getSelectionModel().getSelectedItem();     // get selected game
+
+        // show add buttons
         tradelistButton.setVisible(true);
         tradelistButton.setDisable(false);
         wishlistButton.setVisible(true);

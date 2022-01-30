@@ -33,8 +33,7 @@ public class YourShopGraphicController extends ShopOwnerNavigationButtons implem
 
     private YourShopController yourShopController = new YourShopController();
     private Parent root;
-    private Scene scene;
-    private Stage stage;
+
 
     @FXML
     void goToGoods(ActionEvent event) {

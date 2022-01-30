@@ -42,9 +42,9 @@ public class TradelistController extends NavigationButtons implements Initializa
 
     @FXML
     public void mouseClicked() {
-        String tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();
+        String tradelistSelected = tradelist.getSelectionModel().getSelectedItems().toString();     // gets selected game in tradelist
         if (!Objects.equals(tradelistSelected, "[]")) {
-            tradelistSelected = tradelistSelected.replaceAll("[\\[\\]]", "");
+            tradelistSelected = tradelistSelected.replaceAll("[\\[\\]]", "");       // replace [] chars with blank ([game] -> game)
             String[] strings = tradelistSelected.split(" - ");
             this.selectedGame = strings[0];
             this.selectedPlatform = strings[1];
@@ -65,6 +65,7 @@ public class TradelistController extends NavigationButtons implements Initializa
             removeSelected.setDisable(true);
             removeSelected.setVisible(false);
 
+            // refresh page
             tradelist.getItems().clear();
             this.retrieveTradelist();
 

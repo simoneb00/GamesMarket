@@ -94,6 +94,6 @@ public class ExchangeItemGraphicController {
         Parent parent12 = parent11.getParent();
         Parent parent13 =  parent12.getParent();
 
-        return (AnchorPane) parent13.getParent();       // returns the exchange anchor pane
+        return (AnchorPane) parent13.getParent();       // returns exchange's anchor pane
     }
 }

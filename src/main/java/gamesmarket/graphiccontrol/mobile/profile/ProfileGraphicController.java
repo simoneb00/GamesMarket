@@ -11,14 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
+
 
 import java.io.*;
 import java.net.URL;
@@ -49,8 +48,6 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
 
     private UserProfileController userProfileController = new UserProfileController();
     private Parent root;
-    private Stage stage;
-    private Scene scene;
 
     @FXML
     void updateBio() {
@@ -171,9 +168,9 @@ public class ProfileGraphicController extends NavigationButtons implements Initi
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.usernameLabel.setText(User.getInstance().getUsername());
 
-        this.setCI();
-        this.setBio();
-        this.setProfilePhoto();
+        this.setCI();              // retrieve and set contact information
+        this.setBio();             // retrieve and set bio
+        this.setProfilePhoto();    // retrieve and set profile photo
         this.retrieveTradelist();
         this.retrieveWishlist();
     }

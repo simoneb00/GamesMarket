@@ -47,12 +47,12 @@ public class ShopGraphicController extends NavigationButtons implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (User.getInstance().isLoggedIn()) {
+        if (User.getInstance().isLoggedIn()) {      // hides and disables the sign in button if user is logged in
             signInButton.setDisable(true);
             signInButton.setVisible(false);
         }
 
-        this.showGrid(this.retrievePosts());
+        this.showGrid(this.retrievePosts());        // retrieving and showing all games for sale
     }
 
     public List<ShopPost> retrievePosts() {

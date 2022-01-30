@@ -42,9 +42,9 @@ public class WishlistController extends NavigationButtons implements Initializab
 
     @FXML
     public void mouseClicked() {
-        String wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();
+        String wishlistSelected = wishlist.getSelectionModel().getSelectedItems().toString();       // get selected game from wishlist
         if (!Objects.equals(wishlistSelected, "[]")) {
-            wishlistSelected = wishlistSelected.replaceAll("[\\[\\]]", "");
+            wishlistSelected = wishlistSelected.replaceAll("[\\[\\]]", "");         // replace [] chars with blank ([game] -> game)
             String[] strings = wishlistSelected.split(" - ");
             selectedGame = strings[0];
             selectedPlatform = strings[1];

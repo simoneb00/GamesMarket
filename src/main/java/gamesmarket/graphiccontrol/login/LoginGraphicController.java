@@ -1,6 +1,8 @@
 package gamesmarket.graphiccontrol.login;
 
 import gamesmarket.bean.LoginCredentialsBean;
+import gamesmarket.boundaries.LoginFacebookBoundary;
+import gamesmarket.boundaries.LoginGoogleBoundary;
 import gamesmarket.control.LoginController;
 import gamesmarket.exceptions.ErrorMessage;
 import gamesmarket.exceptions.InvalidEmailException;
@@ -68,8 +70,11 @@ public class LoginGraphicController {
 
     @FXML
     public void loginWithFacebook(ActionEvent event) {
+
+        LoginFacebookBoundary loginFacebookBoundary = new LoginFacebookBoundary();
+
         try {
-            lc.validateFacebookLogin();
+            loginFacebookBoundary.validateFacebookLogin();
             this.close(event);
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();
@@ -78,8 +83,11 @@ public class LoginGraphicController {
 
     @FXML
     public void loginWithGoogle(ActionEvent event) {
+
+        LoginGoogleBoundary loginGoogleBoundary = new LoginGoogleBoundary();
+
         try {
-            lc.validateGoogleLogin();
+            loginGoogleBoundary.validateGoogleLogin();
             this.close(event);
         } catch (SQLException | IOException e) {
             ErrorMessage.displayErrorMessage();

@@ -30,7 +30,7 @@ public class ExchangeItemGraphicController {
         usernameLabel.setText(exchangePost.getUsername());
         gameToGive.setText(exchangePost.getGame() + " - " + exchangePost.getPlatform());
         gameToReceive.setText(exchangePost.getGameToGive() + " - " + exchangePost.getPlatformGameToGive());
-        File file = exchangePost.getImageFile();
+        File file = exchangePost.getImageFile();        // retrieve game's photo
         if (file != null) {
             Image image = new Image(file.getAbsolutePath());
             gameImg.setImage(image);

@@ -17,29 +17,6 @@ public class LoginController {
 
     List<String> attributes = new ArrayList<>();
 
-    public void validateFacebookLogin() throws SQLException, IOException {
-        User user = User.getInstance();
-        user.setLoggedIn();
-        user.setUsername("facebook-user");
-        user.setEmailAddress("facebookuser@gmail.com");
-        user.setProfileImagePath(UserDAO.retrieveProfilePhoto().getAbsolutePath());
-        user.setContacts(UserDAO.retrieveContactInf(user.getUsername()));
-        user.setBio(UserDAO.retrieveBio());
-        user.setTradelist(UserDAO.retrieveTradelist());
-        user.setWishlist(UserDAO.retrieveWishlist());
-    }
-
-    public void validateGoogleLogin() throws SQLException, IOException {
-        User user = User.getInstance();
-        user.setLoggedIn();
-        user.setUsername("google-user");
-        user.setEmailAddress("googleuser@gmail.com");
-        user.setProfileImagePath(UserDAO.retrieveProfilePhoto().getAbsolutePath());
-        user.setContacts(UserDAO.retrieveContactInf(user.getUsername()));
-        user.setBio(UserDAO.retrieveBio());
-        user.setTradelist(UserDAO.retrieveTradelist());
-        user.setWishlist(UserDAO.retrieveWishlist());
-    }
 
     public boolean validateLogin(LoginCredentialsBean loginCredentialsBean) throws SQLException, IOException {
 

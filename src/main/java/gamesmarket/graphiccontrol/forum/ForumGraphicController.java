@@ -52,13 +52,13 @@ public class ForumGraphicController extends NavigationButtons implements Initial
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {
+        if (User.getInstance().isLoggedIn() || ShopOwner.getInstance().isLoggedIn()) {  // disables login button if user is logged in
             signInButton.setVisible(false);
             signInButton.isDisabled();
         }
 
-        oldposts = this.retrievePosts();
-        List<Post> userOldPosts = this.retrieveUserPosts();
+        oldposts = this.retrievePosts();                        // retrieves all existing posts
+        List<Post> userOldPosts = this.retrieveUserPosts();     // retrieves all existing posts made by the current user
 
         try {
             for (int i = 0; i < oldposts.size(); i++) {
@@ -75,7 +75,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                postsGrid.add(anchorPane1, column++, row);
+                postsGrid.add(anchorPane1, column++, row);              // populates the main grid
                 GridPane.setMargin(anchorPane1, new Insets(10));
             }
 
@@ -93,7 +93,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
                     row++;
                 }
 
-                userGrid.add(anchorPane2, column++, row);
+                userGrid.add(anchorPane2, column++, row);           // populates the user posts grid
                 GridPane.setMargin(anchorPane2, new Insets(10));
             }
 
@@ -239,7 +239,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     @FXML
     public void exchangeButtonPressed(ActionEvent event) {
-        if (User.getInstance().isLoggedIn()) {
+        if (User.getInstance().isLoggedIn()) {      // this is to prevent not logged users to open exchange
             this.exchangeButton(event);
         } else {
             this.signInButtonPressed();
@@ -248,7 +248,7 @@ public class ForumGraphicController extends NavigationButtons implements Initial
 
     @FXML
     public void profileButtonPressed(ActionEvent event) {
-        if (User.getInstance().isLoggedIn()) {
+        if (User.getInstance().isLoggedIn()) {      // this is to prevent not logged users to open profile
             this.profileButton(event);
         } else {
             this.signInButtonPressed();

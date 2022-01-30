@@ -63,13 +63,14 @@ public class GamesTableGraphicController implements Initializable {
             gameObservableList.add(games.get(i));
         }
 
+        // set table data
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         year.setCellValueFactory(new PropertyValueFactory<>("year"));
         genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        table.setItems(gameObservableList);
+        table.setItems(gameObservableList);     // show table
 
     }
 

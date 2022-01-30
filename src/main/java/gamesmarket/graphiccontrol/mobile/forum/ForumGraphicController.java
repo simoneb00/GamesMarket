@@ -67,8 +67,8 @@ public class ForumGraphicController extends ShopOwnerNavigationButtons implement
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gamesmarket.graphiccontrol.forum.ForumGraphicController forumGraphicController = new gamesmarket.graphiccontrol.forum.ForumGraphicController();
-        oldposts = forumGraphicController.retrievePosts();
-        List<Post> userOldPosts = forumGraphicController.retrieveUserPosts();
+        oldposts = forumGraphicController.retrievePosts();      // retrieves all posts
+        List<Post> userOldPosts = forumGraphicController.retrieveUserPosts();   // retrieves user's posts
 
         try {
             for (int i = 0; i < oldposts.size(); i++) {
@@ -85,7 +85,7 @@ public class ForumGraphicController extends ShopOwnerNavigationButtons implement
                     row++;
                 }
 
-                grid.add(ancPane, col++, row);
+                grid.add(ancPane, col++, row);          // show all posts
                 GridPane.setMargin(ancPane, new Insets(10));
             }
 
@@ -103,7 +103,7 @@ public class ForumGraphicController extends ShopOwnerNavigationButtons implement
                     row++;
                 }
 
-                yourPostsGrid.add(aPane, col++, row);
+                yourPostsGrid.add(aPane, col++, row);           // show user's posts
                 GridPane.setMargin(aPane, new Insets(10));
             }
 

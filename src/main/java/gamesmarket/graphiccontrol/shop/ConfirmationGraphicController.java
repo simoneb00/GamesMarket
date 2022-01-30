@@ -99,14 +99,16 @@ public class ConfirmationGraphicController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // show order details
         vendorLabel.setText(vendor);
         platformLabel.setText(platform);
         priceLabel.setText("€ " + price);
         gameLabel.setText(game);
-
         Image image = new Image(imagePath);
         img.setImage(image);
 
+        // save order in DB
         this.saveOrder();
     }
 }

@@ -40,8 +40,8 @@ public class ContactWindowGraphicController implements Initializable {
     @FXML
     public void copyToClipboard() {
         StringSelection stringSelection = new StringSelection(selectedString);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();       // gets the clipboard
+        clipboard.setContents(stringSelection, null);                           // copies selected text to clipboard
         clipboardButton.setVisible(false);
         clipboardButton.setDisable(true);
     }
@@ -61,7 +61,7 @@ public class ContactWindowGraphicController implements Initializable {
             ContactWindowController contactWindowController = new ContactWindowController();
             UserBean userBean = new UserBean();
             userBean.setUsername(username);
-            UserBean userBean1 = contactWindowController.retrieveCI(userBean);
+            UserBean userBean1 = contactWindowController.retrieveCI(userBean);      // retrieves contact information to show
 
             String email = userBean1.getUserEmail();
             String tel = userBean1.getUserTel();
