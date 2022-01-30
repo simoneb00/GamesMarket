@@ -1,3 +1,5 @@
+package test;
+
 import gamesmarket.bean.GameBean;
 import gamesmarket.bean.LoginCredentialsBean;
 import gamesmarket.control.GamesTableController;

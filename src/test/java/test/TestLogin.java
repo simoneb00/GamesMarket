@@ -1,3 +1,5 @@
+package test;
+
 import gamesmarket.bean.LoginCredentialsBean;
 import gamesmarket.control.LoginController;
 import gamesmarket.exceptions.InvalidEmailException;
